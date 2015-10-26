@@ -1,0 +1,8 @@
+MobileIMSDK, a cross-device Instant Messaging library.
+Author: Jack Jiang
+QQ: 413980957
+Skype: hellojackjiang
+Mail: jack.jiang@openmob.net or jb2011@163.com
+Homepage: https://github.com/JackJiang2011/beautyeye
+Discuss: http://openmob.net
+QQ Group: 215891622
