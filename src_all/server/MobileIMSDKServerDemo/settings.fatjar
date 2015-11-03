@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Mon Feb 16 16:10:03 CST 2015
+onejar.license.required=true
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=RainbowCoreServerDemo.jar
+manifest.mergeall=true
+manifest.mainclass=com.cngeeker.rainbowcore.server.demo.ServerLauncherImpl
+manifest.file=<createnew>
+jarname.isextern=false
+onejar.expand=
+excludes=
+includes=

@@ -1,0 +1,76 @@
+//
+//  ProtocalQoS4SendProvider.h
+//  RainbowCore4i
+//
+//  Created by JackJiang on 14/10/24.
+//  Copyright (c) 2014年 cngeeker.com. All rights reserved.
+//
+
+/**
+ * QoS数据包质量包证机制之发送队列保证实现类.
+ *
+ * <p>
+ * 目前QoS机制，支持C2C、C2S的质量保证机制，但尚不支持S2C的质量保证模式.
+ *
+ * <p>
+ * <b>FIXME: </b>有1种情况目前的重传绝对不会成功，那就是当对方非正常退出，而本地并未及时（在服务会话超时时间内）
+ * 收到他下线通知，此时间间隔内发的消息，本地将尝试重传。但对方在重传重试期限内正常登陆也将绝不会收到，为什么呢？
+ * 因为对方再次登陆时user_id已经更新成新的了，之前的包记录的发送目的地还是老user_id。这种情况可以改善，那就是
+ * 这样的包里还记录它的登陆名，服务端将据user_id尝试给目标发消息，但user_id不存在的情况下（即刚才这种情况）可以用
+ * 登陆名尝试找到它的新user_id，从而向新user_id发消息就可以让对方收到了，目前为了简化处理，暂不实现这个了，客户端
+ * 业务层无条件判定并提示该消息没有成功发送，则也算是可以改善发送方的体验！
+ *
+ * @author Jack Jiang, 2014-10-24
+ * @version 1.0
+ */
+
+#import <Foundation/Foundation.h>
+#import "Protocal.h"
+#import "CompletionDefine.h"
+
+@interface ProtocalQoS4SendProvider : NSObject
+
+// 获取本类的单例。使用单例访问本类的所有资源是唯一的合法途径。
++ (ProtocalQoS4SendProvider *)sharedInstance;
+
+- (void) startup:(BOOL)immediately;
+
+- (void) stop;
+
+- (BOOL) isRunning;
+
+- (BOOL) exist:(NSString *)fingerPrint;
+
+/**
+ * 推入一个消息包.
+ *
+ * @param p
+ */
+- (void) put:(Protocal *)p;
+
+/**
+ * 移除一个消息包.
+ * <p>
+ * 此操作是在步异线程中完成，目的是不想阻塞调用此方法的线程.
+ *
+ * @param fingerPrint
+ * @return
+ */
+- (void) remove:(NSString *) fingerPrint;
+
+/**
+ * 队列大小.
+ *
+ * @return
+ * @see HashMap#size()
+ */
+- (unsigned long) size;
+
+/*!
+ *  @Author Jack Jiang, 14-11-07 22:11:28
+ *
+ *  Just for DEBUG.
+ */
+- (void) setDebugObserver:(ObserverCompletion)debugObserver;
+
+@end

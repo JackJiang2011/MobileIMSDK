@@ -1,0 +1,5 @@
+net.openmob.mobileimsdk.android
+net.openmob.mobileimsdk.android.conf
+net.openmob.mobileimsdk.android.core
+net.openmob.mobileimsdk.android.event
+net.openmob.mobileimsdk.android.utils
