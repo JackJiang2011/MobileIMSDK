@@ -136,7 +136,7 @@ public class DemoMain extends JFrame
 		authPanel.addTo(new JLabel("我的id："), 1, true);
 		JPanel idAndVerPanel = new JPanel();
 		idAndVerPanel.setLayout(new BoxLayout(idAndVerPanel, BoxLayout.LINE_AXIS));
-		JLabel lbVer= new JLabel("v2.1b151012.1O");
+		JLabel lbVer= new JLabel("v2.1.1b151104.1O");
 		lbVer.setForeground(new Color(184,184,184));
 		idAndVerPanel.add(viewMyid);
 		idAndVerPanel.add(Box.createHorizontalGlue());

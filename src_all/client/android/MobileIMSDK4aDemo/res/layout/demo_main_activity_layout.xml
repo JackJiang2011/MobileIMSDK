@@ -155,7 +155,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="v2.1b151012.1O"
+                android:text="v2.1.1b151104.1O"
                 android:textColor="#aaaaaa"
                 android:textSize="10sp" />
         </LinearLayout>
