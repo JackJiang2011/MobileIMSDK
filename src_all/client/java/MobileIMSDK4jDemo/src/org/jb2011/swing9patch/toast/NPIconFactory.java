@@ -5,7 +5,7 @@
  *  
  * openmob.net PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  * 
- * NPIconFactory.java at 2015-10-7 22:03:00, code by Jack Jiang.
+ * NPIconFactory.java at 2015-11-12 21:51:15, code by Jack Jiang.
  * You can contact author with jack.jiang@openmob.net or jb2011@163.com.
  */
 package org.jb2011.swing9patch.toast;

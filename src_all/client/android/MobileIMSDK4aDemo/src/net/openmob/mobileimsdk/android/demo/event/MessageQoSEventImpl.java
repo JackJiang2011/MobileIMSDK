@@ -5,7 +5,7 @@
  *  
  * openmob.net PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  * 
- * MessageQoSEventImpl.java at 2015-10-7 22:01:48, code by Jack Jiang.
+ * MessageQoSEventImpl.java at 2015-11-12 21:48:11, code by Jack Jiang.
  * You can contact author with jack.jiang@openmob.net or jb2011@163.com.
  */
 package net.openmob.mobileimsdk.android.demo.event;

@@ -12,7 +12,7 @@
 //  MobileIMSDK4iDemo
 //
 //  Created by JackJiang on 15/11/9.
-//  Copyright © 2015年 cngeeker.com. All rights reserved.
+//  Copyright © 2015年 openmob.net. All rights reserved.
 //
 
 #import "OnLoginProgress.h"

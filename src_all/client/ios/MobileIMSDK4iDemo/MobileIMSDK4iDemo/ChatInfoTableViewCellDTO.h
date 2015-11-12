@@ -12,7 +12,7 @@
 //  RainbowCore4i
 //
 //  Created by JackJiang on 15/2/15.
-//  Copyright (c) 2015年 cngeeker.com. All rights reserved.
+//  Copyright (c) 2015年 openmob.net. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

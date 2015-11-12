@@ -1,9 +1,18 @@
+//  ----------------------------------------------------------------------
+//  Copyright (C) 2015 Jack Jiang The MobileIMSDK Project.
+//  All rights reserved.
+//  Project URL:  https://github.com/JackJiang2011/MobileIMSDK
+//
+//  openmob.net PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+//
+//  You can contact author with jack.jiang@openmob.net or jb2011@163.com.
+//  ----------------------------------------------------------------------
 //
 //  IMClientManager.m
 //  MobileIMSDK4iDemo
 //
 //  Created by JackJiang on 15/11/8.
-//  Copyright © 2015年 cngeeker.com. All rights reserved.
+//  Copyright © 2015年 openmob.net. All rights reserved.
 //
 
 #import "IMClientManager.h"
@@ -71,7 +80,7 @@ static IMClientManager *instance = nil;
         [ConfigEntity registerWithAppKey:@"5418023dfd98c579b6001741"];
         
         // 设置服务器ip和服务器端口
-//      [ConfigEntity setServerIp:@"rbcore.cngeeker.com"];
+//      [ConfigEntity setServerIp:@"rbcore.openmob.net"];
 //      [ConfigEntity setServerPort:7901];
         
         // 使用以下代码表示不绑定固定port（由系统自动分配），否则使用默认的7801端口
