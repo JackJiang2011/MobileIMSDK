@@ -33,14 +33,14 @@
  *
  * @see @link ProtocalType @/link
  */
-@property (nonatomic)  int type;
+@property (nonatomic, assign)  int type;
 /*! 协议数据内容 */
 @property (nonatomic, retain)  NSString *dataContent;
 
 /*! 消息发出方的id（当用户登陆时，此值可不设置） */
-@property (nonatomic)  int from;
+@property (nonatomic, assign)  int from;
 /*! 消息接收方的id（当用户退出时，此值可不设置） */
-@property (nonatomic)  int to;
+@property (nonatomic, assign)  int to;
 
 /*! 用于QoS消息包的质量保证时作为消息的指纹特征码（理论上全局唯一） */
 @property (nonatomic, retain)  NSString *fp;
@@ -54,7 +54,7 @@
  * 类转成JSON时，会被解析成0或1，而在iPhone 5s和iPhone 6上会被解析成true或false，符合JSON规范的应
  * 是true和false. 经过实验，把申明改成bool型时，在4s、5、5s、6上都能正常解析成true和false，暂时原因不明！
  */
-@property (nonatomic)  bool QoS;
+@property (nonatomic, assign)  bool QoS;
 //@property (nonatomic)  BOOL QoS;
 
 /*!

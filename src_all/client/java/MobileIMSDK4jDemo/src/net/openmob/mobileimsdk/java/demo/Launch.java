@@ -20,6 +20,11 @@ import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
 
 import com.eva.epc.common.util.OS;
 
+/**
+ * Demo程序启动入口类.
+ * 
+ * @author Jack Jiang
+ */
 public class Launch
 {
 	private static void initUserInterface()
@@ -99,15 +104,18 @@ public class Launch
 
 	public static void main(final String... args)
 	{
-		initUserInterface();
+//		// init MobileIMSDK first
+//		IMClientManager.getInstance().initMobileIMSDK();
+		// init gui properties
+		Launch.initUserInterface();
+		// startup GUI
 		SwingUtilities.invokeLater(new Runnable()
 		{
 			public void run()
 			{
-				DemoMain frame = new DemoMain();
-				// frame.setDefaultCloseOperation(MainFrame.EXIT_ON_CLOSE);
-				frame.setLocationRelativeTo(null);
-				frame.setVisible(true);
+				LoginGUI loginFrame = new LoginGUI();
+				loginFrame.setLocationRelativeTo(null);
+				loginFrame.setVisible(true);
 			}
 		});
 	}

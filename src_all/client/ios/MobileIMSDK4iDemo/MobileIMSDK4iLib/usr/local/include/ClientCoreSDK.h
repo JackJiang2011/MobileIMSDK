@@ -40,7 +40,7 @@
  * @warning 本类中的网络状态变更事件通知实现类虽是Apple官方公布，但并不是正式API的一部分
  * ，未来或许有更可靠的实现方案，但目前并不影响本核心类库算法的构造和实现。
  */
-@property (nonatomic) BOOL localDeviceNetworkOk;
+@property (nonatomic, assign) BOOL localDeviceNetworkOk;
 
 /*!
  * 是否已成功连接到服务器（当然，前提是已成功发起过登陆请求后）.
@@ -64,7 +64,7 @@
  * <br>
  * <b>本参数由框架自动设置。</b>
  */
-@property (nonatomic) BOOL connectedToServer;
+@property (nonatomic, assign) BOOL connectedToServer;
 
 /*!
  * 当且仅当用户从登陆界面成功登陆后设置本字段为true，系统退出
@@ -72,7 +72,7 @@
  * <br>
  * <b>本参数由框架自动设置。</b>
  */
-@property (nonatomic) BOOL loginHasInit;
+@property (nonatomic, assign) BOOL loginHasInit;
 
 /*!
  * 本字段存放的是用户成功登陆后，服务端分配的id号。
@@ -81,7 +81,7 @@
  * <br>
  * <b>本参数由框架自动设置。</b>
  */
-@property (nonatomic) int currentUserId;
+@property (nonatomic, assign) int currentUserId;
 
 /*!
  * 本字段在登陆信息成功发出后就会被设置，将在掉线后自动重连时使用。
@@ -91,7 +91,7 @@
  * <br>
  * <b>本参数由框架自动设置。</b>
  */
-@property (nonatomic) NSString *currentLoginName;
+@property (nonatomic, retain) NSString *currentLoginName;
 
 /*!
  * 本字段在登陆信息成功发出后就会被设置，将在掉线后自动重连时使用。
@@ -101,14 +101,14 @@
  * <br>
  * <b>本参数由框架自动设置。</b>
  */
-@property (nonatomic) NSString *currentLoginPsw;
+@property (nonatomic, retain) NSString *currentLoginPsw;
 
 /*! 框架基础通信消息的回调事件（如：登陆成功事件通知、掉线事件通知） */
-@property (nonatomic) id<ChatTransDataEvent> chatTransDataEvent;
+@property (nonatomic, retain) id<ChatTransDataEvent> chatTransDataEvent;
 /*! 通用数据通信消息的回调事件（如：收到聊天数据事件通知、服务端返回的错误信息事件通知） */
-@property (nonatomic) id<ChatBaseEvent> chatBaseEvent;
+@property (nonatomic, retain) id<ChatBaseEvent> chatBaseEvent;
 /*! QoS质量保证机制的回调事件（如：消息未成功发送的通知、消息已被对方成功收到的通知） */
-@property (nonatomic) id<MessageQoSEvent> messageQoSEvent;
+@property (nonatomic, retain) id<MessageQoSEvent> messageQoSEvent;
 
 
 /*!
@@ -198,12 +198,5 @@
  * @see LocalUDPSocketProvider.closeLocalUDPSocket()
  */
 - (void) releaseCore;
-
-///*!
-// *  @Author Jack Jiang, 14-11-07 22:11:28
-// *
-// *  Just for DEBUG.
-// */
-//- (void) setDebugObserver:(ObserverCompletion)debugObserver;
 
 @end

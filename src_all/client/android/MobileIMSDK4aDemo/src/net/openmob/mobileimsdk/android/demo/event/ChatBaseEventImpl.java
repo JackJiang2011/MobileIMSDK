@@ -1,0 +1,86 @@
+/*
+ * Copyright (C) 2015 Jack Jiang The MobileIMSDK Project. 
+ * All rights reserved.
+ * Project URL:https://github.com/JackJiang2011/MobileIMSDK
+ *  
+ * openmob.net PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * 
+ * ChatBaseEventImpl.java at 2015-10-7 22:01:48, code by Jack Jiang.
+ * You can contact author with jack.jiang@openmob.net or jb2011@163.com.
+ */
+package net.openmob.mobileimsdk.android.demo.event;
+
+import java.util.Observer;
+
+import net.openmob.mobileimsdk.android.demo.MainActivity;
+import net.openmob.mobileimsdk.android.event.ChatBaseEvent;
+import android.util.Log;
+
+public class ChatBaseEventImpl implements ChatBaseEvent
+{
+private final static String TAG = ChatBaseEventImpl.class.getSimpleName();
+	
+	private MainActivity mainGUI = null; 
+	
+	// 本Observer目前仅用于登陆时（因为登陆与收到服务端的登陆验证结果
+	// 是异步的，所以有此观察者来完成收到验证后的处理）
+	private Observer loginOkForLaunchObserver = null;
+	
+	@Override
+	public void onLoginMessage(int dwUserId, int dwErrorCode)
+	{
+		if (dwErrorCode == 0) 
+		{
+//			Log.i(TAG, "【DEBUG_UI】登录成功，当前分配的user_id=！"+dwUserId);
+			
+			// TODO 以下代码仅用于DEMO哦
+			if(this.mainGUI != null)
+			{
+				this.mainGUI.refreshMyid();
+				this.mainGUI.showIMInfo_green("登录成功,id="+dwUserId);
+			}
+		}
+		else 
+		{
+			Log.e(TAG, "【DEBUG_UI】登录失败，错误代码：" + dwErrorCode);
+
+			// TODO 以下代码仅用于DEMO哦
+			if(this.mainGUI != null)
+			{
+				this.mainGUI.refreshMyid();
+				this.mainGUI.showIMInfo_red("登录失败,code="+dwErrorCode);
+			}
+		}
+		
+		// 此观察者只有开启程序首次使用登陆界面时有用
+		if(loginOkForLaunchObserver != null)
+		{
+			loginOkForLaunchObserver.update(null, dwErrorCode);
+			loginOkForLaunchObserver = null;
+		}
+	}
+
+	@Override
+	public void onLinkCloseMessage(int dwErrorCode)
+	{
+		Log.e(TAG, "【DEBUG_UI】网络连接出错关闭了，error：" + dwErrorCode);
+		
+		// TODO 以下代码仅用于DEMO哦
+		if(this.mainGUI != null)
+		{
+			this.mainGUI.refreshMyid();
+			this.mainGUI.showIMInfo_red("服务器连接已断开,error="+dwErrorCode);
+		}
+	}
+	
+	public void setLoginOkForLaunchObserver(Observer loginOkForLaunchObserver)
+	{
+		this.loginOkForLaunchObserver = loginOkForLaunchObserver;
+	}
+	
+	public ChatBaseEventImpl setMainGUI(MainActivity mainGUI)
+	{
+		this.mainGUI = mainGUI;
+		return this;
+	}
+}

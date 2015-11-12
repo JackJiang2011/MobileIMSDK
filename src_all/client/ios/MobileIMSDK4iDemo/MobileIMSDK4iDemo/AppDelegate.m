@@ -16,7 +16,7 @@
 //
 
 #import "AppDelegate.h"
-#import "ViewController.h"
+#import "MainViewController.h"
 #import "ClientCoreSDK.h"
 #import "ToolKits.h"
 #import "PErrorResponse.h"
@@ -29,6 +29,8 @@
 #import "KeepAliveDaemon.h"
 #import "AutoReLoginDaemon.h"
 #import "ConfigEntity.h"
+#import "LoginViewController.h"
+#import "IMClientManager.h"
 
 @interface AppDelegate ()
 
@@ -36,46 +38,29 @@
 
 @implementation AppDelegate
 
-@synthesize window = _window;
-@synthesize viewController = _viewController;
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    // 初始化IM核心
-    [self initIMCore];
+    // init MobileIMSDK first
+    [[IMClientManager sharedInstance] initMobileIMSDK];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
-    self.window.rootViewController = self.viewController;
+    LoginViewController *loginViewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController"  bundle:nil];
+    UINavigationController* nav = [[UINavigationController alloc] initWithRootViewController:loginViewController];
+    self.window.rootViewController = nav;
     
     [self.window makeKeyAndVisible];
 
     return YES;
 }
 
-- (void) initIMCore
+-(void)switchToMainViewController
 {
-    // 设置AppKey
-    [ConfigEntity registerWithAppKey:@"5418023dfd98c579b6001741"];
+    if (self.viewController == nil)
+        self.viewController	= [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
     
-    // 设置服务器ip和服务器端口
-//    [ConfigEntity setServerIp:@"rbcore.cngeeker.com"];
-//    [ConfigEntity setServerPort:7901];
-    
-    // 使用以下代码表示不绑定固定port（由系统自动分配），否则使用默认的7801端口
-//    [ConfigEntity setLocalUdpSendAndListeningPort:-1];
-    
-    // RainbowCore核心IM框架的敏感度模式设置
-//    [ConfigEntity setSenseMode:SenseMode10S];
-    
-    // 开启DEBUG信息输出
-    [ClientCoreSDK setENABLED_DEBUG:YES];
-    
-    // 设置事件回调
-    [ClientCoreSDK sharedInstance].chatTransDataEvent = [[ChatTransDataEventImpl alloc] init];
-    [ClientCoreSDK sharedInstance].chatBaseEvent = [[ChatBaseEventImpl alloc] init];
-    [ClientCoreSDK sharedInstance].messageQoSEvent = [[MessageQoSEventImpl alloc] init];
+    UINavigationController  *navRoot = [[UINavigationController alloc] initWithRootViewController:self.viewController];
+    self.window.rootViewController = navRoot;
 }
 
 - (UIView *) getMainView
@@ -83,14 +68,14 @@
     return self.viewController.view;
 }
 
-- (ViewController *) getMainViewController
+- (MainViewController *) getMainViewController
 {
     return self.viewController;
 }
 
-- (void) setMyid:(int)myid
+- (void) refreshMyid
 {
-    [self.viewController setMyid:myid];
+    [self.viewController refreshMyid];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

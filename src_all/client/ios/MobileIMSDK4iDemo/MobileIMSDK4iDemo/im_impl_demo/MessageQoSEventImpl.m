@@ -17,7 +17,7 @@
 
 #import "MessageQoSEventImpl.h"
 #import "AppDelegate.h"
-#import "ViewController.h"
+#import "MainViewController.h"
 
 @implementation MessageQoSEventImpl
 
@@ -36,7 +36,7 @@
         NSLog(@"【DEBUG_UI】收到对方已收到消息事件的通知，fp=%@", theFingerPrint);
         
         // UI显示
-        [[CurAppDelegate getMainViewController] showIMInfo_blue:[NSString stringWithFormat:@"[收到对方消息应答]fp=%@", theFingerPrint]];
+        [[CurAppDelegate getMainViewController] showIMInfo_blue:[NSString stringWithFormat:@"[收到应答]%@", theFingerPrint]];
     }
 }
 

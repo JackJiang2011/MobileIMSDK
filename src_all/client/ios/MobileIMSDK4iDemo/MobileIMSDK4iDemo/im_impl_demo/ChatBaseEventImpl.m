@@ -17,11 +17,9 @@
 
 #import "ChatBaseEventImpl.h"
 #import "AppDelegate.h"
-#import "ViewController.h"
+#import "MainViewController.h"
 
 @implementation ChatBaseEventImpl
-
-@synthesize debugObserver;
 
 - (void) onLoginMessage:(int) dwUserId withErrorCode:(int)dwErrorCode
 {
@@ -30,12 +28,8 @@
         NSLog(@"【DEBUG_UI】登录成功，当前分配的user_id=%d！", dwUserId);
         
         // UI显示
-        [CurAppDelegate setMyid:dwUserId];
+        [CurAppDelegate refreshMyid];
         [[CurAppDelegate getMainViewController] showIMInfo_green:[NSString stringWithFormat:@"登录成功,id=%d", dwUserId]];
-        
-        // form DEBUG
-        if(self.debugObserver != nil)
-            self.debugObserver(nil, [NSNumber numberWithInt:1]);
     }
     else
     {
@@ -43,10 +37,13 @@
         
         // UI显示
         [[CurAppDelegate getMainViewController] showIMInfo_red:[NSString stringWithFormat:@"登录失败,code=%d", dwErrorCode]];
-        
-        // form DEBUG
-        if(self.debugObserver != nil)
-            self.debugObserver(nil, [NSNumber numberWithInt:0]);
+    }
+    
+    // 此观察者只有开启程序首次使用登陆界面时有用
+    if(self.loginOkForLaunchObserver != nil)
+    {
+        self.loginOkForLaunchObserver(nil, [NSNumber numberWithInt:dwErrorCode]);
+        self.loginOkForLaunchObserver = nil;
     }
 }
 
@@ -56,10 +53,7 @@
     
     // UI显示
     [[CurAppDelegate getMainViewController] showIMInfo_red:[NSString stringWithFormat:@"服务器连接已断开,error=%d", dwErrorCode]];
-    
-    // form DEBUG
-    if(self.debugObserver != nil)
-        self.debugObserver(nil, [NSNumber numberWithInt:0]);
 }
+
 
 @end

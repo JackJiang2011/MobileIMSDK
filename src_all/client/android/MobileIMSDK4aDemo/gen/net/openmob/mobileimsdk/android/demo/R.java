@@ -12,38 +12,46 @@ public final class R {
     }
     public static final class drawable {
         public static final int bg_dot_dashed=0x7f020000;
-        public static final int dashed_line=0x7f020001;
-        public static final int edittext_bg=0x7f020002;
-        public static final int edittext_default=0x7f020003;
-        public static final int edittext_focused=0x7f020004;
-        public static final int edittext_pressed=0x7f020005;
-        public static final int icon=0x7f020006;
-        public static final int main_search_button_bg=0x7f020007;
-        public static final int main_search_button_bg_b=0x7f020008;
-        public static final int main_search_button_bg_g=0x7f020009;
-        public static final int main_search_button_bg_n=0x7f02000a;
-        public static final int main_search_button_bg_s=0x7f02000b;
-        public static final int main_search_button_blue_bg=0x7f02000c;
-        public static final int main_search_button_green_bg=0x7f02000d;
+        public static final int copyright_img=0x7f020001;
+        public static final int dashed_line=0x7f020002;
+        public static final int edittext_bg=0x7f020003;
+        public static final int edittext_default=0x7f020004;
+        public static final int edittext_focused=0x7f020005;
+        public static final int edittext_pressed=0x7f020006;
+        public static final int icon=0x7f020007;
+        public static final int logo_a_img=0x7f020008;
+        public static final int main_search_button_bg=0x7f020009;
+        public static final int main_search_button_bg_b=0x7f02000a;
+        public static final int main_search_button_bg_g=0x7f02000b;
+        public static final int main_search_button_bg_n=0x7f02000c;
+        public static final int main_search_button_bg_s=0x7f02000d;
+        public static final int main_search_button_blue_bg=0x7f02000e;
+        public static final int main_search_button_green_bg=0x7f02000f;
+        public static final int srart_bg_img=0x7f020010;
     }
     public static final class id {
-        public static final int content_editText=0x7f060009;
-        public static final int demo_main_activity_layout_listView=0x7f06000b;
-        public static final int demo_main_activity_list_item_layout_tvcontent=0x7f06000c;
-        public static final int id_editText=0x7f060008;
+        public static final int content_editText=0x7f06000b;
+        public static final int demo_main_activity_layout_listView=0x7f06000d;
+        public static final int demo_main_activity_list_item_layout_tvcontent=0x7f06000e;
+        public static final int demo_version=0x7f060004;
+        public static final int id_editText=0x7f06000a;
+        public static final int imageView1=0x7f060006;
+        public static final int linearLayout1=0x7f06000f;
         public static final int loginName_editText=0x7f060002;
         public static final int loginPsw_editText=0x7f060003;
-        public static final int login_btn=0x7f060004;
-        public static final int logout_btn=0x7f060005;
-        public static final int myid_view=0x7f060007;
-        public static final int send_btn=0x7f06000a;
+        public static final int login_btn=0x7f060005;
+        public static final int logout_btn=0x7f060009;
+        public static final int myid_view=0x7f060008;
+        public static final int send_btn=0x7f06000c;
         public static final int serverIP_editText=0x7f060000;
         public static final int serverPort_editText=0x7f060001;
-        public static final int textView3=0x7f060006;
+        public static final int textView3=0x7f060007;
     }
     public static final class layout {
-        public static final int demo_main_activity_layout=0x7f030000;
-        public static final int demo_main_activity_list_item_layout=0x7f030001;
+        public static final int demo_login_activity_layout=0x7f030000;
+        public static final int demo_main_activity_layout=0x7f030001;
+        public static final int demo_main_activity_list_item_layout=0x7f030002;
+        public static final int splash_screen_activity_layout=0x7f030003;
     }
     public static final class string {
         public static final int app_name=0x7f040000;

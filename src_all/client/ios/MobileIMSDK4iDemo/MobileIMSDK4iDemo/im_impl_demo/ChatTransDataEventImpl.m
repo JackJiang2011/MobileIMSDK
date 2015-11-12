@@ -18,7 +18,7 @@
 #import "ChatTransDataEventImpl.h"
 #import "Toast+UIView.h"
 #import "AppDelegate.h"
-#import "ViewController.h"
+#import "MainViewController.h"
 
 @implementation ChatTransDataEventImpl
 
@@ -30,7 +30,7 @@
     // Make toast with an image & title
     [[CurAppDelegate getMainView] makeToast:dataContent
                 duration:3.0
-                position:@"top"
+                position:@"center"
                    title:[NSString stringWithFormat:@"%d说：", dwUserid]
                    image:[UIImage imageNamed:@"qzone_mark_img_myvoice.png"]];
     [[CurAppDelegate getMainViewController] showIMInfo_black:[NSString stringWithFormat:@"%d说：%@", dwUserid, dataContent]];
@@ -39,8 +39,6 @@
 - (void) onErrorResponse:(int)errorCode withErrorMsg:(NSString *)errorMsg
 {
     NSLog(@"【DEBUG_UI】收到服务端错误消息，errorCode=%d, errorMsg=%@", errorCode, errorMsg);
-    
-//    .showIMInfo_red("Server反馈错误码："+errorCode+",errorMsg="+errorMsg);
     
     // UI显示
     NSString *content = [NSString stringWithFormat:@"Server反馈错误码：%d,errorMsg=%@", errorCode, errorMsg];

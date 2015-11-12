@@ -27,9 +27,9 @@
 @interface PLoginInfoResponse : NSObject
 
 /*! 错误码：0表示认证成功，否则是用户自定的错误码（该码应该是>1024的整数） */
-@property (nonatomic) int code;
+@property (nonatomic, assign) int code;
 
 /*! 用户登陆路成功后分配给客户的唯一id：此值只在code==0时才有意义 */
-@property (nonatomic) int user_id;
+@property (nonatomic, assign) int user_id;
 
 @end

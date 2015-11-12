@@ -19,7 +19,4 @@
 
 @implementation ChatInfoTableViewCellDTO
 
-@synthesize colorType;
-@synthesize content;
-
 @end

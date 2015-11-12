@@ -25,7 +25,7 @@
  */
 @interface PErrorResponse : NSObject
 
-@property (nonatomic) int errorCode;
+@property (nonatomic, assign) int errorCode;
 @property (nonatomic, retain) NSString* errorMsg;
 
 @end

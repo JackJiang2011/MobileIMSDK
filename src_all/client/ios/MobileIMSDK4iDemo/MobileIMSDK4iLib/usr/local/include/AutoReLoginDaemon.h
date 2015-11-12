@@ -88,7 +88,7 @@
  *
  * @return true表示是，否则线路处于停止状态
  */
-- (BOOL) isautoReLoginRunning;
+- (BOOL) isAutoReLoginRunning;
 
 /*!
  *  @Author Jack Jiang, 14-11-07 22:11:28
