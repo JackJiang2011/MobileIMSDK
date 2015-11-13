@@ -22,7 +22,7 @@ import android.view.animation.Animation.AnimationListener;
 /**
  * 应用程序启动类：显示闪屏界面并跳转到主界面.
  * 
- * @author liux (http://my.oschina.net/liux)
+ * @author liux, Jack Jiang
  * @version 1.0
  * @created 2012-3-21
  */
@@ -40,7 +40,7 @@ public class SplashScreenActivity extends Activity
 		// @see http://stackoverflow.com/questions/12111943/duplicate-activities-on-the-back-stack-after-initial-installation-of-apk
 		// 加了以下代码还得确保Manifast里加上权限申请：“android.permission.GET_TASKS”
 		if (!isTaskRoot()) 
-		{// FIX START
+		{// FIX START: by Jack Jiang 2013-11-07
 		    final Intent intent = getIntent();
 		    final String intentAction = intent.getAction();
 		    if (intent.hasCategory(Intent.CATEGORY_LAUNCHER) &&
