@@ -5,7 +5,7 @@ MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所
 :point_right: 您可能需要：[查看更多关于MobileIMSDK的疑问及解答](http://openmob.net/forum.php?mod=viewthread&tid=60&extra=page%3D1)。
 
 # 一、简介
-:bulb: MobileIMSDK是一套专为移动端开发的原创即时通讯高可重用框架。 
+<b>MobileIMSDK是一套专为移动端开发的原创即时通讯高可重用框架：</b> 
 * 完全基于UDP协议实现；
 * 客户端支持iOS、Android、标准Java平台；
 * 可应用于跨设备、跨网络的聊天APP、企业OA、消息推送等各种场景。
