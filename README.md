@@ -54,3 +54,9 @@ MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所
 1. <b>Android客户端 Demo：</b>[点此安装和使用](http://openmob.net/forum.php?mod=viewthread&tid=55&extra=page%3D1)；
 2. <b>iOS客户端 Demo：</b>[点此安装和使用](http://openmob.net/forum.php?mod=viewthread&tid=54&extra=page%3D1)；
 3. <b>Java客户端 Demo：</b>[点此安装和使用](http://openmob.net/forum.php?mod=viewthread&tid=56&extra=page%3D1)。
+
+# 七、应用案例
+RainbowChat是一款基于MobileIMSDK的产品级聊天APP，目前仅作演示之用，[点击下载体验](http://openmob.net/forum.php?mod=viewthread&tid=19&extra=page%3D1) 或 [查看运行截图](http://openmob.net/forum.php?mod=viewthread&tid=20&extra=page%3D1)。
+
+# 八、资源下载
+最新发布版：[点击下载](https://github.com/JackJiang2011/MobileIMSDK/releases/latest)（<code>内含完整demo、api文档、编译分发包等</code>）。
