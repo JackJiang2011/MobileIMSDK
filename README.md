@@ -13,4 +13,11 @@ MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所
 :point_right: 您可能需要：[查看更多关于MobileIMSDK的疑问及解答](http://openmob.net/forum.php?mod=viewthread&tid=60&extra=page%3D1)。
 
 # 二、设计目标
-让开发者专注于应用逻辑的开发，底层<code>复杂的即时通讯算法交由SDK开发人员</code>，从而<u>解偶即时通讯应用开发的复杂性</u>。
+让开发者专注于应用逻辑的开发，底层<code>复杂的即时通讯算法交由SDK开发人员</code>，从而<code>解偶即时通讯应用开发的复杂性</code>。
+
+# 三、框架组成
+<b>整套MobileIMSDK框架由以下4部分组成：</b>
+* Android客户端SDK：用于开发Android版即时通讯客户端，支持Android 2.3及以上版本，[查看API文档](http://openmob.net/extend/docs/api/mobileimsdk/android/)；
+* iOS客户端SDK：用于开发iOS版即时通讯客户端，支持iOS 6.0及以上版本，[查看API文档](http://openmob.net/extend/docs/api/mobileimsdk/ios/)；
+* Java客户端SDK：用于开发跨平台的PC端即时通讯客户端，支持标准Java 1.5及以上版本，[查看API文档](http://openmob.net/extend/docs/api/mobileimsdk/java/)；
+* 服务端SDK：用于开发即时通讯服和端，支持Java 1.5及以上版本，[查看API文档](http://openmob.net/extend/docs/api/mobileimsdk/server/)。
