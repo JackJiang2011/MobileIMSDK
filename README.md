@@ -59,4 +59,23 @@ MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所
 RainbowChat是一款基于MobileIMSDK的产品级聊天APP，目前仅作演示之用，[点击下载体验](http://openmob.net/forum.php?mod=viewthread&tid=19&extra=page%3D1) 或 [查看运行截图](http://openmob.net/forum.php?mod=viewthread&tid=20&extra=page%3D1)。
 
 # 八、资源下载
-最新发布版：[点击下载](https://github.com/JackJiang2011/MobileIMSDK/releases/latest)（<code>内含完整demo、api文档、编译分发包等</code>）。
+:paperclip: 最新发布版：[点击下载](https://github.com/JackJiang2011/MobileIMSDK/releases/latest)（<code>内含完整demo、api文档、编译分发包等</code>）。
+
+# 九、典型应用场景
+#### :triangular_flag_on_post: 场景1：聊天APP
+应用说明：可用于开发类似于微信、QQ等聊天工具。
+消息走向：需使用C2C、C2S、S2C全部类型。
+特别说明：MobileIMSDK并未定义聊天应用的应用层逻辑和协议，开发者可自行定义并实现之。
+
+#### :triangular_flag_on_post: 场景2：消息推送
+应用说明：可用于需要向客户端实时推送信息的各种类型APP。
+消息走向：仅需使用S2C 1种消息走向，属MobileIMSDK的最简单应用场景。
+
+#### :triangular_flag_on_post: 场景3：企业OA
+应用说明：可用于实现企业OA的指令、公文、申请等各种消息实时推送，极大提升用户体验，并可延伸至移动设备。
+消息走向：仅需使用S2C 1种消息走向，属MobileIMSDK的最简单应用场景。
+
+#### :triangular_flag_on_post: 场景4：企业OA的增强型
+应用说明：可用于实现企业OA中各种系统级、用户级消息的实时互动，充分利用即时通讯技术提升传统OA的价值。
+消息走向：可使用C2C、C2S、S2C全部类型，这与聊天APP在很多方面已无差别，但企业OA有自已的用户关系管理模型和逻辑，较之全功能聊天APP要简单的多。
+
