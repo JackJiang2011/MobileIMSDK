@@ -42,4 +42,10 @@ MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所
 > <b>MobileIMSDK在高网络延迟下的真实应用案例：</b><br>
 某款基于MobileIMSDK的商业商品，曾运营于跨洲际的复杂网络环境下，端到端通信延迟在洲际网络繁忙时可高达600ms以上（与服务端的单向延迟约为300ms左右，而通常大家访问国内主流门户的延迟约为20~50ms），某段时期的非敏感运营数据[点此查看](http://openmob.net/forum.php?mod=viewthread&tid=21&page=1&extra=#pid35)。
 
+# 五、性能测试
+压力测试表明，MobileIMSDK用于推送场景时，理论单机负载可接近千万级。用于聊天应用时，单机负载也可达数十万。
 
+> 当然，每款应用都有各自的特点和差异，请视具体场景具体评估之，测试数据仅供参考。
+
+:point_right: 性能测试报告：[点此查看](http://openmob.net/forum.php?mod=viewthread&tid=57)；
+:point_right: 常见问题解答：[点此查看](http://openmob.net/forum.php?mod=viewthread&tid=60&extra=page%3D1)。
