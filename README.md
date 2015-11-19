@@ -13,4 +13,4 @@ MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所
 :point_right: 您可能需要：[查看更多关于MobileIMSDK的疑问及解答](http://openmob.net/forum.php?mod=viewthread&tid=60&extra=page%3D1)。
 
 # 二、设计目标
-让开发者专注于应用逻辑的开发，底层<span  style="text-decoration:underline">复杂的即时通讯算法交由SDK开发人员</span>，从而<u>解偶即时通讯应用开发的复杂性</u>。
+让开发者专注于应用逻辑的开发，底层<code>复杂的即时通讯算法交由SDK开发人员</code>，从而<u>解偶即时通讯应用开发的复杂性</u>。
