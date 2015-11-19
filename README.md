@@ -79,3 +79,10 @@ RainbowChat是一款基于MobileIMSDK的产品级聊天APP，目前仅作演示�
 <b>应用说明：</b>可用于实现企业OA中各种系统级、用户级消息的实时互动，充分利用即时通讯技术提升传统OA的价值。<br>
 <b>消息走向：</b>可使用C2C、C2S、S2C全部类型，这与聊天APP在很多方面已无差别，但企业OA有自已的用户关系管理模型和逻辑，较之全功能聊天APP要简单的多。
 
+# 十、开发指南
+1. <b>Android客户端开发指南：</b>[点此查看](http://openmob.net/forum.php?mod=viewthread&tid=61)；
+2. <b>iOS客户端开发指南：</b>[点此查看](http://openmob.net/forum.php?mod=viewthread&tid=62)；
+3. <b>Java客户端开发指南：</b>[点此查看](http://openmob.net/forum.php?mod=viewthread&tid=59)；
+4. <b>Server端开发指南：</b>[点此查看](http://openmob.net/forum.php?mod=viewthread&tid=63)。
+
+
