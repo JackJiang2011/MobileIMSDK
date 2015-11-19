@@ -50,6 +50,6 @@ MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所
 :point_right: 性能测试报告：[点此查看](http://openmob.net/forum.php?mod=viewthread&tid=57)；
 
 # 六、演示程序
-1. Android客户端 Demo：点此安装和使用；
-2. iOS客户端 Demo：点此安装和使用；
-3. Java客户端 Demo：点此安装和使用。
+1. <b>Android客户端 Demo：</b>[点此安装和使用](http://openmob.net/forum.php?mod=viewthread&tid=55&extra=page%3D1)；
+2. <b>iOS客户端 Demo：</b>[点此安装和使用](http://openmob.net/forum.php?mod=viewthread&tid=54&extra=page%3D1)；
+3. <b>Java客户端 Demo：</b>[点此安装和使用](http://openmob.net/forum.php?mod=viewthread&tid=56&extra=page%3D1)。
