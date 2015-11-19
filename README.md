@@ -17,7 +17,7 @@ MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所
 
 # 三、框架组成
 <b>整套MobileIMSDK框架由以下4部分组成：</b>
-1.<b>Android客户端SDK：</b>用于开发Android版即时通讯客户端，支持Android 2.3及以上版本，[查看API文档](http://openmob.net/extend/docs/api/mobileimsdk/android/)；
+1. <b>Android客户端SDK：</b>用于开发Android版即时通讯客户端，支持Android 2.3及以上版本，[查看API文档](http://openmob.net/extend/docs/api/mobileimsdk/android/)；
 2. <b>iOS客户端SDK：</b>用于开发iOS版即时通讯客户端，支持iOS 6.0及以上版本，[查看API文档](http://openmob.net/extend/docs/api/mobileimsdk/ios/)；
 3. <b>Java客户端SDK：</b>用于开发跨平台的PC端即时通讯客户端，支持标准Java 1.5及以上版本，[查看API文档](http://openmob.net/extend/docs/api/mobileimsdk/java/)；
 4. <b>服务端SDK：</b>用于开发即时通讯服和端，支持Java 1.5及以上版本，[查看API文档](http://openmob.net/extend/docs/api/mobileimsdk/server/)。
