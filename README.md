@@ -34,13 +34,12 @@ MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所
 * <b>数据压缩：</b>自有协议实现，未来可自主定制数据压缩，灵活控制客户端的流量、服务端网络吞吐；
 * <b>高度封装：</b>高度封装的API接口，保证了调用的简易性，也使得可应用于更多的应用场景。
 
-> IMMobileSDK 所支持的全部3种即时通讯消息走向分别是：<br>
+> <b>IMMobileSDK 所支持的全部3种即时通讯消息走向分别是：</b><br>
   (1) Client to Client (C2C)：即由某客户端主动发起，接收者是另一客端；<br>
   (2) Client to Server (C2S)：即由某客户端主动发起，接收者是服务端；<br>
   (3) Server to Client (S2C)：即由服务端主动发起，接收者是某客户端。
 
-
-> <b>MobileIMSDK在高网络延迟下的真实应用案例：<br>
+> <b>MobileIMSDK在高网络延迟下的真实应用案例：</b><br>
 某款基于MobileIMSDK的商业商品，曾运营于跨洲际的复杂网络环境下，端到端通信延迟在洲际网络繁忙时可高达600ms以上（与服务端的单向延迟约为300ms左右，而通常大家访问国内主流门户的延迟约为20~50ms），某段时期的非敏感运营数据[点此查看](http://openmob.net/forum.php?mod=viewthread&tid=21&page=1&extra=#pid35)。
 
 
