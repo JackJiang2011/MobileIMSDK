@@ -91,13 +91,13 @@ MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所
 你可永久免费且自由地使用MobileIMSDK，如：用于研究、学习、甚至商业用途，
 但禁止在超越License约束内容的情况下用于商业用途等，请尊重知识产权。
 
-> <b>补充说明：</b>如需获得更多技术支持或技术合作请联系作者，QQ：413980957。
+> <b>补充说明：</b>如需获得更多技术支持或技术合作请联系作者，QQ：<code>413980957</code>。
 
 # 十二、技术支持
 * 讨论学习和资料区：[点击进入](http://openmob.net/forum.php?mod=forumdisplay&fid=89)；
-* <b>移动端即时通讯学习交流群：</b>215891622 （[更多QQ群点此进入](http://openmob.net/portal.php?mod=topic&topicid=2)）；
-* bug和建议请发送至：jack.jiang@openmob.net 或 jb2011@163.com；
-* 技术支持、技术合作或咨询请联系作者QQ：413980957。
+* <b>移动端即时通讯学习交流群：</b><code>215891622</code> （[更多QQ群点此进入](http://openmob.net/portal.php?mod=topic&topicid=2)）；
+* bug和建议请发送至：<code>jack.jiang@openmob.net</code> 或 <code>jb2011@163.com</code>；
+* 技术支持、技术合作或咨询请联系作者QQ：<code>413980957</code>。
 
 # 十三、关注作者
 * 推荐关注：[BeautyEye工程](https://github.com/JackJiang2011/beautyeye)
