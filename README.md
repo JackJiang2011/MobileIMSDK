@@ -62,20 +62,20 @@ RainbowChat是一款基于MobileIMSDK的产品级聊天APP，目前仅作演示�
 :paperclip: 最新发布版：[点击下载](https://github.com/JackJiang2011/MobileIMSDK/releases/latest)（<code>内含完整demo、api文档、编译分发包等</code>）。
 
 # 九、典型应用场景
-#### :triangular_flag_on_post: 场景1：聊天APP
+### :triangular_flag_on_post: 场景1：聊天APP
 <b>应用说明：</b>可用于开发类似于微信、QQ等聊天工具。<br>
 <b>消息走向：</b>需使用C2C、C2S、S2C全部类型。<br>
 <b>特别说明：</b>MobileIMSDK并未定义聊天应用的应用层逻辑和协议，开发者可自行定义并实现之。
 
-#### :triangular_flag_on_post: 场景2：消息推送
+### :triangular_flag_on_post: 场景2：消息推送
 <b>应用说明：</b>可用于需要向客户端实时推送信息的各种类型APP。<br>
 <b>消息走向：</b>仅需使用S2C 1种消息走向，属MobileIMSDK的最简单应用场景。
 
-#### :triangular_flag_on_post: 场景3：企业OA
+### :triangular_flag_on_post: 场景3：企业OA
 <b>应用说明：</b>可用于实现企业OA的指令、公文、申请等各种消息实时推送，极大提升用户体验，并可延伸至移动设备。<br>
 <b>消息走向：</b>仅需使用S2C 1种消息走向，属MobileIMSDK的最简单应用场景。
 
-#### :triangular_flag_on_post: 场景4：企业OA的增强型
+### :triangular_flag_on_post: 场景4：企业OA的增强型
 <b>应用说明：</b>可用于实现企业OA中各种系统级、用户级消息的实时互动，充分利用即时通讯技术提升传统OA的价值。<br>
 <b>消息走向：</b>可使用C2C、C2S、S2C全部类型，这与聊天APP在很多方面已无差别，但企业OA有自已的用户关系管理模型和逻辑，较之全功能聊天APP要简单的多。
 
@@ -103,25 +103,17 @@ RainbowChat是一款基于MobileIMSDK的产品级聊天APP，目前仅作演示�
 Github主页：[点击进入](https://github.com/JackJiang2011)
 
 # 附录：Demo截图
-#### :triangular_flag_on_post: Android和iOS运行效果：
+### :triangular_flag_on_post: Android和iOS运行效果：
 > <code>安装和使用：</code>[进入Android版Demo帮助页](http://openmob.net/forum.php?mod=viewthread&tid=55)、[进入iOS版Demo帮助页](http://openmob.net/forum.php?mod=viewthread&tid=54)。
 
 ![](https://github.com/JackJiang2011/MobileIMSDK/raw/master/preview/more_screenshots/others/ios_android_real_run.jpg)
 
-#### :triangular_flag_on_post: Windows 运行效果：
+### :triangular_flag_on_post: Windows 运行效果：
 > <code>安装和使用：</code>[进入Java版Demo帮助页](http://openmob.net/forum.php?mod=viewthread&tid=56)。
 
 ![](https://github.com/JackJiang2011/MobileIMSDK/raw/master/preview/more_screenshots/others/windows_real_run.png)
 
-#### :triangular_flag_on_post: Mac OSX 运行效果：
+### :triangular_flag_on_post: Mac OSX 运行效果：
 > <code>安装和使用：</code>[进入Java版Demo帮助页](http://openmob.net/forum.php?mod=viewthread&tid=56)。
 
 ![](https://github.com/JackJiang2011/MobileIMSDK/raw/master/preview/more_screenshots/others/mac_real_run.png)
-
-
-
-
-
-
-
-
