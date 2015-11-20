@@ -95,7 +95,7 @@ MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所
 
 # 十二、技术支持
 * 讨论学习和资料区：[点击进入](http://openmob.net/forum.php?mod=forumdisplay&fid=89)；
-* 移动端即时通讯学习交流群：215891622 （[更多QQ群点此进入](http://openmob.net/portal.php?mod=topic&topicid=2)）；
+* <b>移动端即时通讯学习交流群：</b>215891622 （[更多QQ群点此进入](http://openmob.net/portal.php?mod=topic&topicid=2)）；
 * bug和建议请发送至：jack.jiang@openmob.net 或 jb2011@163.com；
 * 技术支持、技术合作或咨询请联系作者QQ：413980957。
 
