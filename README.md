@@ -17,7 +17,7 @@ MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所
 # 三、框架组成
 <b>整套MobileIMSDK框架由以下4部分组成：</b>
 
-1. <b>Android客户端SDK：</b>用于开发Android版即时通讯客户端，支持Android 2\.3及以上，[查看API文档](http://openmob.net/extend/docs/api/mobileimsdk/android/)；
+1. <b>Android客户端SDK：</b>用于Android版即时通讯客户端，支持Android 2\.3及以上，[查看API文档](http://openmob.net/extend/docs/api/mobileimsdk/android/)；
 2. <b>iOS客户端SDK：</b>用于开发iOS版即时通讯客户端，支持iOS 6\.0及以上，[查看API文档](http://openmob.net/extend/docs/api/mobileimsdk/ios/)；
 3. <b>Java客户端SDK：</b>用于开发跨平台的PC端即时通讯客户端，支持Java 1\.5及以上，[查看API文档](http://openmob.net/extend/docs/api/mobileimsdk/java/)；
 4. <b>服务端SDK：</b>用于开发即时通讯服和端，支持Java 1\.5及以上版本，[查看API文档](http://openmob.net/extend/docs/api/mobileimsdk/server/)。
@@ -46,7 +46,7 @@ MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所
 
 > 当然，每款应用都有各自的特点和差异，请视具体场景具体评估之，测试数据仅供参考。
 
-:point_right: 性能测试报告：[点此查看](http://openmob.net/forum.php?mod=viewthread&tid=57)；
+:point_right: 性能测试报告：[点此查看](http://openmob.net/forum.php?mod=viewthread&tid=57)。
 
 # 六、演示程序
 1. <b>Android客户端 Demo：</b>[点此安装和使用](http://openmob.net/forum.php?mod=viewthread&tid=55&extra=page%3D1)；
