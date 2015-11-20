@@ -85,4 +85,24 @@ RainbowChat是一款基于MobileIMSDK的产品级聊天APP，目前仅作演示�
 3. <b>Java客户端开发指南：</b>[点此查看](http://openmob.net/forum.php?mod=viewthread&tid=59)；
 4. <b>Server端开发指南：</b>[点此查看](http://openmob.net/forum.php?mod=viewthread&tid=63)。
 
+# 十一、授权方式
+你可永久免费且自由地使用MobileIMSDK，如：用于研究、学习、甚至商业用途，
+但禁止在超越License约束内容的情况下用于商业用途等，请尊重知识产权。
+
+<b>补充说明：</b>如需获得更多技术支持或技术合作请联系作者，QQ：413980957。
+
+# 十二、技术支持
+* 讨论学习和资料区：[点击进入](http://openmob.net/forum.php?mod=forumdisplay&fid=89)；
+* 移动端即时通讯学习交流群：215891622 （[更多QQ群点此进入](http://openmob.net/portal.php?mod=topic&topicid=2)）；
+* bug和建议请发送至：jack.jiang@openmob.net 或 jb2011@163.com；
+* 技术支持、技术合作或咨询请联系作者QQ：413980957。
+
+# 十三、关注作者
+推荐关注：[BeautyEye工程](https://github.com/JackJiang2011/beautyeye)
+博客地址：[点击入进](http://openmob.net/home.php?mod=space&uid=1&do=thread&view=me&from=space)
+Github主页：[点击进入](https://github.com/JackJiang2011)
+
+# 附录：Demo截图
+#### :triangular_flag_on_post: Android和iOS运行效果：
+>> <code>安装和使用：</code>[进入Android版Demo帮助页](http://openmob.net/forum.php?mod=viewthread&tid=55)、[进入iOS版Demo帮助页](http://openmob.net/forum.php?mod=viewthread&tid=54)。
 
