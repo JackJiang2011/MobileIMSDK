@@ -9,7 +9,7 @@
 * [应用案例RainbowChat体验版截图预览](http://openmob.net/forum.php?mod=viewthread&tid=20&extra=page%3D1)
 * [应用案例某Chat的部分非敏感运营数据](http://openmob.net/forum.php?mod=viewthread&tid=21&page=1&extra=#pid35)
 
-#### 开发文档
+> #### 开发文档
 * [客户端开发指南(Android)](http://openmob.net/forum.php?mod=viewthread&tid=61)
 * [客户端开发指南(iOS)](http://openmob.net/forum.php?mod=viewthread&tid=62)
 * [客户端开发指南(Java)](http://openmob.net/forum.php?mod=viewthread&tid=59)
@@ -19,11 +19,11 @@
 * [客户端SDK API文档(Java)](http://openmob.net/extend/docs/api/mobileimsdk/java/)
 * [服务端SDK API文档](http://openmob.net/extend/docs/api/mobileimsdk/server/)
 
-#### 资源下载
+> #### 资源下载
 * [MobileIMSDK最新版打包下载](https://github.com/JackJiang2011/MobileIMSDK/releases/latest) :point_left:
 * [MobileIMSDK的Github地址](https://github.com/JackJiang2011/MobileIMSDK)
 
-#### 学习交流
+> #### 学习交流
 * 讨论学习和资料区：[点此进入](http://openmob.net/forum.php?mod=forumdisplay&fid=89) :point_left:
 * 移动端即时通讯交流群：`215891622` :point_left:
 * bug/建议发送至：`jb2011@163.com`
