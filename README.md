@@ -1,5 +1,5 @@
 # ![](https://raw.githubusercontent.com/JackJiang2011/MobileIMSDK/master/preview/more_screenshots/others/github_header_logo_h.png)
-MobileIMSDK工程始于2013年10月，起初用作某产品的即时通讯底层实现，完全从零开发。<br>
+> MobileIMSDK工程始于2013年10月，起初用作某产品的即时通讯底层实现，完全从零开发。<br>
 MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所启发和帮助。
 
 :point_right: 您可能需要：[查看更多关于MobileIMSDK的疑问及解答](http://openmob.net/forum.php?mod=viewthread&tid=60&extra=page%3D1)。
