@@ -54,7 +54,7 @@ MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所
 
 # 七、应用案例
 #### ① 基于MobileIMSDK的产品级聊天APP：
-:paperclip: 目前仅作演示之用：[点击下载体验](http://openmob.net/forum.php?mod=viewthread&tid=19&extra=page%3D1) 或 [查看运行截图](http://openmob.net/forum.php?mod=viewthread&tid=20&extra=page%3D1)。
+> :paperclip: 目前仅作演示之用：[点击下载体验](http://openmob.net/forum.php?mod=viewthread&tid=19&extra=page%3D1) 或 [查看运行截图](http://openmob.net/forum.php?mod=viewthread&tid=20&extra=page%3D1)。
 
 #### ② MobileIMSDK在高网络延迟下的案例：
 > 某款基于MobileIMSDK的商业商品，曾运营于跨洲际的复杂网络环境下，端到端通信延迟在洲际网络繁忙时可高达600ms以上（与服务端的单向延迟约为300ms左右，而通常大家访问国内主流门户的延迟约为20~50ms），某段时期的非敏感运营数据[点此查看](http://openmob.net/forum.php?mod=viewthread&tid=21&page=1&extra=#pid35)。
