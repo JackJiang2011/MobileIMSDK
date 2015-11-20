@@ -104,5 +104,21 @@ Github主页：[点击进入](https://github.com/JackJiang2011)
 
 # 附录：Demo截图
 #### :triangular_flag_on_post: Android和iOS运行效果：
->> <code>安装和使用：</code>[进入Android版Demo帮助页](http://openmob.net/forum.php?mod=viewthread&tid=55)、[进入iOS版Demo帮助页](http://openmob.net/forum.php?mod=viewthread&tid=54)。
+> <code>安装和使用：</code>[进入Android版Demo帮助页](http://openmob.net/forum.php?mod=viewthread&tid=55)、[进入iOS版Demo帮助页](http://openmob.net/forum.php?mod=viewthread&tid=54)。
+![](https://github.com/JackJiang2011/MobileIMSDK/raw/master/preview/more_screenshots/others/ios_android_real_run.jpg)
+
+#### :triangular_flag_on_post: Windows 运行效果：
+> <code>安装和使用：</code>[进入Java版Demo帮助页](http://openmob.net/forum.php?mod=viewthread&tid=56)。
+![](https://github.com/JackJiang2011/MobileIMSDK/raw/master/preview/more_screenshots/others/windows_real_run.png)
+
+#### :triangular_flag_on_post: Mac OSX 运行效果：
+> <code>安装和使用：</code>[进入Java版Demo帮助页](http://openmob.net/forum.php?mod=viewthread&tid=56)。
+![](https://github.com/JackJiang2011/MobileIMSDK/raw/master/preview/more_screenshots/others/mac_real_run.png)
+
+
+
+
+
+
+
 
