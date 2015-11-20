@@ -38,6 +38,8 @@ MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所
   (1) Client to Client (C2C)：即由某客户端主动发起，接收者是另一客户端；<br>
   (2) Client to Server (C2S)：即由某客户端主动发起，接收者是服务端；<br>
   (3) Server to Client (S2C)：即由服务端主动发起，接收者是某客户端。
+  
+:point_right: 您可能需要：[查看更多关于MobileIMSDK的疑问及解答](http://openmob.net/forum.php?mod=viewthread&tid=60&extra=page%3D1)。
 
 # 五、性能测试
 压力测试表明，MobileIMSDK用于推送场景时，理论单机负载可接近千万级。用于聊天应用时，单机负载也可达数十万。
