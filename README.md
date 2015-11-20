@@ -17,12 +17,12 @@
 * [Server端SDK API文档](http://openmob.net/extend/docs/api/mobileimsdk/server/)
 
 #### 资源下载
-[MobileIMSDK最新版打包下载](https://github.com/JackJiang2011/MobileIMSDK/releases/latest)<br>
-[MobileIMSDK的Github地址](https://github.com/JackJiang2011/MobileIMSDK)<br>
+* [MobileIMSDK最新版打包下载](https://github.com/JackJiang2011/MobileIMSDK/releases/latest)<br>
+* [MobileIMSDK的Github地址](https://github.com/JackJiang2011/MobileIMSDK)<br>
 
 #### 学习交流
 * 讨论学习和资料区：:earth_americas: [点此进入](http://openmob.net/forum.php?mod=forumdisplay&fid=89)；
-* 移动端即时通讯交流群：`215891622` <a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=4cc788473d261129ab3ded26fbb22168d0fa52c799d28f92a8f193dc36865bcb"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="移动端即时通讯/IM开发" title="移动端即时通讯/IM开发"></a>
+* 移动端即时通讯交流群：`215891622`
 * bug/建议发送至：`jb2011@163.com`；
 * 技术支持/合作/咨询请联系作者QQ：`413980957`。
 
