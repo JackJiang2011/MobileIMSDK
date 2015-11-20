@@ -1,21 +1,20 @@
 # 快捷目录
-[有关MobileIMSDK的疑问及解答](http://openmob.net/forum.php?mod=viewthread&tid=60&extra=page%3D1)
-[Android客户端SDK API文档](http://openmob.net/extend/docs/api/mobileimsdk/android/)
-[iOS客户端SDK API文档](http://openmob.net/extend/docs/api/mobileimsdk/ios/)
-[Java客户端SDK API文档](http://openmob.net/extend/docs/api/mobileimsdk/java/)
-[Server端SDK API文档](http://openmob.net/extend/docs/api/mobileimsdk/server/)
-[MobileIMSDK性能测试报告](http://openmob.net/forum.php?mod=viewthread&tid=57)
-[Android客户端Demo安装和使用帮助](http://openmob.net/forum.php?mod=viewthread&tid=55&extra=page%3D1)
-[iOS客户端Demo安装和使用帮助](http://openmob.net/forum.php?mod=viewthread&tid=54&extra=page%3D1)
-[Java客户端Demo安装和使用帮助](http://openmob.net/forum.php?mod=viewthread&tid=56&extra=page%3D1)
-[MobileIMSDK最新版下载](https://github.com/JackJiang2011/MobileIMSDK/releases/latest)
-[Android客户端开发指南](http://openmob.net/forum.php?mod=viewthread&tid=61)
-[iOS客户端开发指南](http://openmob.net/forum.php?mod=viewthread&tid=62)
-[Java客户端开发指南](http://openmob.net/forum.php?mod=viewthread&tid=59)
-[Server端开发指南](http://openmob.net/forum.php?mod=viewthread&tid=63)
-[讨论学习和资料区](http://openmob.net/forum.php?mod=forumdisplay&fid=89)
-[MobileIMSDK的Github地址](https://github.com/JackJiang2011/MobileIMSDK)
-
+[有关MobileIMSDK的疑问及解答](http://openmob.net/forum.php?mod=viewthread&tid=60&extra=page%3D1)<br>
+[Android客户端SDK API文档](http://openmob.net/extend/docs/api/mobileimsdk/android/)<br>
+[iOS客户端SDK API文档](http://openmob.net/extend/docs/api/mobileimsdk/ios/)<br>
+[Java客户端SDK API文档](http://openmob.net/extend/docs/api/mobileimsdk/java/)<br>
+[Server端SDK API文档](http://openmob.net/extend/docs/api/mobileimsdk/server/)<br>
+[MobileIMSDK性能测试报告](http://openmob.net/forum.php?mod=viewthread&tid=57)<br>
+[Android客户端Demo安装和使用帮助](http://openmob.net/forum.php?mod=viewthread&tid=55&extra=page%3D1)<br>
+[iOS客户端Demo安装和使用帮助](http://openmob.net/forum.php?mod=viewthread&tid=54&extra=page%3D1)<br>
+[Java客户端Demo安装和使用帮助](http://openmob.net/forum.php?mod=viewthread&tid=56&extra=page%3D1)<br>
+[MobileIMSDK最新版下载](https://github.com/JackJiang2011/MobileIMSDK/releases/latest)<br>
+[Android客户端开发指南](http://openmob.net/forum.php?mod=viewthread&tid=61)<br>
+[iOS客户端开发指南](http://openmob.net/forum.php?mod=viewthread&tid=62)<br>
+[Java客户端开发指南](http://openmob.net/forum.php?mod=viewthread&tid=59)<br>
+[Server端开发指南](http://openmob.net/forum.php?mod=viewthread&tid=63)<br>
+[讨论学习和资料区](http://openmob.net/forum.php?mod=forumdisplay&fid=89)<br>
+[MobileIMSDK的Github地址](https://github.com/JackJiang2011/MobileIMSDK)<br>
 
 # 一、简介
 ![](https://raw.githubusercontent.com/JackJiang2011/MobileIMSDK/master/preview/more_screenshots/others/github_header_logo_h.png)
