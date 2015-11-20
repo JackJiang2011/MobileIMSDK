@@ -1,20 +1,23 @@
 # 快捷目录
 #### 相关资料
-* [MobileIMSDK性能测试报告](http://openmob.net/forum.php?mod=viewthread&tid=57)
 * [有关MobileIMSDK的疑问及解答](http://openmob.net/forum.php?mod=viewthread&tid=60&extra=page%3D1)
-* [Android客户端Demo安装和使用帮助](http://openmob.net/forum.php?mod=viewthread&tid=55&extra=page%3D1)
-* [iOS客户端Demo安装和使用帮助](http://openmob.net/forum.php?mod=viewthread&tid=54&extra=page%3D1)
-* [Java客户端Demo安装和使用帮助](http://openmob.net/forum.php?mod=viewthread&tid=56&extra=page%3D1)
+* [MobileIMSDK性能测试报告](http://openmob.net/forum.php?mod=viewthread&tid=57)
+* [客户端Demo安装和使用帮助(Android)](http://openmob.net/forum.php?mod=viewthread&tid=55&extra=page%3D1)
+* [客户端Demo安装和使用帮助(iOS)](http://openmob.net/forum.php?mod=viewthread&tid=54&extra=page%3D1)
+* [客户端Demo安装和使用帮助(Java)](http://openmob.net/forum.php?mod=viewthread&tid=56&extra=page%3D1)
+* [应用案例RainbowChat体验版](http://openmob.net/forum.php?mod=viewthread&tid=19&extra=page%3D1)
+* [应用案例RainbowChat体验版截图预览](http://openmob.net/forum.php?mod=viewthread&tid=20&extra=page%3D1)
+* [应用案例某Chat的部分非敏感运营数据](http://openmob.net/forum.php?mod=viewthread&tid=21&page=1&extra=#pid35)
 
 #### 开发文档
-* [Android客户端开发指南](http://openmob.net/forum.php?mod=viewthread&tid=61)
-* [iOS客户端开发指南](http://openmob.net/forum.php?mod=viewthread&tid=62)
-* [Java客户端开发指南](http://openmob.net/forum.php?mod=viewthread&tid=59)
-* [Server端开发指南](http://openmob.net/forum.php?mod=viewthread&tid=63)
-* [Android客户端SDK API文档](http://openmob.net/extend/docs/api/mobileimsdk/android/)
-* [iOS客户端SDK API文档](http://openmob.net/extend/docs/api/mobileimsdk/ios/)
-* [Java客户端SDK API文档](http://openmob.net/extend/docs/api/mobileimsdk/java/)
-* [Server端SDK API文档](http://openmob.net/extend/docs/api/mobileimsdk/server/)
+* [客户端开发指南(Android)](http://openmob.net/forum.php?mod=viewthread&tid=61)
+* [客户端开发指南(iOS)](http://openmob.net/forum.php?mod=viewthread&tid=62)
+* [客户端开发指南(Java)](http://openmob.net/forum.php?mod=viewthread&tid=59)
+* [服务端开发指南](http://openmob.net/forum.php?mod=viewthread&tid=63)
+* [客户端SDK API文档(Android)](http://openmob.net/extend/docs/api/mobileimsdk/android/)
+* [客户端SDK API文档(iOS)](http://openmob.net/extend/docs/api/mobileimsdk/ios/)
+* [客户端SDK API文档(Java)](http://openmob.net/extend/docs/api/mobileimsdk/java/)
+* [服务端SDK API文档](http://openmob.net/extend/docs/api/mobileimsdk/server/)
 
 #### 资源下载
 * [MobileIMSDK最新版打包下载](https://github.com/JackJiang2011/MobileIMSDK/releases/latest)<br>
