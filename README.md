@@ -1,4 +1,4 @@
-# 一、工程简介
+# 一、简介
 ![](https://raw.githubusercontent.com/JackJiang2011/MobileIMSDK/master/preview/more_screenshots/others/github_header_logo_h.png)
 
 <b>MobileIMSDK是一套专为移动端开发的原创即时通讯高可重用框架：</b> 
