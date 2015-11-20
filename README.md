@@ -1,5 +1,5 @@
 # 一、简介
-![](https://raw.githubusercontent.com/JackJiang2011/MobileIMSDK/master/preview/more_screenshots/others/github_header_logo_h.png)
+![](https://raw.githubusercontent.com/JackJiang2011/MobileIMSDK/master/preview/more_screenshots/others/github_header_logo_h.png)<br>
 <b>MobileIMSDK是一套专为移动端开发的原创即时通讯高可重用框架：</b> 
 * 完全基于UDP协议实现；
 * 客户端支持iOS、Android、标准Java平台；
