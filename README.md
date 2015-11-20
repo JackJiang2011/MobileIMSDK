@@ -24,7 +24,7 @@
 * [MobileIMSDK的Github地址](https://github.com/JackJiang2011/MobileIMSDK)
 
 #### 学习交流
-* 讨论学习和资料区：:earth_americas: [点此进入](http://openmob.net/forum.php?mod=forumdisplay&fid=89) :point_left:
+* 讨论学习和资料区：[点此进入](http://openmob.net/forum.php?mod=forumdisplay&fid=89) :point_left:
 * 移动端即时通讯交流群：`215891622` :point_left:
 * bug/建议发送至：`jb2011@163.com`
 * 技术支持/合作/咨询请联系作者QQ：`413980957`
