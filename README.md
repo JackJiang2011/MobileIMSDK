@@ -36,10 +36,10 @@ MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所
 * <b>高度封装：</b>高度封装的API接口，保证了调用的简易性，也使得可应用于更多的应用场景。
 
 > <b>IMMobileSDK 所支持的全部3种即时通讯消息走向分别是：</b><br>
-  (1) Client to Client (C2C)：即由某客户端主动发起，接收者是另一客端；<br>
+  (1) Client to Client (C2C)：即由某客户端主动发起，接收者是另一客户端；<br>
   (2) Client to Server (C2S)：即由某客户端主动发起，接收者是服务端；<br>
   (3) Server to Client (S2C)：即由服务端主动发起，接收者是某客户端。
-
+-------
 > <b>MobileIMSDK在高网络延迟下的真实应用案例：</b><br>
 某款基于MobileIMSDK的商业商品，曾运营于跨洲际的复杂网络环境下，端到端通信延迟在洲际网络繁忙时可高达600ms以上（与服务端的单向延迟约为300ms左右，而通常大家访问国内主流门户的延迟约为20~50ms），某段时期的非敏感运营数据[点此查看](http://openmob.net/forum.php?mod=viewthread&tid=21&page=1&extra=#pid35)。
 
@@ -56,28 +56,29 @@ MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所
 3. <b>Java客户端 Demo：</b>[点此安装和使用](http://openmob.net/forum.php?mod=viewthread&tid=56&extra=page%3D1)。
 
 # 七、应用案例
-RainbowChat是一款基于MobileIMSDK的产品级聊天APP，目前仅作演示之用，[点击下载体验](http://openmob.net/forum.php?mod=viewthread&tid=19&extra=page%3D1) 或 [查看运行截图](http://openmob.net/forum.php?mod=viewthread&tid=20&extra=page%3D1)。
+RainbowChat是一款基于MobileIMSDK的产品级聊天APP，目前仅作演示之用：
+:paperclip:  [点击下载体验](http://openmob.net/forum.php?mod=viewthread&tid=19&extra=page%3D1) 或 [查看运行截图](http://openmob.net/forum.php?mod=viewthread&tid=20&extra=page%3D1)。
 
 # 八、资源下载
 :paperclip: 最新发布版：[点击下载](https://github.com/JackJiang2011/MobileIMSDK/releases/latest)（<code>内含完整demo、api文档、编译分发包等</code>）。
 
 # 九、典型应用场景
 ### :triangular_flag_on_post: 场景1：聊天APP
-<b>应用说明：</b>可用于开发类似于微信、QQ等聊天工具。<br>
-<b>消息走向：</b>需使用C2C、C2S、S2C全部类型。<br>
-<b>特别说明：</b>MobileIMSDK并未定义聊天应用的应用层逻辑和协议，开发者可自行定义并实现之。
+* <b>应用说明：</b>可用于开发类似于微信、QQ等聊天工具。<br>
+* <b>消息走向：</b>需使用C2C、C2S、S2C全部类型。<br>
+* <b>特别说明：</b>MobileIMSDK并未定义聊天应用的应用层逻辑和协议，开发者可自行定义并实现之。
 
 ### :triangular_flag_on_post: 场景2：消息推送
-<b>应用说明：</b>可用于需要向客户端实时推送信息的各种类型APP。<br>
-<b>消息走向：</b>仅需使用S2C 1种消息走向，属MobileIMSDK的最简单应用场景。
+* <b>应用说明：</b>可用于需要向客户端实时推送信息的各种类型APP。<br>
+* <b>消息走向：</b>仅需使用S2C 1种消息走向，属MobileIMSDK的最简单应用场景。
 
 ### :triangular_flag_on_post: 场景3：企业OA
-<b>应用说明：</b>可用于实现企业OA的指令、公文、申请等各种消息实时推送，极大提升用户体验，并可延伸至移动设备。<br>
-<b>消息走向：</b>仅需使用S2C 1种消息走向，属MobileIMSDK的最简单应用场景。
+* <b>应用说明：</b>可用于实现企业OA的指令、公文、申请等各种消息实时推送，极大提升用户体验，并可延伸至移动设备。<br>
+* <b>消息走向：</b>仅需使用S2C 1种消息走向，属MobileIMSDK的最简单应用场景。
 
 ### :triangular_flag_on_post: 场景4：企业OA的增强型
-<b>应用说明：</b>可用于实现企业OA中各种系统级、用户级消息的实时互动，充分利用即时通讯技术提升传统OA的价值。<br>
-<b>消息走向：</b>可使用C2C、C2S、S2C全部类型，这与聊天APP在很多方面已无差别，但企业OA有自已的用户关系管理模型和逻辑，较之全功能聊天APP要简单的多。
+* <b>应用说明：</b>可用于实现企业OA中各种系统级、用户级消息的实时互动，充分利用即时通讯技术提升传统OA的价值。<br>
+* <b>消息走向：</b>可使用C2C、C2S、S2C全部类型，这与聊天APP在很多方面已无差别，但企业OA有自已的用户关系管理模型和逻辑，较之全功能聊天APP要简单的多。
 
 # 十、开发指南
 1. <b>Android客户端开发指南：</b>[点此查看](http://openmob.net/forum.php?mod=viewthread&tid=61)；
@@ -89,18 +90,18 @@ RainbowChat是一款基于MobileIMSDK的产品级聊天APP，目前仅作演示�
 你可永久免费且自由地使用MobileIMSDK，如：用于研究、学习、甚至商业用途，
 但禁止在超越License约束内容的情况下用于商业用途等，请尊重知识产权。
 
-<b>补充说明：</b>如需获得更多技术支持或技术合作请联系作者，QQ：413980957。
+> <b>补充说明：</b>如需获得更多技术支持或技术合作请联系作者，QQ：413980957。
 
 # 十二、技术支持
 * 讨论学习和资料区：[点击进入](http://openmob.net/forum.php?mod=forumdisplay&fid=89)；
 * 移动端即时通讯学习交流群：215891622 （[更多QQ群点此进入](http://openmob.net/portal.php?mod=topic&topicid=2)）；
-* bug和建议请发送至：jack.jiang@openmob.net 或 jb2011@163.com；
+* bug和建议请发送至：jack.jiang@openmob.net 或 jb2011@163.com；
 * 技术支持、技术合作或咨询请联系作者QQ：413980957。
 
 # 十三、关注作者
-推荐关注：[BeautyEye工程](https://github.com/JackJiang2011/beautyeye)
-博客地址：[点击入进](http://openmob.net/home.php?mod=space&uid=1&do=thread&view=me&from=space)
-Github主页：[点击进入](https://github.com/JackJiang2011)
+* 推荐关注：[BeautyEye工程](https://github.com/JackJiang2011/beautyeye)
+* 博客地址：[点击入进](http://openmob.net/home.php?mod=space&uid=1&do=thread&view=me&from=space)
+* Github主页：[点击进入](https://github.com/JackJiang2011)
 
 # 附录：Demo截图
 ### :triangular_flag_on_post: Android和iOS运行效果：
