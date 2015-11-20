@@ -95,9 +95,9 @@ MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所
 
 # 十二、技术支持
 * 讨论学习和资料区：[点击进入](http://openmob.net/forum.php?mod=forumdisplay&fid=89)；
-* <b>移动端即时通讯学习交流群：</b><code>215891622</code> （[更多QQ群点此进入](http://openmob.net/portal.php?mod=topic&topicid=2)）；
-* bug和建议请发送至：<code>jack.jiang@openmob.net</code> 或 <code>jb2011@163.com</code>；
-* 技术支持、技术合作或咨询请联系作者QQ：<code>413980957</code>。
+* <b>移动端即时通讯学习交流群：</b>`215891622` <a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=4cc788473d261129ab3ded26fbb22168d0fa52c799d28f92a8f193dc36865bcb"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="移动端即时通讯/IM开发" title="移动端即时通讯/IM开发"></a> （[更多QQ群点此进入](http://openmob.net/portal.php?mod=topic&topicid=2)）；
+* bug和建议请发送至：:love_letter: `jack.jiang@openmob.net` 或 :love_letter: `jb2011@163.com`；
+* 技术支持、技术合作或咨询请联系作者QQ：:penguin: `413980957`。
 
 # 十三、关注作者
 * 推荐关注：[BeautyEye工程](https://github.com/JackJiang2011/beautyeye)
