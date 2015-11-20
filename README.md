@@ -1,5 +1,5 @@
 # 快捷目录
-#### 相关资料
+> #### 相关资料
 * [有关MobileIMSDK的疑问及解答](http://openmob.net/forum.php?mod=viewthread&tid=60&extra=page%3D1) :point_left:
 * [MobileIMSDK性能测试报告](http://openmob.net/forum.php?mod=viewthread&tid=57)
 * [客户端Demo安装和使用帮助(Android)](http://openmob.net/forum.php?mod=viewthread&tid=55&extra=page%3D1)
