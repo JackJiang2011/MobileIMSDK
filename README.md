@@ -115,7 +115,7 @@ MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所
 
 ![](https://github.com/JackJiang2011/MobileIMSDK/raw/master/preview/more_screenshots/others/windows_real_run.png)
 
-### :triangular_flag_on_post: Mac OSX 运行效果：
+### :triangular_flag_on_post: Mac OS X 运行效果：
 > <code>安装和使用：</code>[进入Java版Demo帮助页](http://openmob.net/forum.php?mod=viewthread&tid=56)。
 
 ![](https://github.com/JackJiang2011/MobileIMSDK/raw/master/preview/more_screenshots/others/mac_real_run.png)
