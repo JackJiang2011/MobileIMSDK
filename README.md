@@ -29,6 +29,18 @@
 * bug/建议发送至：`jb2011@163.com`
 * 技术支持/合作/咨询请联系作者QQ：`413980957`
 
+# 代码托管同步更新
+
+**GitHub.com**
+
+* 代码托管：  https://github.com/JackJiang2011/MobileIMSDK 
+* 项目资料：  [点击查看更多资料](http://openmob.net/forum.php?mod=forumdisplay&fid=89)
+
+**OsChina.net**
+
+* 代码托管：  http://git.oschina.net/jackjiang/MobileIMSDK 
+* 项目资料：  [点击查看更多资料](http://openmob.net/forum.php?mod=forumdisplay&fid=89)
+
 # 一、简介
 ![](https://raw.githubusercontent.com/JackJiang2011/MobileIMSDK/master/preview/more_screenshots/others/github_header_logo_h.png)
 
