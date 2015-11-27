@@ -107,7 +107,7 @@ public class LoginGUI extends JFrame
 		mainPanel.addTitledLineSeparator("");
 		JPanel btnAndVerPanel = new JPanel();
 		btnAndVerPanel.setLayout(new BoxLayout(btnAndVerPanel, BoxLayout.LINE_AXIS));
-		JLabel lbVer= new JLabel("v2.1.2b151112.1O");
+		JLabel lbVer= new JLabel("v2.1.4b151127.1O");
 		lbVer.setForeground(new Color(184,184,184));
 		btnAndVerPanel.add(lbVer);
 		btnAndVerPanel.add(Box.createHorizontalGlue());
