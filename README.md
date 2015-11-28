@@ -1,3 +1,34 @@
+# 快捷目录
+> #### 相关资料
+* [有关MobileIMSDK的疑问及解答](http://openmob.net/forum.php?mod=viewthread&tid=60&extra=page%3D1) :point_left:
+* [MobileIMSDK性能测试报告](http://openmob.net/forum.php?mod=viewthread&tid=57)
+* [客户端Demo安装和使用帮助(Android)](http://openmob.net/forum.php?mod=viewthread&tid=55&extra=page%3D1)
+* [客户端Demo安装和使用帮助(iOS)](http://openmob.net/forum.php?mod=viewthread&tid=54&extra=page%3D1)
+* [客户端Demo安装和使用帮助(Java)](http://openmob.net/forum.php?mod=viewthread&tid=56&extra=page%3D1)
+* [应用案例RainbowChat体验版](http://openmob.net/forum.php?mod=viewthread&tid=19&extra=page%3D1) :point_left:
+* [应用案例RainbowChat体验版截图预览](http://openmob.net/forum.php?mod=viewthread&tid=20&extra=page%3D1)
+* [应用案例某Chat的部分非敏感运营数据](http://openmob.net/forum.php?mod=viewthread&tid=21&page=1&extra=#pid35)
+
+> #### 开发文档
+* [客户端开发指南(Android)](http://openmob.net/forum.php?mod=viewthread&tid=61)
+* [客户端开发指南(iOS)](http://openmob.net/forum.php?mod=viewthread&tid=62)
+* [客户端开发指南(Java)](http://openmob.net/forum.php?mod=viewthread&tid=59)
+* [服务端开发指南](http://openmob.net/forum.php?mod=viewthread&tid=63)
+* [客户端SDK API文档(Android)](http://openmob.net/extend/docs/api/mobileimsdk/android/)
+* [客户端SDK API文档(iOS)](http://openmob.net/extend/docs/api/mobileimsdk/ios/)
+* [客户端SDK API文档(Java)](http://openmob.net/extend/docs/api/mobileimsdk/java/)
+* [服务端SDK API文档](http://openmob.net/extend/docs/api/mobileimsdk/server/)
+
+> #### 资源下载
+* [MobileIMSDK最新版打包下载](https://github.com/JackJiang2011/MobileIMSDK/releases/latest) :point_left:
+* [MobileIMSDK的Github地址](https://github.com/JackJiang2011/MobileIMSDK)
+
+> #### 学习交流
+* 讨论学习和资料区：[点此进入](http://openmob.net/forum.php?mod=forumdisplay&fid=89) :point_left:
+* 移动端即时通讯交流群：`215891622` :point_left:
+* bug/建议发送至：`jb2011@163.com`
+* 技术支持/合作/咨询请联系作者QQ：`413980957`
+
 # 一、简介
 ![](https://raw.githubusercontent.com/JackJiang2011/MobileIMSDK/master/preview/more_screenshots/others/github_header_logo_h.png)
 
@@ -133,34 +164,3 @@ MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所
 > <code>安装和使用：</code>[进入Java版Demo帮助页](http://openmob.net/forum.php?mod=viewthread&tid=56)。
 
 ![](https://github.com/JackJiang2011/MobileIMSDK/raw/master/preview/more_screenshots/others/mac_real_run.png)
-
-# 附录2：快捷目录
-> #### 相关资料
-* [有关MobileIMSDK的疑问及解答](http://openmob.net/forum.php?mod=viewthread&tid=60&extra=page%3D1) :point_left:
-* [MobileIMSDK性能测试报告](http://openmob.net/forum.php?mod=viewthread&tid=57)
-* [客户端Demo安装和使用帮助(Android)](http://openmob.net/forum.php?mod=viewthread&tid=55&extra=page%3D1)
-* [客户端Demo安装和使用帮助(iOS)](http://openmob.net/forum.php?mod=viewthread&tid=54&extra=page%3D1)
-* [客户端Demo安装和使用帮助(Java)](http://openmob.net/forum.php?mod=viewthread&tid=56&extra=page%3D1)
-* [应用案例RainbowChat体验版](http://openmob.net/forum.php?mod=viewthread&tid=19&extra=page%3D1) :point_left:
-* [应用案例RainbowChat体验版截图预览](http://openmob.net/forum.php?mod=viewthread&tid=20&extra=page%3D1)
-* [应用案例某Chat的部分非敏感运营数据](http://openmob.net/forum.php?mod=viewthread&tid=21&page=1&extra=#pid35)
-
-> #### 开发文档
-* [客户端开发指南(Android)](http://openmob.net/forum.php?mod=viewthread&tid=61)
-* [客户端开发指南(iOS)](http://openmob.net/forum.php?mod=viewthread&tid=62)
-* [客户端开发指南(Java)](http://openmob.net/forum.php?mod=viewthread&tid=59)
-* [服务端开发指南](http://openmob.net/forum.php?mod=viewthread&tid=63)
-* [客户端SDK API文档(Android)](http://openmob.net/extend/docs/api/mobileimsdk/android/)
-* [客户端SDK API文档(iOS)](http://openmob.net/extend/docs/api/mobileimsdk/ios/)
-* [客户端SDK API文档(Java)](http://openmob.net/extend/docs/api/mobileimsdk/java/)
-* [服务端SDK API文档](http://openmob.net/extend/docs/api/mobileimsdk/server/)
-
-> #### 资源下载
-* [MobileIMSDK最新版打包下载](https://github.com/JackJiang2011/MobileIMSDK/releases/latest) :point_left:
-* [MobileIMSDK的Github地址](https://github.com/JackJiang2011/MobileIMSDK)
-
-> #### 学习交流
-* 讨论学习和资料区：[点此进入](http://openmob.net/forum.php?mod=forumdisplay&fid=89) :point_left:
-* 移动端即时通讯交流群：`215891622` :point_left:
-* bug/建议发送至：`jb2011@163.com`
-* 技术支持/合作/咨询请联系作者QQ：`413980957`
