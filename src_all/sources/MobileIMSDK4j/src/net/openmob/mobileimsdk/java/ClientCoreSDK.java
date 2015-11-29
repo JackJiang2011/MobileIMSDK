@@ -22,153 +22,160 @@ import net.openmob.mobileimsdk.java.event.MessageQoSEvent;
 
 public class ClientCoreSDK
 {
-  private static final String TAG = ClientCoreSDK.class.getSimpleName();
+	private static final String TAG = ClientCoreSDK.class.getSimpleName();
 
-  public static boolean DEBUG = true;
+	public static boolean DEBUG = true;
 
-  public static boolean autoReLogin = true;
+	public static boolean autoReLogin = true;
 
-  private static ClientCoreSDK instance = null;
+	private static ClientCoreSDK instance = null;
 
-  private boolean _init = false;
+	/** 
+	 * 当调用 {@link #init()}方法后本字段将被置为true，调用{@link #release()}
+	 * 时将被重新置为false.
+	 * <br>
+	 * <b>本参数由框架自动设置。</b>
+	 */
+	private boolean _init = false;
 
-  private boolean connectedToServer = true;
+	private boolean connectedToServer = true;
 
-  private boolean loginHasInit = false;
+	private boolean loginHasInit = false;
 
-  private int currentUserId = -1;
+	private int currentUserId = -1;
 
-  private String currentLoginName = null;
+	private String currentLoginName = null;
 
-  private String currentLoginPsw = null;
+	private String currentLoginPsw = null;
 
-  private ChatBaseEvent chatBaseEvent = null;
+	private ChatBaseEvent chatBaseEvent = null;
 
-  private ChatTransDataEvent chatTransDataEvent = null;
+	private ChatTransDataEvent chatTransDataEvent = null;
 
-  private MessageQoSEvent messageQoSEvent = null;
+	private MessageQoSEvent messageQoSEvent = null;
 
-  public static ClientCoreSDK getInstance()
-  {
-    if (instance == null)
-      instance = new ClientCoreSDK();
-    return instance;
-  }
+	public static ClientCoreSDK getInstance()
+	{
+		if (instance == null)
+			instance = new ClientCoreSDK();
+		return instance;
+	}
 
-  public void init()
-  {
-    if (!this._init)
-    {
-      this._init = true;
-    }
-  }
+	public void init()
+	{
+		if (!this._init)
+		{
+			this._init = true;
+		}
+	}
 
-  public void release()
-  {
-    AutoReLoginDaemon.getInstance().stop();
+	public void release()
+	{
+		// 尝试停掉掉线重连线程（如果线程正在运行的话）
+	    AutoReLoginDaemon.getInstance().stop(); // 2014-11-08 add by Jack Jiang
+		// 尝试停掉QoS质量保证（发送）心跳线程
+		QoS4SendDaemon.getInstance().stop();
+		// 尝试停掉Keep Alive心跳线程
+		KeepAliveDaemon.getInstance().stop();
+		// 尝试停掉消息接收者
+		LocalUDPDataReciever.getInstance().stop();
+		// 尝试停掉QoS质量保证（接收防重复机制）心跳线程
+		QoS4ReciveDaemon.getInstance().stop();
+		// 尝试关闭本地Socket
+		LocalUDPSocketProvider.getInstance().closeLocalUDPSocket();
 
-    QoS4SendDaemon.getInstance().stop();
+		this._init = false;
 
-    KeepAliveDaemon.getInstance().stop();
+		setLoginHasInit(false);
+		setConnectedToServer(false);
+	}
 
-    LocalUDPDataReciever.getInstance().stop();
+	public int getCurrentUserId()
+	{
+		return this.currentUserId;
+	}
 
-    QoS4ReciveDaemon.getInstance().stop();
+	public ClientCoreSDK setCurrentUserId(int currentUserId)
+	{
+		this.currentUserId = currentUserId;
+		return this;
+	}
 
-    LocalUDPSocketProvider.getInstance().closeLocalUDPSocket();
+	public String getCurrentLoginName()
+	{
+		return this.currentLoginName;
+	}
 
-    this._init = false;
+	public ClientCoreSDK setCurrentLoginName(String currentLoginName)
+	{
+		this.currentLoginName = currentLoginName;
+		return this;
+	}
 
-    setLoginHasInit(false);
-    setConnectedToServer(false);
-  }
+	public String getCurrentLoginPsw()
+	{
+		return this.currentLoginPsw;
+	}
 
-  public int getCurrentUserId()
-  {
-    return this.currentUserId;
-  }
+	public void setCurrentLoginPsw(String currentLoginPsw)
+	{
+		this.currentLoginPsw = currentLoginPsw;
+	}
 
-  public ClientCoreSDK setCurrentUserId(int currentUserId)
-  {
-    this.currentUserId = currentUserId;
-    return this;
-  }
+	public boolean isLoginHasInit()
+	{
+		return this.loginHasInit;
+	}
 
-  public String getCurrentLoginName()
-  {
-    return this.currentLoginName;
-  }
+	public ClientCoreSDK setLoginHasInit(boolean loginHasInit)
+	{
+		this.loginHasInit = loginHasInit;
 
-  public ClientCoreSDK setCurrentLoginName(String currentLoginName)
-  {
-    this.currentLoginName = currentLoginName;
-    return this;
-  }
+		return this;
+	}
 
-  public String getCurrentLoginPsw()
-  {
-    return this.currentLoginPsw;
-  }
+	public boolean isConnectedToServer()
+	{
+		return this.connectedToServer;
+	}
 
-  public void setCurrentLoginPsw(String currentLoginPsw)
-  {
-    this.currentLoginPsw = currentLoginPsw;
-  }
+	public void setConnectedToServer(boolean connectedToServer)
+	{
+		this.connectedToServer = connectedToServer;
+	}
 
-  public boolean isLoginHasInit()
-  {
-    return this.loginHasInit;
-  }
+	public boolean isInitialed()
+	{
+		return this._init;
+	}
 
-  public ClientCoreSDK setLoginHasInit(boolean loginHasInit)
-  {
-    this.loginHasInit = loginHasInit;
+	public void setChatBaseEvent(ChatBaseEvent chatBaseEvent)
+	{
+		this.chatBaseEvent = chatBaseEvent;
+	}
 
-    return this;
-  }
+	public ChatBaseEvent getChatBaseEvent()
+	{
+		return this.chatBaseEvent;
+	}
 
-  public boolean isConnectedToServer()
-  {
-    return this.connectedToServer;
-  }
+	public void setChatTransDataEvent(ChatTransDataEvent chatTransDataEvent)
+	{
+		this.chatTransDataEvent = chatTransDataEvent;
+	}
 
-  public void setConnectedToServer(boolean connectedToServer)
-  {
-    this.connectedToServer = connectedToServer;
-  }
+	public ChatTransDataEvent getChatTransDataEvent()
+	{
+		return this.chatTransDataEvent;
+	}
 
-  public boolean isInitialed()
-  {
-    return this._init;
-  }
+	public void setMessageQoSEvent(MessageQoSEvent messageQoSEvent)
+	{
+		this.messageQoSEvent = messageQoSEvent;
+	}
 
-  public void setChatBaseEvent(ChatBaseEvent chatBaseEvent)
-  {
-    this.chatBaseEvent = chatBaseEvent;
-  }
-
-  public ChatBaseEvent getChatBaseEvent()
-  {
-    return this.chatBaseEvent;
-  }
-
-  public void setChatTransDataEvent(ChatTransDataEvent chatTransDataEvent)
-  {
-    this.chatTransDataEvent = chatTransDataEvent;
-  }
-
-  public ChatTransDataEvent getChatTransDataEvent()
-  {
-    return this.chatTransDataEvent;
-  }
-
-  public void setMessageQoSEvent(MessageQoSEvent messageQoSEvent)
-  {
-    this.messageQoSEvent = messageQoSEvent;
-  }
-
-  public MessageQoSEvent getMessageQoSEvent()
-  {
-    return this.messageQoSEvent;
-  }
+	public MessageQoSEvent getMessageQoSEvent()
+	{
+		return this.messageQoSEvent;
+	}
 }

@@ -19,129 +19,130 @@ import net.openmob.mobileimsdk.android.ClientCoreSDK;
 
 public class KeepAliveDaemon
 {
-  private static final String TAG = KeepAliveDaemon.class.getSimpleName();
+	private static final String TAG = KeepAliveDaemon.class.getSimpleName();
 
-  public static int NETWORK_CONNECTION_TIME_OUT = 10000;
+	public static int NETWORK_CONNECTION_TIME_OUT = 10000;
 
-  public static int KEEP_ALIVE_INTERVAL = 3000;
+	public static int KEEP_ALIVE_INTERVAL = 3000;
 
-  private Handler handler = null;
-  private Runnable runnable = null;
+	private Handler handler = null;
+	private Runnable runnable = null;
+	private boolean keepAliveRunning = false;
+	private long lastGetKeepAliveResponseFromServerTimstamp = 0L;
 
-  private boolean keepAliveRunning = false;
+	private Observer networkConnectionLostObserver = null;
+	private boolean _excuting = false;
+	private Context context = null;
 
-  private long lastGetKeepAliveResponseFromServerTimstamp = 0L;
+	private static KeepAliveDaemon instance = null;
+	
+	public static KeepAliveDaemon getInstance(Context context)
+	{
+		if (instance == null)
+			instance = new KeepAliveDaemon(context);
+		return instance;
+	}
 
-  private static KeepAliveDaemon instance = null;
+	private KeepAliveDaemon(Context context)
+	{
+		this.context = context;
+		init();
+	}
 
-  private Observer networkConnectionLostObserver = null;
+	private void init()
+	{
+		this.handler = new Handler();
+		this.runnable = new Runnable()
+		{
+			public void run()
+			{
+				// 极端情况下本次循环内可能执行时间超过了时间间隔，此处是防止在前一
+				// 次还没有运行完的情况下又重复过劲行，从而出现无法预知的错误
+				if (!KeepAliveDaemon.this._excuting)
+				{
+					new AsyncTask()
+					{
+						private boolean willStop = false;
 
-  private boolean _excuting = false;
+						protected Integer doInBackground(Object[] params)
+						{
+							KeepAliveDaemon.this._excuting = true;
+							if (ClientCoreSDK.DEBUG)
+								Log.d(KeepAliveDaemon.TAG, "【IMCORE】心跳线程执行中...");
+							int code = LocalUDPDataSender.getInstance(KeepAliveDaemon.this.context).sendKeepAlive();
 
-  private Context context = null;
+							return Integer.valueOf(code);
+						}
 
-  public static KeepAliveDaemon getInstance(Context context)
-  {
-    if (instance == null)
-      instance = new KeepAliveDaemon(context);
-    return instance;
-  }
+						protected void onPostExecute(Integer code)
+						{
+							boolean isInitialedForKeepAlive = 
+									KeepAliveDaemon.this.lastGetKeepAliveResponseFromServerTimstamp == 0L;
+							if ((code.intValue() == 0) 
+									&& (KeepAliveDaemon.this.lastGetKeepAliveResponseFromServerTimstamp == 0L)) {
+								KeepAliveDaemon.this.lastGetKeepAliveResponseFromServerTimstamp = System.currentTimeMillis();
+							}
 
-  private KeepAliveDaemon(Context context)
-  {
-    this.context = context;
-    init();
-  }
+							if (!isInitialedForKeepAlive)
+							{
+								long now = System.currentTimeMillis();
 
-  private void init()
-  {
-    this.handler = new Handler();
-    this.runnable = new Runnable()
-    {
-      public void run()
-      {
-        if (!KeepAliveDaemon.this._excuting)
-        {
-          new AsyncTask()
-          {
-            private boolean willStop = false;
+								// 当当前时间与最近一次服务端的心跳响应包时间间隔>= 10秒就判定当前与服务端的网络连接已断开
+								if (now - KeepAliveDaemon.this.lastGetKeepAliveResponseFromServerTimstamp 
+										>= KeepAliveDaemon.NETWORK_CONNECTION_TIME_OUT)
+								{
+									KeepAliveDaemon.this.stop();
 
-            protected Integer doInBackground(Object[] params)
-            {
-              KeepAliveDaemon.this._excuting = true;
-              if (ClientCoreSDK.DEBUG)
-                Log.d(KeepAliveDaemon.TAG, "【IMCORE】心跳线程执行中...");
-              int code = LocalUDPDataSender.getInstance(KeepAliveDaemon.this.context).sendKeepAlive();
+									if (KeepAliveDaemon.this.networkConnectionLostObserver != null) {
+										KeepAliveDaemon.this.networkConnectionLostObserver.update(null, null);
+									}
+									this.willStop = true;
+								}
+							}
 
-              return Integer.valueOf(code);
-            }
+							KeepAliveDaemon.this._excuting = false;
+							if (!this.willStop)
+							{
+								// 开始下一个心跳循环
+								KeepAliveDaemon.this.handler.postDelayed(
+										KeepAliveDaemon.this.runnable
+										, KeepAliveDaemon.KEEP_ALIVE_INTERVAL);
+							}
+						}
+					}
+					.execute(new Object[0]);
+				}
+			}
+		};
+	}
 
-            protected void onPostExecute(Integer code)
-            {
-              boolean isInitialedForKeepAlive = KeepAliveDaemon.this.lastGetKeepAliveResponseFromServerTimstamp == 0L;
-              if ((code.intValue() == 0) && (KeepAliveDaemon.this.lastGetKeepAliveResponseFromServerTimstamp == 0L)) {
-                KeepAliveDaemon.this.lastGetKeepAliveResponseFromServerTimstamp = System.currentTimeMillis();
-              }
+	public void stop()
+	{
+		this.handler.removeCallbacks(this.runnable);
+		this.keepAliveRunning = false;
+		this.lastGetKeepAliveResponseFromServerTimstamp = 0L;
+	}
 
-              if (!isInitialedForKeepAlive)
-              {
-                long now = System.currentTimeMillis();
+	public void start(boolean immediately)
+	{
+		stop();
 
-                if (now - KeepAliveDaemon.this.lastGetKeepAliveResponseFromServerTimstamp >= KeepAliveDaemon.NETWORK_CONNECTION_TIME_OUT)
-                {
-                  KeepAliveDaemon.this.stop();
+		this.handler.postDelayed(this.runnable, immediately ? 0 : KEEP_ALIVE_INTERVAL);
+		this.keepAliveRunning = true;
+	}
 
-                  if (KeepAliveDaemon.this.networkConnectionLostObserver != null) {
-                    KeepAliveDaemon.this.networkConnectionLostObserver.update(null, null);
-                  }
-                  this.willStop = true;
-                }
+	public boolean isKeepAliveRunning()
+	{
+		return this.keepAliveRunning;
+	}
 
-              }
+	public void updateGetKeepAliveResponseFromServerTimstamp()
+	{
+		this.lastGetKeepAliveResponseFromServerTimstamp = System.currentTimeMillis();
+	}
 
-              KeepAliveDaemon.this._excuting = false;
-              if (!this.willStop)
-              {
-                KeepAliveDaemon.this.handler.postDelayed(KeepAliveDaemon.this.runnable, KeepAliveDaemon.KEEP_ALIVE_INTERVAL);
-              }
-            }
-          }
-          .execute(new Object[0]);
-        }
-      }
-    };
-  }
-
-  public void stop()
-  {
-    this.handler.removeCallbacks(this.runnable);
-
-    this.keepAliveRunning = false;
-
-    this.lastGetKeepAliveResponseFromServerTimstamp = 0L;
-  }
-
-  public void start(boolean immediately)
-  {
-    stop();
-
-    this.handler.postDelayed(this.runnable, immediately ? 0 : KEEP_ALIVE_INTERVAL);
-
-    this.keepAliveRunning = true;
-  }
-
-  public boolean isKeepAliveRunning()
-  {
-    return this.keepAliveRunning;
-  }
-
-  public void updateGetKeepAliveResponseFromServerTimstamp()
-  {
-    this.lastGetKeepAliveResponseFromServerTimstamp = System.currentTimeMillis();
-  }
-
-  public void setNetworkConnectionLostObserver(Observer networkConnectionLostObserver)
-  {
-    this.networkConnectionLostObserver = networkConnectionLostObserver;
-  }
+	public void setNetworkConnectionLostObserver(Observer networkConnectionLostObserver)
+	{
+		this.networkConnectionLostObserver = networkConnectionLostObserver;
+	}
 }

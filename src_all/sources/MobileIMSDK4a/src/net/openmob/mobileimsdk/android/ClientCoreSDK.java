@@ -30,216 +30,220 @@ import net.openmob.mobileimsdk.android.event.MessageQoSEvent;
 
 public class ClientCoreSDK
 {
-  private static final String TAG = ClientCoreSDK.class.getSimpleName();
+	private static final String TAG = ClientCoreSDK.class.getSimpleName();
 
-  public static boolean DEBUG = true;
+	public static boolean DEBUG = true;
 
-  public static boolean autoReLogin = true;
+	public static boolean autoReLogin = true;
 
-  private static ClientCoreSDK instance = null;
+	private static ClientCoreSDK instance = null;
 
-  private boolean _init = false;
+	private boolean _init = false;
 
-  private boolean localDeviceNetworkOk = true;
+	private boolean localDeviceNetworkOk = true;
 
-  private boolean connectedToServer = true;
+	private boolean connectedToServer = true;
 
-  private boolean loginHasInit = false;
+	private boolean loginHasInit = false;
 
-  private int currentUserId = -1;
+	private int currentUserId = -1;
 
-  private String currentLoginName = null;
+	private String currentLoginName = null;
 
-  private String currentLoginPsw = null;
+	private String currentLoginPsw = null;
 
-  private ChatBaseEvent chatBaseEvent = null;
+	private ChatBaseEvent chatBaseEvent = null;
 
-  private ChatTransDataEvent chatTransDataEvent = null;
+	private ChatTransDataEvent chatTransDataEvent = null;
 
-  private MessageQoSEvent messageQoSEvent = null;
+	private MessageQoSEvent messageQoSEvent = null;
 
-  private Context context = null;
+	private Context context = null;
 
-  private final BroadcastReceiver networkConnectionStatusBroadcastReceiver = new BroadcastReceiver()
-  {
-    public void onReceive(Context context, Intent intent)
-    {
-      ConnectivityManager connectMgr = (ConnectivityManager)context.getSystemService("connectivity");
-      NetworkInfo mobNetInfo = connectMgr.getNetworkInfo(0);
-      NetworkInfo wifiNetInfo = connectMgr.getNetworkInfo(1);
-      if (((mobNetInfo == null) || (!mobNetInfo.isConnected())) && (
-        (wifiNetInfo == null) || (!wifiNetInfo.isConnected())))
-      {
-        Log.e(ClientCoreSDK.TAG, "【IMCORE】【本地网络通知】检测本地网络连接断开了!");
+	private final BroadcastReceiver networkConnectionStatusBroadcastReceiver = new BroadcastReceiver()
+	{
+		public void onReceive(Context context, Intent intent)
+		{
+			ConnectivityManager connectMgr = (ConnectivityManager) context.getSystemService(context.CONNECTIVITY_SERVICE); 
+			NetworkInfo mobNetInfo = connectMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE); 
+			NetworkInfo wifiNetInfo = connectMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI); 
+			if (!(mobNetInfo != null && mobNetInfo.isConnected())
+					&& !(wifiNetInfo != null && wifiNetInfo.isConnected()))
+			{
+				Log.e(ClientCoreSDK.TAG, "【IMCORE】【本地网络通知】检测本地网络连接断开了!");
 
-        ClientCoreSDK.this.localDeviceNetworkOk = false;
+				ClientCoreSDK.this.localDeviceNetworkOk = false;
+				LocalUDPSocketProvider.getInstance().closeLocalUDPSocket();
+			}
+			else
+			{
+				if (ClientCoreSDK.DEBUG)
+				{
+					Log.e(ClientCoreSDK.TAG, "【IMCORE】【本地网络通知】检测本地网络已连接上了!");
+				}
 
-        LocalUDPSocketProvider.getInstance().closeLocalUDPSocket();
-      }
-      else
-      {
-        if (ClientCoreSDK.DEBUG)
-        {
-          Log.e(ClientCoreSDK.TAG, "【IMCORE】【本地网络通知】检测本地网络已连接上了!");
-        }
+				ClientCoreSDK.this.localDeviceNetworkOk = true;
+				LocalUDPSocketProvider.getInstance().closeLocalUDPSocket();
+			}
+		}
+	};
 
-        ClientCoreSDK.this.localDeviceNetworkOk = true;
+	public static ClientCoreSDK getInstance()
+	{
+		if (instance == null)
+			instance = new ClientCoreSDK();
+		return instance;
+	}
 
-        LocalUDPSocketProvider.getInstance().closeLocalUDPSocket();
-      }
-    }
-  };
+	public void init(Context _context)
+	{
+		if (!this._init)
+		{
+			if (_context == null) {
+				throw new IllegalArgumentException("context can't be null!");
+			}
 
-  public static ClientCoreSDK getInstance()
-  {
-    if (instance == null)
-      instance = new ClientCoreSDK();
-    return instance;
-  }
+			// 将全局Application作为context上下文句柄：
+			//   由于Android程序的特殊性，整个APP的生命周中除了Application外，其它包括Activity在内
+			//   都可能是短命且不可靠的（随时可能会因虚拟机资源不足而被回收），所以MobileIMSDK作为跟
+			//   整个APP的生命周期保持一致的全局资源，它的上下文用Application是最为恰当的。
+			if(_context instanceof Application)
+				this.context = _context;
+			else
+			{
+				this.context = _context.getApplicationContext();
+			}
 
-  public void init(Context _context)
-  {
-    if (!this._init)
-    {
-      if (_context == null) {
-        throw new IllegalArgumentException("context can't be null!");
-      }
+			// Register for broadcasts when network status changed
+			IntentFilter intentFilter = new IntentFilter(); 
+			intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION); 
+			this.context.registerReceiver(networkConnectionStatusBroadcastReceiver, intentFilter);
 
-      if ((_context instanceof Application)) {
-        this.context = _context;
-      }
-      else
-      {
-        this.context = _context.getApplicationContext();
-      }
+			this._init = true;
+		}
+	}
 
-      IntentFilter intentFilter = new IntentFilter();
-      intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
-      this.context.registerReceiver(this.networkConnectionStatusBroadcastReceiver, intentFilter);
+	public void release()
+	{
+		// 尝试停掉掉线重连线程（如果线程正在运行的话）
+	    AutoReLoginDaemon.getInstance(context).stop(); // 2014-11-08 add by Jack Jiang
+		// 尝试停掉QoS质量保证（发送）心跳线程
+		QoS4SendDaemon.getInstance(context).stop();
+		// 尝试停掉Keep Alive心跳线程
+		KeepAliveDaemon.getInstance(context).stop();
+		// 尝试停掉消息接收者
+		LocalUDPDataReciever.getInstance(context).stop();
+		// 尝试停掉QoS质量保证（接收防重复机制）心跳线程
+		QoS4ReciveDaemon.getInstance(context).stop();
+		// 尝试关闭本地Socket
+		LocalUDPSocketProvider.getInstance().closeLocalUDPSocket();
+		
+		try
+		{
+			this.context.unregisterReceiver(this.networkConnectionStatusBroadcastReceiver);
+		}
+		catch (Exception e)
+		{
+			Log.w(TAG, e.getMessage(), e);
+		}
 
-      this._init = true;
-    }
-  }
+		this._init = false;
 
-  public void release()
-  {
-    AutoReLoginDaemon.getInstance(this.context).stop();
+		setLoginHasInit(false);
+		setConnectedToServer(false);
+	}
 
-    QoS4SendDaemon.getInstance(this.context).stop();
+	public int getCurrentUserId()
+	{
+		return this.currentUserId;
+	}
 
-    KeepAliveDaemon.getInstance(this.context).stop();
+	public ClientCoreSDK setCurrentUserId(int currentUserId)
+	{
+		this.currentUserId = currentUserId;
+		return this;
+	}
 
-    LocalUDPDataReciever.getInstance(this.context).stop();
+	public String getCurrentLoginName()
+	{
+		return this.currentLoginName;
+	}
 
-    QoS4ReciveDaemon.getInstance(this.context).stop();
+	public ClientCoreSDK setCurrentLoginName(String currentLoginName)
+	{
+		this.currentLoginName = currentLoginName;
+		return this;
+	}
 
-    LocalUDPSocketProvider.getInstance().closeLocalUDPSocket();
-    try
-    {
-      this.context.unregisterReceiver(this.networkConnectionStatusBroadcastReceiver);
-    }
-    catch (Exception e)
-    {
-      Log.w(TAG, e.getMessage(), e);
-    }
+	public String getCurrentLoginPsw()
+	{
+		return this.currentLoginPsw;
+	}
 
-    this._init = false;
+	public void setCurrentLoginPsw(String currentLoginPsw)
+	{
+		this.currentLoginPsw = currentLoginPsw;
+	}
 
-    setLoginHasInit(false);
-    setConnectedToServer(false);
-  }
+	public boolean isLoginHasInit()
+	{
+		return this.loginHasInit;
+	}
 
-  public int getCurrentUserId()
-  {
-    return this.currentUserId;
-  }
+	public ClientCoreSDK setLoginHasInit(boolean loginHasInit)
+	{
+		this.loginHasInit = loginHasInit;
 
-  public ClientCoreSDK setCurrentUserId(int currentUserId)
-  {
-    this.currentUserId = currentUserId;
-    return this;
-  }
+		return this;
+	}
 
-  public String getCurrentLoginName()
-  {
-    return this.currentLoginName;
-  }
+	public boolean isConnectedToServer()
+	{
+		return this.connectedToServer;
+	}
 
-  public ClientCoreSDK setCurrentLoginName(String currentLoginName)
-  {
-    this.currentLoginName = currentLoginName;
-    return this;
-  }
+	public void setConnectedToServer(boolean connectedToServer)
+	{
+		this.connectedToServer = connectedToServer;
+	}
 
-  public String getCurrentLoginPsw()
-  {
-    return this.currentLoginPsw;
-  }
+	public boolean isInitialed()
+	{
+		return this._init;
+	}
 
-  public void setCurrentLoginPsw(String currentLoginPsw)
-  {
-    this.currentLoginPsw = currentLoginPsw;
-  }
+	public boolean isLocalDeviceNetworkOk()
+	{
+		return this.localDeviceNetworkOk;
+	}
 
-  public boolean isLoginHasInit()
-  {
-    return this.loginHasInit;
-  }
+	public void setChatBaseEvent(ChatBaseEvent chatBaseEvent)
+	{
+		this.chatBaseEvent = chatBaseEvent;
+	}
 
-  public ClientCoreSDK setLoginHasInit(boolean loginHasInit)
-  {
-    this.loginHasInit = loginHasInit;
+	public ChatBaseEvent getChatBaseEvent()
+	{
+		return this.chatBaseEvent;
+	}
 
-    return this;
-  }
+	public void setChatTransDataEvent(ChatTransDataEvent chatTransDataEvent)
+	{
+		this.chatTransDataEvent = chatTransDataEvent;
+	}
 
-  public boolean isConnectedToServer()
-  {
-    return this.connectedToServer;
-  }
+	public ChatTransDataEvent getChatTransDataEvent()
+	{
+		return this.chatTransDataEvent;
+	}
 
-  public void setConnectedToServer(boolean connectedToServer)
-  {
-    this.connectedToServer = connectedToServer;
-  }
+	public void setMessageQoSEvent(MessageQoSEvent messageQoSEvent)
+	{
+		this.messageQoSEvent = messageQoSEvent;
+	}
 
-  public boolean isInitialed()
-  {
-    return this._init;
-  }
-
-  public boolean isLocalDeviceNetworkOk()
-  {
-    return this.localDeviceNetworkOk;
-  }
-
-  public void setChatBaseEvent(ChatBaseEvent chatBaseEvent)
-  {
-    this.chatBaseEvent = chatBaseEvent;
-  }
-
-  public ChatBaseEvent getChatBaseEvent()
-  {
-    return this.chatBaseEvent;
-  }
-
-  public void setChatTransDataEvent(ChatTransDataEvent chatTransDataEvent)
-  {
-    this.chatTransDataEvent = chatTransDataEvent;
-  }
-
-  public ChatTransDataEvent getChatTransDataEvent()
-  {
-    return this.chatTransDataEvent;
-  }
-
-  public void setMessageQoSEvent(MessageQoSEvent messageQoSEvent)
-  {
-    this.messageQoSEvent = messageQoSEvent;
-  }
-
-  public MessageQoSEvent getMessageQoSEvent()
-  {
-    return this.messageQoSEvent;
-  }
+	public MessageQoSEvent getMessageQoSEvent()
+	{
+		return this.messageQoSEvent;
+	}
 }

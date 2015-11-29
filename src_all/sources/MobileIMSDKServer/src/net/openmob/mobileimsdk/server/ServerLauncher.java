@@ -29,188 +29,180 @@ import org.slf4j.LoggerFactory;
 
 public abstract class ServerLauncher
 {
-  private static Logger logger = LoggerFactory.getLogger(ServerLauncher.class);
+	private static Logger logger = LoggerFactory.getLogger(ServerLauncher.class);
 
-  public static String appKey = null;
+	public static String appKey = null;
+	public static int PORT = 7901;
+	public static int SESION_RECYCLER_EXPIRE = 10;
 
-  public static int PORT = 7901;
+	private boolean running = false;
+	protected ServerCoreHandler serverCoreHandler = null;
+	private NioDatagramAcceptor acceptor = null;
 
-  public static int SESION_RECYCLER_EXPIRE = 10;
+	public ServerLauncher() throws IOException
+	{
+	}
 
-  private boolean running = false;
+	public boolean isRunning()
+	{
+		return this.running;
+	}
 
-  protected ServerCoreHandler serverCoreHandler = null;
-  private NioDatagramAcceptor acceptor = null;
+	public void shutdown()
+	{
+		// ** 取消服务端网络监听
+    	if(acceptor != null)
+    		acceptor.dispose();
+    	
+    	// ** 停止QoS机制（目前服务端只支持C2S模式的QoS）下的防重复检查线程
+    	QoS4ReciveDaemonC2S.getInstance().stop();
+    	// ** 停止服务端对S2C模式下QoS机制的丢包重传和离线通知线程
+    	QoS4SendDaemonS2C.getInstance().stop();
+    	
+    	// ** 设置启动标识
+    	this.running = false;
+	}
 
-  public ServerLauncher()
-    throws IOException
-  {
-  }
+	public void startup() throws IOException
+	{
+		this.serverCoreHandler = initServerCoreHandler();
+		initListeners();
+		this.acceptor = initAcceptor();
+		initFilter(this.acceptor);
+		initSessionConfig(this.acceptor);
+		QoS4ReciveDaemonC2S.getInstance().startup();
+		QoS4SendDaemonS2C.getInstance().startup(true).setServerLauncher(this);
+		this.acceptor.bind(new InetSocketAddress(PORT));
 
-  public boolean isRunning()
-  {
-    return this.running;
-  }
+		this.running = true;
+		logger.info("[IMCORE]UDP服务器正在端口" + PORT + "上监听中...");
+	}
 
-  public void shutdown()
-  {
-    if (this.acceptor != null) {
-      this.acceptor.dispose();
-    }
+	protected ServerCoreHandler initServerCoreHandler()
+	{
+		return new ServerCoreHandler();
+	}
 
-    QoS4ReciveDaemonC2S.getInstance().stop();
+	protected abstract void initListeners();
 
-    QoS4SendDaemonS2C.getInstance().stop();
+	protected NioDatagramAcceptor initAcceptor()
+	{
+		NioDatagramAcceptor acceptor = new NioDatagramAcceptor();
+		acceptor.getFilterChain()
+			.addLast("threadPool", new ExecutorFilter(Executors.newCachedThreadPool()));
+		acceptor.setHandler(this.serverCoreHandler);
+		acceptor.setSessionRecycler(new ExpiringSessionRecycler(SESION_RECYCLER_EXPIRE));
+		return acceptor;
+	}
 
-    this.running = false;
-  }
+	protected void initFilter(NioDatagramAcceptor acceptor)
+	{
+		DefaultIoFilterChainBuilder chain = acceptor.getFilterChain();
+	}
 
-  public void startup()
-    throws IOException
-  {
-    this.serverCoreHandler = initServerCoreHandler();
+	protected void initSessionConfig(NioDatagramAcceptor acceptor)
+	{
+		DatagramSessionConfig dcfg = acceptor.getSessionConfig();
+		dcfg.setReuseAddress(true);
+//     	dcfg.setReadBufferSize(4096);//设置接收最大字节默认2048
+    	dcfg.setReceiveBufferSize(1024);//设置输入缓冲区的大小，调整到2048后性能反而降低
+    	dcfg.setSendBufferSize(1024);//1024//设置输出缓冲区的大小，调整到2048后性能反而降低
+	}
 
-    initListeners();
+	public ServerEventListener getServerEventListener()
+	{
+		return this.serverCoreHandler.getServerEventListener();
+	}
 
-    this.acceptor = initAcceptor();
+	public void setServerEventListener(ServerEventListener serverEventListener)
+	{
+		this.serverCoreHandler.setServerEventListener(serverEventListener);
+	}
 
-    initFilter(this.acceptor);
+	public MessageQoSEventListenerS2C getServerMessageQoSEventListener()
+	{
+		return this.serverCoreHandler.getServerMessageQoSEventListener();
+	}
 
-    initSessionConfig(this.acceptor);
+	public void setServerMessageQoSEventListener(MessageQoSEventListenerS2C serverMessageQoSEventListener)
+	{
+		this.serverCoreHandler.setServerMessageQoSEventListener(serverMessageQoSEventListener);
+	}
 
-    QoS4ReciveDaemonC2S.getInstance().startup();
+	public static boolean sendData(int from_user_id, int to_user_id, String dataContent) throws Exception
+	{
+		return ServerCoreHandler.sendData(from_user_id, to_user_id, dataContent);
+	}
 
-    QoS4SendDaemonS2C.getInstance().startup(true).setServerLauncher(this);
+	public static boolean sendData(int from_user_id, int to_user_id, String dataContent, boolean QoS) throws Exception
+	{
+		return ServerCoreHandler.sendData(from_user_id, to_user_id, dataContent, QoS);
+	}
 
-    this.acceptor.bind(new InetSocketAddress(PORT));
+	public static boolean sendData(int from_user_id, int to_user_id
+			, String dataContent, boolean QoS, String fingerPrint) throws Exception
+	{
+		return ServerCoreHandler.sendData(from_user_id, to_user_id, dataContent, 
+				QoS, fingerPrint);
+	}
 
-    this.running = true;
+	public static boolean sendData(Protocal p) throws Exception
+	{
+		return ServerCoreHandler.sendData(p);
+	}
 
-    logger.info("[IMCORE]UDP服务器正在端口" + PORT + "上监听中...");
-  }
+	public static boolean sendData(IoSession session, Protocal p) throws Exception
+	{
+		return ServerCoreHandler.sendData(session, p);
+	}
 
-  protected ServerCoreHandler initServerCoreHandler()
-  {
-    return new ServerCoreHandler();
-  }
+	public static void setSenseMode(SenseMode mode)
+	{
+		int expire = 0;
 
-  protected abstract void initListeners();
+		switch (mode)
+		{
+			case MODE_3S:
+				// 误叛容忍度为丢3个包
+				expire = 3 * 3 + 1;
+				break;
+			case MODE_10S:
+				// 误叛容忍度为丢2个包
+				expire = 10 * 2 + 1;
+	    		break;
+			case MODE_30S:
+				// 误叛容忍度为丢2个包
+				expire = 30 * 2 + 2;
+	    		break;
+			case MODE_60S:
+				// 误叛容忍度为丢2个包
+				expire = 60 * 2 + 2;
+	    		break;
+			case MODE_120S:
+				// 误叛容忍度为丢2个包
+				expire = 120 * 2 + 2;
+	    		break;
+		}
 
-  protected NioDatagramAcceptor initAcceptor()
-  {
-    NioDatagramAcceptor acceptor = new NioDatagramAcceptor();
+		if (expire > 0)
+			SESION_RECYCLER_EXPIRE = expire;
+	}
 
-    acceptor.getFilterChain()
-      .addLast("threadPool", new ExecutorFilter(Executors.newCachedThreadPool()));
+	public static enum SenseMode
+	{
+		MODE_3S, 
 
-    acceptor.setHandler(this.serverCoreHandler);
+		MODE_10S, 
 
-    acceptor.setSessionRecycler(new ExpiringSessionRecycler(SESION_RECYCLER_EXPIRE));
+		MODE_30S, 
 
-    return acceptor;
-  }
+		MODE_60S, 
 
-  protected void initFilter(NioDatagramAcceptor acceptor)
-  {
-    DefaultIoFilterChainBuilder chain = acceptor.getFilterChain();
-  }
-
-  protected void initSessionConfig(NioDatagramAcceptor acceptor)
-  {
-    DatagramSessionConfig dcfg = acceptor.getSessionConfig();
-    dcfg.setReuseAddress(true);
-
-    dcfg.setReceiveBufferSize(1024);
-    dcfg.setSendBufferSize(1024);
-  }
-
-  public ServerEventListener getServerEventListener()
-  {
-    return this.serverCoreHandler.getServerEventListener();
-  }
-
-  public void setServerEventListener(ServerEventListener serverEventListener)
-  {
-    this.serverCoreHandler.setServerEventListener(serverEventListener);
-  }
-
-  public MessageQoSEventListenerS2C getServerMessageQoSEventListener()
-  {
-    return this.serverCoreHandler.getServerMessageQoSEventListener();
-  }
-
-  public void setServerMessageQoSEventListener(MessageQoSEventListenerS2C serverMessageQoSEventListener)
-  {
-    this.serverCoreHandler.setServerMessageQoSEventListener(serverMessageQoSEventListener);
-  }
-
-  public static boolean sendData(int from_user_id, int to_user_id, String dataContent)
-    throws Exception
-  {
-    return ServerCoreHandler.sendData(from_user_id, to_user_id, dataContent);
-  }
-
-  public static boolean sendData(int from_user_id, int to_user_id, String dataContent, boolean QoS)
-    throws Exception
-  {
-    return ServerCoreHandler.sendData(from_user_id, to_user_id, dataContent, QoS);
-  }
-
-  public static boolean sendData(int from_user_id, int to_user_id, String dataContent, boolean QoS, String fingerPrint)
-    throws Exception
-  {
-    return ServerCoreHandler.sendData(from_user_id, to_user_id, dataContent, 
-      QoS, fingerPrint);
-  }
-
-  public static boolean sendData(Protocal p)
-    throws Exception
-  {
-    return ServerCoreHandler.sendData(p);
-  }
-
-  public static boolean sendData(IoSession session, Protocal p)
-    throws Exception
-  {
-    return ServerCoreHandler.sendData(session, p);
-  }
-
-  public static void setSenseMode(SenseMode mode)
-  {
-    int expire = 0;
-
-    switch (mode)
-    {
-    case MODE_10S:
-      expire = 10;
-      break;
-    case MODE_120S:
-      expire = 21;
-      break;
-    case MODE_30S:
-      expire = 62;
-      break;
-    case MODE_3S:
-      expire = 122;
-      break;
-    case MODE_60S:
-      expire = 242;
-    }
-
-    if (expire > 0)
-      SESION_RECYCLER_EXPIRE = expire;
-  }
-
-  public static enum SenseMode
-  {
-    MODE_3S, 
-
-    MODE_10S, 
-
-    MODE_30S, 
-
-    MODE_60S, 
-
-    MODE_120S;
-  }
+		MODE_120S;
+	}
+	
+//	public static void main(String[] args) throws IOException 
+//  {
+//      new ServerLauncher().startup();
+//  }
 }

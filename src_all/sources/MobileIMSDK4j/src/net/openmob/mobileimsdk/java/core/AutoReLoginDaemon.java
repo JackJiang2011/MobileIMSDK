@@ -18,88 +18,89 @@ import net.openmob.mobileimsdk.java.utils.Log;
 
 public class AutoReLoginDaemon
 {
-  private static final String TAG = AutoReLoginDaemon.class.getSimpleName();
+	private static final String TAG = AutoReLoginDaemon.class.getSimpleName();
 
-  public static int AUTO_RE$LOGIN_INTERVAL = 2000;
+	public static int AUTO_RE$LOGIN_INTERVAL = 2000;
 
-  private boolean autoReLoginRunning = false;
+	private boolean autoReLoginRunning = false;
 
-  private boolean _excuting = false;
+	private boolean _excuting = false;
 
-  private Timer timer = null;
+	private Timer timer = null;
 
-  private static AutoReLoginDaemon instance = null;
+	private static AutoReLoginDaemon instance = null;
 
-  public static AutoReLoginDaemon getInstance()
-  {
-    if (instance == null)
-      instance = new AutoReLoginDaemon();
-    return instance;
-  }
+	public static AutoReLoginDaemon getInstance()
+	{
+		if (instance == null)
+			instance = new AutoReLoginDaemon();
+		return instance;
+	}
 
-  private AutoReLoginDaemon()
-  {
-    init();
-  }
+	private AutoReLoginDaemon()
+	{
+		init();
+	}
 
-  private void init()
-  {
-    this.timer = new Timer(AUTO_RE$LOGIN_INTERVAL, new ActionListener()
-    {
-      public void actionPerformed(ActionEvent e) {
-        AutoReLoginDaemon.this.run();
-      }
-    });
-  }
+	private void init()
+	{
+		this.timer = new Timer(AUTO_RE$LOGIN_INTERVAL, new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e) {
+				AutoReLoginDaemon.this.run();
+			}
+		});
+	}
 
-  public void run() {
-    if (!this._excuting)
-    {
-      this._excuting = true;
-      if (ClientCoreSDK.DEBUG)
-        Log.d(TAG, "【IMCORE】自动重新登陆线程执行中, autoReLogin?" + ClientCoreSDK.autoReLogin + "...");
-      int code = -1;
+	public void run() {
+		if (!this._excuting)
+		{
+			this._excuting = true;
+			if (ClientCoreSDK.DEBUG)
+				Log.d(TAG, "【IMCORE】自动重新登陆线程执行中, autoReLogin?" + ClientCoreSDK.autoReLogin + "...");
+			int code = -1;
+			// 是否允许自动重新登陆哦
+			if (ClientCoreSDK.autoReLogin)
+			{
+				LocalUDPSocketProvider.getInstance().closeLocalUDPSocket();
+				
+				// 发送重登陆请求
+				code = LocalUDPDataSender.getInstance().sendLogin(
+						ClientCoreSDK.getInstance().getCurrentLoginName(), ClientCoreSDK.getInstance().getCurrentLoginPsw());
+			}
 
-      if (ClientCoreSDK.autoReLogin)
-      {
-        LocalUDPSocketProvider.getInstance().closeLocalUDPSocket();
+			if (code == 0)
+			{
+				LocalUDPDataReciever.getInstance().startup();
+			}
 
-        code = LocalUDPDataSender.getInstance().sendLogin(
-          ClientCoreSDK.getInstance().getCurrentLoginName(), ClientCoreSDK.getInstance().getCurrentLoginPsw());
-      }
+			this._excuting = false;
+		}
+	}
 
-      if (code == 0)
-      {
-        LocalUDPDataReciever.getInstance().startup();
-      }
+	public void stop()
+	{
+		if (this.timer != null) {
+			this.timer.stop();
+		}
+		this.autoReLoginRunning = false;
+	}
 
-      this._excuting = false;
-    }
-  }
+	public void start(boolean immediately)
+	{
+		stop();
 
-  public void stop()
-  {
-    if (this.timer != null) {
-      this.timer.stop();
-    }
-    this.autoReLoginRunning = false;
-  }
+		if (immediately)
+			this.timer.setInitialDelay(0);
+		else
+			this.timer.setInitialDelay(AUTO_RE$LOGIN_INTERVAL);
+		this.timer.start();
 
-  public void start(boolean immediately)
-  {
-    stop();
+		this.autoReLoginRunning = true;
+	}
 
-    if (immediately)
-      this.timer.setInitialDelay(0);
-    else
-      this.timer.setInitialDelay(AUTO_RE$LOGIN_INTERVAL);
-    this.timer.start();
-
-    this.autoReLoginRunning = true;
-  }
-
-  public boolean isautoReLoginRunning()
-  {
-    return this.autoReLoginRunning;
-  }
+	public boolean isautoReLoginRunning()
+	{
+		return this.autoReLoginRunning;
+	}
 }

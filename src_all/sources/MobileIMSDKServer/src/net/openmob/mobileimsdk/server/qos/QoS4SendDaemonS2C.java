@@ -14,255 +14,247 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
-import javax.swing.SwingWorker;
+
 import javax.swing.Timer;
+
 import net.openmob.mobileimsdk.server.ServerLauncher;
-import net.openmob.mobileimsdk.server.event.MessageQoSEventListenerS2C;
 import net.openmob.mobileimsdk.server.protocal.Protocal;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class QoS4SendDaemonS2C
 {
-  private static Logger logger = LoggerFactory.getLogger(QoS4SendDaemonS2C.class);
+	private static Logger logger = LoggerFactory.getLogger(QoS4SendDaemonS2C.class);
 
-  public static boolean DEBUG = false;
+	public static boolean DEBUG = false;
 
-  private ServerLauncher serverLauncher = null;
+	public static final int CHECH_INTERVAL = 5000;
+	public static final int MESSAGES_JUST$NOW_TIME = 2000;
+	public static final int QOS_TRY_COUNT = 1;
 
-  private ConcurrentHashMap<String, Protocal> sentMessages = new ConcurrentHashMap();
+	private ServerLauncher serverLauncher = null;
+	private ConcurrentHashMap<String, Protocal> sentMessages = new ConcurrentHashMap<String, Protocal>();
+	private ConcurrentHashMap<String, Long> sendMessagesTimestamp = new ConcurrentHashMap<String, Long>();
 
-  private ConcurrentHashMap<String, Long> sendMessagesTimestamp = new ConcurrentHashMap();
-  public static final int CHECH_INTERVAL = 5000;
-  public static final int MESSAGES_JUST$NOW_TIME = 2000;
-  public static final int QOS_TRY_COUNT = 1;
-  private boolean running = false;
+	private boolean running = false;
+	private boolean _excuting = false;
+	private Timer timer = null;
 
-  private boolean _excuting = false;
+	private static QoS4SendDaemonS2C instance = null;
 
-  private Timer timer = null;
+	public static QoS4SendDaemonS2C getInstance()
+	{
+		if (instance == null)
+			instance = new QoS4SendDaemonS2C();
+		return instance;
+	}
 
-  private static QoS4SendDaemonS2C instance = null;
+	private QoS4SendDaemonS2C()
+	{
+		init();
+	}
 
-  public static QoS4SendDaemonS2C getInstance()
-  {
-    if (instance == null)
-      instance = new QoS4SendDaemonS2C();
-    return instance;
-  }
+	private void init()
+	{
+		this.timer = new Timer(CHECH_INTERVAL, new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e) {
+				QoS4SendDaemonS2C.this.run();
+			}
+		});
+	}
 
-  private QoS4SendDaemonS2C()
-  {
-    init();
-  }
+	public void run()
+	{
+		// 极端情况下本次循环内可能执行时间超过了时间间隔，此处是防止在前一
+		// 次还没有运行完的情况下又重复执行，从而出现无法预知的错误
+		if (!this._excuting)
+		{
+			ArrayList<Protocal> lostMessages = new ArrayList<Protocal>();
+			this._excuting = true;
+			try
+			{
+				if (DEBUG) {
+					logger.debug("【IMCORE】【QoS发送方】=========== 消息发送质量保证线程运行中, 当前需要处理的列表长度为" + this.sentMessages.size() + "...");
+				}
 
-  private void init()
-  {
-    this.timer = new Timer(5000, new ActionListener()
-    {
-      public void actionPerformed(ActionEvent e) {
-        QoS4SendDaemonS2C.this.run();
-      }
-    });
-  }
+				for (String key : this.sentMessages.keySet())
+				{
+					Protocal p = (Protocal)this.sentMessages.get(key);
+					if ((p != null) && (p.isQoS()))
+					{
+						if (p.getRetryCount() >= QOS_TRY_COUNT)
+						{
+							if (DEBUG) {
+								logger.debug("【IMCORE】【QoS发送方】指纹为" + p.getFp() + 
+										"的消息包重传次数已达" + p.getRetryCount() + "(最多" + QOS_TRY_COUNT + "次)上限，将判定为丢包！");
+							}
 
-  public void run()
-  {
-    if (!this._excuting)
-    {
-      ArrayList lostMessages = new ArrayList();
-      this._excuting = true;
-      try
-      {
-        if (DEBUG) {
-          logger.debug("【IMCORE】【QoS发送方】=========== 消息发送质量保证线程运行中, 当前需要处理的列表长度为" + this.sentMessages.size() + "...");
-        }
+							lostMessages.add((Protocal)p.clone());
 
-        for (String key : this.sentMessages.keySet())
-        {
-          Protocal p = (Protocal)this.sentMessages.get(key);
-          if ((p != null) && (p.isQoS()))
-          {
-            if (p.getRetryCount() >= 1)
-            {
-              if (DEBUG) {
-                logger.debug("【IMCORE】【QoS发送方】指纹为" + p.getFp() + 
-                  "的消息包重传次数已达" + p.getRetryCount() + "(最多" + 1 + "次)上限，将判定为丢包！");
-              }
+							remove(p.getFp());
+						}
+						else
+						{
+							//### 2015104 Bug Fix: 解决了无线网络延较大时，刚刚发出的消息在其应答包还在途中时被错误地进行重传
+							long delta = System.currentTimeMillis() - sendMessagesTimestamp.get(key);
+							// 该消息包是“刚刚”发出的，本次不需要重传它哦
+							if(delta <= MESSAGES_JUST$NOW_TIME)
+							{
+								if(DEBUG)
+									logger.warn("【IMCORE】【QoS发送方】指纹为"+key+"的包距\"刚刚\"发出才"+delta
+										+"ms(<="+MESSAGES_JUST$NOW_TIME+"ms将被认定是\"刚刚\"), 本次不需要重传哦.");
+							}
+							//### 2015103 Bug Fix END
+							else
+							{
+								boolean sendOK = ServerLauncher.sendData(p);
 
-              lostMessages.add((Protocal)p.clone());
+								p.increaseRetryCount();
 
-              remove(p.getFp());
-            }
-            else
-            {
-              long delta = System.currentTimeMillis() - ((Long)this.sendMessagesTimestamp.get(key)).longValue();
+								if (sendOK)
+								{
+									if (DEBUG) {
+										logger.debug("【IMCORE】【QoS发送方】指纹为" + p.getFp() + 
+												"的消息包已成功进行重传，此次之后重传次数已达" + 
+												p.getRetryCount() + "(最多" + 1 + "次).");
+									}
 
-              if (delta <= 2000L)
-              {
-                if (DEBUG) {
-                  logger.warn("【IMCORE】【QoS发送方】指纹为" + key + "的包距\"刚刚\"发出才" + delta + 
-                    "ms(<=" + 2000 + "ms将被认定是\"刚刚\"), 本次不需要重传哦.");
-                }
-              }
-              else
-              {
-                boolean sendOK = ServerLauncher.sendData(p);
+								}
+								else if (DEBUG) {
+									logger.warn("【IMCORE】【QoS发送方】指纹为" + p.getFp() + 
+											"的消息包重传失败，它的重传次数之前已累计为" + 
+											p.getRetryCount() + "(最多" + 1 + "次).");
+								}
+							}
 
-                p.increaseRetryCount();
+						}
+					}
+					else
+					{
+						remove(key);
+					}
+				}
+			}
+			catch (Exception eee)
+			{
+				if (DEBUG) {
+					logger.warn("【IMCORE】【QoS发送方】消息发送质量保证线程运行时发生异常," + eee.getMessage(), eee);
+				}
+			}
+			if ((lostMessages != null) && (lostMessages.size() > 0))
+			{
+				notifyMessageLost(lostMessages);
+			}
 
-                if (sendOK)
-                {
-                  if (DEBUG) {
-                    logger.debug("【IMCORE】【QoS发送方】指纹为" + p.getFp() + 
-                      "的消息包已成功进行重传，此次之后重传次数已达" + 
-                      p.getRetryCount() + "(最多" + 1 + "次).");
-                  }
+			this._excuting = false;
+		}
+	}
 
-                }
-                else if (DEBUG) {
-                  logger.warn("【IMCORE】【QoS发送方】指纹为" + p.getFp() + 
-                    "的消息包重传失败，它的重传次数之前已累计为" + 
-                    p.getRetryCount() + "(最多" + 1 + "次).");
-                }
-              }
+	protected void notifyMessageLost(ArrayList<Protocal> lostMessages)
+	{
+		if ((this.serverLauncher != null) && (this.serverLauncher.getServerMessageQoSEventListener() != null))
+			this.serverLauncher.getServerMessageQoSEventListener().messagesLost(lostMessages);
+	}
 
-            }
+	public QoS4SendDaemonS2C startup(boolean immediately)
+	{
+		stop();
 
-          }
-          else
-          {
-            remove(key);
-          }
-        }
-      }
-      catch (Exception eee)
-      {
-        if (DEBUG) {
-          logger.warn("【IMCORE】【QoS发送方】消息发送质量保证线程运行时发生异常," + eee.getMessage(), eee);
-        }
-      }
-      if ((lostMessages != null) && (lostMessages.size() > 0))
-      {
-        notifyMessageLost(lostMessages);
-      }
+		if (immediately)
+			this.timer.setInitialDelay(0);
+		else
+			this.timer.setInitialDelay(CHECH_INTERVAL);
+		
+		this.timer.start();
+		this.running = true;
 
-      this._excuting = false;
-    }
-  }
+		return this;
+	}
 
-  protected void notifyMessageLost(ArrayList<Protocal> lostMessages)
-  {
-    if ((this.serverLauncher != null) && (this.serverLauncher.getServerMessageQoSEventListener() != null))
-      this.serverLauncher.getServerMessageQoSEventListener().messagesLost(lostMessages);
-  }
+	public void stop()
+	{
+		if (this.timer != null) {
+			this.timer.stop();
+		}
 
-  public QoS4SendDaemonS2C startup(boolean immediately)
-  {
-    stop();
+		this.running = false;
+	}
 
-    if (immediately)
-      this.timer.setInitialDelay(0);
-    else
-      this.timer.setInitialDelay(5000);
-    this.timer.start();
+	public boolean isRunning()
+	{
+		return this.running;
+	}
 
-    this.running = true;
+	public boolean exist(String fingerPrint)
+	{
+		return this.sentMessages.get(fingerPrint) != null;
+	}
 
-    return this;
-  }
+	public void put(Protocal p)
+	{
+		if (p == null)
+		{
+			if (DEBUG)
+				logger.warn("Invalid arg p==null.");
+			return;
+		}
+		if (p.getFp() == null)
+		{
+			if (DEBUG)
+				logger.warn("Invalid arg p.getFp() == null.");
+			return;
+		}
 
-  public void stop()
-  {
-    if (this.timer != null) {
-      this.timer.stop();
-    }
+		if (!p.isQoS())
+		{
+			if (DEBUG)
+				logger.warn("This protocal is not QoS pkg, ignore it!");
+			return;
+		}
 
-    this.running = false;
-  }
+		if (this.sentMessages.get(p.getFp()) != null)
+		{
+			if (DEBUG) {
+				logger.warn("【IMCORE】【QoS发送方】指纹为" + p.getFp() + "的消息已经放入了发送质量保证队列，该消息为何会重复？（生成的指纹码重复？还是重复put？）");
+			}
+		}
 
-  public boolean isRunning()
-  {
-    return this.running;
-  }
+		// save it
+		sentMessages.put(p.getFp(), p);
+		// 同时保存时间戳
+		sendMessagesTimestamp.put(p.getFp(), System.currentTimeMillis());
+	}
 
-  public boolean exist(String fingerPrint)
-  {
-    return this.sentMessages.get(fingerPrint) != null;
-  }
+	public void remove(String fingerPrint)
+	{
+		//### 20151129 Bug Fix: 解决了之前错误地在服务端实现本remove方法时
+		//	使用了SwingWorker而导致一段时间后一定几率下整个Timer不能正常工作了（OOM）
+		try
+		{
+			// remove it
+			sendMessagesTimestamp.remove(fingerPrint);
+			Object result = sentMessages.remove(fingerPrint);
+			if(DEBUG)
+				logger.warn("【IMCORE】【QoS发送方】指纹为"+fingerPrint+"的消息已成功从发送质量保证队列中移除(可能是收到接收方的应答也可能是达到了重传的次数上限)，重试次数="
+						+(result != null?((Protocal)result).getRetryCount():"none呵呵."));
+		}
+		catch (Exception e)
+		{
+			if(DEBUG)
+				logger.warn("【IMCORE】【QoS发送方】remove(fingerPrint)时出错了：", e);
+		}
+		//### 20151129 Bug Fix END 
+	}
 
-  public void put(Protocal p)
-  {
-    if (p == null)
-    {
-      if (DEBUG)
-        logger.warn("Invalid arg p==null.");
-      return;
-    }
-    if (p.getFp() == null)
-    {
-      if (DEBUG)
-        logger.warn("Invalid arg p.getFp() == null.");
-      return;
-    }
+	public int size()
+	{
+		return this.sentMessages.size();
+	}
 
-    if (!p.isQoS())
-    {
-      if (DEBUG)
-        logger.warn("This protocal is not QoS pkg, ignore it!");
-      return;
-    }
-
-    if (this.sentMessages.get(p.getFp()) != null)
-    {
-      if (DEBUG) {
-        logger.warn("【IMCORE】【QoS发送方】指纹为" + p.getFp() + "的消息已经放入了发送质量保证队列，该消息为何会重复？（生成的指纹码重复？还是重复put？）");
-      }
-    }
-
-    this.sentMessages.put(p.getFp(), p);
-
-    this.sendMessagesTimestamp.put(p.getFp(), Long.valueOf(System.currentTimeMillis()));
-  }
-
-  public void remove(String fingerPrint)
-  {
-    new SwingWorker(fingerPrint)
-    {
-      protected Protocal doInBackground()
-      {
-        QoS4SendDaemonS2C.this.sendMessagesTimestamp.remove(this.val$fingerPrint);
-        return (Protocal)QoS4SendDaemonS2C.this.sentMessages.remove(this.val$fingerPrint);
-      }
-
-      protected void done()
-      {
-        Protocal result = null;
-        try
-        {
-          result = (Protocal)get();
-        }
-        catch (Exception e)
-        {
-          if (QoS4SendDaemonS2C.DEBUG) {
-            QoS4SendDaemonS2C.logger.warn(e.getMessage(), e);
-          }
-        }
-        if (QoS4SendDaemonS2C.DEBUG)
-          QoS4SendDaemonS2C.logger.warn("【IMCORE】【QoS发送方】指纹为" + this.val$fingerPrint + "的消息已成功从发送质量保证队列中移除(可能是收到接收方的应答也可能是达到了重传的次数上限)，重试次数=" + (
-            result != null ? Integer.valueOf(result.getRetryCount()) : "none呵呵.")); 
-      }
-    }
-    .execute();
-  }
-
-  public int size()
-  {
-    return this.sentMessages.size();
-  }
-
-  public void setServerLauncher(ServerLauncher serverLauncher)
-  {
-    this.serverLauncher = serverLauncher;
-  }
+	public void setServerLauncher(ServerLauncher serverLauncher)
+	{
+		this.serverLauncher = serverLauncher;
+	}
 }
