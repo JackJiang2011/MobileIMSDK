@@ -43,15 +43,16 @@ public class LocalUDPDataSender
 		this.context = context;
 	}
 
-	int sendLogin(String loginName, String loginPsw)
+	int sendLogin(String loginName, String loginPsw, String extra)
 	{
-		byte[] b = ProtocalFactory.createPLoginInfo(loginName, loginPsw).toBytes();
+		byte[] b = ProtocalFactory.createPLoginInfo(loginName, loginPsw, extra).toBytes();
 		int code = send(b, b.length);
 		// 登陆信息成功发出时就把登陆名存下来
 		if(code == 0)
 		{
 			ClientCoreSDK.getInstance().setCurrentLoginName(loginName);
 			ClientCoreSDK.getInstance().setCurrentLoginPsw(loginPsw);
+			ClientCoreSDK.getInstance().setCurrentLoginExtra(extra);
 		}
 		
 		return code;
@@ -223,18 +224,25 @@ public class LocalUDPDataSender
 		protected Context context = null;
 		protected String loginName = null;
 		protected String loginPsw = null;
+		protected String extra = null;
 
 		public SendLoginDataAsync(Context context, String loginName, String loginPsw)
+		{
+			this(context, loginName, loginPsw, null);
+		}
+		
+		public SendLoginDataAsync(Context context, String loginName, String loginPsw, String extra)
 		{
 			this.context = context;
 			this.loginName = loginName;
 			this.loginPsw = loginPsw;
+			this.extra = extra;
 		}
 
 		protected Integer doInBackground(Object[] params)
 		{
 			int code = LocalUDPDataSender.getInstance(this.context)
-					.sendLogin(this.loginName, this.loginPsw);
+					.sendLogin(this.loginName, this.loginPsw, this.extra);
 			return Integer.valueOf(code);
 		}
 

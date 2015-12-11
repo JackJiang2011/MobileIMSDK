@@ -14,7 +14,7 @@ import org.apache.mina.core.session.IoSession;
 
 public abstract interface ServerEventListener
 {
-  public abstract int onVerifyUserCallBack(String paramString1, String paramString2);
+  public abstract int onVerifyUserCallBack(String paramString1, String paramString2, String extra);
 
   public abstract void onUserLoginAction_CallBack(int paramInt, String paramString, IoSession paramIoSession);
 

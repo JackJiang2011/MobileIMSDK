@@ -14,11 +14,18 @@ public class PLoginInfo
 {
 	private String loginName = null;
 	private String loginPsw = null;
+	private String extra = null;
 
 	public PLoginInfo(String loginName, String loginPsw)
 	{
+		this(loginName, loginPsw, null);
+	}
+	
+	public PLoginInfo(String loginName, String loginPsw, String extra)
+	{
 		this.loginName = loginName;
 		this.loginPsw = loginPsw;
+		this.extra = extra;
 	}
 
 	public String getLoginName()
@@ -39,5 +46,15 @@ public class PLoginInfo
 	public void setLoginPsw(String loginPsw)
 	{
 		this.loginPsw = loginPsw;
+	}
+	
+	public String getExtra()
+	{
+		return extra;
+	}
+	
+	public void setExtra(String extra)
+	{
+		this.extra = extra;
 	}
 }

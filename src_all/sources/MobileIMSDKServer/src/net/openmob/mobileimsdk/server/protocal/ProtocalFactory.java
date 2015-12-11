@@ -80,10 +80,10 @@ public class ProtocalFactory
 				, user_id, 0);
 	}
 
-	public static Protocal createPLoginInfo(String loginName, String loginPsw)
+	public static Protocal createPLoginInfo(String loginName, String loginPsw, String extra)
 	{
 		return new Protocal(ProtocalType.C.FROM_CLIENT_TYPE_OF_LOGIN
-				, create(new PLoginInfo(loginName, loginPsw)), -1, 0);
+				, create(new PLoginInfo(loginName, loginPsw, extra)), -1, 0);
 	}
 
 	public static PLoginInfo parsePLoginInfo(String dataContentOfProtocal)

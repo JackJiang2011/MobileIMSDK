@@ -68,7 +68,8 @@ public class AutoReLoginDaemon
 								code = LocalUDPDataSender.getInstance(
 										AutoReLoginDaemon.this.context).sendLogin(
 												ClientCoreSDK.getInstance().getCurrentLoginName()
-												, ClientCoreSDK.getInstance().getCurrentLoginPsw());
+												, ClientCoreSDK.getInstance().getCurrentLoginPsw()
+												, ClientCoreSDK.getInstance().getCurrentLoginExtra());
 							}
 							return Integer.valueOf(code);
 						}

@@ -103,6 +103,16 @@
  */
 @property (nonatomic, retain) NSString *currentLoginPsw;
 
+/*!
+ * 本字段在登陆信息成功发出后就会被设置，将在掉线后自动重连时使用。
+ * <br>
+ * 因不保证服务端正确收到和处理了该用户的登陆信息，所以本字段应只在
+ * {@link #connectedToServer}==true 时才有意义.
+ * <br>
+ * <b>本参数由框架自动设置。</b>
+ */
+@property (nonatomic, retain) NSString *currentLoginExtra;
+
 /*! 框架基础通信消息的回调事件（如：登陆成功事件通知、掉线事件通知） */
 @property (nonatomic, retain) id<ChatTransDataEvent> chatTransDataEvent;
 /*! 通用数据通信消息的回调事件（如：收到聊天数据事件通知、服务端返回的错误信息事件通知） */

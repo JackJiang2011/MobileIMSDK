@@ -21,9 +21,9 @@ public class ServerEventListenerImpl implements ServerEventListener
 	private static Logger logger = LoggerFactory.getLogger(ServerEventListenerImpl.class);  
 	
 	@Override
-	public int onVerifyUserCallBack(String lpUserName, String lpPassword)
+	public int onVerifyUserCallBack(String lpUserName, String lpPassword, String extra)
 	{
-		logger.debug("正在调用回调方法：OnVerifyUserCallBack...");
+		logger.debug("正在调用回调方法：OnVerifyUserCallBack...(extra="+extra+")");
 		return 0;
 	}
 

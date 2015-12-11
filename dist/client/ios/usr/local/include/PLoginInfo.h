@@ -25,7 +25,17 @@
  */
 @interface PLoginInfo : NSObject
 
+/*! 登陆时提交的用户名：此用户名对框架来说可以随意，具体意义由上层逻辑决即可 */
 @property (nonatomic, retain) NSString* loginName;
+
+/*! 登陆时提交的密码：此密码对框架来说可以随意，具体意义由上层逻辑决即可 */
 @property (nonatomic, retain) NSString* loginPsw;
+
+/*!
+ * 额外信息字符串。本字段目前为保留字段，供上层应用自行放置需要的内容。
+ * @since 2.1.6 
+ */
+@property (nonatomic, retain) NSString* extra;
+
 
 @end

@@ -110,11 +110,12 @@
  * <p>
  * <b>本方法主要由MobileIMSDK框架内部使用。</b>
  *
- * @param loginName
- * @param loginPsw
+ * @param loginName 登陆时提交的用户名：此用户名对框架来说可以随意，具体意义由上层逻辑决即可
+ * @param loginPsw 登陆时提交的密码：此密码对框架来说可以随意，具体意义由上层逻辑决即可
+ * @param extra 额外信息字符串。本字段目前为保留字段，供上层应用自行放置需要的内容
  * @return
  */
-+ (Protocal *) createPLoginInfo:(NSString *)loginName withPsw:(NSString *)loginPsw;
++ (Protocal *) createPLoginInfo:(NSString *)loginName withPsw:(NSString *)loginPsw andExtra:(NSString *)extra;
 
 /*!
  * 创建用户心跳包对象（该对象由客户端发出）.

@@ -47,6 +47,8 @@ public class ClientCoreSDK
 	private String currentLoginName = null;
 
 	private String currentLoginPsw = null;
+	
+	private String currentLoginExtra = null;
 
 	private ChatBaseEvent chatBaseEvent = null;
 
@@ -120,6 +122,17 @@ public class ClientCoreSDK
 	public void setCurrentLoginPsw(String currentLoginPsw)
 	{
 		this.currentLoginPsw = currentLoginPsw;
+	}
+	
+	public String getCurrentLoginExtra()
+	{
+		return currentLoginExtra;
+	}
+
+	public ClientCoreSDK setCurrentLoginExtra(String currentLoginExtra)
+	{
+		this.currentLoginExtra = currentLoginExtra;
+		return this;
 	}
 
 	public boolean isLoginHasInit()

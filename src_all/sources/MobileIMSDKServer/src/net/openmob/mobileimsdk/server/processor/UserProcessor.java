@@ -12,8 +12,10 @@ package net.openmob.mobileimsdk.server.processor;
 
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Set;
+
 import net.openmob.mobileimsdk.server.ServerCoreHandler;
+import net.openmob.mobileimsdk.server.protocal.c.PLoginInfo;
+
 import org.apache.mina.core.session.IoSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,7 +47,7 @@ public class UserProcessor
 //		new SessionChecker().start();
 	}
 
-	public static int nextUserId()
+	public static int nextUserId(PLoginInfo loginInfo)
 	{
 		return ++__id;
 	}

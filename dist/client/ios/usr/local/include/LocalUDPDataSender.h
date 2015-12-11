@@ -33,6 +33,21 @@
 + (LocalUDPDataSender *)sharedInstance;
 
 /*!
+ * 发送登陆信息(默认extra字段值为nil哦).
+ * <p>
+ * 本方法中已经默认进行了核心库的初始化，因而使用本类完成登陆时，就无需单独
+ * 调用初始化方法[ClientCoreSDK initCore]了。
+ *
+ * @warning 本库的启动入口就是登陆过程触发的，因而要使本库能正常工作，
+ * 请确保首先进行登陆操作。
+ * @param loginName 登陆时提交的用户名：此用户名对框架来说可以随意，具体意义由上层逻辑决即可
+ * @param loginPsw 登陆时提交的密码：此密码对框架来说可以随意，具体意义由上层逻辑决即可
+ * @return 0表示数据发出成功，否则返回的是错误码
+ * @see [LocalUDPDataSender sendLogin:withPassword:andExtra:]
+ */
+- (int) sendLogin:(NSString *)loginName withPassword:(NSString *)loginPsw;
+
+/*!
  * 发送登陆信息.
  * <p>
  * 本方法中已经默认进行了核心库的初始化，因而使用本类完成登陆时，就无需单独
@@ -40,12 +55,13 @@
  *
  * @warning 本库的启动入口就是登陆过程触发的，因而要使本库能正常工作，
  * 请确保首先进行登陆操作。
- * @param loginName
- * @param loginPsw
+ * @param loginName 登陆时提交的用户名：此用户名对框架来说可以随意，具体意义由上层逻辑决即可
+ * @param loginPsw 登陆时提交的密码：此密码对框架来说可以随意，具体意义由上层逻辑决即可
+ * @param extra 额外信息字符串，可为null。本字段目前为保留字段，供上层应用自行放置需要的内容
  * @return 0表示数据发出成功，否则返回的是错误码
  * @see [LocalUDPDataSender sendImpl_:(NSData *)]
  */
-- (int) sendLogin:(NSString *)loginName withPassword:(NSString *)loginPsw;
+- (int) sendLogin:(NSString *)loginName withPassword:(NSString *)loginPsw andExtra:(NSString *)extra;
 
 /*!
  * 发送注销登陆信息.

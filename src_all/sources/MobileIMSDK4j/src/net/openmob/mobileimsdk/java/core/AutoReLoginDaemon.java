@@ -66,7 +66,9 @@ public class AutoReLoginDaemon
 				
 				// 发送重登陆请求
 				code = LocalUDPDataSender.getInstance().sendLogin(
-						ClientCoreSDK.getInstance().getCurrentLoginName(), ClientCoreSDK.getInstance().getCurrentLoginPsw());
+						ClientCoreSDK.getInstance().getCurrentLoginName()
+						, ClientCoreSDK.getInstance().getCurrentLoginPsw()
+						, ClientCoreSDK.getInstance().getCurrentLoginExtra());
 			}
 
 			if (code == 0)

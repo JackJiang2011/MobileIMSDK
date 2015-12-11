@@ -202,10 +202,10 @@ public class ServerCoreHandler extends IoHandlerAdapter
 							break;
 						}
 	
-						int code = this.serverEventListener.onVerifyUserCallBack(loginInfo.getLoginName(), loginInfo.getLoginPsw());
+						int code = this.serverEventListener.onVerifyUserCallBack(loginInfo.getLoginName(), loginInfo.getLoginPsw(), loginInfo.getExtra());
 						if (code == 0)
 						{
-							int user_id = getNextUserId();
+							int user_id = getNextUserId(loginInfo);
 	
 							boolean sendOK = sendData(session, ProtocalFactory.createPLoginInfoResponse(code, user_id));
 							if (sendOK)
@@ -260,9 +260,9 @@ public class ServerCoreHandler extends IoHandlerAdapter
 		}
 	}
 
-	protected int getNextUserId()
+	protected int getNextUserId(PLoginInfo loginInfo)
 	{
-		return UserProcessor.nextUserId();
+		return UserProcessor.nextUserId(loginInfo);
 	}
 
 	protected boolean replyDataForUnlogined(IoSession session, Protocal p) throws Exception
