@@ -101,7 +101,7 @@
  * @param dataLen byte数组长度
  * @param to_user_id 要发送到的目标用户id
  * @param QoS true表示需QoS机制支持，不则不需要
- * @param fingerPrint QoS机制中要用到的指纹码（即消息包唯一id），生成方法见 {@link Protocal#genFingerPrint()}
+ * @param fingerPrint QoS机制中要用到的指纹码（即消息包唯一id），生成方法见 [Protocal:genFingerPrint][Protocal:genFingerPrint]
  * @return 0表示数据发出成功，否则返回的是错误码
  * @see #sendCommonData(String, int, boolean, String)
  */
@@ -123,9 +123,11 @@
  *
  * @param dataContentWidthStr 要发送的数据内容（字符串方式组织）
  * @param to_user_id 要发送到的目标用户id
+ * @param QoS true表示需QoS机制支持，不则不需要
+ * @param fingerPrint QoS机制中要用到的指纹码（即消息包唯一id），生成方法见 [Protocal:genFingerPrint]
  * @return 0表示数据发出成功，否则返回的是错误码
- * @see #sendCommonData(Protocal)
- * @see DataFactoryC#createCommonData(String, int, int, boolean, String)
+ * @see [sendCommonData:Protocal]
+ * @see [DataFactoryC:createCommonData(String, int, int, boolean, String)]
  */
 - (int) sendCommonDataWithStr:(NSString *)dataContentWidthStr toUserId:(int)to_user_id qos:(BOOL)QoS fp:(NSString *)fingerPrint;
 
