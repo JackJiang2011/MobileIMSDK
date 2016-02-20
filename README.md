@@ -1,30 +1,30 @@
 # 快捷目录
 > #### 相关资料
-* [有关MobileIMSDK的疑问及解答](http://cngeeker.com/forum.php?mod=viewthread&tid=60&extra=page%3D1) :point_left:
-* [MobileIMSDK性能测试报告](http://cngeeker.com/forum.php?mod=viewthread&tid=57)
-* [客户端Demo安装和使用帮助(Android)](http://cngeeker.com/forum.php?mod=viewthread&tid=55&extra=page%3D1)
-* [客户端Demo安装和使用帮助(iOS)](http://cngeeker.com/forum.php?mod=viewthread&tid=54&extra=page%3D1)
-* [客户端Demo安装和使用帮助(Java)](http://cngeeker.com/forum.php?mod=viewthread&tid=56&extra=page%3D1)
-* [应用案例RainbowChat体验版](http://cngeeker.com/forum.php?mod=viewthread&tid=19&extra=page%3D1) :point_left:
-* [应用案例RainbowChat体验版截图预览](http://cngeeker.com/forum.php?mod=viewthread&tid=20&extra=page%3D1)
-* [应用案例某Chat的部分非敏感运营数据](http://cngeeker.com/forum.php?mod=viewthread&tid=21&page=1&extra=#pid35)
+* [有关MobileIMSDK的疑问及解答](http://www.52im.net/thread-60-1-1.html) :point_left:
+* [MobileIMSDK性能测试报告](http://www.52im.net/thread-57-1-1.html)
+* [客户端Demo安装和使用帮助(Android)](http://www.52im.net/thread-55-1-1.html)
+* [客户端Demo安装和使用帮助(iOS)](http://www.52im.net/thread-54-1-1.html)
+* [客户端Demo安装和使用帮助(Java)](http://www.52im.net/thread-56-1-1.html)
+* [应用案例RainbowChat体验版](http://www.52im.net/thread-19-1-1.html) :point_left:
+* [应用案例RainbowChat体验版截图预览](http://www.52im.net/thread-20-1-1.html)
+* [应用案例某Chat的部分非敏感运营数据](http://www.52im.net/thread-21-1-1.html)
 
 > #### 开发文档
-* [客户端开发指南(Android)](http://cngeeker.com/forum.php?mod=viewthread&tid=61)
-* [客户端开发指南(iOS)](http://cngeeker.com/forum.php?mod=viewthread&tid=62)
-* [客户端开发指南(Java)](http://cngeeker.com/forum.php?mod=viewthread&tid=59)
-* [服务端开发指南](http://cngeeker.com/forum.php?mod=viewthread&tid=63)
-* [客户端SDK API文档(Android)](http://cngeeker.com/extend/docs/api/mobileimsdk/android/)
-* [客户端SDK API文档(iOS)](http://cngeeker.com/extend/docs/api/mobileimsdk/ios/)
-* [客户端SDK API文档(Java)](http://cngeeker.com/extend/docs/api/mobileimsdk/java/)
-* [服务端SDK API文档](http://cngeeker.com/extend/docs/api/mobileimsdk/server/)
+* [客户端开发指南(Android)](http://www.52im.net/thread-61-1-1.html)
+* [客户端开发指南(iOS)](http://www.52im.net/thread-62-1-1.html)
+* [客户端开发指南(Java)](http://www.52im.net/thread-59-1-1.html)
+* [服务端开发指南](http://www.52im.net/thread-63-1-1.html)
+* [客户端SDK API文档(Android)](http://docs.52im.net/extend/docs/api/mobileimsdk/android/)
+* [客户端SDK API文档(iOS)](http://docs.52im.net/extend/docs/api/mobileimsdk/ios/)
+* [客户端SDK API文档(Java)](http://docs.52im.net/extend/docs/api/mobileimsdk/java/)
+* [服务端SDK API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/server/)
 
 > #### 资源下载
 * [MobileIMSDK最新版打包下载](https://github.com/JackJiang2011/MobileIMSDK/releases/latest) :point_left:
 * [MobileIMSDK的Github地址](https://github.com/JackJiang2011/MobileIMSDK)
 
 > #### 学习交流
-* 讨论学习和资料区：[点此进入](http://cngeeker.com/forum.php?mod=forumdisplay&fid=89) :point_left:
+* 讨论学习和资料区：[点此进入](http://www.52im.net/forum-89-1.html) :point_left:
 * 移动端即时通讯交流群：![](https://raw.githubusercontent.com/JackJiang2011/MobileIMSDK/master/preview/more_screenshots/others/qq_group_icon_16-16.png) `215891622` :point_left:
 * bug/建议发送至：`jb2011@163.com`
 * 技术支持/合作/咨询请联系作者QQ：`413980957`
@@ -41,19 +41,19 @@
 > MobileIMSDK工程始于2013年10月，起初用作某产品的即时通讯底层实现，完全从零开发。<br>
 MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所启发和帮助。
 
-:point_right: 您可能需要：[查看更多关于MobileIMSDK的疑问及解答](http://cngeeker.com/forum.php?mod=viewthread&tid=60&extra=page%3D1)。
+:point_right: 您可能需要：[查看更多关于MobileIMSDK的疑问及解答](http://www.52im.net/thread-60-1-1.html)。
 
 # 二、代码托管同步更新
 
 **GitHub.com**
 
 * 代码托管：  https://github.com/JackJiang2011/MobileIMSDK 
-* 项目资料：  [点击查看更多资料](http://cngeeker.com/forum.php?mod=forumdisplay&fid=89)
+* 项目资料：  [点击查看更多资料](http://www.52im.net/forum-89-1.html)
 
 **OsChina.net**
 
 * 代码托管：  http://git.oschina.net/jackjiang/MobileIMSDK 
-* 项目资料：  [点击查看更多资料](http://cngeeker.com/forum.php?mod=forumdisplay&fid=89)
+* 项目资料：  [点击查看更多资料](http://www.52im.net/forum-89-1.html)
 
 # 三、设计目标
 让开发者专注于应用逻辑的开发，底层<code>复杂的即时通讯算法交由SDK开发人员</code>，从而<code>解偶即时通讯应用开发的复杂性</code>。
@@ -61,10 +61,10 @@ MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所
 # 四、框架组成
 <b>整套MobileIMSDK框架由以下4部分组成：</b>
 
-1. <b>Android客户端SDK：</b>用于Android版即时通讯客户端，支持Android 2\.3及以上，[查看API文档](http://cngeeker.com/extend/docs/api/mobileimsdk/android/)；
-2. <b>iOS客户端SDK：</b>用于开发iOS版即时通讯客户端，支持iOS 6\.0及以上，[查看API文档](http://cngeeker.com/extend/docs/api/mobileimsdk/ios/)；
-3. <b>Java客户端SDK：</b>用于开发跨平台的PC端即时通讯客户端，支持Java 1\.5及以上，[查看API文档](http://cngeeker.com/extend/docs/api/mobileimsdk/java/)；
-4. <b>服务端SDK：</b>用于开发即时通讯服和端，支持Java 1\.5及以上版本，[查看API文档](http://cngeeker.com/extend/docs/api/mobileimsdk/server/)。
+1. <b>Android客户端SDK：</b>用于Android版即时通讯客户端，支持Android 2\.3及以上，[查看API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/android/)；
+2. <b>iOS客户端SDK：</b>用于开发iOS版即时通讯客户端，支持iOS 6\.0及以上，[查看API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/ios/)；
+3. <b>Java客户端SDK：</b>用于开发跨平台的PC端即时通讯客户端，支持Java 1\.5及以上，[查看API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/java/)；
+4. <b>服务端SDK：</b>用于开发即时通讯服和端，支持Java 1\.5及以上版本，[查看API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/server/)。
 
 # 五、技术特征
 * <b>超轻量级：</b>高度提炼，lib包50KB以内；
@@ -84,23 +84,23 @@ MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所
   (2) Client to Server (C2S)：即由某客户端主动发起，接收者是服务端；<br>
   (3) Server to Client (S2C)：即由服务端主动发起，接收者是某客户端。
   
-:point_right: 您可能需要：[查看更多关于MobileIMSDK的疑问及解答](http://cngeeker.com/forum.php?mod=viewthread&tid=60&extra=page%3D1)。
+:point_right: 您可能需要：[查看更多关于MobileIMSDK的疑问及解答](http://www.52im.net/thread-60-1-1.html)。
 
 # 六、性能测试
 压力测试表明，MobileIMSDK用于推送场景时，理论单机负载可接近千万级。用于聊天应用时，单机负载也可达数十万。
 
 > 当然，每款应用都有各自的特点和差异，请视具体场景具体评估之，测试数据仅供参考。
 
-:point_right: 性能测试报告：[点此查看](http://cngeeker.com/forum.php?mod=viewthread&tid=57)。
+:point_right: 性能测试报告：[点此查看](http://www.52im.net/thread-57-1-1.html)。
 
 # 七、演示程序
-1. <b>Android客户端 Demo：</b>[点此安装和使用](http://cngeeker.com/forum.php?mod=viewthread&tid=55&extra=page%3D1)；
-2. <b>iOS客户端 Demo：</b>[点此安装和使用](http://cngeeker.com/forum.php?mod=viewthread&tid=54&extra=page%3D1)；
-3. <b>Java客户端 Demo：</b>[点此安装和使用](http://cngeeker.com/forum.php?mod=viewthread&tid=56&extra=page%3D1)。
+1. <b>Android客户端 Demo：</b>[点此安装和使用](http://www.52im.net/thread-55-1-1.html)；
+2. <b>iOS客户端 Demo：</b>[点此安装和使用](http://www.52im.net/thread-54-1-1.html)；
+3. <b>Java客户端 Demo：</b>[点此安装和使用](http://www.52im.net/thread-56-1-1.html)。
 
 # 八、应用案例
 #### ① 基于MobileIMSDK的产品级聊天APP：
-> 目前仅作演示之用：[点击下载体验](http://cngeeker.com/forum.php?mod=viewthread&tid=19&extra=page%3D1) 或 [查看运行截图](http://cngeeker.com/forum.php?mod=viewthread&tid=20&extra=page%3D1)。
+> 目前仅作演示之用：[点击下载体验](http://www.52im.net/thread-19-1-1.html) 或 [查看运行截图](http://www.52im.net/thread-20-1-1.html)。
 
 #### ② MobileIMSDK在高网络延迟下的案例：
 > 某款基于MobileIMSDK的商业商品，曾运营于跨洲际的复杂网络环境下，端到端通信延迟在洲际网络繁忙时可高达600ms以上（与服务端的单向延迟约为300ms左右，而通常大家访问国内主流门户的延迟约为20~50ms），某段时期的非敏感运营数据 [点此查看](http://cngeeker.com/forum.php?mod=viewthread&tid=21&page=1&extra=#pid35)。
@@ -127,10 +127,10 @@ MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所
 * <b>消息走向：</b>可使用C2C、C2S、S2C全部类型，这与聊天APP在很多方面已无差别，但企业OA有自已的用户关系管理模型和逻辑，较之全功能聊天APP要简单的多。
 
 # 十一、开发指南
-1. <b>Android客户端开发指南：</b>[点此查看](http://cngeeker.com/forum.php?mod=viewthread&tid=61)；
-2. <b>iOS客户端开发指南：</b>[点此查看](http://cngeeker.com/forum.php?mod=viewthread&tid=62)；
-3. <b>Java客户端开发指南：</b>[点此查看](http://cngeeker.com/forum.php?mod=viewthread&tid=59)；
-4. <b>Server端开发指南：</b>[点此查看](http://cngeeker.com/forum.php?mod=viewthread&tid=63)。
+1. <b>Android客户端开发指南：</b>[点此查看](http://www.52im.net/thread-61-1-1.html)；
+2. <b>iOS客户端开发指南：</b>[点此查看](http://www.52im.net/thread-62-1-1.html)；
+3. <b>Java客户端开发指南：</b>[点此查看](http://www.52im.net/thread-59-1-1.html)；
+4. <b>Server端开发指南：</b>[点此查看](http://www.52im.net/thread-63-1-1.html)。
 
 # 十二、授权方式
 你可永久免费且自由地使用MobileIMSDK，如：用于研究、学习、甚至商业用途，
@@ -139,28 +139,28 @@ MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所
 > <b>补充说明：</b>如需获得更多技术支持或技术合作请联系作者，QQ：<code>413980957</code>。
 
 # 十三、联系方式
-* 讨论学习和资料区：:earth_americas: [点此进入](http://cngeeker.com/forum.php?mod=forumdisplay&fid=89)；
+* 讨论学习和资料区：:earth_americas: [点此进入](http://www.52im.net/forum-89-1.html)；
 * 移动端即时通讯学习交流群：`215891622` <a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=4cc788473d261129ab3ded26fbb22168d0fa52c799d28f92a8f193dc36865bcb"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="移动端即时通讯/IM开发" title="移动端即时通讯/IM开发"></a> （[更多QQ群点此进入](http://cngeeker.com/portal.php?mod=topic&topicid=2)）；
 * bug和建议请发送至：:love_letter: `jb2011@163.com`；
 * 技术支持、技术合作或咨询请联系作者QQ：:penguin: `413980957`、微信：`hellojackjiang`。
 
 # 十四、关注作者
 * 推荐关注：[BeautyEye工程](https://github.com/JackJiang2011/beautyeye)
-* 博客地址：[点击入进](http://cngeeker.com/home.php?mod=space&uid=1&do=thread&view=me&from=space)
+* 博客地址：[点击入进](http://www.52im.net/space-uid-1.html)
 * Github主页：[点击进入](https://github.com/JackJiang2011)
 
 # 附录1：Demo截图
 ### :triangular_flag_on_post: Android和iOS运行效果：
-> <code>安装和使用：</code>[进入Android版Demo帮助页](http://cngeeker.com/forum.php?mod=viewthread&tid=55)、[进入iOS版Demo帮助页](http://cngeeker.com/forum.php?mod=viewthread&tid=54)。
+> <code>安装和使用：</code>[进入Android版Demo帮助页](http://www.52im.net/thread-55-1-1.html)、[进入iOS版Demo帮助页](http://www.52im.net/thread-54-1-1.html)。
 
 ![](https://github.com/JackJiang2011/MobileIMSDK/raw/master/preview/more_screenshots/others/ios_android_real_run.jpg)
 
 ### :triangular_flag_on_post: Windows 运行效果：
-> <code>安装和使用：</code>[进入Java版Demo帮助页](http://cngeeker.com/forum.php?mod=viewthread&tid=56)。
+> <code>安装和使用：</code>[进入Java版Demo帮助页](http://www.52im.net/thread-56-1-1.html)。
 
 ![](https://github.com/JackJiang2011/MobileIMSDK/raw/master/preview/more_screenshots/others/windows_real_run.png)
 
 ### :triangular_flag_on_post: Mac OS X 运行效果：
-> <code>安装和使用：</code>[进入Java版Demo帮助页](http://cngeeker.com/forum.php?mod=viewthread&tid=56)。
+> <code>安装和使用：</code>[进入Java版Demo帮助页](http://www.52im.net/thread-56-1-1.html)。
 
 ![](https://github.com/JackJiang2011/MobileIMSDK/raw/master/preview/more_screenshots/others/mac_real_run.png)

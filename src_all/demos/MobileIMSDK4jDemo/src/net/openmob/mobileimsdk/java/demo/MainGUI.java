@@ -1,12 +1,13 @@
 /*
- * Copyright (C) 2015 Jack Jiang The MobileIMSDK Project. 
+ * Copyright (C) 2016 即时通讯网(52im.net) The MobileIMSDK Project. 
  * All rights reserved.
  * Project URL:https://github.com/JackJiang2011/MobileIMSDK
  *  
- * openmob.net PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * 即时通讯网(52im.net) - 即时通讯技术社区! PROPRIETARY/CONFIDENTIAL.
+ * Use is subject to license terms.
  * 
- * MainGUI.java at 2015-11-12 21:51:15, code by Jack Jiang.
- * You can contact author with jack.jiang@openmob.net or jb2011@163.com.
+ * MainGUI.java at 2016-2-20 11:22:59, code by Jack Jiang.
+ * You can contact author with jack.jiang@52im.net or jb2011@163.com.
  */
 package net.openmob.mobileimsdk.java.demo;
 
@@ -131,7 +132,7 @@ public class MainGUI extends JFrame
 		sc.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		this.getContentPane().add(sc, BorderLayout.CENTER);
 		
-		this.setTitle("MobileIMSDK演示工程 - (作者:Jack Jiang, 讨论区:openmob.net, QQ群:215891622)");
+		this.setTitle("MobileIMSDK演示工程 - (作者:Jack Jiang, 讨论区:52im.net, QQ群:215891622)");
 		this.setLocationRelativeTo(null);
 		this.setSize(1000,700);
 	}

@@ -1,12 +1,13 @@
 /*
- * Copyright (C) 2015 Jack Jiang The MobileIMSDK Project. 
+ * Copyright (C) 2016 即时通讯网(52im.net) The MobileIMSDK Project. 
  * All rights reserved.
  * Project URL:https://github.com/JackJiang2011/MobileIMSDK
  *  
- * openmob.net PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * 即时通讯网(52im.net) - 即时通讯技术社区! PROPRIETARY/CONFIDENTIAL.
+ * Use is subject to license terms.
  * 
- * LoginGUI.java at 2015-11-12 21:51:15, code by Jack Jiang.
- * You can contact author with jack.jiang@openmob.net or jb2011@163.com.
+ * LoginGUI.java at 2016-2-20 11:22:59, code by Jack Jiang.
+ * You can contact author with jack.jiang@52im.net or jb2011@163.com.
  */
 package net.openmob.mobileimsdk.java.demo;
 
@@ -80,7 +81,7 @@ public class LoginGUI extends JFrame
 		editServerPort = new JTextField(5);
 		editServerIp.setForeground(new Color(13,148,252));
 		editServerPort.setForeground(new Color(13,148,252));
-		editServerIp.setText("rbcore.openmob.net");	// default value
+		editServerIp.setText("rbcore.52im.net");	// default value
 		editServerPort.setText("7901");	// default value
 		btnLogin = new JButton("  登 陆  ");
 		btnLogin.setUI(new BEButtonUI().setNormalColor(BEButtonUI.NormalColor.blue));
