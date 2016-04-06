@@ -61,7 +61,7 @@ public class KeepAliveDaemon
 				// 次还没有运行完的情况下又重复过劲行，从而出现无法预知的错误
 				if (!KeepAliveDaemon.this._excuting)
 				{
-					new AsyncTask()
+					new AsyncTask<Object, Integer, Integer>()
 					{
 						private boolean willStop = false;
 
