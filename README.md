@@ -35,14 +35,12 @@
 
 > #### 捐助作者，得MobileIMSDK精编注释版 (精编源码+算法图+CHM版API)
 前往淘宝下单，付款后系统会自动发货（网盘下载链接）到您的相关邮件地址，详情请见淘宝详情：
-
 * ① （Android客户端库）精编注释版：[https://item.taobao.com/item.htm?id=534778878908](https://item.taobao.com/item.htm?id=534778878908) :point_left:
 * ② （Java客户端库）精编注释版：[https://item.taobao.com/item.htm?id=534874027509](https://item.taobao.com/item.htm?id=534874027509) :point_left:
 * ③ （iOS客户端库）精编注释版：[https://item.taobao.com/item.htm?id=534918179776](https://item.taobao.com/item.htm?id=534918179776) :point_left:
 * ④ （服务端库）精编注释版：[https://item.taobao.com/item.htm?id=534986485062](https://item.taobao.com/item.htm?id=534986485062) :point_left:
-
 ![](https://raw.githubusercontent.com/JackJiang2011/MobileIMSDK/master/preview/more_screenshots/others/taobao_s.png)
-[>> 更多详情请进入：](http://www.52im.net/thread-411-1-1.html) :point_left:
+[更多详情请进入：](http://www.52im.net/thread-411-1-1.html) :point_left:
 
 # 一、简介
 ![](https://raw.githubusercontent.com/JackJiang2011/MobileIMSDK/master/preview/more_screenshots/others/github_header_logo_h.png)
