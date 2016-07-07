@@ -1,9 +1,9 @@
 # 快捷目录
 
-> #### 网络理论
+> #### ▌ 网络理论
 * [网络编程理论经典《TCP/IP详解》（在线阅读版）](http://www.52im.net/topic-tcpipvol1.html) :triangular_flag_on_post:
 
-> #### 相关资料
+> #### ▌ 相关资料
 * [有关MobileIMSDK的疑问及解答](http://www.52im.net/thread-60-1-1.html) :point_left:
 * [MobileIMSDK性能测试报告](http://www.52im.net/thread-57-1-1.html)
 * [客户端Demo安装和使用帮助(Android)](http://www.52im.net/thread-55-1-1.html)
@@ -13,7 +13,7 @@
 * [应用案例RainbowChat体验版截图预览](http://www.52im.net/thread-20-1-1.html)
 * [应用案例某Chat的部分非敏感运营数据](http://www.52im.net/thread-21-1-1.html)
 
-> #### 开发文档
+> #### ▌ 开发文档
 * [客户端开发指南(Android)](http://www.52im.net/thread-61-1-1.html)
 * [客户端开发指南(iOS)](http://www.52im.net/thread-62-1-1.html)
 * [客户端开发指南(Java)](http://www.52im.net/thread-59-1-1.html)
@@ -23,17 +23,17 @@
 * [客户端SDK API文档(Java)](http://docs.52im.net/extend/docs/api/mobileimsdk/java/)
 * [服务端SDK API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/server/)
 
-> #### 资源下载
+> #### ▌ 资源下载
 * [MobileIMSDK最新版打包下载](https://github.com/JackJiang2011/MobileIMSDK/releases/latest) :point_left:
 * [MobileIMSDK的Github地址](https://github.com/JackJiang2011/MobileIMSDK)
 
-> #### 学习交流
+> #### ▌ 学习交流
 * 讨论学习和资料区：[点此进入](http://www.52im.net/forum-89-1.html) :point_left:
 * 移动端即时通讯交流群：![](https://raw.githubusercontent.com/JackJiang2011/MobileIMSDK/master/preview/more_screenshots/others/qq_group_icon_16-16.png) `215891622` :point_left:
 * bug/建议发送至：`jb2011@163.com`
 * 技术支持/合作/咨询请联系作者QQ：`413980957`
 
-> #### 捐助作者，得MobileIMSDK精编注释版[（查看详情）](http://www.52im.net/thread-411-1-1.html)
+> #### ▌ 捐助作者，得MobileIMSDK精编注释版[（查看详情）](http://www.52im.net/thread-411-1-1.html)
 前往淘宝下单，付款后系统会自动发货（网盘下载链接）到您的相关邮件地址，详情请见淘宝详情：
 * ① （Android客户端库）精编注释版：[https://item.taobao.com/item.htm?id=534778878908](https://item.taobao.com/item.htm?id=534778878908) :point_left:
 * ② （Java客户端库）精编注释版：[https://item.taobao.com/item.htm?id=534874027509](https://item.taobao.com/item.htm?id=534874027509) :point_left:
