@@ -1,1 +1,0 @@
-此目录下为MobileIMSDK的Demo（非核心源码）的源码，MobileIMSDK的核心源码，请至目录/src_all下查看。
