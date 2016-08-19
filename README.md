@@ -28,7 +28,8 @@
 * [MobileIMSDK的Github地址](https://github.com/JackJiang2011/MobileIMSDK)
 
 > #### ▌ 学习交流
-* 讨论学习和资料区：[点此进入](http://www.52im.net/forum-89-1.html) :point_left:
+* 讨论学习和资料区：[点此进入](http://www.52im.net/forum-89-1.html)
+* 常见问题讨论学习：[点此进入](http://www.52im.net/forum.php?mod=collection&action=view&ctid=2&fromop=all) :point_left:
 * 移动端即时通讯交流群：![](https://raw.githubusercontent.com/JackJiang2011/MobileIMSDK/master/preview/more_screenshots/others/qq_group_icon_16-16.png) `215891622` :point_left:
 * bug/建议发送至：`jb2011@163.com`
 * 技术支持/合作/咨询请联系作者QQ：`413980957`
