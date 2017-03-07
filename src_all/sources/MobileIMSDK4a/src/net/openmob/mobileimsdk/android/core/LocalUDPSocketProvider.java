@@ -52,7 +52,8 @@ public class LocalUDPSocketProvider
 			Log.w(TAG, "【IMCORE】localUDPSocket创建时出错，原因是：" + e.getMessage(), e);
 
 			closeLocalUDPSocket();
-		}return null;
+			return null;
+		}
 	}
 
 	private boolean isLocalUDPSocketReady()

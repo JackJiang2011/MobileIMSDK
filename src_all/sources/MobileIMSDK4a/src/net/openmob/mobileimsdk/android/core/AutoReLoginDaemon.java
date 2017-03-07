@@ -54,7 +54,7 @@ public class AutoReLoginDaemon
 			{
 				if (!AutoReLoginDaemon.this._excuting)
 				{
-					new AsyncTask()
+					new AsyncTask<Object, Integer, Integer>()
 					{
 						protected Integer doInBackground(Object[] params)
 						{
@@ -95,7 +95,7 @@ public class AutoReLoginDaemon
 							handler.postDelayed(runnable, AUTO_RE$LOGIN_INTERVAL);
 						}
 					}
-					.execute(new Object[0]);
+					.execute();
 				}
 			}
 		};
