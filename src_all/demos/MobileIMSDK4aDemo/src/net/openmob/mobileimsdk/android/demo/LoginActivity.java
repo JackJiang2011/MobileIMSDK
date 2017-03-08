@@ -16,6 +16,7 @@ import java.util.Observer;
 
 import net.openmob.mobileimsdk.android.conf.ConfigEntity;
 import net.openmob.mobileimsdk.android.core.LocalUDPDataSender;
+import net.openmob.mobileimsdk.android.core.LocalUDPSocketProvider;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -167,22 +168,22 @@ public class LoginActivity extends Activity
 		if(!(serverIP.trim().length() <= 0)
 			&& !(serverPort.trim().length() <= 0))
 		{
+			// 无条件重置socket，防止首次登陆时用了错误的ip或域名，下次登陆时sendData中仍然使用老的ip
+			// 说明：本行代码建议仅用于Demo时，生产环境下是没有意义的，因为你的APP里不可能连IP都搞错了
+			LocalUDPSocketProvider.getInstance().closeLocalUDPSocket();
+						
 			ConfigEntity.serverIP = serverIP.trim();
-			try
-			{
+			try{
 				ConfigEntity.serverUDPPort = Integer.parseInt(serverPort.trim());
 			}
-			catch (Exception e2)
-			{
+			catch (Exception e2){
 				Toast.makeText(getApplicationContext(), "请输入合法的端口号！", Toast.LENGTH_SHORT).show();
-//				showIMInfo_red("请输入合法的端口号！");
 				return;
 			}
 		}
 		else
 		{
 			Toast.makeText(getApplicationContext(), "请确保服务端地址和端口号都不为空！", Toast.LENGTH_SHORT).show();
-//			showIMInfo_red("请确保服务端地址和端口号都不为空！");
 			return;
 		}
 		

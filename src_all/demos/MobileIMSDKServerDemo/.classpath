@@ -7,7 +7,7 @@
 	<classpathentry kind="lib" path="lib/slf4j-api-1.6.6.jar"/>
 	<classpathentry kind="lib" path="lib/slf4j-log4j12-1.7.5.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.6.0_18"/>
-	<classpathentry kind="lib" path="lib/MobileIMSDKServerO.jar"/>
 	<classpathentry kind="lib" path="lib/MobileIMSDKServer_meta.jar"/>
+	<classpathentry kind="lib" path="lib/MobileIMSDKServer.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

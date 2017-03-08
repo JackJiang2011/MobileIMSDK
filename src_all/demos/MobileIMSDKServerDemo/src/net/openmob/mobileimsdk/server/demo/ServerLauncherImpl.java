@@ -26,7 +26,7 @@ public class ServerLauncherImpl extends ServerLauncher
 		{
 			// 设置AppKey
 			ServerLauncher.appKey = "5418023dfd98c579b6001741";
-			QoS4SendDaemonS2C.DEBUG = true;
+//			QoS4SendDaemonS2C.DEBUG = true;
 			ServerLauncherImpl.PORT = 7901;
 //			ServerLauncherImpl.setSenseMode(SenseMode.MODE_10S);
 			instance = new ServerLauncherImpl();

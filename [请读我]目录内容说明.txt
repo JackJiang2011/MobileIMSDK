@@ -1,0 +1,20 @@
+/demos 目录：
+编译好的可执行Demo，直接安装到手机或双击运行即可。
+
+/dist 目录：
+编译好的MobileIMSDK核心库lib，开发者可直接引用到自已的工程中，而不一定非要把源码拷进去再用。
+
+/docs 目录：
+api文档。
+
+/preview 目录：
+Demo的运行截图。
+
+/release_notes 目录：
+历次版本更新内容记录。
+
+/src_all 目录：
+MobileIMSDK的Demo源码和核心库源码。
+
+
+

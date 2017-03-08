@@ -40,6 +40,7 @@ import javax.swing.border.LineBorder;
 
 import net.openmob.mobileimsdk.java.conf.ConfigEntity;
 import net.openmob.mobileimsdk.java.core.LocalUDPDataSender;
+import net.openmob.mobileimsdk.java.core.LocalUDPSocketProvider;
 
 import org.jb2011.lnf.beautyeye.ch3_button.BEButtonUI;
 import org.jb2011.swing9patch.toast.Toast;
@@ -108,7 +109,7 @@ public class LoginGUI extends JFrame
 		mainPanel.addTitledLineSeparator("");
 		JPanel btnAndVerPanel = new JPanel();
 		btnAndVerPanel.setLayout(new BoxLayout(btnAndVerPanel, BoxLayout.LINE_AXIS));
-		JLabel lbVer= new JLabel("v2.1.6b151211.1O");
+		JLabel lbVer= new JLabel("v2.1.9b170308.1O");
 		lbVer.setForeground(new Color(184,184,184));
 		btnAndVerPanel.add(lbVer);
 		btnAndVerPanel.add(Box.createHorizontalGlue());
@@ -206,6 +207,10 @@ public class LoginGUI extends JFrame
 		if(!CommonUtils.isStringEmpty(serverIP, true)
 			&& !CommonUtils.isStringEmpty(serverPort, true))
 		{
+			// 无条件重置socket，防止首次登陆时用了错误的ip或域名，下次登陆时sendData中仍然使用老的ip
+			// 说明：本行代码建议仅用于Demo时，生产环境下是没有意义的，因为你的APP里不可能连IP都搞错了
+			LocalUDPSocketProvider.getInstance().closeLocalUDPSocket();
+			
 			// 设置好服务端的连接地址
 			ConfigEntity.serverIP = serverIP.trim();
 			try{
