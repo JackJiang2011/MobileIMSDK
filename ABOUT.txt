@@ -1,8 +1,13 @@
-MobileIMSDK, a cross-device Instant Messaging library.
-Author: Jack Jiang
-QQ: 413980957
-Skype: hellojackjiang
-Mail: jack.jiang@52im.net or jb2011@163.com
-Homepage: https://github.com/JackJiang2011/MobileIMSDK/
-Discuss: 即时通讯网（http://www.52im.net/） - 即时通讯技术社区!
-QQ Group: 215891622
+【工程名称】：MobileIMSDK v3, a cross-device Instant Messaging library
+【新版动态】: MobileIMSDK最新v3.0版首次发布于2017年06月25日
+【作者】: Jack Jiang
+【QQ】: 413980957
+【Mail】: jack.jiang@52im.net or jb2011@163.com
+【Skype】: hellojackjiang
+【讨论区】: http://www.52im.net/forum-89-1.html
+【工程主页】: https://github.com/JackJiang2011/MobileIMSDK/
+【IM技术交流群】: 320837163
+
+【重要说明】：请优先阅读文件“[请读我]目录内容说明.txt”中的内容。
+
+

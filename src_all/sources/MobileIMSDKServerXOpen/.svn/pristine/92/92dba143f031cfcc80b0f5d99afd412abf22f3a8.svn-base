@@ -1,0 +1,342 @@
+/*
+ * Copyright (C) 2017  即时通讯网(52im.net) & Jack Jiang.
+ * The MobileIMSDK_X (MobileIMSDK v3.x) Project. 
+ * All rights reserved.
+ * 
+ * > Github地址: https://github.com/JackJiang2011/MobileIMSDK
+ * > 文档地址: http://www.52im.net/forum-89-1.html
+ * > 即时通讯技术社区：http://www.52im.net/
+ * > 即时通讯技术交流群：320837163 (http://www.52im.net/topic-qqgroup.html)
+ *  
+ * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
+ * 
+ * LogicProcessor.java at 2017-5-2 15:49:27, code by Jack Jiang.
+ * You can contact author with jack.jiang@52im.net or jb2011@163.com.
+ */
+package net.openmob.mobileimsdk.server.processor;
+
+import net.nettime.mobileimsdk.server.bridge.QoS4SendDaemonB2C;
+import net.openmob.mobileimsdk.server.ServerCoreHandler;
+import net.openmob.mobileimsdk.server.protocal.Protocal;
+import net.openmob.mobileimsdk.server.protocal.ProtocalFactory;
+import net.openmob.mobileimsdk.server.protocal.c.PLoginInfo;
+import net.openmob.mobileimsdk.server.qos.QoS4ReciveDaemonC2S;
+import net.openmob.mobileimsdk.server.qos.QoS4SendDaemonS2C;
+import net.openmob.mobileimsdk.server.utils.GlobalSendHelper;
+import net.openmob.mobileimsdk.server.utils.LocalSendHelper;
+
+import org.apache.mina.core.session.IoSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * MobileIMSDK框架的IM消息逻辑处理器。
+ * <p>
+ * <font color="red">本类是MobileIMSDK的服务端消息处理逻辑代码集中类，由服务端算法自行
+ * 调用，开发者原则上不需要关注本类中的任何方法，请勿随意调用！</font>
+ * 
+ * @author Jack Jiang, 2016-09-19
+ * @version 1.0
+ * @since 3.0
+ */
+public class LogicProcessor
+{
+	private static Logger logger = LoggerFactory.getLogger(LogicProcessor.class);  
+	
+	private ServerCoreHandler serverCoreHandler = null;
+
+	public LogicProcessor(ServerCoreHandler serverCoreHandler)
+	{
+		this.serverCoreHandler = serverCoreHandler;
+	}
+	
+	/**
+	 * 处理C2C（client to client）类消息（即客户端发给客户端的普通聊天消息）。
+	 * 
+	 * @param bridgeProcessor
+	 * @param session
+	 * @param pFromClient
+	 * @param remoteAddress
+	 * @throws Exception
+	 */
+	public void processC2CMessage(BridgeProcessor bridgeProcessor,
+			IoSession session, Protocal pFromClient, String remoteAddress) throws Exception
+	{
+		GlobalSendHelper.sendDataC2C(bridgeProcessor, session, pFromClient
+				, remoteAddress, this.serverCoreHandler);
+	}
+	
+	/**
+	 * 处理C2S（client to server）类消息（即客户端发给服务端的指点令类消息）。
+	 * 
+	 * @param session
+	 * @param pFromClient
+	 * @param remoteAddress
+	 * @throws Exception
+	 */
+	public void processC2SMessage(IoSession session, Protocal pFromClient, String remoteAddress) throws Exception
+	{
+		// 客户端直发服务端（而不是发给另一客户端）的正常数据包则
+		// 回一个C2S模式的质量保证模式下的应答包
+		if(pFromClient.isQoS())// && processedOK)
+		{
+			// 已经存在于已接收列表中（及意味着可能是之前发给对方的应
+			// 答包因网络或其它情况丢了，对方又因QoS机制重新发过来了）
+			if(QoS4ReciveDaemonC2S.getInstance().hasRecieved(pFromClient.getFp()))
+			{
+				if(QoS4ReciveDaemonC2S.getInstance().isDebugable())
+					logger.debug("[IMCORE-本机QoS！]【QoS机制】"+pFromClient.getFp()
+							+"已经存在于发送列表中，这是重复包，通知业务处理层收到该包罗！");
+				
+				// ## Bug FIX: 20170215 by jackjiang - 解决了不能触发回调onTransBuffer_CallBack的问题
+				//------------------------------------------------------------------------------ [1]代码与[2]处相同的哦 S
+				// 【【QoS机制2/4步：将收到的包存入QoS接收方暂存队列中（用于防QoS消息重复）】】
+				// @see 客户端LocalUDPDataReciever中的第1/4和第4/4步相关处理
+				QoS4ReciveDaemonC2S.getInstance().addRecieved(pFromClient);
+				// 【【QoS机制3/4步：回应答包】】
+				// @see 客户端LocalUDPDataReciever中的第1/4和第4/4步相关处理
+				// 给发送者回一个“收到”应答包
+				// 发送C2S模式的应答包
+				boolean receivedBackSendSucess = LocalSendHelper.replyDelegateRecievedBack(session, pFromClient);
+				if(receivedBackSendSucess)
+					logger.debug("[IMCORE-本机QoS！]【QoS_应答_C2S】向"+pFromClient.getFrom()+"发送"+pFromClient.getFp()
+							+"的应答包成功了,from="+pFromClient.getTo()+".");
+				//------------------------------------------------------------------------------ [1]代码与[2]处相同的哦 E
+
+				// 此包重复，不需要通知应用层收到该包了，直接返回
+				return;
+			}
+			
+			// ## Bug FIX: 20170215 by jackjiang - 解决了不能触发回调onTransBuffer_CallBack的问题
+			//------------------------------------------------------------------------------ [2]代码与[1]处相同的哦 S
+			// 【【QoS机制2/4步：将收到的包存入QoS接收方暂存队列中（用于防QoS消息重复）】】
+			// @see 客户端LocalUDPDataReciever中的第1/4和第4/4步相关处理
+			QoS4ReciveDaemonC2S.getInstance().addRecieved(pFromClient);
+			// 【【QoS机制3/4步：回应答包】】
+			// @see 客户端LocalUDPDataReciever中的第1/4和第4/4步相关处理
+			// 给发送者回一个“收到”应答包
+			// 发送C2S模式的应答包
+			boolean receivedBackSendSucess = LocalSendHelper.replyDelegateRecievedBack(session, pFromClient);
+			if(receivedBackSendSucess)
+				logger.debug("[IMCORE-本机QoS！]【QoS_应答_C2S】向"+pFromClient.getFrom()+"发送"+pFromClient.getFp()
+						+"的应答包成功了,from="+pFromClient.getTo()+".");
+			//------------------------------------------------------------------------------ [2]代码与[1]处相同的哦 E
+		}
+
+		// 进入业务处理回调（processedOK返回值目前尚未有用到，目前作为保留参数以后试情况再行定义和使用）
+		boolean processedOK = this.serverCoreHandler.getServerEventListener().onTransBuffer_CallBack(
+				pFromClient.getTo(), pFromClient.getFrom(), pFromClient.getDataContent()
+				, pFromClient.getFp(), pFromClient.getTypeu(), session);
+	}
+	
+	/**
+	 * 处理来自客户端的各类ACK消息应答包。
+	 * 
+	 * @param pFromClient
+	 * @param remoteAddress
+	 * @throws Exception
+	 */
+	public void processACK(Protocal pFromClient, String remoteAddress) throws Exception
+	{
+		// 【C2S数据】客户端发给服务端的ACK应答包（即S2C模式下的应答）
+		if("0".equals(pFromClient.getTo()))
+		{
+			// 应答包的消息内容即为之前收到包的指纹id
+			String theFingerPrint = pFromClient.getDataContent();
+			logger.debug("[IMCORE-本机QoS！]【QoS机制_S2C】收到接收者"+pFromClient.getFrom()+"回过来的指纹为"+theFingerPrint+"的应答包.");
+
+			// 将收到的应答事件通知事件处理者
+			if(this.serverCoreHandler.getServerMessageQoSEventListener() != null)
+				this.serverCoreHandler.getServerMessageQoSEventListener()
+					.messagesBeReceived(theFingerPrint);
+
+			// 【【S2C模式下的QoS机制4/4步：收到应答包时将包从发送QoS队列中删除】】
+			QoS4SendDaemonS2C.getInstance().remove(theFingerPrint);
+		}
+		// 【C2C数据】客户端发给客户端的ACK应答
+		else
+		{
+			// TODO just for DEBUG
+			OnlineProcessor.getInstance().__printOnline();
+			
+			// 应答包的消息内容即为之前收到包的指纹id
+			String theFingerPrint = pFromClient.getDataContent();
+
+			// true表示此包是之前由服务端桥接代发消息的应答包
+			boolean isBridge = pFromClient.isBridge();
+			
+			// ** 这是一个 桥接模式的应答包（单机时，C2C应答不需以下代码，以下代码专为【按照第一阶段的异构通信算法】而加）
+			// 【注意】桥接模式下代发包的应答包存在一个例外：那就是当web端发过来的消息，代发后
+			//        本应答包到达服务端时，app端的该发起用户名已在线（可能是web端和app端重复登陆情况）
+			//        ，那就会导致服务端代码的包还会发生重发（因为应答被app端的在线用户收到而非代发服务端本身）
+			//        ，所以更好的处理方式是，在C2C模式下，收到应答时也应考虑尝试从send队列中删除一次（虽然可能
+			//        确实不是代码模式），删除时的性能消耗总比每次要等包重传完成要好吧(如果桥接qos队列不大的话
+			//        理论上不会有明显性能下降)！
+			if(isBridge)
+			{
+				logger.debug("[IMCORE-桥接QoS！]【QoS机制_S2C】收到接收者"+pFromClient.getFrom()+"回过来的指纹为"+theFingerPrint+"的应答包.");
+
+				// 如果有必要，可以将收到的应答事件通知事件处理者哦
+
+				// 【【S2C[桥接]模式下的QoS机制4/4步：收到应答包时将包从发送QoS队列中删除】】
+				QoS4SendDaemonB2C.getInstance().remove(theFingerPrint);
+			}
+			// ** 这是一个本机用户的ACK直接转发给被接收者就行了
+			else
+			{
+				// 发送应答包（给消息接收者）
+				boolean sendOK = LocalSendHelper.sendData(pFromClient);
+				logger.debug("[IMCORE-本机QoS！]【QoS机制_C2C】"+pFromClient.getFrom()+"发给"+pFromClient.getTo()
+						+"的指纹为"+theFingerPrint+"的应答包已成功转发？"+sendOK);
+			}
+		}
+	}
+	
+	/**
+	 * 处理来自客户端的登陆请求。
+	 * 
+	 * @param session
+	 * @param pFromClient
+	 * @param remoteAddress
+	 * @throws Exception
+	 */
+	public void processLogin(IoSession session, Protocal pFromClient, String remoteAddress) throws Exception
+	{
+		PLoginInfo loginInfo = ProtocalFactory.parsePLoginInfo(pFromClient.getDataContent());
+		logger.info("[IMCORE]>> 客户端"+remoteAddress+"发过来的登陆信息内容是：loginInfo="
+				+loginInfo.getLoginUserId()+"|getToken="+loginInfo.getLoginToken());
+		
+		//## Bug FIX: 20170603 by Jack Jiang
+		//##          解决在某些极端情况下由于Java PC客户端程序的不合法数据提交而导致登陆数据处理流程发生异常。
+		if(loginInfo == null || loginInfo.getLoginUserId() == null)
+		{
+			logger.warn("[IMCORE]>> 收到客户端"+remoteAddress
+					+"登陆信息，但loginInfo或loginInfo.getLoginUserId()是null，登陆无法继续[loginInfo="+loginInfo
+					+",loginInfo.getLoginUserId()="+loginInfo.getLoginUserId()+"]！");
+			return;
+		}
+		
+		// 开始回调
+		if(serverCoreHandler.getServerEventListener() != null)
+		{
+			// ** 先检查看看该会话的用户是否已经登陆
+//			int _try_user_id = UserProcessor.getUserIdFromSession(session);
+			// 是否已经登陆（目前只要会话中存放有user_id就被认为该用户已经登陆：会话
+			// 还在在线列表中即意味着与客户端的session是处活性状态，所以借user_id来
+			// 判定在线更严谨也确实是合理的）
+			boolean alreadyLogined = OnlineProcessor.isLogined(session);//(_try_user_id != -1);
+			// 该会话对应的用户已经登陆：此种情况目前还是让它再次走登陆流程吧，测试期观察它会不会导致bug即可
+			// 【理论上出现这种情况的可能是】：当用户在会话有效期内程序非正常退出（如崩溃等））后，
+			//								又在很短的时间内再次登陆！
+			if(alreadyLogined)
+			{
+				logger.debug("[IMCORE]>> 【注意】客户端"+remoteAddress+"的会话正常且已经登陆过，而此时又重新登陆：getLoginName="
+        				+loginInfo.getLoginUserId()+"|getLoginPsw="+loginInfo.getLoginToken());
+				
+				// 【1】直接将登陆反馈信息回馈给客户端而不用再走完整的登陆流程（包括通知好友上线等），
+				// 之所以将登陆反馈信息返回的目的是让客户端即时更新上线状态，因为重复登陆的原因
+				// 可能是在于客户端之前确实是因某种原因短时断线了（而服务端的会话在如此短的时间内还没在
+				// 关闭），那么此登陆反馈消息的返回有助于纠正此时间段内可能的好友状态的更新（上、下线等）
+				// 因为此时间虽短，但理论上可以发生任何事情哦！
+				// 【2】为何不干脆再走一遍登陆流程呢？这样启不是在保证该用户登陆数据一致性
+				//      上更保险，而不是像现在这样直接利用上次登陆的数据（理论上如果客户端
+				//      在此时间段内改了loginName的话则就真的不一致了，理论上可能发生，现
+				//      现实不太可能，即使出现也无太大问题）。总的一句话，就是为了避免完整
+				//      登陆过程中需要产生的一些数据查询、网络交互等，从而在大并发的情况下
+				//      能尽可能地提升性能
+				boolean sendOK = LocalSendHelper.sendData(session
+						, ProtocalFactory.createPLoginInfoResponse(0, loginInfo.getLoginUserId()));
+				if(sendOK)
+				{
+					//----------------------------------------------------------------------- [1] 代码同[2] START
+					// 将用户登陆成功后的id暂存到会话对象中备用
+					session.setAttribute(OnlineProcessor.USER_ID_IN_SESSION_ATTRIBUTE, loginInfo.getLoginUserId());
+//					// 将用户登陆成功后的登陆名暂存到会话对象中备用
+//					session.setAttribute(UserProcessor.LOGIN_NAME_IN_SESSION_ATTRIBUTE, loginInfo.getLoginName());
+					// 将用户信息放入到在线列表中（理论上：每一个存放在在线列表中的session都对应了user_id）
+					OnlineProcessor.getInstance().putUser(loginInfo.getLoginUserId(), session);
+					
+					// 重复登陆则至少回调：成功登陆了（保证通知给在线好友我的在线状态，之前基于性能考虑，想
+					// 让重复登陆就不用再通知好友了，但实际情况是因丢包等因素的存在，极端情况下好友可能永远
+					// 也收不到上线通知了，目前在没有质量保证的前提下，还是损失点性能至少保证正确性吧！）
+					serverCoreHandler.getServerEventListener().onUserLoginAction_CallBack(
+							loginInfo.getLoginUserId(), loginInfo.getExtra(), session);
+					//----------------------------------------------------------------------- [1] 代码同[2] END
+				}
+				else
+				{
+					logger.warn("[IMCORE]>> 发给客户端"+remoteAddress+"的登陆成功信息发送失败了！");
+				}
+			}
+			// 新登陆的用户
+			else
+			{
+				int code = serverCoreHandler.getServerEventListener().onVerifyUserCallBack(
+						loginInfo.getLoginUserId(), loginInfo.getLoginToken(), loginInfo.getExtra(), session);
+				// 登陆验证成功
+				if(code == 0)
+				{
+//					// 如果该用户的会话有效期内是重复登陆就不重新生成新user_id了，否则生成新的
+//					int user_id = getNextUserId(loginInfo);//UserProcessor.nextUserId();
+					
+					// 将登陆反馈信息回馈给客户端
+					boolean sendOK = LocalSendHelper.sendData(session
+							, ProtocalFactory.createPLoginInfoResponse(code, loginInfo.getLoginUserId()));
+					if(sendOK)
+					{
+						//----------------------------------------------------------------------- [2] 代码同[1] START
+						// 将用户登陆成功后的id暂存到会话对象中备用
+						session.setAttribute(OnlineProcessor.USER_ID_IN_SESSION_ATTRIBUTE, loginInfo.getLoginUserId());
+//						// 将用户登陆成功后的登陆名暂存到会话对象中备用
+//						session.setAttribute(UserProcessor.LOGIN_NAME_IN_SESSION_ATTRIBUTE, loginInfo.getLoginName());
+						// 将用户信息放入到在线列表中（理论上：每一个存放在在线列表中的session都对应了user_id）
+						OnlineProcessor.getInstance().putUser(loginInfo.getLoginUserId(), session);
+
+						// 回调：成功登陆了
+						serverCoreHandler.getServerEventListener()
+							.onUserLoginAction_CallBack(loginInfo.getLoginUserId(), loginInfo.getExtra(), session);
+						//----------------------------------------------------------------------- [2] 代码同[1] START
+						
+//						// 初始化接收到客户端心跳包（登陆时初始化此值）的时间戳（用于判断客户端是否非正常退出时使用）
+//            			UserProcessor.updateClientKeep$Alive_Last$Timestamp(session);
+					}
+					else
+						logger.warn("[IMCORE]>> 发给客户端"+remoteAddress+"的登陆成功信息发送失败了！");
+				}
+				// 登陆验证失败！
+				else
+				{
+					// 将登陆错误信息回馈给客户端
+					LocalSendHelper.sendData(session, ProtocalFactory.createPLoginInfoResponse(code, "-1"));
+				}
+			}
+		}
+		else
+		{
+			logger.warn("[IMCORE]>> 收到客户端"+remoteAddress+"登陆信息，但回调对象是null，没有进行回调.");
+		}
+	}
+
+	/**
+	 * 处理来自客户端的心跳包。
+	 * 
+	 * @param session
+	 * @param pFromClient
+	 * @param remoteAddress
+	 * @throws Exception
+	 */
+	public void processKeepAlive(IoSession session, Protocal pFromClient
+			, String remoteAddress) throws Exception
+	{
+		String userId = OnlineProcessor.getUserIdFromSession(session);
+		if(userId != null)
+		{
+			// 给用户发回心跳响应包
+			LocalSendHelper.sendData(ProtocalFactory.createPKeepAliveResponse(userId));
+		}
+		else
+		{
+			logger.warn("[IMCORE]>> Server在回客户端"+remoteAddress+"的响应包时，调用getUserIdFromSession返回null，用户在这一瞬间掉线了？！");
+		}
+	}
+}

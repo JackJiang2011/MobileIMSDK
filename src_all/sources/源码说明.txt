@@ -1,9 +1,0 @@
-【源码说明】：
-1）MobileIMSDK4a 为Android版源码；
-2）MobileIMSDK4j 为标准Java版源码（可运行于PC上的Java平台）；
-3）MobileIMSDKServer 为服务端源码（Java版）；
-4）MobileIMSDK的iOS版源码，请在此处下载：http://www.52im.net/thread-352-1-1.html
-
-【精编注释版源码】：
-详见此文：http://www.52im.net/thread-411-1-1.html
-补充说明：精篇注释版的代码没有区别，编译出的结果是完全一样的，所以如您只需要开源版，请放心使用，不会有任何问题。

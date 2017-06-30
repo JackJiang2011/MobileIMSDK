@@ -1,0 +1,306 @@
+/*
+ * Copyright (C) 2017  即时通讯网(52im.net) & Jack Jiang.
+ * The MobileIMSDK_X (MobileIMSDK v3.x) Project. 
+ * All rights reserved.
+ * 
+ * > Github地址: https://github.com/JackJiang2011/MobileIMSDK
+ * > 文档地址: http://www.52im.net/forum-89-1.html
+ * > 即时通讯技术社区：http://www.52im.net/
+ * > 即时通讯技术交流群：320837163 (http://www.52im.net/topic-qqgroup.html)
+ *  
+ * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
+ * 
+ * LocalSendHelper.java at 2017-5-2 15:49:27, code by Jack Jiang.
+ * You can contact author with jack.jiang@52im.net or jb2011@163.com.
+ */
+package net.openmob.mobileimsdk.server.utils;
+
+import net.nettime.mobileimsdk.server.bridge.QoS4SendDaemonB2C;
+import net.openmob.mobileimsdk.server.ServerCoreHandler;
+import net.openmob.mobileimsdk.server.processor.OnlineProcessor;
+import net.openmob.mobileimsdk.server.protocal.ErrorCode;
+import net.openmob.mobileimsdk.server.protocal.Protocal;
+import net.openmob.mobileimsdk.server.protocal.ProtocalFactory;
+import net.openmob.mobileimsdk.server.qos.QoS4SendDaemonS2C;
+
+import org.apache.mina.core.buffer.IoBuffer;
+import org.apache.mina.core.future.WriteFuture;
+import org.apache.mina.core.session.IoSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * 本类提供的是公开的数据发送方法（数据接收者仅限于本机在线用户）。
+ * 
+ * @author Jack Jiang, 2016-11-30
+ * @version 1.0
+ */
+public class LocalSendHelper
+{
+	private static Logger logger = LoggerFactory.getLogger(ServerCoreHandler.class);  
+	
+	/**
+     * 向目标发送一条数据（默认QoS=true，typeu=-1）。
+     * 
+     * @param from_user_id 发送方user_id
+     * @param to_user_id 接收方的user_id
+     * @param dataContent 发送的文本内容
+     * @return true表示发送完成，false表示发送失败
+     * @throws Exception 发送过程中出现错误则抛出本异常
+     * @see #sendData(int, int, String, boolean, String)
+     * @since 2.1.4
+     */
+	public static boolean sendData(String from_user_id, String to_user_id, String dataContent) throws Exception 
+    {
+    	return sendData(from_user_id, to_user_id, dataContent, true, null, -1);
+    }
+	
+	/**
+     * 向目标发送一条数据（默认QoS=true）。
+     * 
+     * @param from_user_id 发送方user_id
+     * @param to_user_id 接收方的user_id
+     * @param dataContent 发送的文本内容
+     * @param typeu 应用层专用字段——用于应用层存放聊天、推送等场景下的消息类型。注意：此值为-1时表示未定义。
+	 *              MobileIMSDK_X框架中，本字段为保留字段，不参与框架的核心算法，专留作应用层自行定义和使用。
+     * @return true表示发送完成，false表示发送失败
+     * @throws Exception 发送过程中出现错误则抛出本异常
+     * @see #sendData(int, int, String, boolean, String)
+     * @since 2.1.4
+     */
+	public static boolean sendData(String from_user_id, String to_user_id, String dataContent
+			, int typeu) throws Exception 
+    {
+    	return sendData(from_user_id, to_user_id, dataContent, true, null, typeu);
+    }
+	
+	/**
+     * 向目标发送一条数据。
+     * 
+     * @param from_user_id 发送方user_id
+     * @param to_user_id 接收方的user_id
+     * @param dataContent 发送的文本内容
+     * @param QoS 是否需要QoS支持，true表示需要，否则不需要。当为true时系统将自动生成指纹码
+     * @param typeu 应用层专用字段——用于应用层存放聊天、推送等场景下的消息类型。注意：此值为-1时表示未定义。
+	 *              MobileIMSDK_X框架中，本字段为保留字段，不参与框架的核心算法，专留作应用层自行定义和使用。
+     * @return true表示发送完成，false表示发送失败
+     * @throws Exception 发送过程中出现错误则抛出本异常
+     * @see #sendData(int, int, String, boolean, String)
+     * @since 2.1.4
+     */
+	public static boolean sendData(String from_user_id, String to_user_id, String dataContent
+			, boolean QoS, int typeu) throws Exception 
+    {
+    	return sendData(from_user_id, to_user_id, dataContent, QoS, null, typeu);
+    }
+	
+	/**
+     * 向目标发送一条数据（typeu=-1）。
+     * 
+     * @param from_user_id 发送方user_id
+     * @param to_user_id 接收方的user_id
+     * @param dataContent 发送的文本内容
+     * @param QoS 是否需要QoS支持，true表示需要，否则不需要。当为false时fingerPrint字段值将无意义
+	 * @param fingerPrint 消息指纹特征码，当QoS=true且本参数为null则表示由系统自动生成指纹码，否则使用本参数指明的指纹码
+     * @return true表示发送完成，false表示发送失败
+     * @throws Exception 发送过程中出现错误则抛出本异常
+     * @see #sendData(Protocal)
+     * @since 2.1.4
+     */
+	public static boolean sendData(String from_user_id, String to_user_id, String dataContent
+			, boolean QoS, String fingerPrint) throws Exception 
+    {
+    	return sendData(from_user_id, to_user_id, dataContent, QoS, fingerPrint, -1);
+    }
+	
+	/**
+     * 向目标发送一条数据。
+     * 
+     * @param from_user_id 发送方user_id
+     * @param to_user_id 接收方的user_id
+     * @param dataContent 发送的文本内容
+     * @param QoS 是否需要QoS支持，true表示需要，否则不需要。当为false时fingerPrint字段值将无意义
+	 * @param fingerPrint 消息指纹特征码，当QoS=true且本参数为null则表示由系统自动生成指纹码，否则使用本参数指明的指纹码
+     * @param typeu 应用层专用字段——用于应用层存放聊天、推送等场景下的消息类型。注意：此值为-1时表示未定义。
+	 *              MobileIMSDK_X框架中，本字段为保留字段，不参与框架的核心算法，专留作应用层自行定义和使用。
+     * @return true表示发送完成，false表示发送失败
+     * @throws Exception 发送过程中出现错误则抛出本异常
+     * @see #sendData(Protocal)
+     * @since 3.0
+     */
+	public static boolean sendData(String from_user_id, String to_user_id, String dataContent
+			, boolean QoS, String fingerPrint, int typeu) throws Exception 
+    {
+    	return sendData(ProtocalFactory.createCommonData(
+    			dataContent, from_user_id, to_user_id, QoS, fingerPrint, typeu));
+    }
+    
+	/**
+	 * 向目标发送一条数据。
+	 * 
+	 * @param p 要发送的内容（此对象封装了发送方user_id、接收方user_id、消息内容等）
+	 * @return true表示发送完成，false表示发送失败
+	 * @throws Exception 发送过程中出现错误则抛出本异常
+	 * @see {@link #sendData(IoSession, Protocal)}
+	 */
+    public static boolean sendData(Protocal p) throws Exception 
+    {
+    	if(p != null)
+    	{
+    		if(!"0".equals(p.getTo()))
+    			return sendData(OnlineProcessor.getInstance().getOnlineSession(p.getTo()), p);
+    		else
+    		{
+    			logger.warn("[IMCORE]【注意】此Protocal对象中的接收方是服务器(user_id==0)（而此方法本来就是由Server调用，自已发自已不可能！），数据发送没有继续！"+p.toGsonString());
+    			return false;
+    		}
+    	}
+    	else
+    		return false;
+    }
+    
+    /**
+     * 向目标发送一条数据。
+     * 
+     * @param session 接收者的会话对象引用
+     * @param p 要发送的内容（此对象封装了发送方user_id、接收方user_id、消息内容等）
+     * @return true表示发送完成，false表示发送失败
+     * @throws Exception 发送过程中出现错误则抛出本异常
+     * @see IoSession#write(Object)
+     */
+    public static boolean sendData(IoSession session, Protocal p) throws Exception 
+    {
+    	// 要发送的目标用户的session已经不存在了
+		if(session == null)
+		{
+			logger.info("[IMCORE]toSession==null >> id="+p.getFrom()+"的用户尝试发给客户端"+p.getTo()
+					+"的消息：str="+p.getDataContent()+"因接收方的id已不在线，此次实时发送没有继续(此消息应考虑作离线处理哦).");
+		}
+		else
+		{
+			// 要发送到的对方会话是正常连接着的
+			if(session.isConnected())
+			{
+		    	if(p != null)
+		    	{
+		    		byte[] res = p.toBytes();
+		    		
+		    		// ** （1）来自网上的组织IoBuffer数据包的方法：本方法将会错误地导致客户端UDP收到的数据多出4个字节（内容未知）
+//    				IoBuffer buf = IoBuffer.allocate(res.length);  
+//    				buf.setAutoExpand(true);  
+//    				buf.putInt(res.length);
+//    				buf.put(res);  
+//    				buf.flip();
+//    				buf.shrink();
+		    		
+		    		// ** （2）第2种组织IoBuffer数据包的方法：本方法才可以正确地让客户端UDP收到byte数组
+		    		IoBuffer buf = IoBuffer.wrap(res);  
+		    		
+		    		// 向客户端写数据
+		    		WriteFuture future = session.write(buf);  
+		    		// 在100毫秒超时间内等待写完成
+		    		future.awaitUninterruptibly(100);
+		    		// The message has been written successfully
+		    		if( future.isWritten() )
+		    		{
+//		    			logger.debug("给客户端："+addressToString(session)+"的数据->"+p.toGsonString()+",已成功发出["+res.length+"].");
+		    			
+		    			// ** 如果是服务端主动发起的消息才需要加入S2C模式的发消息QoS机制
+		    			if("0".equals(p.getFrom()))
+		    			{
+		    				// 【【S2C模式下的QoS机制1/4步：将包加入到发送QoS队列中】】
+		    				// 如果需要进行QoS质量保证，则把它放入质量保证队列中供处理(已在存在于列
+		    				// 表中就不用再加了，已经存在则意味当前发送的这个是重传包哦)
+		    				if(p.isQoS() && !QoS4SendDaemonS2C.getInstance().exist(p.getFp()))
+		    					QoS4SendDaemonS2C.getInstance().put(p);
+		    			}
+		    			// ** 通过桥接被服务端代理发出的消息也同样有它的QoS机制 (since 3.0)
+		    			// 通过服务端发出的桥接消息from不是”0“而仍然是被代发者的username哦
+		    			else if(p.isBridge())
+		    			{
+		    				// 【【S2C[桥接]模式下的QoS机制1/4步：将包加入到桥接发送QoS队列中】】
+		    				// 如果需要进行QoS质量保证，则把它放入质量保证队列中供处理(已在存在于列
+		    				// 表中就不用再加了，已经存在则意味当前发送的这个是重传包哦)
+		    				if(p.isQoS() && !QoS4SendDaemonB2C.getInstance().exist(p.getFp()))
+		    					QoS4SendDaemonB2C.getInstance().put(p);
+		    			}
+		    			
+		    			return true;
+		    		}
+		    		// The messsage couldn't be written out completely for some reason.
+	    			// (e.g. Connection is closed)
+		    		else
+		    			logger.warn("[IMCORE]给客户端："+ServerToolKits.clientInfoToString(session)+"的数据->"+p.toGsonString()+",发送失败！["+res.length+"](此消息应考虑作离线处理哦).");
+		    	}
+			}
+			else
+			{
+				logger.warn("[IMCORE]toSession!=null但会话已经关闭 >> 客户端id="+p.getFrom()+"要发给客户端"+p.getTo()
+						+"的实时消息：str="+p.getDataContent()+"没有继续(此消息应考虑作离线处理哦).");
+			}
+		}
+		
+		return false;
+    }
+    
+	/**
+	 * 当服务端检测到用户尚未登陆（或登陆会话已失效时）由服务端回复给
+	 * 客户端的消息。
+	 * <p>
+	 * <font color="red">本方法将由MobileIMSDK框架内部算法按需调用，目前不建议也不需要开发者调用。</font>
+	 * 
+	 * @param session 被回复的会话
+	 * @param p 回复的数据包
+	 * @return true表示包已发出，否则发送失败
+	 * @throws Exception 发生时出错将抛出本异常
+	 * @see #sendData(IoSession, Protocal)
+	 */
+	public static boolean replyDataForUnlogined(IoSession session, Protocal p) throws Exception
+	{
+		logger.warn("[IMCORE]>> 客户端"+ServerToolKits.clientInfoToString(session)+"尚未登陆，"+p.getDataContent()+"处理未继续.");
+		// 把“未登陆”错误信息反馈给客户端，并把本次发送的数据内容回给客户端！
+		return sendData(session, ProtocalFactory.createPErrorResponse(
+				// 将原Protocal包的JSON作为错误内容原样返回（给客户端）
+				ErrorCode.ForS.RESPONSE_FOR_UNLOGIN, p.toGsonString(), "-1")); // 尚未登陆则user_id就不存在了,用-1表示吧，目前此情形下该参数无意义
+	}
+
+	/**
+	 * 服务端回复伪应答包（给客户端发送方）。前提是客户发送的消息包中的字段QoS=true
+	 * ，否则本方法什么也不做。
+	 * <p>
+	 * <b>何为伪应答包？</b><br>
+	 * 当客户端A发给接收方（目标接收方可能是服务器也可能是客户端B）的消息在意外情况下
+	 * （B不在线，或者其它情况下没有发送成功：此时服务端会通知上层启动离线存储机制等
+	 * ，总之当上层成功处理了这个消息，也算是意味着该消息成功送达（虽成了离线消息但总
+	 * 归是没有丢）），且该消息有QoS保证机制，则服务端将代(如果接收方恰好就是服务器，
+	 * 当然就不是"代"了)为发送一个应答包，以便告之发送方消息已经收到了（离线消息当然
+	 * 也算是，只是非及时收到而已^_^）.
+	 * <p>
+	 * <font color="red">本方法将由MobileIMSDK框架内部算法按需调用，目前不建议也不需要开发者调用。</font>
+	 * 
+	 * @param session 被回复的会话
+	 * @param pFromClient 客户端发过来的数据包，本方法将据此包中的from、to、fp属性进行回复
+	 * @return true表示发送成功，否则表示发送不成功
+	 * @throws Exception 当发送数据出错时将抛出本异常
+	 * @see #sendData(IoSession, Protocal)
+	 */
+	public static boolean replyDelegateRecievedBack(IoSession session, Protocal pFromClient) throws Exception
+	{
+		if(pFromClient.isQoS() && pFromClient.getFp() != null)
+		{
+			Protocal receivedBackP = ProtocalFactory.createRecivedBack(
+					pFromClient.getTo()
+					, pFromClient.getFrom()
+					, pFromClient.getFp());
+
+			return sendData(session, receivedBackP);
+		}
+		else
+		{
+			logger.warn("[IMCORE]收到"+pFromClient.getFrom()
+					+"发过来需要QoS的包，但它的指纹码却为null！无法发伪应答包哦！");
+			return false;
+		}
+	}
+
+}

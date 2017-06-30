@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Fri Jan 06 13:47:02 CST 2017
+onejar.license.required=true
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=MobileIMSDK4jDemo_x.jar
+manifest.mergeall=true
+manifest.mainclass=net.openmob.mobileimsdk.java.demo.Launch
+manifest.file=<createnew>
+jarname.isextern=false
+onejar.expand=
+excludes=
+includes=

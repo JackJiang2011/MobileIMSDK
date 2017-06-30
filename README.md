@@ -43,7 +43,7 @@
 * 客户端支持iOS、Android、标准Java平台；
 * 可应用于跨设备、跨网络的聊天APP、企业OA、消息推送等各种场景。
 
-> MobileIMSDK工程始于2013年10月，起初用作某产品的即时通讯底层实现，完全从零开发。<br>
+> MobileIMSDK工程始于2013年10月（2017年06月26日发布了最新版v3.0），起初用作某产品的即时通讯底层实现，完全从零开发。<br>
 MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所启发和帮助。
 
 :point_right: 您可能需要：[查看更多关于MobileIMSDK的疑问及解答](http://www.52im.net/thread-60-1-1.html)。
@@ -145,7 +145,7 @@ MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所
 
 # 十三、联系方式
 * 讨论学习和资料区：:earth_americas: [点此进入](http://www.52im.net/forum-89-1.html)；
-* 移动端即时通讯学习交流群：`215891622` <a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=4cc788473d261129ab3ded26fbb22168d0fa52c799d28f92a8f193dc36865bcb"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="移动端即时通讯/IM开发" title="移动端即时通讯/IM开发"></a> （[更多QQ群点此进入](http://cngeeker.com/portal.php?mod=topic&topicid=2)）；
+* 移动端即时通讯学习交流群：`320837163` <a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=347e290d9cc726233b8c106272c100c8b56c366914452ebcd577f520e3617649"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="即时通讯(IM/推送)开发2" title="即时通讯(IM/推送)开发2"></a> （[更多QQ群点此进入](http://cngeeker.com/portal.php?mod=topic&topicid=2)）；
 * bug和建议请发送至：:love_letter: `jb2011@163.com`；
 * 技术支持、技术合作或咨询请联系作者QQ：:penguin: `413980957`、微信：`hellojackjiang`。
 
@@ -154,18 +154,46 @@ MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所
 * 博客地址：[点击入进](http://www.52im.net/space-uid-1.html)
 * Github主页：[点击进入](https://github.com/JackJiang2011)
 
-# 附录1：Demo截图
+# 附录1：官方Demo截图
 ### :triangular_flag_on_post: Android和iOS运行效果：
 > <code>安装和使用：</code>[进入Android版Demo帮助页](http://www.52im.net/thread-55-1-1.html)、[进入iOS版Demo帮助页](http://www.52im.net/thread-54-1-1.html)。
 
 ![](https://github.com/JackJiang2011/MobileIMSDK/raw/master/preview/more_screenshots/others/ios_android_real_run.jpg)
+![](https://github.com/JackJiang2011/MobileIMSDK/raw/master/preview/ios_demo_main.png)
 
 ### :triangular_flag_on_post: Windows 运行效果：
 > <code>安装和使用：</code>[进入Java版Demo帮助页](http://www.52im.net/thread-56-1-1.html)。
 
+![](https://github.com/JackJiang2011/MobileIMSDK/raw/master/preview/java_demo_main.png)
 ![](https://github.com/JackJiang2011/MobileIMSDK/raw/master/preview/more_screenshots/others/windows_real_run.png)
 
 ### :triangular_flag_on_post: Mac OS X 运行效果：
 > <code>安装和使用：</code>[进入Java版Demo帮助页](http://www.52im.net/thread-56-1-1.html)。
 
 ![](https://github.com/JackJiang2011/MobileIMSDK/raw/master/preview/more_screenshots/others/mac_real_run.png)
+
+### :triangular_flag_on_post: MobileIMSDK-Web版客户端Demo运行效果：
+> <code>如何获取MobileIMSDK-Web版：</code>请联系作者。
+
+![](https://github.com/JackJiang2011/MobileIMSDK/raw/master/preview/web_demo_20170630.jpg)
+
+# 附录2：基于MobileIMSDK的全功能IM【案例】
+> <code>关于RainbowChat的更多资料请见：</code>[全功能移动端即时通讯/IM系统：RainbowChat前端APP功能截图](http://www.52im.net/thread-20-1-1.html)。
+
+![](https://github.com/JackJiang2011/MobileIMSDK/raw/master/preview/more_products/rainbowchat_v4_20170626.jpg)
+
+# 附录3：基于MobileIMSDK的某云客服IM子系统【案例】
+> <code>下图为某云客服产品IM子系统-Web版访客端：</code>
+![](https://github.com/JackJiang2011/MobileIMSDK/raw/master/preview/more_products/cs-im-visitor-web.jpg)
+
+> <code>下图为某云客服产品IM子系统-Web版客服后台端：</code>
+![](https://github.com/JackJiang2011/MobileIMSDK/raw/master/preview/more_products/cs_im_servicer_web_20161227.jpg)
+
+> <code>下图为某云客服产品IM子系统-Android版访客端：</code>
+![](https://github.com/JackJiang2011/MobileIMSDK/raw/master/preview/more_products/cs-im-visitor-ios_20170509.jpg)
+
+> <code>下图为某云客服产品IM子系统-iOS版客服后台端：</code>
+![](https://github.com/JackJiang2011/MobileIMSDK/raw/master/preview/more_products/cs-im-servicer-ios_20170509.jpg)
+
+> <code>下图为某云客服产品IM子系统-Android版客服后台端：</code>
+![](https://github.com/JackJiang2011/MobileIMSDK/raw/master/preview/more_products/cs-im-servicer-android_20170509.jpg)

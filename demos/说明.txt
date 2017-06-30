@@ -1,1 +1,1 @@
-此目录下为MobileIMSDK已编译好的可执行Demo，MobileIMSDK的源码，请至目录/src_all下查看。
+此目录下为 MobileIMSDK v3 版已编译好的可执行Demo，MobileIMSDK的源码请至目录/src_all下查看。

@@ -1,0 +1,10 @@
+【源码说明】：
+1）MobileIMSDK4aXOpen 为Android版客户端源码的Eclipse工程（另：精篇注释版见下方说明）；
+2）MobileIMSDK4jXOpen 为标准Java客户端版源码的Eclipse工程（另：精篇注释版见下方说明）；
+3）MobileIMSDKServerXOpen 为服务端源码(Java版)的Eclipse工程（另：精篇注释版见下方说明）；
+4）MobileIMSDK的iOS版客户端源码的Xcode工程，请在此处下载：http://www.52im.net/thread-352-1-1.html（另：精篇注释版见下方说明）。
+
+【精编注释版源码（含详细文档级代码注释、算法原理图、CHM版API文档）】：
+[详见此文]：http://www.52im.net/thread-411-1-1.html
+[作者建议]：如果您的产品需要对MobileIMSDK进行定制化开发、或者有类似技术需求需要参考MobileIMSDK的实现等，强烈建议您拍下“精编注释版”，因为这有助于您：理解算法、修改代码，因为精编注释版代码与作者的工作代码完全保持一致，基于此你当然也很容易与作者的思路保持一致（而不致于发生理解性错误）！
+[补充说明]：精篇注释版的代码没有区别，编译出的结果是完全一样的，所以如您只需要开源版，请放心使用，不会有任何问题。

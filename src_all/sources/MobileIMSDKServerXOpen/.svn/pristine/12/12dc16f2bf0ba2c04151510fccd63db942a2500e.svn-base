@@ -1,0 +1,367 @@
+/*
+ * Copyright (C) 2017  即时通讯网(52im.net) & Jack Jiang.
+ * The MobileIMSDK_X (MobileIMSDK v3.x) Project. 
+ * All rights reserved.
+ * 
+ * > Github地址: https://github.com/JackJiang2011/MobileIMSDK
+ * > 文档地址: http://www.52im.net/forum-89-1.html
+ * > 即时通讯技术社区：http://www.52im.net/
+ * > 即时通讯技术交流群：320837163 (http://www.52im.net/topic-qqgroup.html)
+ *  
+ * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
+ * 
+ * ServerLauncher.java at 2017-5-2 15:49:28, code by Jack Jiang.
+ * You can contact author with jack.jiang@52im.net or jb2011@163.com.
+ */
+package net.openmob.mobileimsdk.server;
+
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.util.concurrent.Executors;
+
+import net.nettime.mobileimsdk.server.bridge.QoS4ReciveDaemonC2B;
+import net.nettime.mobileimsdk.server.bridge.QoS4SendDaemonB2C;
+import net.openmob.mobileimsdk.server.event.MessageQoSEventListenerS2C;
+import net.openmob.mobileimsdk.server.event.ServerEventListener;
+import net.openmob.mobileimsdk.server.qos.QoS4ReciveDaemonC2S;
+import net.openmob.mobileimsdk.server.qos.QoS4ReciveDaemonRoot;
+import net.openmob.mobileimsdk.server.qos.QoS4SendDaemonS2C;
+
+import org.apache.mina.core.filterchain.DefaultIoFilterChainBuilder;
+import org.apache.mina.core.session.ExpiringSessionRecycler;
+import org.apache.mina.filter.executor.ExecutorFilter;
+import org.apache.mina.transport.socket.DatagramSessionConfig;
+import org.apache.mina.transport.socket.nio.NioDatagramAcceptor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * MobileIMSDK的服务端入口主类。
+ * <p>
+ * 为了简化API的调用，理论上使用者使用本类公开的方法即可实现MobileIMSDK
+ * 的所有能力。
+ * <p>
+ * 基于MINA框架，使用UDP协议。本类主要实现服务端的初始化、基本服务的启停以及一些
+ * 提供给开发者的公开API。
+ * <p>
+ * 服务端默认不会自动开启，请调用 {@link #startup()}以便启动MobileIMSDK的服务端, {@link #shutdown()}关闭
+ * 服务端，直到再次调用 {@link #startup()} 。
+ * <p>
+ * <b>提示1：</b>
+ * 请重写 {@link #initListeners()}方法，以实现应用层的回调监听器以便实现自定义业务
+ * 逻辑。
+ * <p>
+ * <b>提示2：</b>
+ * 如果设置整个MobileIMSDK的算法敏感度类型，请调用 {@link #setSenseMode(SenseMode)}，
+ * MobileIMSDK默认敏感度是 {@link SenseMode#MODE_3S}。
+ * 
+ * @author Jack Jiang, 2013-10-03
+ * @version 1.0
+ */
+public abstract class ServerLauncher 
+{
+	private static Logger logger = LoggerFactory.getLogger(ServerLauncher.class); 
+	
+	/**
+	 * 全局设置：服务端Debug日志输出总开关（建议压力测试和生产环境下设为false）。
+	 * <p>
+	 * 默认值：true。
+	 * <p>
+	 * <b>注意：</b>为了减少过多地使用本标识而增加服务器不必要的if判断开销，一些少量log输
+	 * 出的地方并未使用本标识。<font color="red">建议压力测试或生产环境下直接关闭log4j的
+	 * 日志输出更为保险，切记！</font>
+	 * 
+	 * @since 3.0
+	 */
+	public static boolean debug = true;
+	
+	/**
+	 * 全局设置：AppKey。
+	 */
+	public static String appKey = null;
+	
+	/** 
+	 * 服务端UDP监听端口，默认7901。
+	 * <p>
+	 * 请在 {@link #startup()}方法被调用前被设置，否则将不起效.
+	 */
+    public static int PORT = 7901;
+    
+    /** 
+     * UDP Session的空闲超时时长（单位：秒），默认10秒。
+     * 
+     * <p>
+     * 表示一个用户在非正常退出、网络故障等情况下，服务端判定此用户不在线的超时时间。
+     * 此参数应与客户端的KeepAliveDaemon.KEEP_ALIVE_INTERVAL配合调整，为防止因心跳丢包
+     * 而产生误判，建议本参数设置为“客户端的KeepAliveDaemon.KEEP_ALIVE_INTERVAL * (2或3)
+     * + 典型客户网络延迟时间”，比如默认值10就是等于“3 * 3 + 1”（即服务端允许在最最极端的
+     * 情况下即使连丢3个包也不会被误判为掉线！）。
+     * 
+     * <p>
+     * 本值不宜过短，太短则会导致客户端因心跳丢包而误判为掉线，进而触发客户端的重登机制。原则
+     * 上设置的长一点更有保证，但设置过长的话会导致服务端判定用户真正的非正常退出过于晚了，带
+     * 给用户的体验就是明明好友非正常退出了，过了好长时间才能感知到他已退出。
+     * 
+	 * <p>
+	 * 请在 {@link #startup()}方法被调用前被设置，否则将不起效.
+     */
+    public static int SESION_RECYCLER_EXPIRE = 10;
+    
+    /**
+     * 是否允许与MobileIMSDK Web版进行互通。true表示需要互通，否则不互通，默认false。
+     * <p>
+	 * 请在 {@link #startup()}方法被调用前被设置，否则将不起效.
+	 * 
+     * @since 3.0
+     */
+    public static boolean bridgeEnabled = false;
+    
+    /** 服务端是否启动并运行中 */
+    private boolean running = false;
+    protected ServerCoreHandler serverCoreHandler = null; 
+    private NioDatagramAcceptor acceptor = null;
+    
+    public ServerLauncher() throws IOException 
+    {
+    }
+    
+    /**
+     * 服务端是否启动并运行中。
+     * 
+     * @return true表示已正常启动并运行，否则没有启动
+     */
+    public boolean isRunning()
+	{
+		return running;
+	}
+
+	/**
+     * 关闭服务端。
+     */
+    public void shutdown()
+    {
+    	// ** 取消服务端网络监听
+    	if(acceptor != null)
+    		acceptor.dispose();
+    	
+    	// ** 停止QoS机制（目前服务端只支持C2S模式的QoS）下的防重复检查线程
+    	QoS4ReciveDaemonC2S.getInstance().stop();
+    	// ** 停止服务端对S2C模式下QoS机制的丢包重传和离线通知线程
+    	QoS4SendDaemonS2C.getInstance().stop();
+    	
+    	// 需要与Web版互通时
+    	if(ServerLauncher.bridgeEnabled){
+    		QoS4ReciveDaemonC2B.getInstance().stop();
+    		QoS4SendDaemonB2C.getInstance().stop();
+    	}
+    	
+    	// ** 设置启动标识
+    	this.running = false;
+    }
+    
+    /**
+     * 开启服务端。
+     * 
+     * @throws IOException UDP端口绑定失败将抛出本异常
+     * @see #initServerCoreHandler()
+     * @see #initListeners()
+     * @see #initAcceptor()
+     * @see #initFilter(NioDatagramAcceptor)
+     * @see #initSessionConfig(NioDatagramAcceptor)
+     * @see QoS4ReciveDaemonC2S#startup()
+     * @see QoS4SendDaemonS2C#startup(boolean)
+     * @see NioDatagramAcceptor#bind()
+     */
+    public void startup() throws IOException
+    {	
+    	// ** 初始化MobileIMSDK的IoHandler实现类
+    	serverCoreHandler = initServerCoreHandler();
+    	
+    	// ** 初始化消息处理事件监听者
+    	initListeners();
+
+   		// ** Acceptor设置
+    	acceptor = initAcceptor();
+
+    	// ** 过滤器设置
+    	initFilter(acceptor);
+
+    	// ** UDP通信配置
+    	initSessionConfig(acceptor);
+    	
+    	// ** 启动服务端对C2S模式的QoS机制下的防重复检查线程
+    	QoS4ReciveDaemonC2S.getInstance().startup();
+    	// ** 启动服务端对S2C模式下QoS机制的丢包重传和离线通知线程
+    	QoS4SendDaemonS2C.getInstance().startup(true).setServerLauncher(this);
+    	
+    	// ** 如果需要与Web版互通
+    	if(ServerLauncher.bridgeEnabled){
+    		
+    		// ** 启动桥接模式下服务端的QoS机制下的防重复检查线程(since 3.0)
+        	QoS4ReciveDaemonC2B.getInstance().startup();
+        	// ** 启动桥接模式下服务端的QoS机制的丢包重传和离线通知线程(since 3.0)
+        	QoS4SendDaemonB2C.getInstance().startup(true).setServerLauncher(this);
+        	
+    		// ** 上面initServerCoreHandler不立即启动跨服桥接处理器而放在此处在
+    		//    所有初始化完成后（放置于initListeners后，是防止交叉引用产生不可预知的错误）
+    		serverCoreHandler.lazyStartupBridgeProcessor();
+    		
+    		logger.info("[IMCORE] 配置项：已开启与MobileIMSDK Web的互通.");
+    	}
+    	else{
+    		logger.info("[IMCORE] 配置项：未开启与MobileIMSDK Web的互通.");
+    	}
+       
+    	// ** UDP服务端开始侦听
+    	acceptor.bind(new InetSocketAddress(PORT));
+    	
+    	// ** 设置启动标识
+    	this.running = true;
+       
+    	logger.info("[IMCORE] 基于MobileIMSDK的UDP服务正在端口" + PORT+"上监听中...");
+    }
+    
+    /**
+     * 初始化MobileIMSDK的IoHandler实现类。
+     * <p>
+     * 本类是MobileIMSDK的服务端网络调度算法核心所在，其性能将决定整个
+     * 即时通讯架构的数据交换性能、负载能力、吞吐效率等。
+     * 
+     * @return 初始化完成后的IoHandler实现对象
+     * @since 2.1.3
+     */
+    protected ServerCoreHandler initServerCoreHandler()
+    {
+    	return new ServerCoreHandler();
+    }
+    
+    /**
+     * 初始化回调处理事件监听器。
+     * <p>
+     * 请重写 {@link #initListeners()}方法，以实现应用层的回调监听器以便实现自定义业务
+     * 逻辑，可以设置的回调监听器有： {@link #setServerEventListener(ServerEventListener)}
+     * 和 {@link #setServerMessageQoSEventListener(MessageQoSEventListenerS2C)}。
+     */
+    protected abstract void initListeners();
+    
+    /**
+     * 初始化服务端的数据监听Socket.
+     * <p>
+     * 基于MINA的UDP协议，本方法还将设定会话超时时间、业务处理时的独立线程池。
+     * 
+     * @return 初始化完后的 NioDatagramAcceptor对象
+     * @see NioDatagramAcceptor
+     * @see DefaultIoFilterChainBuilder#addLast(String, org.apache.mina.core.filterchain.IoFilter)
+     * @see NioDatagramAcceptor#setSessionRecycler(org.apache.mina.core.session.IoSessionRecycler)
+     */
+    protected NioDatagramAcceptor initAcceptor()
+    {
+    	NioDatagramAcceptor acceptor = new NioDatagramAcceptor();
+    	// 【【实际测试结果:一台8核服务器作为测试客户端，40核32G服务器作服务端的结果如下】】
+    	//    压力测试内容：3000连接以最快50ms的速度向服务端发送echo包(约131字节)，响应后再发下一个。
+    	//	     使用此项设置前：收发包的效率大约是7500个/S
+    	//    使用此项设置前：收发包的效率大约是38000个/S
+    	//   
+    	// 【让业务逻辑使用独立线程】：js 20150830 备注：据说自mina2.0后已不需要自已对Mina线程池的配置了：http://blog.csdn.net/whycold/article/details/6153862
+    	// 当我们在过滤器链中没有添加“threadPool”过滤器，则业务逻辑处理和
+    	// IoProcessor使用同一个线程。如果设置了“threadPool”过滤器，则使
+    	// 用设置的线程池产生线程进行业务逻辑处理。
+    	// 【评价】：如上配置之后，IO处理和业务逻辑处理将会使用各自的线程
+    	// 池产生线程使用。如果你的应用每次处理请求的时间较长而又希望应用
+    	//  能够有较好的响应性，那么最好是把处理业务逻辑的任务放到一个新的
+    	// 线程中去执行，而不是在 mina 框架创建的线程中去执行。
+    	acceptor.getFilterChain()
+    		.addLast("threadPool", new ExecutorFilter(Executors.newCachedThreadPool())); 
+    	// 增加以下2项设置后：压力测试下的吞吐效率由每秒38000个降至28000个
+//    	IoBuffer.setUseDirectBuffer(false);
+//    	IoBuffer.setAllocator(new SimpleBufferAllocator());
+    	
+    	acceptor.setHandler(serverCoreHandler);
+    	// 通过设置此超时时间间隔来实现客户端非正常退出（无法发送心跳包情况下）
+    	// 的检查和关闭机制（就不用自已写SessionChecker这样的类了），
+    	// MINA默认的会话超时时间是60秒（1分钟）
+    	// ** 此超时间的选取是有技巧的：目前客户端的心跳间隔是3秒，10秒内如果客户端连丢2个包，应该还是能保持UDP连接的（不过得看具体测试经验）
+    	// **    之前的服务端6秒超时，在网络超烂时会导致客户端被判定掉线的几率升高，因为6秒下，丢1个包就有可能被判定掉线了！
+    	acceptor.setSessionRecycler(new ExpiringSessionRecycler(SESION_RECYCLER_EXPIRE));//15));//10));
+    	
+    	return acceptor;
+    }
+    
+    /**
+     * 初始化MINA的过滤器链。本方法默认什么也没做，如有必要子类可实现自已的需求。
+     * 
+     * @param acceptor NioDatagramAcceptor对象
+     */
+    protected void initFilter(NioDatagramAcceptor acceptor)
+    {
+    	DefaultIoFilterChainBuilder chain = acceptor.getFilterChain();
+//      chain.addLast("logger", new LoggingFilter());
+//		chain.addLast("myChin", new ProtocolCodecFilter(new ObjectSerializationCodecFactory()));  
+    }
+    
+    /**
+     * 初始化MINA的UDP会话配置.
+     * 
+     * @param acceptor NioDatagramAcceptor对象
+     */
+    protected void initSessionConfig(NioDatagramAcceptor acceptor)
+    {
+    	DatagramSessionConfig dcfg = acceptor.getSessionConfig();
+    	dcfg.setReuseAddress(true);
+//     	dcfg.setReadBufferSize(4096);    // 设置接收最大字节默认2048
+    	dcfg.setReceiveBufferSize(1024); // 设置输入缓冲区的大小，调整到2048后性能反而降低
+    	dcfg.setSendBufferSize(1024);    // 设置输出缓冲区的大小，调整到2048后性能反而降低
+    }
+    
+    /**
+     * 返回服务端通用事件回调监听器对象引用。
+     * 
+     * @return ServerEventListener对象
+     * @see ServerCoreHandler#getServerEventListener()
+     */
+    public ServerEventListener getServerEventListener()
+	{
+		return serverCoreHandler.getServerEventListener();
+	}
+    /**
+     * 设置服务端通用事件回调监听器。
+     * 
+     * @param serverEventListener ServerEventListener对象
+     * @see ServerCoreHandler#setServerEventListener(ServerEventListener)
+     */
+	public void setServerEventListener(ServerEventListener serverEventListener)
+	{
+		this.serverCoreHandler.setServerEventListener(serverEventListener);
+	}
+	
+	/**
+	 * 返回QoS机制的Server主动消息发送之质量保证事件监听器对象。
+	 * 
+	 * @return MessageQoSEventListenerS2C对象
+	 * @see ServerCoreHandler#getServerMessageQoSEventListener()
+	 */
+	public MessageQoSEventListenerS2C getServerMessageQoSEventListener()
+	{
+		return serverCoreHandler.getServerMessageQoSEventListener();
+	}
+	/**
+	 * 设置QoS机制的Server主动消息发送之质量保证事件监听器。
+	 * 
+	 * @param serverMessageQoSEventListener MessageQoSEventListenerS2C对象
+	 * @see ServerCoreHandler#setServerMessageQoSEventListener(MessageQoSEventListenerS2C)
+	 */
+	public void setServerMessageQoSEventListener(MessageQoSEventListenerS2C serverMessageQoSEventListener)
+	{
+		this.serverCoreHandler.setServerMessageQoSEventListener(serverMessageQoSEventListener);
+	}
+
+	public ServerCoreHandler getServerCoreHandler()
+	{
+		return serverCoreHandler;
+	}
+
+//	public static void main(String[] args) throws IOException 
+//    {
+//        new ServerLauncher().startup();
+//    }
+}

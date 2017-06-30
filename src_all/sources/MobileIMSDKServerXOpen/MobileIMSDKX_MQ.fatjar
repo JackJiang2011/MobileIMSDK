@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Tue Nov 15 16:42:46 CST 2016
+onejar.license.required=true
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=MobileIMSDKX_MQ.jar
+manifest.mergeall=true
+manifest.mainclass=
+manifest.file=<createnew>
+jarname.isextern=false
+onejar.expand=
+excludes=<po|MobileIMSDKServerX>~net/~nettime/~mobileimsdk/~server/~bridge/~QoS4ReciveDaemonC2B.class;<po|MobileIMSDKServerX>~net/~nettime/~mobileimsdk/~server/~bridge/~QoS4SendDaemonB2C.class;<po|MobileIMSDKServerX>~net/~openmob/;<po|MobileIMSDKServerX>~log4j.properties;<jar|log4j-1.2.17.jar>;<jar|rabbitmq-client.jar>;<jar|gson-2.7.jar>;<jar|mina-core-2.0.14.jar>;<jar|slf4j-api-1.7.21.jar>;<jar|slf4j-log4j12-1.7.21.jar>
+includes=

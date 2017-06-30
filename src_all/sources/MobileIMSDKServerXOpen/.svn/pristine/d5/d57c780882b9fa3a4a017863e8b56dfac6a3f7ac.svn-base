@@ -1,0 +1,200 @@
+/*
+ * Copyright (C) 2017  即时通讯网(52im.net) & Jack Jiang.
+ * The MobileIMSDK_X (MobileIMSDK v3.x) Project. 
+ * All rights reserved.
+ * 
+ * > Github地址: https://github.com/JackJiang2011/MobileIMSDK
+ * > 文档地址: http://www.52im.net/forum-89-1.html
+ * > 即时通讯技术社区：http://www.52im.net/
+ * > 即时通讯技术交流群：320837163 (http://www.52im.net/topic-qqgroup.html)
+ *  
+ * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
+ * 
+ * OnlineProcessor.java at 2017-5-2 15:49:27, code by Jack Jiang.
+ * You can contact author with jack.jiang@52im.net or jb2011@163.com.
+ */
+package net.openmob.mobileimsdk.server.processor;
+
+import java.util.concurrent.ConcurrentHashMap;
+
+import org.apache.mina.core.session.IoSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * MibileIMSDK的服务端用户列表管理类。
+ * <p>
+ * 根据全局算法约定，当user_id=0时即表示是服务器。
+ * <p>
+ * <b>关于用户的非正常退出问题的检查和处理机制：</b><br>
+ * 利用MINA自已的recycle会话回收机制({@link ExpiringSessionRecycler)，
+ * 无需单独编写SessionChecker这样的类来检查用户的非正常退出了。
+ * 
+ * @author Jack Jiang, 2013-10-08
+ * @version 1.0
+ */
+public class OnlineProcessor
+{
+	/** 用于用户session中存放user_id的属性key */
+	public final static String USER_ID_IN_SESSION_ATTRIBUTE = "__user_id__";
+	
+	public static boolean DEBUG = false;
+
+	private static Logger logger = LoggerFactory.getLogger(OnlineProcessor.class); 
+	private static OnlineProcessor instance = null;
+	
+	/** 用户在线列表：key=user_id、value=会话实例引用 */
+	private ConcurrentHashMap<String, IoSession> onlineSessions = new ConcurrentHashMap<String, IoSession>();
+	
+	/**
+	 * 为了简化API调用，本方法将以单例的形式存活。
+	 * 
+	 * @return 本类的全局单例
+	 */
+	public static OnlineProcessor getInstance()
+	{
+		if(instance == null)
+			instance = new OnlineProcessor();
+		return instance;
+	}
+	
+	private OnlineProcessor()
+	{
+	}
+	
+	/**
+	 * 将用户放入在线列表。
+	 * <p>
+     * <b><font color="#ff0000">本方法由MobileIMSDK内部决定如
+     * 何调用，不建议开发者调用此方法！</font></b>
+	 * 
+	 * @param user_id 用户的user_id
+	 * @param session 该用户对应的MINA会话引用
+	 * @param loginName 用户登陆账号
+	 */
+	public void putUser(String user_id, IoSession session)
+	{
+		if(onlineSessions.containsKey(user_id))
+		{
+			logger.debug("[IMCORE]【注意】用户id="+user_id+"已经在在线列表中了，session也是同一个吗？"
+					+(onlineSessions.get(user_id).hashCode() == session.hashCode()));
+			
+			// TODO 同一账号的重复登陆情况可在此展开处理逻辑
+		}
+		
+		// 将用户加入到在线列表中
+		onlineSessions.put(user_id, session);
+		
+		__printOnline();// just for debug
+	}
+	
+	/**
+	 * 打印在线用户列。
+	 * <p>
+	 * 本方法仅应用于DEBUG时，当在线用户数量众多时，本方法会影响性能。
+	 */
+	public void __printOnline()
+	{
+		logger.debug("【@】当前在线用户共("+onlineSessions.size()+")人------------------->");
+		if(DEBUG)
+		{
+			for(String key : onlineSessions.keySet())
+				logger.debug("      > user_id="+key+",session="+onlineSessions.get(key).getRemoteAddress());
+		}
+	}
+	
+	/**
+	 * 将用户从在线列表中移除.
+	 * <p>
+     * <b><font color="#ff0000">本方法由MobileIMSDK内部决定如
+     * 何调用，不建议开发者调用此方法！</font></b>
+     * 
+	 * @param user_id 用户的user_id
+	 * @return true表示已成功remove，否则表示没有此user_id对应的在线信息
+	 */
+	public boolean removeUser(String user_id)
+	{
+		synchronized(onlineSessions)
+		{
+			if(!onlineSessions.containsKey(user_id))
+			{
+				logger.warn("[IMCORE]！用户id="+user_id+"不存在在线列表中，本次removeUser没有继续.");
+				__printOnline();// just for debug
+				return false;
+			}
+			else
+				return (onlineSessions.remove(user_id) != null);
+		}
+	}
+	
+	/**
+	 * 根据user_id获得该在线用户对应的MINA会话实例句柄。
+	 * 
+	 * @param user_id 用户的user_id
+	 * @return 存在该在线用户则成功返回，否则返回null
+	 */
+	public IoSession getOnlineSession(String user_id)
+	{
+//		logger.debug("======>user_id="+user_id+"在列表中吗？"+usersBySession.containsKey(user_id));
+//		__printOnline();
+		return onlineSessions.get(user_id);
+	}
+	
+	/**
+	 * 返回用户在线列表：key=user_id、value=会话实例引用。
+	 * 
+	 * @return 在线列表实例引用
+	 */
+	public ConcurrentHashMap<String, IoSession> getOnlineSessions()
+	{
+		return onlineSessions;
+	}
+
+	//------------------------------------------------------------------ 实用方法
+	/**
+	 * 该用户会话是否是合法的（已登陆认证）。
+	 * <p>
+	 * 根据MINA的原理，任何请求都会建立会话，但会话是否是合法的，则需根据
+	 * 存放于其会话中的登陆属性来校验（MobileIMSDK中，已经过登陆认证的会话
+	 * ，会在其session中存放user_id，判断是否已设置user_id即可认定是否是
+	 * 合法的会话）。
+	 * 
+	 * @param session 用户会话引用
+	 * @return true表示已经成功登陆认证过，否则表示未登陆过（非法请求）
+	 */
+	public static boolean isLogined(IoSession session)
+	{
+		return session != null && getUserIdFromSession(session) != null;
+	}
+	
+	/**
+	 * 尝试取出存放于用户会话中的user_id.通常只有已成功登陆验证后的用户
+	 * 会话中才会存放它对应的user_id.
+	 * 
+	 * @param session 用户会话引用
+	 * @return 如果找到该属性则返回指定session的user_id，否则返回null
+	 */
+	public static String getUserIdFromSession(IoSession session)
+	{
+		Object attr = null;
+		if(session != null)
+		{
+			attr = session.getAttribute(USER_ID_IN_SESSION_ATTRIBUTE);
+			if(attr != null)
+				return (String)attr;
+		}
+		return null;
+	}
+	
+	/**
+	 * 指定用户ID的用户是否在线。
+	 * 
+	 * @param userId 用户名ID（就是用户登陆名）
+	 * @return true表示该用户在线，否则不在线
+	 * @since 3.0
+	 */
+	public static boolean isOnline(String userId)
+	{
+		return OnlineProcessor.getInstance().getOnlineSession(userId) != null;
+	}
+}

@@ -1,8 +1,0 @@
-【配置准备】
-请设置好JAVA_HOME系统环境变量。
-
-举例：
-在“系统环境变量/系统变量”中新建系统变量：“变量名=JAVA_HOME，变量值=C:\Program Files\Java\jdk1.6.0_18C:\Program Files\Java\jdk1.6.0_18”即可。
-
-【运行】
-Windows下直接运行run.bat。

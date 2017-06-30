@@ -1,0 +1,30 @@
+
+-------------------------------------------------------------------------------------- v3.0发布于2017-06-25 19:08
+MobileIMSDK v3.0版更新说明：
+【重要说明】
+因 MobileIMSDK v3 修改了核心层，已无法与 MobileIMSDK v2.x 兼容，请使用v2.x版的开发者勿贸然升级，如有疑问请前往 http://www.52im.net 发贴讨论！
+
+【新增重要特性】
+1. 简化了消息发送目标的方式：由原user_id方式改为使用用户名的方式（即取消了每次登陆由服务端生成user_id的方式，从而极大地简化应用层通信的API调用和逻辑代码）；
+2. 支持Web版与APP版互通（MobileIMSDK-Web版为另一独立工程，不包含在 MobileIMSDK v3 版之内）；
+3. 优化了Protocal协议结构：增加了typeu用户自定义协议类型字段，从而大大简化了用户自义协议类型的使用；
+
+【解决的Bug】
+1. [android]解决了当MobileIMSDK运行于有线电缆网络模式下不能正确判断网络连接事件的问题；
+2. [Android、java][bug]修正了Demo中首次登陆时使用了错误的ip后再改成正确的ip时却不能登陆的问题；
+3. [Android、java、iOS]解决了客户端（Android、iOS、Java）登陆时当服务端返回的认证结果code不为0时，客户端会进入反复登陆的死循环当中；
+
+【其它优化和提升】
+1. [服务端]服务端定时器都由javax.swing.Timer改为java.util.Timer，提高可靠性；
+2. [服务端]重构了服务端代码，简化算法的理解、增强代码可读性；
+3. [服务端]升级了相关lib包：MINA至最新版2.0.13、gson2.7等；
+4. [android]SDK代码依然顽强地支持低至Andriod 2.3.3及以上版本(即Android API Level 10+)；
+5. [iOS] 优化了demo的ui界面在ios10和xcode8下的兼容性问题。
+6. [iOS] 优化了“MessageQoSEvent中的messagesLost:(NSArray*)lostMessages”为“messagesLost:(NSMutableArray*)lostMessages”；
+7. [Android、java、iOS]优化了在掉线情况下的消息发送能尽快作为“未实时送达”包反馈到UI层从而提升体验；
+8. [服务端]因升级MINA2.0.13的需要，服务端SDK运行所需的Java版本已提升至1.7及以上版本；
+9. [Java、Android]解决了ClientCoreSDK.release()不能正常停掉LocalUDPDataReciever中的网络监听线程。
+
+
+
+
