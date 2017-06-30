@@ -183,22 +183,17 @@ MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所
 ![](https://github.com/JackJiang2011/MobileIMSDK/raw/master/preview/more_products/rainbowchat_v4_20170626.jpg)
 
 # 附录3：基于MobileIMSDK的某云客服IM子系统【案例】
-> <code>下图为某云客服产品IM子系统-Web版访客端：</code>
-
+### :triangular_flag_on_post: 下图为某云客服产品IM子系统-Web版访客端：
 ![](https://github.com/JackJiang2011/MobileIMSDK/raw/master/preview/more_products/cs-im-visitor-web.jpg)
 
-> <code>下图为某云客服产品IM子系统-Web版客服后台端：</code>
-
+### :triangular_flag_on_post: 下图为某云客服产品IM子系统-Web版客服后台端：
 ![](https://github.com/JackJiang2011/MobileIMSDK/raw/master/preview/more_products/cs_im_servicer_web_20161227.jpg)
 
-> <code>下图为某云客服产品IM子系统-Android版访客端：</code>
-
+### :triangular_flag_on_post: 下图为某云客服产品IM子系统-Android版访客端：
 ![](https://github.com/JackJiang2011/MobileIMSDK/raw/master/preview/more_products/cs-im-visitor-ios_20170509.jpg)
 
-> <code>下图为某云客服产品IM子系统-iOS版客服后台端：</code>
-
+### :triangular_flag_on_post: 下图为某云客服产品IM子系统-iOS版客服后台端：
 ![](https://github.com/JackJiang2011/MobileIMSDK/raw/master/preview/more_products/cs-im-servicer-ios_20170509.jpg)
 
-> <code>下图为某云客服产品IM子系统-Android版客服后台端：</code>
-
+### :triangular_flag_on_post: 下图为某云客服产品IM子系统-Android版客服后台端：
 ![](https://github.com/JackJiang2011/MobileIMSDK/raw/master/preview/more_products/cs-im-servicer-android_20170509.jpg)
