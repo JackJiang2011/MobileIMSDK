@@ -178,22 +178,27 @@ MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所
 ![](https://github.com/JackJiang2011/MobileIMSDK/raw/master/preview/web_demo_20170630.jpg)
 
 # 附录2：基于MobileIMSDK的全功能IM【案例】
-> <code>关于RainbowChat的更多资料请见：</code>[全功能移动端即时通讯/IM系统：RainbowChat前端APP功能截图](http://www.52im.net/thread-20-1-1.html)。
+> <code>关于RainbowChat的更多资料请见：</code>[RainbowChat前端APP功能截图网页](http://www.52im.net/thread-20-1-1.html)。
 
 ![](https://github.com/JackJiang2011/MobileIMSDK/raw/master/preview/more_products/rainbowchat_v4_20170626.jpg)
 
 # 附录3：基于MobileIMSDK的某云客服IM子系统【案例】
 > <code>下图为某云客服产品IM子系统-Web版访客端：</code>
+
 ![](https://github.com/JackJiang2011/MobileIMSDK/raw/master/preview/more_products/cs-im-visitor-web.jpg)
 
 > <code>下图为某云客服产品IM子系统-Web版客服后台端：</code>
+
 ![](https://github.com/JackJiang2011/MobileIMSDK/raw/master/preview/more_products/cs_im_servicer_web_20161227.jpg)
 
 > <code>下图为某云客服产品IM子系统-Android版访客端：</code>
+
 ![](https://github.com/JackJiang2011/MobileIMSDK/raw/master/preview/more_products/cs-im-visitor-ios_20170509.jpg)
 
 > <code>下图为某云客服产品IM子系统-iOS版客服后台端：</code>
+
 ![](https://github.com/JackJiang2011/MobileIMSDK/raw/master/preview/more_products/cs-im-servicer-ios_20170509.jpg)
 
 > <code>下图为某云客服产品IM子系统-Android版客服后台端：</code>
+
 ![](https://github.com/JackJiang2011/MobileIMSDK/raw/master/preview/more_products/cs-im-servicer-android_20170509.jpg)
