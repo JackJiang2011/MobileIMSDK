@@ -71,6 +71,8 @@ MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所
 3. <b>Java客户端SDK：</b>用于开发跨平台的PC端即时通讯客户端，支持Java 1\.5及以上，[查看API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/java/)；
 4. <b>服务端SDK：</b>用于开发即时通讯服和端，支持Java 1\.5及以上版本，[查看API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/server/)。
 
+<b>另：</b>MobileIMSDK-Web版为独立工程，如有需要请联系作者。
+
 # 五、技术特征
 * <b>超轻量级：</b>高度提炼，lib包50KB以内；
 * <b>UDP实现：</b>更好的适应现今的无线网络环境；
