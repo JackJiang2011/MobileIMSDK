@@ -192,6 +192,11 @@ public class MainActivity extends Activity
 					Log.w(TAG, e);
 				}
 				
+				//## BUG FIX: 20170713 START by JackJiang
+				// 退出登陆时记得一定要调用此行，不然不退出APP的情况下再登陆时会报 code=203错误哦！
+				IMClientManager.getInstance(MainActivity.this).resetInitFlag();
+				//## BUG FIX: 20170713 END by JackJiang
+				
 				return code;
 			}
 

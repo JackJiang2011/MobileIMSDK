@@ -72,6 +72,7 @@ public class LoginGUI extends JFrame
 		initListeners();
 		
 		// 确保MobileIMSDK被初始化哦（整个APP生生命周期中只需调用一次哦）
+		// 提示：在不退出APP的情况下退出登陆后再重新登陆时，请确保调用本方法一次，不然会报code=203错误哦！
 		IMClientManager.getInstance().initMobileIMSDK();
 		
 		// 登陆有关的初始化工作
@@ -112,7 +113,7 @@ public class LoginGUI extends JFrame
 		mainPanel.addTitledLineSeparator("");
 		JPanel btnAndVerPanel = new JPanel();
 		btnAndVerPanel.setLayout(new BoxLayout(btnAndVerPanel, BoxLayout.LINE_AXIS));
-		JLabel lbVer= new JLabel("v3.0b170626.1");
+		JLabel lbVer= new JLabel("v3.0b170713.1");
 		lbVer.setForeground(new Color(184,184,184));
 		btnAndVerPanel.add(lbVer);
 		btnAndVerPanel.add(Box.createHorizontalGlue());

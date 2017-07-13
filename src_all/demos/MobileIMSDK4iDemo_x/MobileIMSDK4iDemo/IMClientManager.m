@@ -112,6 +112,12 @@ static IMClientManager *instance = nil;
 - (void)releaseMobileIMSDK
 {
     [[ClientCoreSDK sharedInstance] releaseCore];
+    [self resetInitFlag];
+}
+
+- (void)resetInitFlag
+{
+    self._init = NO;
 }
 
 - (ChatTransDataEventImpl *) getTransDataListener

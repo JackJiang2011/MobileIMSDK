@@ -40,6 +40,17 @@
 
 - (void)releaseMobileIMSDK;
 
+
+/**
+ * 重置init标识。
+ * <p>
+ * <b>重要说明：</b>不退出APP的情况下，重新登陆时记得调用一下本方法，不然再
+ * 次调用 {@link #initMobileIMSDK()} 时也不会重新初始化MobileIMSDK（
+ * 详见 {@link #initMobileIMSDK()}代码）而报 code=203错误！
+ *
+ */
+- (void)resetInitFlag;
+
 - (ChatTransDataEventImpl *) getTransDataListener;
 - (ChatBaseEventImpl *) getBaseEventListener;
 - (MessageQoSEventImpl *) getMessageQoSListener;

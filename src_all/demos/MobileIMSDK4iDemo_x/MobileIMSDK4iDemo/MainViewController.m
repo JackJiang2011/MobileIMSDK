@@ -189,6 +189,11 @@ static const int TABLE_CELL_COLOR_GREEN = 4;
         NSString *msg = [NSString stringWithFormat:@"注销登陆请求发送失败，错误码：%d", code];
         [self E_showToastInfo:@"错误" withContent:msg onParent:self.view];
     }
+
+    //## BUG FIX: 20170713 START by JackJiang
+    // 退出登陆时记得一定要调用此行，不然不退出APP的情况下再登陆时会报 code=203错误哦！
+    [[IMClientManager sharedInstance] resetInitFlag];
+    //## BUG FIX: 20170713 END by JackJiang
 }
 
 - (void)doExit
