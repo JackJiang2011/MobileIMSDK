@@ -108,13 +108,18 @@ public class Launch
 			e.printStackTrace();
 		}
 	}
+	
+	public static void runOnUiThread(Runnable r)
+	{
+		SwingUtilities.invokeLater(r);
+	}
 
 	public static void main(final String... args)
 	{
 		// init gui properties
 		Launch.initUserInterface();
 		// startup GUI
-		SwingUtilities.invokeLater(new Runnable()
+		runOnUiThread(new Runnable()
 		{
 			public void run()
 			{

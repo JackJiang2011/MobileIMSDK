@@ -39,6 +39,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.border.LineBorder;
 
@@ -113,7 +114,7 @@ public class LoginGUI extends JFrame
 		mainPanel.addTitledLineSeparator("");
 		JPanel btnAndVerPanel = new JPanel();
 		btnAndVerPanel.setLayout(new BoxLayout(btnAndVerPanel, BoxLayout.LINE_AXIS));
-		JLabel lbVer= new JLabel("v3.0b170713.1");
+		JLabel lbVer= new JLabel("v3.0b170718.4");
 		lbVer.setForeground(new Color(184,184,184));
 		btnAndVerPanel.add(lbVer);
 		btnAndVerPanel.add(Box.createHorizontalGlue());
@@ -183,14 +184,24 @@ public class LoginGUI extends JFrame
 				// 登陆成功
 				if(code == 0)
 				{
-					//** 提示：登陆MobileIMSDK服务器成功后的事情在此实现即可
-					// 进入主界面
-					MainGUI frame = new MainGUI();
-					frame.setLocationRelativeTo(null);
-					frame.setVisible(true);
-					
-					// 同时关闭登陆界面
-					LoginGUI.this.dispose();
+					//## BUG FIX START: 20170718 by Jack Jiang 
+					//## 让以下代码异步运行于EDT线程，从而解决登陆界面切到主界面时偶尔卡死问题
+					// startup GUI
+					Launch.runOnUiThread(new Runnable()
+					{
+						public void run()
+						{
+							//** 提示：登陆MobileIMSDK服务器成功后的事情在此实现即可
+							// 进入主界面
+							MainGUI frame = new MainGUI();
+							frame.setLocationRelativeTo(null);
+							frame.setVisible(true);
+
+							// 同时关闭登陆界面
+							LoginGUI.this.dispose();
+						}
+					});
+					//## BUG FIX END: 20170718 by Jack Jiang 
 				}
 				// 登陆失败
 				else
