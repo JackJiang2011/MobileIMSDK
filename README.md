@@ -47,6 +47,7 @@
 MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所启发和帮助。
 
 :point_right: 您可能需要：[查看更多关于MobileIMSDK的疑问及解答](http://www.52im.net/thread-60-1-1.html)。
+:point_right: 另一姊妹工程：[轻量级Web端即时通讯框架：MobileIMSDK-Web](http://www.52im.net/thread-959-1-1.html) 已于2017年8月正式公开，专用于手机或PC端的网页聊天和消息推送等。
 
 # 二、代码托管同步更新
 
@@ -175,9 +176,13 @@ MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所
 ![](http://git.oschina.net/jackjiang/MobileIMSDK/raw/master/preview/more_screenshots/others/mac_real_run.png)
 
 ### :triangular_flag_on_post: MobileIMSDK-Web版客户端Demo运行效果：
-> <code>如何获取MobileIMSDK-Web版：</code>请联系作者。
+> <code>MobileIMSDK-Web在手机端浏览器运行效果：</code>[查看MobileIMSDK-Web版详情](http://www.52im.net/thread-959-1-1.html)。
 
-![](http://git.oschina.net/jackjiang/MobileIMSDK/raw/master/preview/web_demo_20170630.jpg)
+![](http://git.oschina.net/jackjiang/MobileIMSDK/raw/master/preview/mibileimsdk_web_demo_on_mobile_browsers.png)
+
+> <code>MobileIMSDK-Web在PC端浏览器运行效果：</code>[查看MobileIMSDK-Web版详情](http://www.52im.net/thread-959-1-1.html)。
+
+![](http://git.oschina.net/jackjiang/MobileIMSDK/raw/master/preview/mibileimsdk_web_demo_on_pc_browsers.png)
 
 # 附录2：基于MobileIMSDK的全功能IM【案例】
 > <code>关于RainbowChat的更多资料请见：</code>[RainbowChat前端APP功能截图网页](http://www.52im.net/thread-20-1-1.html)。
