@@ -47,6 +47,7 @@
 MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所启发和帮助。
 
 :point_right: 您可能需要：[查看更多关于MobileIMSDK的疑问及解答](http://www.52im.net/thread-60-1-1.html)。
+
 :point_right: 另一姊妹工程：[轻量级Web端即时通讯框架：MobileIMSDK-Web](http://www.52im.net/thread-959-1-1.html) 已于2017年8月正式公开，专用于手机或PC端的网页聊天和消息推送等。
 
 # 二、代码托管同步更新
@@ -72,7 +73,7 @@ MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所
 3. <b>Java客户端SDK：</b>用于开发跨平台的PC端即时通讯客户端，支持Java 1\.5及以上，[查看API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/java/)；
 4. <b>服务端SDK：</b>用于开发即时通讯服和端，支持Java 1\.5及以上版本，[查看API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/server/)。
 
-:point_right: <b>另：</b>MobileIMSDK-Web版为独立工程，如有需要请联系作者。
+:point_right: <b>另：</b>MobileIMSDK-Web版为独立工程，详见[轻量级Web端即时通讯框架：MobileIMSDK-Web](http://www.52im.net/thread-959-1-1.html) ，专用于手机或PC端的网页聊天和消息推送等。
 
 # 五、技术特征
 * <b>超轻量级：</b>高度提炼，lib包50KB以内；
