@@ -1,5 +1,0 @@
-【源码说明】：
-1）MobileIMSDK4aDemoX 为Android版Demo的源码；
-2）MobileIMSDK4jDemoX 为标准Java版Demo的源码（可运行于PC上的Java平台）；
-3）MobileIMSDKServerDemoX 为服务端Demo的源码（Java版）；
-4）MobileIMSDK4iDemo_x 为iOS版Demo的源码。

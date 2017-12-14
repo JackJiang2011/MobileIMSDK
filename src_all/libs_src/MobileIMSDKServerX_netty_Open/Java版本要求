@@ -1,0 +1,3 @@
+
+本工程因netty的要求，编译环境最低要求是Java l.7哦，详见：
+http://netty.io/wiki/requirements-for-4.x.html

@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Thu Feb 05 15:26:27 CST 2015
+onejar.license.required=true
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=RainbowCoreServer_meta.jar
+manifest.mergeall=true
+manifest.mainclass=
+manifest.file=<createnew>
+jarname.isextern=false
+onejar.expand=
+excludes=<po|RainbowCoreServer>~com/~cngeeker/~rainbowcore/~server/~demo/;<po|RainbowCoreServer>~com/~cngeeker/~rainbowcore/~server/~processor/;<po|RainbowCoreServer>~com/~cngeeker/~rainbowcore/~server/~qos/;<po|RainbowCoreServer>~com/~cngeeker/~rainbowcore/~server/~_temp/;<po|RainbowCoreServer>~com/~cngeeker/~rainbowcore/~server/~ServerCoreSDK.class;<po|RainbowCoreServer>~com/~cngeeker/~rainbowcore/~server/~ServerLauncher.class;<po|RainbowCoreServer>~log4j.properties;<jar|mina-core-2.0.7.jar>;<jar|slf4j-api-1.6.6.jar>;<jar|slf4j-log4j12-1.7.5.jar>;<jar|gson-2.2.4.jar>;<jar|log4j-1.2.17.jar>
+includes=

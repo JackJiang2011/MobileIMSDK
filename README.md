@@ -4,11 +4,13 @@
 * [网络编程理论经典《TCP/IP详解》（在线阅读版）](http://www.52im.net/topic-tcpipvol1.html) :triangular_flag_on_post:
 
 > #### ▌ 相关资料
-* [有关MobileIMSDK的疑问及解答](http://www.52im.net/thread-60-1-1.html) :point_left:
+* [MobileIMSDK版本更新日志](http://www.52im.net/thread-1270-1-1.html)
+* [MobileIMSDK常见问题解答](http://www.52im.net/thread-60-1-1.html) :point_left:
 * [MobileIMSDK性能测试报告](http://www.52im.net/thread-57-1-1.html)
 * [客户端Demo安装和使用帮助(Android)](http://www.52im.net/thread-55-1-1.html)
 * [客户端Demo安装和使用帮助(iOS)](http://www.52im.net/thread-54-1-1.html)
 * [客户端Demo安装和使用帮助(Java)](http://www.52im.net/thread-56-1-1.html)
+* [服务端Demo安装和使用帮助](http://www.52im.net/thread-1272-1-1.html) :new:
 * [应用案例RainbowChat体验版](http://www.52im.net/thread-19-1-1.html) :point_left:
 * [应用案例RainbowChat体验版截图预览](http://www.52im.net/thread-20-1-1.html)
 * [应用案例某Chat的部分非敏感运营数据](http://www.52im.net/thread-21-1-1.html)
@@ -21,7 +23,8 @@
 * [客户端SDK API文档(Android)](http://docs.52im.net/extend/docs/api/mobileimsdk/android/)
 * [客户端SDK API文档(iOS)](http://docs.52im.net/extend/docs/api/mobileimsdk/ios/)
 * [客户端SDK API文档(Java)](http://docs.52im.net/extend/docs/api/mobileimsdk/java/)
-* [服务端SDK API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/server/)
+* [服务端SDK API文档(基于Mina框架)](http://docs.52im.net/extend/docs/api/mobileimsdk/server/)
+* [服务端SDK API文档(基于Netty框架)](http://docs.52im.net/extend/docs/api/mobileimsdk/server_netty/)
 
 > #### ▌ 资源下载
 * [MobileIMSDK最新版打包下载](https://github.com/JackJiang2011/MobileIMSDK/releases/latest) :point_left:
@@ -30,7 +33,7 @@
 > #### ▌ 学习交流
 * 讨论学习和资料区：[点此进入](http://www.52im.net/forum-89-1.html)
 * 常见问题讨论学习：[点此进入](http://www.52im.net/forum.php?mod=collection&action=view&ctid=2&fromop=all) :point_left:
-* 移动端即时通讯交流群：![](https://raw.githubusercontent.com/JackJiang2011/MobileIMSDK/master/preview/more_screenshots/others/qq_group_icon_16-16.png) `215891622` :point_left:
+* 移动端即时通讯交流群：![](https://raw.githubusercontent.com/JackJiang2011/MobileIMSDK/master/preview/more_screenshots/others/qq_group_icon_16-16.png) `320837163` :point_left:
 * bug/建议发送至：`jb2011@163.com`
 * 技术支持/合作/咨询请联系作者QQ：`413980957`
 
@@ -41,9 +44,10 @@
 * 超轻量级、高度提炼，lib包50KB以内；
 * 完全基于UDP协议实现；
 * 客户端支持iOS、Android、标准Java平台；
+* 服务端提供Mina版和Netty版，方便研究和学习；:point_left:
 * 可应用于跨设备、跨网络的聊天APP、企业OA、消息推送等各种场景。
 
-> MobileIMSDK工程始于2013年10月（2017年06月26日发布了最新版v3.0），起初用作某产品的即时通讯底层实现，完全从零开发。<br>
+> MobileIMSDK工程始于2013年10月（2017年12月11日发布了最新版v3.1），起初用作某产品的即时通讯底层实现，完全从零开发。<br>
 MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所启发和帮助。
 
 :point_right: 您可能需要：[查看更多关于MobileIMSDK的疑问及解答](http://www.52im.net/thread-60-1-1.html)。
@@ -62,16 +66,19 @@ MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所
 * 代码托管：  http://git.oschina.net/jackjiang/MobileIMSDK 
 * 项目资料：  [点击查看更多资料](http://www.52im.net/forum-89-1.html)
 
+MobileIMSDK版本更新日志：[点此查看](http://www.52im.net/thread-1270-1-1.html) :point_left:
+
 # 三、设计目标
 让开发者专注于应用逻辑的开发，底层<code>复杂的即时通讯算法交由SDK开发人员</code>，从而<code>解偶即时通讯应用开发的复杂性</code>。
 
 # 四、框架组成
-<b>整套MobileIMSDK框架由以下4部分组成：</b>
+<b>整套MobileIMSDK框架由以下5部分组成：</b>
 
 1. <b>Android客户端SDK：</b>用于Android版即时通讯客户端，支持Android 2\.3及以上，[查看API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/android/)；
 2. <b>iOS客户端SDK：</b>用于开发iOS版即时通讯客户端，支持iOS 6\.0及以上，[查看API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/ios/)；
 3. <b>Java客户端SDK：</b>用于开发跨平台的PC端即时通讯客户端，支持Java 1\.5及以上，[查看API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/java/)；
-4. <b>服务端SDK：</b>用于开发即时通讯服和端，支持Java 1\.5及以上版本，[查看API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/server/)。
+4. <b>服务端SDK（Mina版）：</b>基于Mina框架，用于开发即时通讯服务端，支持Java 1\.6及以上版本，[查看API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/server/)。
+5. <b>服务端SDK（Netty版）：</b>基于Netty框架，用于开发即时通讯服务端，支持Java 1\.6及以上版本，[查看API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/server_netty/)  :new:。
 
 :point_right: <b>另：</b>MobileIMSDK-Web版为独立工程，详见[轻量级Web端即时通讯框架：MobileIMSDK-Web](http://www.52im.net/thread-959-1-1.html) ，专用于手机或PC端的网页聊天和消息推送等。
 
@@ -86,9 +93,10 @@ MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所
 * <b>原创算法：</b>核心算法和实现均为原创，保证了持续改进和提升的空间；
 * <b>多种模式：</b>预设多种实时灵敏度模式，可根据不同场景控制即时性、流量和客户端电量消耗；
 * <b>数据压缩：</b>自有协议实现，未来可自主定制数据压缩，灵活控制客户端的流量、服务端网络吞吐；
-* <b>高度封装：</b>高度封装的API接口，保证了调用的简易性，也使得可应用于更多的应用场景。
+* <b>高度封装：</b>高度封装的API接口，保证了调用的简易性，也使得可应用于更多的应用场景；
+* <b>Mina、Netty：</b>服务端分别提供了基于Mina和Netty共2个版本，根据您的技术喜好灵活选择  :new:。
 
-> <b>IMMobileSDK 所支持的全部3种即时通讯消息走向分别是：</b><br>
+> <b>MobileIMSDK 所支持的全部3种即时通讯消息走向分别是：</b><br>
   (1) Client to Client (C2C)：即由某客户端主动发起，接收者是另一客户端；<br>
   (2) Client to Server (C2S)：即由某客户端主动发起，接收者是服务端；<br>
   (3) Server to Client (S2C)：即由服务端主动发起，接收者是某客户端。
@@ -105,7 +113,8 @@ MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所
 # 七、演示程序
 1. <b>Android客户端 Demo：</b>[点此安装和使用](http://www.52im.net/thread-55-1-1.html)；
 2. <b>iOS客户端 Demo：</b>[点此安装和使用](http://www.52im.net/thread-54-1-1.html)；
-3. <b>Java客户端 Demo：</b>[点此安装和使用](http://www.52im.net/thread-56-1-1.html)。
+3. <b>Java客户端 Demo：</b>[点此安装和使用](http://www.52im.net/thread-56-1-1.html)；
+3. <b>服务端 Demo：</b>[点此安装和使用](http://www.52im.net/thread-1272-1-1.html)  :new:。
 
 # 八、应用案例
 #### ① 基于MobileIMSDK的产品级聊天APP：
