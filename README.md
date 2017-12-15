@@ -45,7 +45,7 @@
 * 完全基于UDP协议实现；
 * 客户端支持iOS、Android、标准Java平台；
 * 服务端提供Mina版和Netty版，方便研究和学习；:point_left:
-* 可与姊妹工程 [MobileIMSDK-Web](http://www.52im.net/thread-959-1-1.htm) 无缝互通实现网页端聊天或推送等；:point_left:
+* 可与姊妹工程 [MobileIMSDK-Web](http://www.52im.net/thread-959-1-1.html) 无缝互通实现网页端聊天或推送等；:point_left:
 * 可应用于跨设备、跨网络的聊天APP、企业OA、消息推送等各种场景。
 
 > MobileIMSDK工程始于2013年10月（2017年12月11日发布了最新版v3.1），起初用作某产品的即时通讯底层实现，完全从零开发。<br>
@@ -81,7 +81,7 @@ MobileIMSDK版本更新日志：[点此查看](http://www.52im.net/thread-1270-1
 4. <b>服务端SDK（Mina版）：</b>基于Mina框架，用于开发即时通讯服务端，支持Java 1\.6及以上版本，[查看API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/server/)。
 5. <b>服务端SDK（Netty版）：</b>基于Netty框架，用于开发即时通讯服务端，支持Java 1\.6及以上版本，[查看API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/server_netty/)  :new:。
 
-:point_right: <b>另外：</b>MobileIMSDK可与姊妹工程 [MobileIMSDK-Web](http://www.52im.net/thread-959-1-1.htm) 无缝互通，从而实现Web网页端聊天或推送等。
+:point_right: <b>另外：</b>MobileIMSDK可与姊妹工程 [MobileIMSDK-Web](http://www.52im.net/thread-959-1-1.html) 无缝互通，从而实现Web网页端聊天或推送等。
 
 # 五、技术特征
 * <b>超轻量级：</b>高度提炼，lib包50KB以内；
@@ -95,7 +95,7 @@ MobileIMSDK版本更新日志：[点此查看](http://www.52im.net/thread-1270-1
 * <b>多种模式：</b>预设多种实时灵敏度模式，可根据不同场景控制即时性、流量和客户端电量消耗；
 * <b>数据压缩：</b>自有协议实现，未来可自主定制数据压缩，灵活控制客户端的流量、服务端网络吞吐；
 * <b>高度封装：</b>高度封装的API接口，保证了调用的简易性，也使得可应用于更多的应用场景；
-* <b>Web支持：</b>可与姊妹工程 [MobileIMSDK-Web](http://www.52im.net/thread-959-1-1.htm) 无缝互通实现网页端聊天或推送等；:point_left:
+* <b>Web支持：</b>可与姊妹工程 [MobileIMSDK-Web](http://www.52im.net/thread-959-1-1.html) 无缝互通实现网页端聊天或推送等；:point_left:
 * <b>Mina、Netty：</b>服务端分别提供了基于Mina和Netty共2个版本，根据您的技术喜好灵活选择  :new:。
 
 > <b>MobileIMSDK 所支持的全部3种即时通讯消息走向分别是：</b><br>
