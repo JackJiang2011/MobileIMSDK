@@ -233,6 +233,12 @@ public class QoS4SendDaemon
 		}.execute();
 	}
 	
+	public void clear()
+	{
+		this.sentMessages.clear();
+		this.sendMessagesTimestamp.clear();
+	}
+	
 	public int size()
 	{
 		return sentMessages.size();

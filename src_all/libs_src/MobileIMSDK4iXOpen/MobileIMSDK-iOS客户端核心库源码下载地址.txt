@@ -1,5 +1,0 @@
-* 因历史原因，MobileIMSDK的iOS版客户端核心库源码的Xcode工程，请在此处下载：
-http://www.52im.net/thread-352-1-1.html
-
-* 另：精篇注释版请见：
-http://www.52im.net/thread-411-1-1.html

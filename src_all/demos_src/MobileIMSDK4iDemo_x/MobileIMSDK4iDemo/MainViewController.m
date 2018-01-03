@@ -258,8 +258,8 @@ static const int TABLE_CELL_COLOR_GREEN = 4;
 {
     [self showDebugStatusImage:([[AutoReLoginDaemon sharedInstance] isAutoReLoginRunning]?1:0) forImageView:self.iviewAutoRelogin];
     [self showDebugStatusImage:([[KeepAliveDaemon sharedInstance] isKeepAliveRunning]?1:0) forImageView:self.iviewKeepAlive];
-    [self showDebugStatusImage:([[ProtocalQoS4SendProvider sharedInstance] isRunning]?1:0) forImageView:self.iviewQoSSend];
-    [self showDebugStatusImage:([[ProtocalQoS4ReciveProvider sharedInstance] isRunning]?1:0) forImageView:self.iviewQoSReceive];
+    [self showDebugStatusImage:([[QoS4SendDaemon sharedInstance] isRunning]?1:0) forImageView:self.iviewQoSSend];
+    [self showDebugStatusImage:([[QoS4ReciveDaemon sharedInstance] isRunning]?1:0) forImageView:self.iviewQoSReceive];
 }
 
 - (void) initObserversForDEBUG
@@ -271,8 +271,8 @@ static const int TABLE_CELL_COLOR_GREEN = 4;
     
     [[AutoReLoginDaemon sharedInstance] setDebugObserver:[self createObserverCompletionForDEBUG:self.iviewAutoRelogin]];
     [[KeepAliveDaemon sharedInstance] setDebugObserver:[self createObserverCompletionForDEBUG:self.iviewKeepAlive]];
-    [[ProtocalQoS4SendProvider sharedInstance] setDebugObserver:[self createObserverCompletionForDEBUG:self.iviewQoSSend]];
-    [[ProtocalQoS4ReciveProvider sharedInstance] setDebugObserver:[self createObserverCompletionForDEBUG:self.iviewQoSReceive]];
+    [[QoS4SendDaemon sharedInstance] setDebugObserver:[self createObserverCompletionForDEBUG:self.iviewQoSSend]];
+    [[QoS4ReciveDaemon sharedInstance] setDebugObserver:[self createObserverCompletionForDEBUG:self.iviewQoSReceive]];
 }
 
 - (void) setupAnimationForStatusImage:(UIImageView *)iv

@@ -40,49 +40,57 @@ public abstract class ServerLauncher
 
 	public static boolean debug = true;
 	public static String appKey = null;
-    public static int PORT = 7901;
-    public static int SESION_RECYCLER_EXPIRE = 10;
-    public static boolean bridgeEnabled = false;
-    
-    private boolean running = false;
-    protected ServerCoreHandler serverCoreHandler = null; 
-    private NioDatagramAcceptor acceptor = null;
-    
-    public ServerLauncher() throws IOException 
-    {
-    }
-    
-    public boolean isRunning()
+	public static int PORT = 7901;
+	public static int SESION_RECYCLER_EXPIRE = 10;
+	public static boolean bridgeEnabled = false;
+
+	private boolean running = false;
+	protected ServerCoreHandler serverCoreHandler = null; 
+	private NioDatagramAcceptor acceptor = null;
+
+	public ServerLauncher() throws IOException 
+	{
+	}
+
+	public boolean isRunning()
 	{
 		return running;
 	}
-    
-    public void startup() throws IOException
-    {	
-    	serverCoreHandler = initServerCoreHandler();
-    	initListeners();
-    	acceptor = initAcceptor();
-    	initFilter(acceptor);
-    	initSessionConfig(acceptor);
-    	
-    	QoS4ReciveDaemonC2S.getInstance().startup();
-    	QoS4SendDaemonS2C.getInstance().startup(true).setServerLauncher(this);
-    	
-    	if(ServerLauncher.bridgeEnabled){
-        	QoS4ReciveDaemonC2B.getInstance().startup();
-        	QoS4SendDaemonB2C.getInstance().startup(true).setServerLauncher(this);
-    		serverCoreHandler.lazyStartupBridgeProcessor();
-    		logger.info("[IMCORE] 配置项：已开启与MobileIMSDK Web的互通.");
-    	}
-    	else{
-    		logger.info("[IMCORE] 配置项：未开启与MobileIMSDK Web的互通.");
-    	}
-       
-    	acceptor.bind(new InetSocketAddress(PORT));
-    	
-    	this.running = true;
-    	
-    	logger.info("[IMCORE] 基于MobileIMSDK的UDP服务正在端口" + PORT+"上监听中...");
+
+	public void startup() throws IOException
+	{	
+		if(!this.running)
+		{
+			serverCoreHandler = initServerCoreHandler();
+			initListeners();
+			acceptor = initAcceptor();
+			initFilter(acceptor);
+			initSessionConfig(acceptor);
+
+			QoS4ReciveDaemonC2S.getInstance().startup();
+			QoS4SendDaemonS2C.getInstance().startup(true).setServerLauncher(this);
+
+			if(ServerLauncher.bridgeEnabled){
+				QoS4ReciveDaemonC2B.getInstance().startup();
+				QoS4SendDaemonB2C.getInstance().startup(true).setServerLauncher(this);
+				serverCoreHandler.lazyStartupBridgeProcessor();
+				logger.info("[IMCORE] 配置项：已开启与MobileIMSDK Web的互通.");
+			}
+			else{
+				logger.info("[IMCORE] 配置项：未开启与MobileIMSDK Web的互通.");
+			}
+
+			acceptor.bind(new InetSocketAddress(PORT));
+
+			this.running = true;
+
+			logger.info("[IMCORE] 基于MobileIMSDK的UDP服务正在端口" + PORT+"上监听中...");
+		}
+		else
+		{
+			logger.warn("[IMCORE] 基于MobileIMSDK的UDP服务正在运行中" +
+					"，本次startup()失败，请先调用shutdown()后再试！");
+		}
     }
     
     public void shutdown()

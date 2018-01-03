@@ -1,0 +1,42 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "8d3d87f2-9396-e34a-88e2-f2e6eb1106e5++912",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "8d3d87f2-9396-e34a-88e2-f2e6eb1106e5++2908" : {
+
+    },
+    "8d3d87f2-9396-e34a-88e2-f2e6eb1106e5++912" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "9ed5075a-f848-b344-865b-7ca12b13ffea++2616" : 0,
+    "8d3d87f2-9396-e34a-88e2-f2e6eb1106e5++2908" : 0,
+    "8d3d87f2-9396-e34a-88e2-f2e6eb1106e5++912" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "8565E95C-E0E8-4EB2-B1AD-57C5484A7C5A",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "9ed5075a-f848-b344-865b-7ca12b13ffea++2616" : "RainbowCore4iLib",
+    "8d3d87f2-9396-e34a-88e2-f2e6eb1106e5++2908" : "MobileIMSDK4i",
+    "8d3d87f2-9396-e34a-88e2-f2e6eb1106e5++912" : "MobileIMSDK4i_x\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "MobileIMSDK4i",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "MobileIMSDK4i.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "http:\/\/dmhbl.com:4040\/svn\/Rainbow",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "8d3d87f2-9396-e34a-88e2-f2e6eb1106e5++2908"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "http:\/\/dmhbl.com:4040\/svn\/Rainbow",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "8d3d87f2-9396-e34a-88e2-f2e6eb1106e5++912"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "http:\/\/dmhbl.com:4040\/svn\/EFIMCore",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9ed5075a-f848-b344-865b-7ca12b13ffea++2616"
+    }
+  ]
+}

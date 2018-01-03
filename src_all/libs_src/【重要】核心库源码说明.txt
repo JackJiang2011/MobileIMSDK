@@ -1,7 +1,7 @@
 【源码说明】：
 1）MobileIMSDK4aXOpen：为Android版客户端核心库源码的Eclipse工程（另：精篇注释版见下方说明）；
 2）MobileIMSDK4jXOpen：为标准Java客户端版核心库源码的Eclipse工程（另：精篇注释版见下方说明）；
-3）MobileIMSDK4iXOpen：为iOS版客户端核心库源码的XCode工程（另：精篇注释版见下方说明）；
+3）MobileIMSDK4i_x_open：为iOS版客户端核心库源码的XCode工程（另：精篇注释版见下方说明）；
 4）MobileIMSDKServerX_mina_Open：为Mina版服务端核心库源码的Eclipse工程（另：精篇注释版见下方说明）；
 5）MobileIMSDKServerX_netty_Open：为Netty版服务端核心库源码的Eclipse工程（另：精篇注释版见下方说明）。
 

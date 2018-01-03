@@ -155,6 +155,11 @@ public class QoS4ReciveDaemon
 		return recievedMessages.containsKey(fingerPrintOfProtocal);
 	}
 	
+	public void clear()
+	{
+		this.recievedMessages.clear();
+	}
+	
 	public int size()
 	{
 		return recievedMessages.size();

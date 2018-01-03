@@ -81,7 +81,7 @@ public class ServerCoreHandler
 
     public void exceptionCaught(Channel session, Throwable cause) throws Exception 
     {
-        logger.error("[IMCORE-netty]exceptionCaught捕获到错了，原因是："+cause.getMessage(), cause);
+        logger.debug("[IMCORE-netty]此客户端的Channel抛出了exceptionCaught，原因是："+cause.getMessage()+"，可以提前close掉了哦！", cause);
         session.close();
     }
 
@@ -90,9 +90,8 @@ public class ServerCoreHandler
     	Protocal pFromClient = ServerToolKits.fromIOBuffer(bytebuf);
 
     	String remoteAddress = ServerToolKits.clientInfoToString(session);
-
-    	logger.info("---------------------------------------------------------");
-    	logger.info("[IMCORE-netty] << 收到客户端"+remoteAddress+"的消息:::"+pFromClient.toGsonString());
+//    	logger.info("---------------------------------------------------------");
+//    	logger.info("[IMCORE-netty] << 收到客户端"+remoteAddress+"的消息:::"+pFromClient.toGsonString());
 
     	switch(pFromClient.getType())
     	{

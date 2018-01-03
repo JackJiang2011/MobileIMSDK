@@ -22,16 +22,7 @@
 
 #import <Foundation/Foundation.h>
 
-/*!
- * 服务端反馈的用户登陆结果数据封装类。
- *
- * @author Jack Jiang,2014-10-29
- * @version 1.0
- * @since 2.1
- */
 @interface PLoginInfoResponse : NSObject
-
-/*! 错误码：0表示认证成功，否则是用户自定的错误码（该码应该是>1024的整数） */
 @property (nonatomic, assign) int code;
 
 @end

@@ -1,0 +1,17 @@
+
+-------------------------------------------------------------------------------------- v3.2b20180103发布于2018-01-03 15:35
+
+MobileIMSDK v3.2b20180103更新说明：
+【解决的Bug】
+1. [netty版服务端] 解决因“.closeFuture().await()”阻塞而导致无法正确设置ServerLauncher.running值；
+2. [netty版服务端] 解决了LocalSendHelper.sendData时出现2次发送结果回调用的问题；
+3. [Android|iOS|Java] 解决了在APP不退出的情况下退出登陆时未清除QoS队列缓存，致换用另一账号时发生数据交叉；
+
+【其它优化和提升】
+1. [netty版服务端|mina版服务端] 优化了ServerLauncher.startup()方法，当ServerLauncher.running==true时将直接忽略本次重复启动调用。
+
+
+
+
+
+

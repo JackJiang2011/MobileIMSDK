@@ -55,48 +55,56 @@ public abstract class ServerLauncher
  	private final EventLoopGroup __bossGroup4Netty = new NioEventLoopGroup();
  	private final EventLoopGroup __workerGroup4Netty = new DefaultEventLoopGroup();
  	private Channel __serverChannel4Netty = null;
-    
-    public ServerLauncher() throws IOException 
-    {
-    	// default do nothing
-    }
-    
-    public boolean isRunning()
-	{
-		return running;
-	}
-    
-    public void startup() throws Exception
-    {	
-    	serverCoreHandler = initServerCoreHandler();
-    	
-    	initListeners();
-    	
-    	ServerBootstrap bootstrap = initServerBootstrap4Netty();
 
-    	QoS4ReciveDaemonC2S.getInstance().startup();
-    	QoS4SendDaemonS2C.getInstance().startup(true).setServerLauncher(this);
-    	
-    	if(ServerLauncher.bridgeEnabled){
-    		
-        	QoS4ReciveDaemonC2B.getInstance().startup();
-        	QoS4SendDaemonB2C.getInstance().startup(true).setServerLauncher(this);
-        	
-    		serverCoreHandler.lazyStartupBridgeProcessor();
-    		
-    		logger.info("[IMCORE-netty] 配置项：已开启与MobileIMSDK Web的互通.");
-    	}
-    	else{
-    		logger.info("[IMCORE-netty] 配置项：未开启与MobileIMSDK Web的互通.");
-    	}
-       
-    	ChannelFuture cf = bootstrap.bind("0.0.0.0", PORT).syncUninterruptibly();
-    	__serverChannel4Netty = cf.channel();
-    	__serverChannel4Netty.closeFuture().await();
-    	
-    	this.running = true;
-       
-    	logger.info("[IMCORE-netty] 基于MobileIMSDK的UDP服务正在端口" + PORT+"上监听中...");
+ 	public ServerLauncher() throws IOException 
+ 	{
+ 		// default do nothing
+ 	}
+
+ 	public boolean isRunning()
+ 	{
+ 		return running;
+ 	}
+
+ 	public void startup() throws Exception
+ 	{	
+ 		if(!this.running)
+ 		{
+ 			serverCoreHandler = initServerCoreHandler();
+
+ 			initListeners();
+
+ 			ServerBootstrap bootstrap = initServerBootstrap4Netty();
+
+ 			QoS4ReciveDaemonC2S.getInstance().startup();
+ 			QoS4SendDaemonS2C.getInstance().startup(true).setServerLauncher(this);
+
+ 			if(ServerLauncher.bridgeEnabled){
+
+ 				QoS4ReciveDaemonC2B.getInstance().startup();
+ 				QoS4SendDaemonB2C.getInstance().startup(true).setServerLauncher(this);
+
+ 				serverCoreHandler.lazyStartupBridgeProcessor();
+
+ 				logger.info("[IMCORE-netty] 配置项：已开启与MobileIMSDK Web的互通.");
+ 			}
+ 			else{
+ 				logger.info("[IMCORE-netty] 配置项：未开启与MobileIMSDK Web的互通.");
+ 			}
+
+ 			ChannelFuture cf = bootstrap.bind("0.0.0.0", PORT).syncUninterruptibly();
+ 			__serverChannel4Netty = cf.channel();
+
+ 			this.running = true;
+ 			logger.info("[IMCORE-netty] 基于MobileIMSDK的UDP服务正在端口" + PORT+"上监听中...");
+
+ 			__serverChannel4Netty.closeFuture().await();
+ 		}
+ 		else
+ 		{
+ 			logger.warn("[IMCORE-netty] 基于MobileIMSDK的UDP服务正在运行中" +
+ 					"，本次startup()失败，请先调用shutdown()后再试！");
+ 		}
     }
 
     public void shutdown()

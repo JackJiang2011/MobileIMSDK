@@ -114,8 +114,8 @@ public class LocalSendHelper
 		    	         {
 		 		    		if( future.isSuccess())
 		 		    		{
-		 		    			logger.info("[IMCORE-netty] >> 给客户端："+ServerToolKits.clientInfoToString(session)
-		 		    					+"的数据->"+p.toGsonString()+",已成功发出["+res.length+"].");
+//		 		    			logger.info("[IMCORE-netty] >> 给客户端："+ServerToolKits.clientInfoToString(session)
+//		 		    					+"的数据->"+p.toGsonString()+",已成功发出["+res.length+"].");
 		 		    			
 		 		    			if("0".equals(p.getFrom()))
 		 		    			{
@@ -137,6 +137,12 @@ public class LocalSendHelper
 	 		    				resultObserver.update(future.isSuccess(), null);
 		    	         }
 		    	    });
+		    		
+		    		// ## Bug FIX: 20171226 by JS, 上述数据的发送结果直接通过ChannelFutureListener就能知道，
+		    		//            如果此处不return，则会走到最后的resultObserver.update(false, null);，就会
+		    		//            出现一个发送方法的结果回调先是失败（错误地走到下面去了），一个是成功（真正的listener结果）
+		    		return;
+		    		// ## Bug FIX: 20171226 by JS END
 		    	}
 		    	else
 		    	{

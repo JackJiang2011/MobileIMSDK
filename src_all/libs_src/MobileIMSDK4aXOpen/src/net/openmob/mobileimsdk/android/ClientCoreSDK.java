@@ -98,6 +98,11 @@ public class ClientCoreSDK
 		LocalUDPDataReciever.getInstance(context).stop();
 		QoS4ReciveDaemon.getInstance(context).stop();
 		
+		//## Bug FIX: 20180103 by Jack Jiang START
+		QoS4SendDaemon.getInstance(context).clear();
+		QoS4ReciveDaemon.getInstance(context).clear();
+		//## Bug FIX: 20180103 by Jack Jiang END
+		
 		try
 		{
 			context.unregisterReceiver(networkConnectionStatusBroadcastReceiver);

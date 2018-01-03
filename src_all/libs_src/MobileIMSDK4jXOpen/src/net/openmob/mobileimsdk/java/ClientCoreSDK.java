@@ -73,6 +73,11 @@ public class ClientCoreSDK
 		LocalUDPDataReciever.getInstance().stop();
 		QoS4ReciveDaemon.getInstance().stop();
 		
+		//## Bug FIX: 20180103 by Jack Jiang START
+		QoS4SendDaemon.getInstance().clear();
+		QoS4ReciveDaemon.getInstance().clear();
+		//## Bug FIX: 20180103 by Jack Jiang END
+		
 		_init = false;
 		
 		this.setLoginHasInit(false);
