@@ -155,8 +155,9 @@ MobileIMSDK版本更新日志：[点此查看](http://www.52im.net/thread-1270-1
 # 十二、授权方式
 你可永久免费且自由地使用MobileIMSDK，如：用于研究、学习、甚至商业用途，
 但禁止在超越License约束内容的情况下用于商业用途等，请尊重知识产权。
+更详细的授权说明，请见[MobileIMSDK社区介绍贴](http://www.52im.net/thread-52-1-1.html)中的“十二、授权方式”一节。
 
-> <b>补充说明：</b>如需获得更多技术支持或技术合作请联系作者，QQ：<code>413980957</code>。
+> <b>补充说明：</b>如您还需获得更多技术支持或技术合作请联系作者，QQ：<code>413980957</code>。
 
 # 十三、联系方式
 * 讨论学习和资料区：:earth_americas: [点此进入](http://www.52im.net/forum-89-1.html)；
