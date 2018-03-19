@@ -1,5 +1,5 @@
 【源码说明】：
-1）MobileIMSDK4aDemoX 为Android版Demo的源码Eclipse工程；
+1）MobileIMSDK4aDemoX 为Android版Demo的源码Android Studio3.0工程；
 2）MobileIMSDK4jDemoX 为标准Java版Demo的源码Eclipse工程（可运行于PC上的Java平台）；
 3）MobileIMSDK4iDemo_x 为iOS版Demo的源码Xcode工程。
 4）MobileIMSDKServerDemoX_mina 为Mina版服务端Demo的Eclipse工程；
