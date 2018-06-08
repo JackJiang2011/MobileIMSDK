@@ -1,5 +1,5 @@
-【工程名称】：MobileIMSDK v3.1, 一个专为移动端开发的原创即时通讯框架，超轻量级、高度提炼，完全基于UDP协议，支持iOS、Android、标准Java平台。
-【新版动态】: MobileIMSDK最新v3.1版发布于2017年12月11日
+【工程名称】：MobileIMSDK v3.2, 一个专为移动端开发的原创即时通讯框架，超轻量级、高度提炼，完全基于UDP协议，支持iOS、Android、标准Java平台。
+【新版动态】: MobileIMSDK最新v3.2版发布于2018年01月03日
 【作者】: Jack Jiang
 【QQ】: 413980957
 【微信】: hellojackjiang
