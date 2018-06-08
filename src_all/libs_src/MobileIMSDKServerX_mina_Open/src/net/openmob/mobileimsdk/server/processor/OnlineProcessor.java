@@ -85,6 +85,12 @@ public class OnlineProcessor
 	
 	public IoSession getOnlineSession(String user_id)
 	{
+		if(user_id == null)
+		{
+			logger.warn("[IMCORE][CAUTION] getOnlineSession时，作为key的user_id== null.");
+			return null;
+		}
+		
 		return onlineSessions.get(user_id);
 	}
 	

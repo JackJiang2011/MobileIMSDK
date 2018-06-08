@@ -172,13 +172,12 @@ public class ServerCoreHandler
     public void sessionClosed(Channel session) throws Exception 
     {
     	String user_id = OnlineProcessor.getUserIdFromSession(session);
-    	
-    	Channel sessionInOnlinelist = OnlineProcessor.getInstance().getOnlineSession(user_id);
-    	
-    	logger.info("[IMCORE-netty]"+ServerToolKits.clientInfoToString(session)+"的会话已关闭(user_id="+user_id+")了...");
-    	
     	if(user_id != null)
     	{
+	    	Channel sessionInOnlinelist = OnlineProcessor.getInstance().getOnlineSession(user_id);
+	    	
+	    	logger.info("[IMCORE-netty]"+ServerToolKits.clientInfoToString(session)+"的会话已关闭(user_id="+user_id+")了...");
+    	
     		if(sessionInOnlinelist != null && session != null && session == sessionInOnlinelist)
     		{
     			OnlineProcessor.getInstance().removeUser(user_id);
@@ -197,7 +196,8 @@ public class ServerCoreHandler
     	}
     	else
     	{
-    		logger.warn("[IMCORE-netty]【注意】会话"+ServerToolKits.clientInfoToString(session)+"被系统close了，但它里面没有存放user_id，这个会话是何时建立的？");
+    		logger.warn("[IMCORE-netty]【注意】会话"+ServerToolKits.clientInfoToString(session)
+    				+"被系统close了，但它里面没有存放user_id，它很可能是没有成功合法认证而被提前关闭，从而正常释放资源。");
     	}
     }
 

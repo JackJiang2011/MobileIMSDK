@@ -33,34 +33,33 @@ public class LocalSendHelper
 {
 	private static Logger logger = LoggerFactory.getLogger(ServerCoreHandler.class);  
 	
-	public static boolean sendData(String from_user_id, String to_user_id, String dataContent) throws Exception 
+	public static boolean sendData(String to_user_id, String dataContent) throws Exception 
     {
-    	return sendData(from_user_id, to_user_id, dataContent, true, null, -1);
+    	return sendData(to_user_id, dataContent, true, null, -1);
     }
 	
-	public static boolean sendData(String from_user_id, String to_user_id, String dataContent
-			, int typeu) throws Exception 
+	public static boolean sendData(String to_user_id, String dataContent, int typeu) throws Exception 
     {
-    	return sendData(from_user_id, to_user_id, dataContent, true, null, typeu);
+    	return sendData(to_user_id, dataContent, true, null, typeu);
     }
 	
-	public static boolean sendData(String from_user_id, String to_user_id, String dataContent
+	public static boolean sendData(String to_user_id, String dataContent
 			, boolean QoS, int typeu) throws Exception 
     {
-    	return sendData(from_user_id, to_user_id, dataContent, QoS, null, typeu);
+    	return sendData(to_user_id, dataContent, QoS, null, typeu);
     }
 	
-	public static boolean sendData(String from_user_id, String to_user_id, String dataContent
+	public static boolean sendData(String to_user_id, String dataContent
 			, boolean QoS, String fingerPrint) throws Exception 
     {
-    	return sendData(from_user_id, to_user_id, dataContent, QoS, fingerPrint, -1);
+    	return sendData(to_user_id, dataContent, QoS, fingerPrint, -1);
     }
 	
-	public static boolean sendData(String from_user_id, String to_user_id, String dataContent
+	public static boolean sendData(String to_user_id, String dataContent
 			, boolean QoS, String fingerPrint, int typeu) throws Exception 
     {
     	return sendData(ProtocalFactory.createCommonData(
-    			dataContent, from_user_id, to_user_id, QoS, fingerPrint, typeu));
+    			dataContent, "0", to_user_id, QoS, fingerPrint, typeu));
     }
     
     public static boolean sendData(Protocal p) throws Exception 

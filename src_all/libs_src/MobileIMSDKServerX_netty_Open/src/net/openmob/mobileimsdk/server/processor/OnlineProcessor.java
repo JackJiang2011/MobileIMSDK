@@ -50,7 +50,7 @@ public class OnlineProcessor
 	{
 		if(onlineSessions.containsKey(user_id))
 		{
-			logger.debug("[IMCORE]【注意】用户id="+user_id+"已经在在线列表中了，session也是同一个吗？"
+			logger.debug("[IMCORE-netty]【注意】用户id="+user_id+"已经在在线列表中了，session也是同一个吗？"
 					+(onlineSessions.get(user_id).hashCode() == session.hashCode()));
 		}
 		
@@ -75,7 +75,7 @@ public class OnlineProcessor
 		{
 			if(!onlineSessions.containsKey(user_id))
 			{
-				logger.warn("[IMCORE]！用户id="+user_id+"不存在在线列表中，本次removeUser没有继续.");
+				logger.warn("[IMCORE-netty]！用户id="+user_id+"不存在在线列表中，本次removeUser没有继续.");
 				__printOnline();// just for debug
 				return false;
 			}
@@ -86,6 +86,12 @@ public class OnlineProcessor
 	
 	public Channel getOnlineSession(String user_id)
 	{
+		if(user_id == null)
+		{
+			logger.warn("[IMCORE-netty][CAUTION] getOnlineSession时，作为key的user_id== null.");
+			return null;
+		}
+		
 		return onlineSessions.get(user_id);
 	}
 	

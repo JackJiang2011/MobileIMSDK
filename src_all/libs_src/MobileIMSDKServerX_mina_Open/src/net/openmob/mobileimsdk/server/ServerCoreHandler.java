@@ -181,25 +181,25 @@ public class ServerCoreHandler extends IoHandlerAdapter
     public void sessionClosed(IoSession session) throws Exception 
     {
     	String user_id = OnlineProcessor.getUserIdFromSession(session);
-    	IoSession sessionInOnlinelist = OnlineProcessor.getInstance().getOnlineSession(user_id);
-    	
-    	logger.info("[IMCORE]"+ServerToolKits.clientInfoToString(session)+"的会话已关闭(user_id="+user_id+")了...");
-    	
-    	// TODO just for DEBUG：以下代码仅作Debug之用，您随时可删除之！
-    	{// DEBUG Start
-    		
-    		logger.info(".......... 【0】[当前正在被关闭的session] session.hashCode="+session.hashCode()
-    			+", session.ip+port="+session.getRemoteAddress());
-    		
-    		if(sessionInOnlinelist != null)
-    		{
-    			logger.info(".......... 【1】[处于在线列表中的session] session.hashCode="+sessionInOnlinelist.hashCode()
-    				+", session.ip+port="+sessionInOnlinelist.getRemoteAddress());
-    		}
-    	}// DEBUG END
-    	
     	if(user_id != null)
     	{
+	    	IoSession sessionInOnlinelist = OnlineProcessor.getInstance().getOnlineSession(user_id);
+	    	
+	    	logger.info("[IMCORE]"+ServerToolKits.clientInfoToString(session)+"的会话已关闭(user_id="+user_id+")了...");
+	    	
+	    	// TODO just for DEBUG：以下代码仅作Debug之用，您随时可删除之！
+	    	{// DEBUG Start
+	    		
+	    		logger.info(".......... 【0】[当前正在被关闭的session] session.hashCode="+session.hashCode()
+	    			+", session.ip+port="+session.getRemoteAddress());
+	    		
+	    		if(sessionInOnlinelist != null)
+	    		{
+	    			logger.info(".......... 【1】[处于在线列表中的session] session.hashCode="+sessionInOnlinelist.hashCode()
+	    				+", session.ip+port="+sessionInOnlinelist.getRemoteAddress());
+	    		}
+	    	}// DEBUG END
+    	
     		//## Bug FIX: 20171211 START
     		if(sessionInOnlinelist != null && session != null && session == sessionInOnlinelist)
     		//## Bug FIX: 20171211 END
@@ -219,7 +219,8 @@ public class ServerCoreHandler extends IoHandlerAdapter
     	}
     	else
     	{
-    		logger.warn("[IMCORE]【注意】会话"+ServerToolKits.clientInfoToString(session)+"被系统close了，但它里面没有存放user_id，这个会话是何时建立的？");
+    		logger.warn("[IMCORE]【注意】会话"+ServerToolKits.clientInfoToString(session)
+    				+"被系统close了，但它里面没有存放user_id，它很可能是没有成功合法认证而被提前关闭，从而正常释放资源。");
     	}
     }
 

@@ -37,35 +37,35 @@ public class LocalSendHelper
 {
 	private static Logger logger = LoggerFactory.getLogger(ServerCoreHandler.class);  
 	
-	public static void sendData(String from_user_id, String to_user_id
+	public static void sendData(String to_user_id
 			, String dataContent, MBObserver resultObserver) throws Exception 
     {
-    	sendData(from_user_id, to_user_id, dataContent, true, null, -1, resultObserver);
+    	sendData(to_user_id, dataContent, true, null, -1, resultObserver);
     }
 	
-	public static void sendData(String from_user_id, String to_user_id, String dataContent
+	public static void sendData(String to_user_id, String dataContent
 			, int typeu, MBObserver resultObserver) throws Exception 
     {
-    	sendData(from_user_id, to_user_id, dataContent, true, null, typeu, resultObserver);
+    	sendData(to_user_id, dataContent, true, null, typeu, resultObserver);
     }
 	
-	public static void sendData(String from_user_id, String to_user_id, String dataContent
+	public static void sendData(String to_user_id, String dataContent
 			, boolean QoS, int typeu, MBObserver resultObserver) throws Exception 
     {
-    	sendData(from_user_id, to_user_id, dataContent, QoS, null, typeu, resultObserver);
+    	sendData(to_user_id, dataContent, QoS, null, typeu, resultObserver);
     }
 	
-	public static void sendData(String from_user_id, String to_user_id, String dataContent
+	public static void sendData(String to_user_id, String dataContent
 			, boolean QoS, String fingerPrint, MBObserver resultObserver) throws Exception 
     {
-    	sendData(from_user_id, to_user_id, dataContent, QoS, fingerPrint, -1, resultObserver);
+    	sendData(to_user_id, dataContent, QoS, fingerPrint, -1, resultObserver);
     }
 	
-	public static void sendData(String from_user_id, String to_user_id, String dataContent
+	public static void sendData(String to_user_id, String dataContent
 			, boolean QoS, String fingerPrint, int typeu, MBObserver resultObserver) throws Exception 
     {
     	sendData(
-    		ProtocalFactory.createCommonData(dataContent, from_user_id, to_user_id, QoS, fingerPrint, typeu)
+    		ProtocalFactory.createCommonData(dataContent, "0", to_user_id, QoS, fingerPrint, typeu)
     		, resultObserver);
     }
     
