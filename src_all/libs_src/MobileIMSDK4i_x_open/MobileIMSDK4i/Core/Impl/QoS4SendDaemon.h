@@ -24,9 +24,9 @@
 #import "Protocal.h"
 #import "CompletionDefine.h"
 
-@interface QoS4ReciveDaemon : NSObject
+@interface QoS4SendDaemon : NSObject
 
-+ (QoS4ReciveDaemon *)sharedInstance;
++ (QoS4SendDaemon *)sharedInstance;
 
 - (void) startup:(BOOL)immediately;
 - (void) stop;

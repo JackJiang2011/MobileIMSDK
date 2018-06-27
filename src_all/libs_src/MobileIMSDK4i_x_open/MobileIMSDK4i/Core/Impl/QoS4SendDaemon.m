@@ -35,7 +35,7 @@ static int MESSAGES_JUST$NOW_TIME = 3 * 1000;
 static int QOS_TRY_COUNT = 2;
 
 
-@interface QoS4ReciveDaemon ()
+@interface QoS4SendDaemon ()
 
 @property (nonatomic, retain) NSMutableDictionary *sentMessages;
 @property (nonatomic, retain) NSMutableDictionary *sendMessagesTimestamp;
@@ -47,11 +47,11 @@ static int QOS_TRY_COUNT = 2;
 @end
 
 
-@implementation QoS4ReciveDaemon
+@implementation QoS4SendDaemon
 
-static QoS4ReciveDaemon *instance = nil;
+static QoS4SendDaemon *instance = nil;
 
-+ (QoS4ReciveDaemon *)sharedInstance
++ (QoS4SendDaemon *)sharedInstance
 {
     if (instance == nil)
     {

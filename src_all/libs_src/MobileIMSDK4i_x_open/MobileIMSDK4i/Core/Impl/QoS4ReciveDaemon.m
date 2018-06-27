@@ -31,7 +31,7 @@ static int CHECK_INTERVAL = 5 * 60 * 1000;
 static int MESSAGES_VALID_TIME = 10 * 60 * 1000;
 
 
-@interface QoS4SendDaemon ()
+@interface QoS4ReciveDaemon ()
 
 @property (nonatomic, retain) NSMutableDictionary *recievedMessages;
 @property (nonatomic, assign) BOOL running;
@@ -42,11 +42,11 @@ static int MESSAGES_VALID_TIME = 10 * 60 * 1000;
 @end
 
 
-@implementation QoS4SendDaemon
+@implementation QoS4ReciveDaemon
 
-static QoS4SendDaemon *instance = nil;
+static QoS4ReciveDaemon *instance = nil;
 
-+ (QoS4SendDaemon *)sharedInstance
++ (QoS4ReciveDaemon *)sharedInstance
 {
     if (instance == nil)
     {

@@ -76,8 +76,8 @@ static LocalUDPDataSender *instance = nil;
 
 - (void) putToQoS:(Protocal *)p
 {
-    if(p.QoS && ![[QoS4ReciveDaemon sharedInstance] exist:p.fp])
-        [[QoS4ReciveDaemon sharedInstance] put:p];
+    if(p.QoS && ![[QoS4SendDaemon sharedInstance] exist:p.fp])
+        [[QoS4SendDaemon sharedInstance] put:p];
 }
 
 + (LocalUDPDataSender *)sharedInstance

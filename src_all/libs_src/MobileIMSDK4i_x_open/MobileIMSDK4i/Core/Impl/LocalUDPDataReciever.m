@@ -66,18 +66,18 @@ static LocalUDPDataReciever *instance = nil;
         }
         else
         {
-            if([[QoS4SendDaemon sharedInstance] hasRecieved:pFromServer.fp])
+            if([[QoS4ReciveDaemon sharedInstance] hasRecieved:pFromServer.fp])
             {
                 if([ClientCoreSDK isENABLED_DEBUG])
                     NSLog(@"【IMCORE】【QoS机制】%@已经存在于发送列表中，这是重复包，通知应用层收到该包罗！", pFromServer.fp);
 
-                [[QoS4SendDaemon sharedInstance] addRecieved:pFromServer];
+                [[QoS4ReciveDaemon sharedInstance] addRecieved:pFromServer];
                 [self sendRecievedBack:pFromServer];
 
                 return;
             }
 
-            [[QoS4SendDaemon sharedInstance] addRecieved:pFromServer];
+            [[QoS4ReciveDaemon sharedInstance] addRecieved:pFromServer];
             [self sendRecievedBack:pFromServer];
         }
     }
@@ -108,7 +108,7 @@ static LocalUDPDataReciever *instance = nil;
             if([ClientCoreSDK sharedInstance].messageQoSEvent != nil)
                 [[ClientCoreSDK sharedInstance].messageQoSEvent messagesBeReceived:theFingerPrint];
             
-            [[QoS4ReciveDaemon sharedInstance] remove:theFingerPrint];
+            [[QoS4SendDaemon sharedInstance] remove:theFingerPrint];
             
             break;
         }
