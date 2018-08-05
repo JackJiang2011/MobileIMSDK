@@ -64,7 +64,7 @@ MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所
 
 **OsChina.net**
 
-* 代码托管：  http://git.oschina.net/jackjiang/MobileIMSDK 
+* 代码托管：  https://gitee.com/jackjiang/MobileIMSDK 
 * 项目资料：  [点击查看更多资料](http://www.52im.net/forum-89-1.html)
 
 MobileIMSDK版本更新日志：[点此查看](http://www.52im.net/thread-1270-1-1.html) :point_left:
@@ -123,7 +123,7 @@ MobileIMSDK版本更新日志：[点此查看](http://www.52im.net/thread-1270-1
 > 目前仅作演示之用：[点击下载体验](http://www.52im.net/thread-19-1-1.html) 或 [查看运行截图](http://www.52im.net/thread-20-1-1.html)。
 
 #### ② MobileIMSDK在高网络延迟下的案例：
-> 某款基于MobileIMSDK的商业商品，曾运营于跨洲际的复杂网络环境下，端到端通信延迟在洲际网络繁忙时可高达600ms以上（与服务端的单向延迟约为300ms左右，而通常大家访问国内主流门户的延迟约为20~50ms），某段时期的非敏感运营数据 [点此查看](http://cngeeker.com/forum.php?mod=viewthread&tid=21&page=1&extra=#pid35)。
+> 某款基于MobileIMSDK的商业商品，曾运营于跨洲际的复杂网络环境下，端到端通信延迟在洲际网络繁忙时可高达600ms以上（与服务端的单向延迟约为300ms左右，而通常大家访问国内主流门户的延迟约为20~50ms），某段时期的非敏感运营数据 [点此查看](http://www.52im.net/forum.php?mod=viewthread&tid=21&page=1&extra=#pid35)。
 
 # 九、资源下载
 :paperclip: 最新发布版：[点击下载](https://github.com/JackJiang2011/MobileIMSDK/releases/latest)（<code>内含完整demo、api文档、编译分发包等</code>）。
@@ -161,7 +161,7 @@ MobileIMSDK版本更新日志：[点此查看](http://www.52im.net/thread-1270-1
 
 # 十三、联系方式
 * 讨论学习和资料区：:earth_americas: [点此进入](http://www.52im.net/forum-89-1.html)；
-* 移动端即时通讯学习交流群：`320837163` <a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=347e290d9cc726233b8c106272c100c8b56c366914452ebcd577f520e3617649"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="即时通讯(IM/推送)开发2" title="即时通讯(IM/推送)开发2"></a> （[更多QQ群点此进入](http://cngeeker.com/portal.php?mod=topic&topicid=2)）；
+* 移动端即时通讯学习交流群：`320837163` <a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=347e290d9cc726233b8c106272c100c8b56c366914452ebcd577f520e3617649"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="即时通讯(IM/推送)开发2" title="即时通讯(IM/推送)开发2"></a> （[更多QQ群点此进入](http://www.52im.net/portal.php?mod=topic&topicid=2)）；
 * bug和建议请发送至：:love_letter: `jb2011@163.com`；
 * 技术支持、技术合作或咨询请联系作者QQ：:penguin: `413980957`、微信：`hellojackjiang`。
 
@@ -174,46 +174,46 @@ MobileIMSDK版本更新日志：[点此查看](http://www.52im.net/thread-1270-1
 ### :triangular_flag_on_post: Android和iOS运行效果：
 > <code>安装和使用：</code>[进入Android版Demo帮助页](http://www.52im.net/thread-55-1-1.html)、[进入iOS版Demo帮助页](http://www.52im.net/thread-54-1-1.html)。
 
-![](http://git.oschina.net/jackjiang/MobileIMSDK/raw/master/preview/more_screenshots/others/ios_android_real_run.jpg)
-![](http://git.oschina.net/jackjiang/MobileIMSDK/raw/master/preview/ios_demo_main.png)
+![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/more_screenshots/others/ios_android_real_run.jpg)
+![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/ios_demo_main.png)
 
 ### :triangular_flag_on_post: Windows 运行效果：
 > <code>安装和使用：</code>[进入Java版Demo帮助页](http://www.52im.net/thread-56-1-1.html)。
 
-![](http://git.oschina.net/jackjiang/MobileIMSDK/raw/master/preview/java_demo_main.png)
-![](http://git.oschina.net/jackjiang/MobileIMSDK/raw/master/preview/more_screenshots/others/windows_real_run.png)
+![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/java_demo_main.png)
+![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/more_screenshots/others/windows_real_run.png)
 
 ### :triangular_flag_on_post: Mac OS X 运行效果：
 > <code>安装和使用：</code>[进入Java版Demo帮助页](http://www.52im.net/thread-56-1-1.html)。
 
-![](http://git.oschina.net/jackjiang/MobileIMSDK/raw/master/preview/more_screenshots/others/mac_real_run.png)
+![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/more_screenshots/others/mac_real_run.png)
 
 ### :triangular_flag_on_post: MobileIMSDK-Web版客户端Demo运行效果：
 > <code>MobileIMSDK-Web在手机端浏览器运行效果：</code>[查看MobileIMSDK-Web版详情](http://www.52im.net/thread-959-1-1.html)。
 
-![](http://git.oschina.net/jackjiang/MobileIMSDK/raw/master/preview/mibileimsdk_web_demo_on_mobile_browsers.png)
+![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/mibileimsdk_web_demo_on_mobile_browsers.png)
 
 > <code>MobileIMSDK-Web在PC端浏览器运行效果：</code>[查看MobileIMSDK-Web版详情](http://www.52im.net/thread-959-1-1.html)。
 
-![](http://git.oschina.net/jackjiang/MobileIMSDK/raw/master/preview/mibileimsdk_web_demo_on_pc_browsers.png)
+![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/mibileimsdk_web_demo_on_pc_browsers.png)
 
 # 附录2：基于MobileIMSDK的全功能IM【案例】
 > <code>关于RainbowChat的更多资料请见：</code>[RainbowChat前端APP功能截图网页](http://www.52im.net/thread-20-1-1.html)。
 
-![](http://git.oschina.net/jackjiang/MobileIMSDK/raw/master/preview/more_products/rainbowchat_v4_20170626.jpg)
+![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/more_products/rainbowchat_v4_20170626.jpg)
 
 # 附录3：基于MobileIMSDK的某云客服IM子系统【案例】
 ### :triangular_flag_on_post: 下图为某云客服产品IM子系统-Web版访客端：
-![](http://git.oschina.net/jackjiang/MobileIMSDK/raw/master/preview/more_products/cs-im-visitor-web.jpg)
+![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/more_products/cs-im-visitor-web.jpg)
 
 ### :triangular_flag_on_post: 下图为某云客服产品IM子系统-Web版客服后台端：
-![](http://git.oschina.net/jackjiang/MobileIMSDK/raw/master/preview/more_products/cs_im_servicer_web_20161227.jpg)
+![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/more_products/cs_im_servicer_web_20161227.jpg)
 
 ### :triangular_flag_on_post: 下图为某云客服产品IM子系统-Android版访客端：
-![](http://git.oschina.net/jackjiang/MobileIMSDK/raw/master/preview/more_products/cs-im-visitor-ios_20170509.jpg)
+![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/more_products/cs-im-visitor-ios_20170509.jpg)
 
 ### :triangular_flag_on_post: 下图为某云客服产品IM子系统-iOS版客服后台端：
-![](http://git.oschina.net/jackjiang/MobileIMSDK/raw/master/preview/more_products/cs-im-servicer-ios_20170509.jpg)
+![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/more_products/cs-im-servicer-ios_20170509.jpg)
 
 ### :triangular_flag_on_post: 下图为某云客服产品IM子系统-Android版客服后台端：
-![](http://git.oschina.net/jackjiang/MobileIMSDK/raw/master/preview/more_products/cs-im-servicer-android_20170509.jpg)
+![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/more_products/cs-im-servicer-android_20170509.jpg)
