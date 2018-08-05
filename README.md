@@ -165,7 +165,11 @@ MobileIMSDK版本更新日志：[点此查看](http://www.52im.net/thread-1270-1
 * bug和建议请发送至：:love_letter: `jb2011@163.com`；
 * 技术支持、技术合作或咨询请联系作者QQ：:penguin: `413980957`、微信：`hellojackjiang`。
 
-# 十四、关注作者
+# 十四、捐助作者
+优秀的开源需要您的支持才能走的更远，衷心感谢您的支持与理解，也希望您能从开源中收益。
+* 捐助链接： [点此进入](http://www.52im.net/thread-411-1-1.html)。
+
+# 十五、关注作者
 * 推荐关注：[BeautyEye工程](https://github.com/JackJiang2011/beautyeye)
 * 博客地址：[点击入进](http://www.52im.net/space-uid-1.html)
 * Github主页：[点击进入](https://github.com/JackJiang2011)
