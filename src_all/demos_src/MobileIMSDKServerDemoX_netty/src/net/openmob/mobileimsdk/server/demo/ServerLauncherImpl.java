@@ -17,12 +17,11 @@ package net.openmob.mobileimsdk.server.demo;
 
 import java.io.IOException;
 
-import net.nettime.mobileimsdk.server.netty.MBObserver;
 import net.openmob.mobileimsdk.server.ServerLauncher;
-import net.openmob.mobileimsdk.server.protocal.Protocal;
 import net.openmob.mobileimsdk.server.qos.QoS4ReciveDaemonC2S;
 import net.openmob.mobileimsdk.server.qos.QoS4SendDaemonS2C;
-import net.openmob.mobileimsdk.server.utils.LocalSendHelper;
+import net.openmob.mobileimsdk.server.utils.ServerToolKits;
+import net.openmob.mobileimsdk.server.utils.ServerToolKits.SenseMode;
 
 /**
  * IM服务的启动主类。
@@ -30,7 +29,7 @@ import net.openmob.mobileimsdk.server.utils.LocalSendHelper;
  * <b>友情提示：</b>其实MobileIMSDK的服务端并非只能以main的主类方式独立启
  * 动，你完全可以把它放到诸如java的Web工程里作为子模块运行，不会有任何问题！
  * 
- * @author Jack Jiang, 2017-12-08
+ * @author Jack Jiang
  * @version 1.0
  * @since 3.1
  */
@@ -51,7 +50,7 @@ public class ServerLauncherImpl extends ServerLauncher
 		ServerLauncher.debug = true;
 		
 		// TODO 与客户端协商一致的心跳敏感模式设置
-//		ServerLauncherImpl.setSenseMode(SenseMode.MODE_10S);
+//		ServerToolKits.setSenseMode(SenseMode.MODE_10S);
 
 		// 关闭与Web端的消息互通桥接器（其实SDK中默认就是false）
 		ServerLauncher.bridgeEnabled = false;

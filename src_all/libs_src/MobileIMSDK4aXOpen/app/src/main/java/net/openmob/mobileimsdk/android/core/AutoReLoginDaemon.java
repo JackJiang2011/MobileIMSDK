@@ -34,6 +34,7 @@ public class AutoReLoginDaemon
 	private boolean autoReLoginRunning = false;
 	private boolean _excuting = false;
 	private Context context = null;
+    private boolean init = false;
 	
 	public static AutoReLoginDaemon getInstance(Context context)
 	{
@@ -50,6 +51,9 @@ public class AutoReLoginDaemon
 	
 	private void init()
 	{
+        if(init)
+            return;
+
 		handler = new Handler();
 		runnable = new Runnable(){
 			@Override
@@ -91,6 +95,8 @@ public class AutoReLoginDaemon
 				}
 			}
 		};
+
+        init = true;
 	}
 	
 	public void stop()
@@ -111,4 +117,9 @@ public class AutoReLoginDaemon
 	{
 		return autoReLoginRunning;
 	}
+
+    public boolean isInit()
+    {
+        return init;
+    }
 }

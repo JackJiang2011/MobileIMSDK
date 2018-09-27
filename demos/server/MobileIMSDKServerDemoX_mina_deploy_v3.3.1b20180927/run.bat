@@ -1,6 +1,6 @@
 @echo off
 
-@echo 欢迎使用 MobileIMSDK v3.2 服务端-Mina版 (build20180103)
+@echo 欢迎使用 MobileIMSDK v3.3.1 服务端-Mina版 (build20180927)
 @echo.
 @echo IM核心服务器正在运行中...
 @echo.

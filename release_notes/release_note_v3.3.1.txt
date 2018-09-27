@@ -1,0 +1,13 @@
+
+-------------------------------------------------------------------------------------- v3.3.1发布于2018-09-27 15:36
+
+MobileIMSDK v3.3.1更新说明：
+【其它优化和提升】
+1. [Android|Java] 优化了退出或注册登陆时、socket关闭时的log信息，现在看起来更友好一些；
+2. [Android] 解决了某些奇葩机型（比如3星A9）上可能出现“Can't create handler inside thread that has not called Looper.prepare()”的问题。
+
+
+
+
+
+

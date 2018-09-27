@@ -84,6 +84,12 @@ public class ClientCoreSDK
 			IntentFilter intentFilter = new IntentFilter(); 
 			intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION); 
 			this.context.registerReceiver(networkConnectionStatusBroadcastReceiver, intentFilter);
+
+            AutoReLoginDaemon.getInstance(this.context);
+            KeepAliveDaemon.getInstance(this.context);
+            LocalUDPDataReciever.getInstance(this.context);
+            QoS4ReciveDaemon.getInstance(this.context);
+            QoS4SendDaemon.getInstance(this.context);
 		
 			_init = true;
 		}
@@ -109,7 +115,7 @@ public class ClientCoreSDK
 		}
 		catch (Exception e)
 		{
-			Log.w(TAG, e.getMessage(), e);
+            Log.i(TAG, "还未注册android网络事件广播的监听器，本次取消注册已被正常忽略哦.");
 		}
 		
 		_init = false;

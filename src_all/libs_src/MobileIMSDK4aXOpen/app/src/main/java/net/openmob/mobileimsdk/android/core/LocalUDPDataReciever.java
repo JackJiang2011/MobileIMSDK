@@ -38,9 +38,11 @@ public class LocalUDPDataReciever
 	private final static String TAG = LocalUDPDataReciever.class.getSimpleName();
 	
 	private static LocalUDPDataReciever instance = null;
-	private static MessageHandler messageHandler = null;
-	
+
+	private MessageHandler messageHandler = null;
 	private Thread thread = null;
+    private boolean init = false;
+
 	private Context context = null;
 	
 	public static LocalUDPDataReciever getInstance(Context context)
@@ -48,7 +50,6 @@ public class LocalUDPDataReciever
 		if(instance == null)
 		{
 			instance = new LocalUDPDataReciever(context);
-			messageHandler = new MessageHandler(context);
 		}
 		return instance;
 	}
@@ -56,7 +57,17 @@ public class LocalUDPDataReciever
 	private LocalUDPDataReciever(Context context)
 	{
 		this.context = context;
+        init();
 	}
+
+    private void init()
+    {
+        if(init)
+            return;
+
+        messageHandler = new MessageHandler(context);
+        init = true;
+    }
 	
 	public void stop()
 	{
@@ -82,11 +93,12 @@ public class LocalUDPDataReciever
 						if(ClientCoreSDK.DEBUG)
 							Log.d(TAG, "【IMCORE】本地UDP端口侦听中，端口="+ConfigEntity.localUDPPort+"...");
 
-						p2pListeningImpl();
+                        udpListeningImpl();
 					}
 					catch (Exception eee)
 					{
-						Log.w(TAG, "【IMCORE】本地UDP监听停止了(socket被关闭了?),"+eee.getMessage(), eee);
+                        Log.w(TAG, "【IMCORE】本地UDP监听停止了(socket被关闭了?)："
+                                +eee.getMessage()+"，应该是用户退出登陆或网络断开了。");
 					}
 				}
 			});
@@ -98,7 +110,12 @@ public class LocalUDPDataReciever
 		}
 	}
 
-	private void p2pListeningImpl() throws Exception
+    public boolean isInit()
+    {
+        return init;
+    }
+
+	private void udpListeningImpl() throws Exception
 	{
 		while (true)
 		{

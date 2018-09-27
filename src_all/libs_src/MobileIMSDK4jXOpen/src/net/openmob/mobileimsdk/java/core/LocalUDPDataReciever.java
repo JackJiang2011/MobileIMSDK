@@ -77,11 +77,12 @@ public class LocalUDPDataReciever
 						if(ClientCoreSDK.DEBUG)
 							Log.d(TAG, "【IMCORE】本地UDP端口侦听中，端口="+ConfigEntity.localUDPPort+"...");
 
-						p2pListeningImpl();
+						udpListeningImpl();
 					}
 					catch (Exception eee)
 					{
-						Log.w(TAG, "【IMCORE】本地UDP监听停止了(socket被关闭了?),"+eee.getMessage(), eee);
+						Log.w(TAG, "【IMCORE】本地UDP监听停止了(socket被关闭了?)："
+                                +eee.getMessage()+"，应该是用户退出登陆或网络断开了。");
 					}
 				}
 			});
@@ -93,7 +94,7 @@ public class LocalUDPDataReciever
 		}
 	}
 
-	private void p2pListeningImpl() throws Exception
+	private void udpListeningImpl() throws Exception
 	{
 		while (true)
 		{

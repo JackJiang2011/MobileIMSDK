@@ -33,12 +33,15 @@ public class KeepAliveDaemon
 	public static int NETWORK_CONNECTION_TIME_OUT = 10 * 1000;
 	public static int KEEP_ALIVE_INTERVAL = 3000;//1000;
 
-	private Handler handler = null;
-	private Runnable runnable = null;
 	private boolean keepAliveRunning = false;
 	private long lastGetKeepAliveResponseFromServerTimstamp = 0;
 	private Observer networkConnectionLostObserver = null;
+
+    private Handler handler = null;
+    private Runnable runnable = null;
 	private boolean _excuting = false;
+    private boolean init = false;
+
 	private Context context = null;
 	
 	public static KeepAliveDaemon getInstance(Context context)
@@ -56,6 +59,9 @@ public class KeepAliveDaemon
 	
 	private void init()
 	{
+        if(init)
+            return;
+
 		handler = new Handler();
 		runnable = new Runnable(){
 			@Override
@@ -126,6 +132,11 @@ public class KeepAliveDaemon
 	{
 		return keepAliveRunning;
 	}
+
+    public boolean isInit()
+    {
+        return init;
+    }
 	
 	public void updateGetKeepAliveResponseFromServerTimstamp()
 	{

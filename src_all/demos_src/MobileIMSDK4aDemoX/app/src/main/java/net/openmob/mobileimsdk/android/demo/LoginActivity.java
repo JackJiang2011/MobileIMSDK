@@ -81,7 +81,7 @@ public class LoginActivity extends Activity
 	}
 	
 	/** 
-	 * 捕获back键，实现调用 {@link #doExit(Context)}方法.
+	 * 捕获back键.
 	 */
 	@Override
 	public void onBackPressed()

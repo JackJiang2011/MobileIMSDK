@@ -42,6 +42,8 @@ public class QoS4SendDaemon
 	private Runnable runnable = null;
 	private boolean running = false;
 	private boolean _excuting = false;
+    private boolean init = false;
+
 	private Context context = null;
 	
 	public static QoS4SendDaemon getInstance(Context context)
@@ -60,6 +62,9 @@ public class QoS4SendDaemon
 	
 	private void init()
 	{
+        if(init)
+            return;
+
 		handler = new Handler();
 		runnable = new Runnable()
 		{
@@ -157,6 +162,8 @@ public class QoS4SendDaemon
 				}
 			}
 		};
+
+        init = true;
 	}
 	
 	protected void notifyMessageLost(ArrayList<Protocal> lostMessages)
@@ -183,7 +190,12 @@ public class QoS4SendDaemon
 	{
 		return running;
 	}
-	
+
+    public boolean isInit()
+    {
+        return init;
+    }
+
 	boolean exist(String fingerPrint)
 	{
 		return sentMessages.get(fingerPrint) != null;

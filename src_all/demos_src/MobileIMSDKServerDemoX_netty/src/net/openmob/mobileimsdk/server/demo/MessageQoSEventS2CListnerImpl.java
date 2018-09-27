@@ -27,7 +27,7 @@ import org.slf4j.LoggerFactory;
  * 由开发者通过服务端消息发送接口发出的消息的消息送达相关事件（由S2C模式（即Server to Client）
  * 下QoS机制通知上来的）在此MessageQoSEventListenerS2C子类中实现即可。
  * 
- * @author Jack Jiang, 2017-12-08
+ * @author Jack Jiang
  * @version 1.0
  * @since 3.1
  */

@@ -37,6 +37,8 @@ public class QoS4ReciveDaemon
 	private Runnable runnable = null;
 	private boolean running = false;
 	private boolean _excuting = false;
+    private boolean init = false;
+
 	private Context context = null;
 	
 	public static QoS4ReciveDaemon getInstance(Context context)
@@ -55,6 +57,9 @@ public class QoS4ReciveDaemon
 	
 	private void init()
 	{
+        if(init)
+            return;
+
 		handler = new Handler();
 		runnable = new Runnable()
 		{
@@ -88,6 +93,8 @@ public class QoS4ReciveDaemon
 				handler.postDelayed(runnable, CHECH_INTERVAL);
 			}
 		};
+
+        init = true;
 	}
 	
 	public void startup(boolean immediately)
@@ -116,6 +123,11 @@ public class QoS4ReciveDaemon
 	{
 		return running;
 	}
+
+    public boolean isInit()
+    {
+        return init;
+    }
 	
 	public void addRecieved(Protocal p)
 	{

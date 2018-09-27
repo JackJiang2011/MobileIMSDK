@@ -24,7 +24,7 @@ import org.slf4j.LoggerFactory;
 /**
  * 与客服端的所有数据交互事件在此ServerEventListener子类中实现即可。
  * 
- * @author Jack Jiang, 20170501
+ * @author Jack Jiang
  * @version.1.1
  */
 public class ServerEventListenerImpl implements ServerEventListener
