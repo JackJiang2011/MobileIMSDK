@@ -76,10 +76,10 @@ MobileIMSDK版本更新日志：[点此查看](http://www.52im.net/thread-1270-1
 <b>整套MobileIMSDK框架由以下5部分组成：</b>
 
 1. <b>Android客户端SDK：</b>用于Android版即时通讯客户端，支持Android 2\.3及以上，[查看API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/android/)；
-2. <b>iOS客户端SDK：</b>用于开发iOS版即时通讯客户端，支持iOS 6\.0及以上，[查看API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/ios/)；
-3. <b>Java客户端SDK：</b>用于开发跨平台的PC端即时通讯客户端，支持Java 1\.5及以上，[查看API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/java/)；
-4. <b>服务端SDK（Mina版）：</b>基于Mina框架，用于开发即时通讯服务端，支持Java 1\.6及以上版本，[查看API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/server/)。
-5. <b>服务端SDK（Netty版）：</b>基于Netty框架，用于开发即时通讯服务端，支持Java 1\.6及以上版本，[查看API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/server_netty/)  :new:。
+2. <b>iOS客户端SDK：</b>用于开发iOS版即时通讯客户端，支持iOS 8\.0及以上，[查看API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/ios/)；
+3. <b>Java客户端SDK：</b>用于开发跨平台的PC端即时通讯客户端，支持Java 1\.6及以上，[查看API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/java/)；
+4. <b>服务端SDK（Mina版）：</b>基于Mina框架，用于开发即时通讯服务端，支持Java 1\.7及以上版本，[查看API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/server/)。
+5. <b>服务端SDK（Netty版）：</b>基于Netty框架，用于开发即时通讯服务端，支持Java 1\.7及以上版本，[查看API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/server_netty/)  :new:。
 
 :point_right: <b>另外：</b>MobileIMSDK可与姊妹工程 [MobileIMSDK-Web](http://www.52im.net/thread-959-1-1.html) 无缝互通，从而实现Web网页端聊天或推送等。
 
