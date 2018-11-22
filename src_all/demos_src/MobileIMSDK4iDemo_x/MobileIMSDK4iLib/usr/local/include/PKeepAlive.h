@@ -22,6 +22,12 @@
 
 #import <Foundation/Foundation.h>
 
+/*!
+ * KeepAlive心跳包的DTO类。
+ *
+ * @author Jack Jiang, 2014-10-22
+ * @version 1.0
+ */
 @interface PKeepAlive : NSObject
 
 @end

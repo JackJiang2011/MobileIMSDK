@@ -22,6 +22,12 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ * 错误信息DTO类。
+ *
+ * @author Jack Jiang, 2014-10-22
+ * @version 1.0
+ */
 @interface PErrorResponse : NSObject
 
 @property (nonatomic, assign) int errorCode;
