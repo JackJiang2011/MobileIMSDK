@@ -22,7 +22,7 @@ public class ConfigEntity
 	public static String appKey = null;
 	public static String serverIP = "rbcore.openmob.net";
 	public static int serverUDPPort = 7901;
-	public static int localUDPPort = 7801;
+	public static int localUDPPort = 0;
 	
     public static void setSenseMode(SenseMode mode)
     {

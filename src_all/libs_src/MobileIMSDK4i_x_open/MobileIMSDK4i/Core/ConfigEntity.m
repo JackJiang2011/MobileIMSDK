@@ -25,7 +25,7 @@
 
 static NSString *serverIp = @"openmob.net";
 static int serverPort = 7901;
-static int localUdpSendAndListeningPort = 7801;
+static int localUdpSendAndListeningPort = 0;//7801;
 static NSString *appKey = nil;
 
 @implementation ConfigEntity

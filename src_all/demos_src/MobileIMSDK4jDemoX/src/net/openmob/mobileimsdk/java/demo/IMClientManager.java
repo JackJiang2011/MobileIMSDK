@@ -60,12 +60,6 @@ public class IMClientManager
 //			ConfigEntity.serverIP = "192.168.82.138";
 //			ConfigEntity.serverIP = "rbcore.openmob.net";
 //			ConfigEntity.serverUDPPort = 7901;
-			
-			// 设置本地绑定的端口（0表示由系统分配随机端口）
-			// * 说明：建议使用固定端口号（开发者不设定则默认使用7801本地端口），
-			// *      固定端口号将在极端网络环境下带来更好的稳定性。此Demo中使
-			// *      用0是为了测试时方便同一台电脑打开多个程序时端口号而不冲突
-			ConfigEntity.localUDPPort = 0;
 	    
 			// MobileIMSDK核心IM框架的敏感度模式设置
 //			ConfigEntity.setSenseMode(SenseMode.MODE_10S);
