@@ -223,3 +223,14 @@ MobileIMSDK版本更新日志：[点此查看](http://www.52im.net/thread-1270-1
 
 ### :triangular_flag_on_post: 下图为某云客服产品IM子系统-Android版客服后台端：
 ![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/more_products/cs-im-servicer-android_20170509.jpg)
+
+# 附录4：基于MobileIMSDK-Web的网页端IM系统【案例】
+### :triangular_flag_on_post: RainbowChat-Web产品主界面：
+> <code>更多截图和视频：</code>[更多截图点此进入](http://www.52im.net/thread-2470-1-1.html)、[更多演示视频点此进入](http://www.52im.net/thread-2491-1-1.html)。
+
+![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/more_products/rainbowchat_web/rbchat_web_main_1.jpg)
+
+### :triangular_flag_on_post: RainbowChat-Web产品主界面(聊天窗全屏时)：
+> <code>更多截图和视频：</code>[更多截图点此进入](http://www.52im.net/thread-2470-1-1.html)、[更多演示视频点此进入](http://www.52im.net/thread-2491-1-1.html)。
+
+![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/more_products/rainbowchat_web/rbchat_web_main_2.jpg)
