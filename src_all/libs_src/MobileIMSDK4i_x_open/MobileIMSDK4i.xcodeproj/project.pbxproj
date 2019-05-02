@@ -28,12 +28,12 @@
 		EADDE64B1A0A1261002FFB8E /* Protocal.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE6201A0A1261002FFB8E /* Protocal.m */; };
 		EADDE64C1A0A1261002FFB8E /* ToolKits.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE6241A0A1261002FFB8E /* ToolKits.m */; };
 		EADDE64D1A0A1261002FFB8E /* UDPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE6261A0A1261002FFB8E /* UDPUtils.m */; };
-		EADDE64E1A0A1261002FFB8E /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE62A1A0A1261002FFB8E /* Reachability.m */; };
+		EADDE64E1A0A1261002FFB8E /* MBReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE62A1A0A1261002FFB8E /* MBReachability.m */; };
 		EADDE64F1A0A1261002FFB8E /* NSObject+RMArchivable.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE62D1A0A1261002FFB8E /* NSObject+RMArchivable.m */; };
 		EADDE6501A0A1261002FFB8E /* NSObject+RMCopyable.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE62F1A0A1261002FFB8E /* NSObject+RMCopyable.m */; };
 		EADDE6511A0A1261002FFB8E /* NSUserDefaults+RMSaveCustomObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE6311A0A1261002FFB8E /* NSUserDefaults+RMSaveCustomObject.m */; };
 		EADDE6521A0A1261002FFB8E /* RMMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE6331A0A1261002FFB8E /* RMMapper.m */; };
-		EADDE6531A0A1261002FFB8E /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE6391A0A1261002FFB8E /* GCDAsyncUdpSocket.m */; };
+		EADDE6531A0A1261002FFB8E /* MBGCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE6391A0A1261002FFB8E /* MBGCDAsyncUdpSocket.m */; };
 		EADDE6551A0A139C002FFB8E /* ClientCoreSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = EADDE5F41A0A1261002FFB8E /* ClientCoreSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EADDE6561A0A139C002FFB8E /* ConfigEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = EADDE5F61A0A1261002FFB8E /* ConfigEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EADDE6571A0A139C002FFB8E /* ChatBaseEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = EADDE5F91A0A1261002FFB8E /* ChatBaseEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -123,8 +123,8 @@
 		EADDE6241A0A1261002FFB8E /* ToolKits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolKits.m; sourceTree = "<group>"; };
 		EADDE6251A0A1261002FFB8E /* UDPUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDPUtils.h; sourceTree = "<group>"; };
 		EADDE6261A0A1261002FFB8E /* UDPUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDPUtils.m; sourceTree = "<group>"; };
-		EADDE6291A0A1261002FFB8E /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		EADDE62A1A0A1261002FFB8E /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		EADDE6291A0A1261002FFB8E /* MBReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBReachability.h; sourceTree = "<group>"; };
+		EADDE62A1A0A1261002FFB8E /* MBReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBReachability.m; sourceTree = "<group>"; };
 		EADDE62C1A0A1261002FFB8E /* NSObject+RMArchivable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+RMArchivable.h"; sourceTree = "<group>"; };
 		EADDE62D1A0A1261002FFB8E /* NSObject+RMArchivable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RMArchivable.m"; sourceTree = "<group>"; };
 		EADDE62E1A0A1261002FFB8E /* NSObject+RMCopyable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+RMCopyable.h"; sourceTree = "<group>"; };
@@ -133,8 +133,8 @@
 		EADDE6311A0A1261002FFB8E /* NSUserDefaults+RMSaveCustomObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+RMSaveCustomObject.m"; sourceTree = "<group>"; };
 		EADDE6321A0A1261002FFB8E /* RMMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMMapper.h; sourceTree = "<group>"; };
 		EADDE6331A0A1261002FFB8E /* RMMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMMapper.m; sourceTree = "<group>"; };
-		EADDE6381A0A1261002FFB8E /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
-		EADDE6391A0A1261002FFB8E /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
+		EADDE6381A0A1261002FFB8E /* MBGCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBGCDAsyncUdpSocket.h; sourceTree = "<group>"; };
+		EADDE6391A0A1261002FFB8E /* MBGCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBGCDAsyncUdpSocket.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -304,8 +304,8 @@
 		EADDE6281A0A1261002FFB8E /* Reachability */ = {
 			isa = PBXGroup;
 			children = (
-				EADDE6291A0A1261002FFB8E /* Reachability.h */,
-				EADDE62A1A0A1261002FFB8E /* Reachability.m */,
+				EADDE6291A0A1261002FFB8E /* MBReachability.h */,
+				EADDE62A1A0A1261002FFB8E /* MBReachability.m */,
 			);
 			path = Reachability;
 			sourceTree = "<group>";
@@ -328,8 +328,8 @@
 		EADDE6371A0A1261002FFB8E /* UDP */ = {
 			isa = PBXGroup;
 			children = (
-				EADDE6381A0A1261002FFB8E /* GCDAsyncUdpSocket.h */,
-				EADDE6391A0A1261002FFB8E /* GCDAsyncUdpSocket.m */,
+				EADDE6381A0A1261002FFB8E /* MBGCDAsyncUdpSocket.h */,
+				EADDE6391A0A1261002FFB8E /* MBGCDAsyncUdpSocket.m */,
 			);
 			path = UDP;
 			sourceTree = "<group>";
@@ -472,7 +472,7 @@
 				EADDE63B1A0A1261002FFB8E /* ConfigEntity.m in Sources */,
 				EADDE64F1A0A1261002FFB8E /* NSObject+RMArchivable.m in Sources */,
 				EADDE6411A0A1261002FFB8E /* QoS4ReciveDaemon.m in Sources */,
-				EADDE64E1A0A1261002FFB8E /* Reachability.m in Sources */,
+				EADDE64E1A0A1261002FFB8E /* MBReachability.m in Sources */,
 				EADDE6461A0A1261002FFB8E /* PErrorResponse.m in Sources */,
 				EADDE63D1A0A1261002FFB8E /* KeepAliveDaemon.m in Sources */,
 				EADDE63E1A0A1261002FFB8E /* LocalUDPDataReciever.m in Sources */,
@@ -482,7 +482,7 @@
 				EADDE64A1A0A1261002FFB8E /* PLoginInfoResponse.m in Sources */,
 				EADDE6451A0A1261002FFB8E /* ProtocalFactory.m in Sources */,
 				EADDE63A1A0A1261002FFB8E /* ClientCoreSDK.m in Sources */,
-				EADDE6531A0A1261002FFB8E /* GCDAsyncUdpSocket.m in Sources */,
+				EADDE6531A0A1261002FFB8E /* MBGCDAsyncUdpSocket.m in Sources */,
 				EADDE64D1A0A1261002FFB8E /* UDPUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -530,7 +530,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -564,7 +564,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -574,7 +574,7 @@
 		EADDE5EE1A0A122E002FFB8E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -587,7 +587,7 @@
 		EADDE5EF1A0A122E002FFB8E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",

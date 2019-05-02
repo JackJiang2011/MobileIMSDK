@@ -33,6 +33,7 @@ import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -42,7 +43,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class LoginActivity extends Activity
+public class LoginActivity extends AppCompatActivity
 {
 	private final static String TAG = MainActivity.class.getSimpleName();
 	
@@ -107,7 +108,7 @@ public class LoginActivity extends Activity
 		// Demo程序的版本号
 		viewVersion.setText(getProgrammVersion());
 		
-		this.setTitle("MobileIMSDK v3 Demo登陆");
+		this.setTitle("MobileIMSDK v4.0 Demo登陆");
 	}
 	
 	private void initListeners()

@@ -15,18 +15,28 @@
  */
 package net.openmob.mobileimsdk.server.event;
 
+import net.openmob.mobileimsdk.server.protocal.Protocal;
+
 import org.apache.mina.core.session.IoSession;
 
 public interface ServerEventListener
 {
 	public int onVerifyUserCallBack(String userId, String token, String extra, IoSession session);
+	
 	public void onUserLoginAction_CallBack(String userId, String extra, IoSession session);
+	
 	public void onUserLogoutAction_CallBack(String userId, Object obj, IoSession session);
-	public boolean onTransBuffer_CallBack(String userId, String from_user_id
-			, String dataContent, String fingerPrint, int typeu, IoSession session);
-	public void onTransBuffer_C2C_CallBack(String userId, String from_user_id
-			, String dataContent, String fingerPrint, int typeu);
-	public boolean onTransBuffer_C2C_RealTimeSendFaild_CallBack(String userId
-			, String from_user_id, String dataContent
-			, String fingerPrint, int typeu);
+	
+//	public boolean onTransBuffer_CallBack(String userId, String from_user_id
+//			, String dataContent, String fingerPrint, int typeu, IoSession session);
+	public boolean onTransBuffer_C2S_CallBack(Protocal p, IoSession session);
+	
+//	public void onTransBuffer_C2C_CallBack(String userId, String from_user_id
+//			, String dataContent, String fingerPrint, int typeu);
+	public void onTransBuffer_C2C_CallBack(Protocal p);
+	
+//	public boolean onTransBuffer_C2C_RealTimeSendFaild_CallBack(String userId
+//			, String from_user_id, String dataContent
+//			, String fingerPrint, int typeu);
+	public boolean onTransBuffer_C2C_RealTimeSendFaild_CallBack(Protocal p);
 }

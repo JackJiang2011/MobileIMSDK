@@ -15,12 +15,12 @@
  */
 package net.openmob.mobileimsdk.server.qos;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 import net.openmob.mobileimsdk.server.protocal.Protocal;
 
@@ -34,7 +34,7 @@ public class QoS4ReciveDaemonRoot
 	private boolean DEBUG = false;
 	private int CHECH_INTERVAL = 5 * 60 * 1000; // 5分钟
 	private int MESSAGES_VALID_TIME = 10 * 60 * 1000; // 10分钟
-	private ConcurrentHashMap<String, Long> recievedMessages = new ConcurrentHashMap<String, Long>();
+	private ConcurrentMap<String, Long> recievedMessages = new ConcurrentHashMap<String, Long>();
 	private Timer timer = null;
 	private Runnable runnable = null;
 	private boolean _excuting = false;

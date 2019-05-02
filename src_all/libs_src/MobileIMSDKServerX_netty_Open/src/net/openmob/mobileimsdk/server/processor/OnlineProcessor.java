@@ -19,6 +19,7 @@ import io.netty.channel.Channel;
 import io.netty.util.AttributeKey;
 
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +34,7 @@ public class OnlineProcessor
 	private static Logger logger = LoggerFactory.getLogger(OnlineProcessor.class); 
 	private static OnlineProcessor instance = null;
 	
-	private ConcurrentHashMap<String, Channel> onlineSessions = new ConcurrentHashMap<String, Channel>();
+	private ConcurrentMap<String, Channel> onlineSessions = new ConcurrentHashMap<String, Channel>();
 	
 	public static OnlineProcessor getInstance()
 	{
@@ -95,7 +96,7 @@ public class OnlineProcessor
 		return onlineSessions.get(user_id);
 	}
 	
-	public ConcurrentHashMap<String, Channel> getOnlineSessions()
+	public ConcurrentMap<String, Channel> getOnlineSessions()
 	{
 		return onlineSessions;
 	}

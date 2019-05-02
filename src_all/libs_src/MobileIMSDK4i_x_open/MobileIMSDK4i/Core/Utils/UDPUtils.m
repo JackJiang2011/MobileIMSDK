@@ -21,11 +21,11 @@
 //
 
 #import "UDPUtils.h"
-#import "GCDAsyncUdpSocket.h"
+#import "MBGCDAsyncUdpSocket.h"
 
 @implementation UDPUtils
 
-+ (BOOL) send:(GCDAsyncUdpSocket *) skt withData:(NSData *)d
++ (BOOL) send:(MBGCDAsyncUdpSocket *) skt withData:(NSData *)d
 {
     BOOL sendSucess = YES;
     if(skt != nil && d != nil)

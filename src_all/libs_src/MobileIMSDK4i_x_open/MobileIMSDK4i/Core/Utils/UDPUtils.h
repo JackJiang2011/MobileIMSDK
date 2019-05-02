@@ -21,10 +21,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GCDAsyncUdpSocket.h"
+#import "MBGCDAsyncUdpSocket.h"
 
 @interface UDPUtils : NSObject
 
-+ (BOOL) send:(GCDAsyncUdpSocket *) skt withData:(NSData *)d;
++ (BOOL) send:(MBGCDAsyncUdpSocket *) skt withData:(NSData *)d;
 
 @end

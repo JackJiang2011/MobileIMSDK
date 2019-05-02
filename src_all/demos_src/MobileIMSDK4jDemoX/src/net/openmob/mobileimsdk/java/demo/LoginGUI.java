@@ -114,7 +114,7 @@ public class LoginGUI extends JFrame
 		mainPanel.addTitledLineSeparator("");
 		JPanel btnAndVerPanel = new JPanel();
 		btnAndVerPanel.setLayout(new BoxLayout(btnAndVerPanel, BoxLayout.LINE_AXIS));
-		JLabel lbVer= new JLabel("v3.3.2b181124.1");
+		JLabel lbVer= new JLabel("v4.0b190430.1");
 		lbVer.setForeground(new Color(184,184,184));
 		btnAndVerPanel.add(lbVer);
 		btnAndVerPanel.add(Box.createHorizontalGlue());
@@ -146,7 +146,7 @@ public class LoginGUI extends JFrame
 		this.getContentPane().add(bottomPanel, BorderLayout.SOUTH);
 		
 		// 窗体设置
-		this.setTitle("MobileIMSDK v3 - Demo登陆");
+		this.setTitle("MobileIMSDK v4 - Demo登陆");
 		this.setResizable(false);
 		this.pack();
 	}

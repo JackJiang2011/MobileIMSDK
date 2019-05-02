@@ -21,7 +21,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GCDAsyncUdpSocket.h"
+#import "MBGCDAsyncUdpSocket.h"
 
 /*!
  * 一个本地UDP消息发送工具类。
@@ -40,6 +40,6 @@
  * @return true表示成功发出，否则表示发送失败
  * @see #send(DatagramSocket, DatagramPacket)
  */
-+ (BOOL) send:(GCDAsyncUdpSocket *) skt withData:(NSData *)d;
++ (BOOL) send:(MBGCDAsyncUdpSocket *) skt withData:(NSData *)d;
 
 @end

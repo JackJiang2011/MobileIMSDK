@@ -24,7 +24,7 @@
 #import "ChatTransDataEvent.h"
 #import "ChatBaseEvent.h"
 #import "MessageQoSEvent.h"
-#import "Reachability.h"
+#import "MBReachability.h"
 #import "QoS4SendDaemon.h"
 #import "KeepAliveDaemon.h"
 #import "LocalUDPDataReciever.h"
@@ -40,7 +40,7 @@ static BOOL autoReLogin = YES;
 @interface ClientCoreSDK ()
 
 @property (nonatomic) BOOL _init;
-@property (nonatomic) Reachability *internetReachability;
+@property (nonatomic) MBReachability *internetReachability;
 
 @end
 
@@ -95,7 +95,7 @@ static ClientCoreSDK *instance = nil;
         if(self.internetReachability == nil)
         {
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
-            self.internetReachability = [Reachability reachabilityForInternetConnection];
+            self.internetReachability = [MBReachability reachabilityForInternetConnection];
         }
         [self.internetReachability startNotifier];
         self.localDeviceNetworkOk = [self internetReachable];
@@ -137,7 +137,7 @@ static ClientCoreSDK *instance = nil;
 
 - (void) reachabilityChanged:(NSNotification *)note
 {
-    Reachability* reachability = [note object];
+    MBReachability* reachability = [note object];
     NSParameterAssert([reachability isKindOfClass:[Reachability class]]);
     
     NetworkStatus netStatus = [reachability currentReachabilityStatus];

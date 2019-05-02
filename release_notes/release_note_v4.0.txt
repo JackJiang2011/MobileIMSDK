@@ -1,0 +1,16 @@
+
+-------------------------------------------------------------------------------------- v4.0发布于2019-04-30 23:00
+MobileIMSDK v4.0版更新说明：
+
+【解决的Bug】
+1. [Android/Java]解决了客户端网络不通且长时间处于前台运行时，因监听线程未正常中断退出而导致重连时OOM的问题；
+2. [Android/Java]解决了某些极端情况下，手机的物理网络正常(如：正常连接WiFi时)，但到外网（如宽带）实际不通的情况下，外网恢复通信时，socket重连将无法成功的问题；
+
+【其它优化和提升】
+1. [服务端]优化了GlobalSendHelper.sendDataS2C(..)方法，使得在未开启与Web互通的情况下，相当于直接调用LocalSendHelper.sendData(..)方法，提高兼容性；
+2. [服务端]重新设计了ServerEventListener接口中的回调方法，数据的传递改为Protocal对象，方便后绪实现集群、服务拆分、分布式拆分等；
+3. [服务端]优化了服务端某些代码，将变量申明由ConcurrentHashMap改为ConcurrentMap，省去有些开发者将JDK1.8编译后的版本用于JDK1.7版运行报错：“java.lang.NoSuchMethodError: java.util.concurrent.ConcurrentHashMap.keySet()”；
+4. [iOS]第3方基础库升级：CocoaAsyncSocket升至v7.6.3、Reachability升至v5.0；
+5. [iOS]解决引用的第3方库：Reachability、CocoaAsyncSocket 在开发者工程中使用时可能存在冲突的问题；
+6. [Android]升级了Android版Demo工程的targetSDK为28（即android 9.0）；
+7. [Android]解决了Demo工程，在某些android平板上，从横屏时锁屏状态解锁时，主界面可能会被重新onCreate的问题（详见：https://www.cnblogs.com/zfyouxi/p/5332019.html）。

@@ -69,9 +69,11 @@ public class GlobalSendHelper
 							+",fp:"+pFromClient.getFp()+"to:"+pFromClient.getTo()+",content:"+pFromClient.getDataContent()
 							+"]【第一阶段APP+WEB跨机通信算法】)");
 
+//					boolean offlineProcessedOK = serverCoreHandler.getServerEventListener()
+//							.onTransBuffer_C2C_RealTimeSendFaild_CallBack(pFromClient.getTo()
+//									, pFromClient.getFrom(), pFromClient.getDataContent(), pFromClient.getFp(), pFromClient.getTypeu());
 					boolean offlineProcessedOK = serverCoreHandler.getServerEventListener()
-							.onTransBuffer_C2C_RealTimeSendFaild_CallBack(pFromClient.getTo()
-									, pFromClient.getFrom(), pFromClient.getDataContent(), pFromClient.getFp(), pFromClient.getTypeu());
+							.onTransBuffer_C2C_RealTimeSendFaild_CallBack(pFromClient);
 					if(pFromClient.isQoS() && offlineProcessedOK)
 					{
 						needDelegateACK = true;
@@ -99,17 +101,20 @@ public class GlobalSendHelper
 			boolean sendOK = LocalSendHelper.sendData(pFromClient);
 			if(sendOK)
 			{
-				serverCoreHandler.getServerEventListener().onTransBuffer_C2C_CallBack(
-						pFromClient.getTo(), pFromClient.getFrom()
-						, pFromClient.getDataContent(), pFromClient.getFp(), pFromClient.getTypeu());
+//				serverCoreHandler.getServerEventListener().onTransBuffer_C2C_CallBack(
+//						pFromClient.getTo(), pFromClient.getFrom()
+//						, pFromClient.getDataContent(), pFromClient.getFp(), pFromClient.getTypeu());
+				serverCoreHandler.getServerEventListener().onTransBuffer_C2C_CallBack(pFromClient);
 			}
 			else
 			{
 				logger.info("[IMCORE<C2C>]>> 客户端"+remoteAddress+"的通用数据尝试实时发送没有成功，将交给应用层进行离线存储哦...");
 
+//				boolean offlineProcessedOK = serverCoreHandler.getServerEventListener()
+//						.onTransBuffer_C2C_RealTimeSendFaild_CallBack(pFromClient.getTo()
+//								, pFromClient.getFrom(), pFromClient.getDataContent(), pFromClient.getFp(), pFromClient.getTypeu());
 				boolean offlineProcessedOK = serverCoreHandler.getServerEventListener()
-						.onTransBuffer_C2C_RealTimeSendFaild_CallBack(pFromClient.getTo()
-								, pFromClient.getFrom(), pFromClient.getDataContent(), pFromClient.getFp(), pFromClient.getTypeu());
+						.onTransBuffer_C2C_RealTimeSendFaild_CallBack(pFromClient);
 				if(pFromClient.isQoS() && offlineProcessedOK)
 				{
 					boolean receivedBackSendSucess = LocalSendHelper.replyDelegateRecievedBack(session, pFromClient);
@@ -133,7 +138,7 @@ public class GlobalSendHelper
 		
 		boolean sucess = false;
 
-		if(!OnlineProcessor.isOnline(pFromClient.getTo()))
+		if(ServerLauncher.bridgeEnabled && !OnlineProcessor.isOnline(pFromClient.getTo()))
 		{
 			logger.debug("[IMCORE<S2C>-桥接↑]>> 客户端"+pFromClient.getTo()+"不在线，数据[from:"+pFromClient.getFrom()
 					+",fp:"+pFromClient.getFp()+"to:"+pFromClient.getTo()+",content:"+pFromClient.getDataContent()

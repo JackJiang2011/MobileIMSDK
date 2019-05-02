@@ -27,7 +27,7 @@
 #import "CharsetHelper.h"
 #import "QoS4SendDaemon.h"
 #import "ErrorCode.h"
-#import "GCDAsyncUdpSocket.h"
+#import "MBGCDAsyncUdpSocket.h"
 #import "LocalUDPSocketProvider.h"
 #import "ConfigEntity.h"
 #import "UDPUtils.h"
@@ -49,7 +49,7 @@ static LocalUDPDataSender *instance = nil;
         return ForC_LOCAL_NETWORK_NOT_WORKING;
     }
 
-    GCDAsyncUdpSocket *ds = [[LocalUDPSocketProvider sharedInstance] getLocalUDPSocket];
+    MBGCDAsyncUdpSocket *ds = [[LocalUDPSocketProvider sharedInstance] getLocalUDPSocket];
     if(ds != nil && ![ds isConnected])
     {
         ConnectionCompletion observerBlock = ^(BOOL connectResult) {

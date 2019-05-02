@@ -16,6 +16,7 @@
 package net.openmob.mobileimsdk.server.processor;
 
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 import org.apache.mina.core.session.IoSession;
 import org.slf4j.Logger;
@@ -30,7 +31,7 @@ public class OnlineProcessor
 	private static Logger logger = LoggerFactory.getLogger(OnlineProcessor.class); 
 	private static OnlineProcessor instance = null;
 	
-	private ConcurrentHashMap<String, IoSession> onlineSessions = new ConcurrentHashMap<String, IoSession>();
+	private ConcurrentMap<String, IoSession> onlineSessions = new ConcurrentHashMap<String, IoSession>();
 	
 	public static OnlineProcessor getInstance()
 	{
@@ -94,7 +95,7 @@ public class OnlineProcessor
 		return onlineSessions.get(user_id);
 	}
 	
-	public ConcurrentHashMap<String, IoSession> getOnlineSessions()
+	public ConcurrentMap<String, IoSession> getOnlineSessions()
 	{
 		return onlineSessions;
 	}

@@ -226,6 +226,7 @@ public class ClientCoreSDK
 				localDeviceNetworkOk = false;
 				LocalUDPSocketProvider.getInstance().closeLocalUDPSocket();
 			}
+
 			else 
 			{ 
 				if(ClientCoreSDK.DEBUG)

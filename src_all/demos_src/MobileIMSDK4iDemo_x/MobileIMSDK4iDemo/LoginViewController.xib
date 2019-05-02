@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment version="2048" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -90,8 +90,7 @@
                             <rect key="frame" x="144" y="113" width="136" height="36"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <size key="titleShadowOffset" width="0.5" height="0.5"/>
-                            <state key="normal" title="登陆">
+                            <state key="normal" title="登 陆">
                                 <color key="titleColor" red="0.96862745100000003" green="0.97254901959999995" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="titleShadowColor" red="0.16857638955116272" green="0.16857638955116272" blue="0.16857638955116272" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
@@ -114,7 +113,7 @@
             <connections>
                 <action selector="E_clickBgToHideKeyboard:" destination="-1" eventType="touchDown" id="MO4-Z4-HbO"/>
             </connections>
-            <point key="canvasLocation" x="20" y="93"/>
+            <point key="canvasLocation" x="32" y="83.658170914542737"/>
         </view>
     </objects>
     <resources>

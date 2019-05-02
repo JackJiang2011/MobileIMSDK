@@ -21,6 +21,7 @@ import java.util.Map.Entry;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 import net.nettime.mobileimsdk.server.netty.MBObserver;
 import net.openmob.mobileimsdk.server.ServerLauncher;
@@ -36,8 +37,8 @@ public class QoS4SendDaemonRoot
 	
 	private boolean DEBUG = false;
 	private ServerLauncher serverLauncher = null;
-	private ConcurrentHashMap<String, Protocal> sentMessages = new ConcurrentHashMap<String, Protocal>();
-	private ConcurrentHashMap<String, Long> sendMessagesTimestamp = new ConcurrentHashMap<String, Long>();
+	private ConcurrentMap<String, Protocal> sentMessages = new ConcurrentHashMap<String, Protocal>();
+	private ConcurrentMap<String, Long> sendMessagesTimestamp = new ConcurrentHashMap<String, Long>();
 	private int CHECH_INTERVAL = 5000;
 	private int MESSAGES_JUST$NOW_TIME = 2 * 1000;
 	private int QOS_TRY_COUNT = 1;

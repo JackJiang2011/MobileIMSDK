@@ -21,7 +21,7 @@
 //
 
 #import "LocalUDPSocketProvider.h"
-#import "GCDAsyncUdpSocket.h"
+#import "MBGCDAsyncUdpSocket.h"
 #import "ClientCoreSDK.h"
 #import "ConfigEntity.h"
 #import "ErrorCode.h"
@@ -31,7 +31,7 @@
 
 @interface LocalUDPSocketProvider ()
 
-@property (nonatomic, retain) GCDAsyncUdpSocket *localUDPSocket;
+@property (nonatomic, retain) MBGCDAsyncUdpSocket *localUDPSocket;
 @property (nonatomic, copy) ConnectionCompletion connectionCompletionOnce_;
 
 @end
@@ -50,14 +50,14 @@ static LocalUDPSocketProvider *instance = nil;
     return instance;
 }
 
-- (GCDAsyncUdpSocket *)resetLocalUDPSocket
+- (MBGCDAsyncUdpSocket *)resetLocalUDPSocket
 {
     [self closeLocalUDPSocket];
     
     if([ClientCoreSDK isENABLED_DEBUG])
         NSLog(@"【IMCORE】new GCDAsyncUdpSocket中...");
 
-    self.localUDPSocket = [[GCDAsyncUdpSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    self.localUDPSocket = [[MBGCDAsyncUdpSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
 
     int port = [ConfigEntity getLocalUdpSendAndListeningPort];
     if (port < 0 || port > 65535)
@@ -83,7 +83,7 @@ static LocalUDPSocketProvider *instance = nil;
     return self.localUDPSocket;
 }
 
-- (int)tryConnectToHost:(NSError **)errPtr withSocket:(GCDAsyncUdpSocket *)skt completion:(ConnectionCompletion)finish
+- (int)tryConnectToHost:(NSError **)errPtr withSocket:(MBGCDAsyncUdpSocket *)skt completion:(ConnectionCompletion)finish
 {
     if([ConfigEntity getServerIp] == nil)
     {
@@ -115,7 +115,7 @@ static LocalUDPSocketProvider *instance = nil;
     return self.localUDPSocket != nil && ![self.localUDPSocket isClosed];
 }
 
-- (GCDAsyncUdpSocket *) getLocalUDPSocket
+- (MBGCDAsyncUdpSocket *) getLocalUDPSocket
 {
     if([self isLocalUDPSocketReady])
     {
@@ -152,19 +152,19 @@ static LocalUDPSocketProvider *instance = nil;
 }
 
 
-- (void)udpSocket:(GCDAsyncUdpSocket *)sock didSendDataWithTag:(long)tag
+- (void)udpSocket:(MBGCDAsyncUdpSocket *)sock didSendDataWithTag:(long)tag
 {
     if([ClientCoreSDK isENABLED_DEBUG])
         NSLog(@"【UDP_SOCKET】tag为%li的NSData已成功发出.", tag);
 }
 
-- (void)udpSocket:(GCDAsyncUdpSocket *)sock didNotSendDataWithTag:(long)tag dueToError:(NSError *)error
+- (void)udpSocket:(MBGCDAsyncUdpSocket *)sock didNotSendDataWithTag:(long)tag dueToError:(NSError *)error
 {
     if([ClientCoreSDK isENABLED_DEBUG])
         NSLog(@"【UDP_SOCKET】tag为%li的NSData没有发送成功，原因是%@", tag, error);
 }
 
-- (void)udpSocket:(GCDAsyncUdpSocket *)sock didReceiveData:(NSData *)data
+- (void)udpSocket:(MBGCDAsyncUdpSocket *)sock didReceiveData:(NSData *)data
       fromAddress:(NSData *)address
 withFilterContext:(id)filterContext
 {
@@ -180,14 +180,14 @@ withFilterContext:(id)filterContext
     {
         NSString *host = nil;
         uint16_t port = 0;
-        [GCDAsyncUdpSocket getHost:&host port:&port fromAddress:address];
+        [MBGCDAsyncUdpSocket getHost:&host port:&port fromAddress:address];
         
         if([ClientCoreSDK isENABLED_DEBUG])
             NSLog(@"【UDP_SOCKET】RECV: Unknown message from: %@:%hu", host, port);
     }
 }
 
-- (void)udpSocket:(GCDAsyncUdpSocket *)sock didConnectToAddress:(NSData *)address
+- (void)udpSocket:(MBGCDAsyncUdpSocket *)sock didConnectToAddress:(NSData *)address
 {
     if([ClientCoreSDK isENABLED_DEBUG])
         NSLog(@"【UDP_SOCKET】成收到的了UDP的connect反馈, isCOnnected?%d", [sock isConnected]);
@@ -195,7 +195,7 @@ withFilterContext:(id)filterContext
         self.connectionCompletionOnce_(YES);
 }
 
-- (void)udpSocket:(GCDAsyncUdpSocket *)sock didNotConnect:(NSError *)error
+- (void)udpSocket:(MBGCDAsyncUdpSocket *)sock didNotConnect:(NSError *)error
 {
     if([ClientCoreSDK isENABLED_DEBUG])
         NSLog(@"【UDP_SOCKET】成收到的了UDP的connect反馈，但连接没有成功, isCOnnected?%d", [sock isConnected]);

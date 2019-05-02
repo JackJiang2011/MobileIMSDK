@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment version="2048" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -66,9 +66,8 @@
                                 <constraint firstAttribute="height" constant="30" id="SpI-3p-LMQ"/>
                                 <constraint firstAttribute="width" constant="124" id="hsQ-TG-p6p"/>
                             </constraints>
-                            <size key="titleShadowOffset" width="0.5" height="0.5"/>
                             <state key="normal" title="退出登陆">
-                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="titleShadowColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
@@ -90,7 +89,7 @@
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="emD-kk-O1n" userLabel="[layout] send UI">
-                    <rect key="frame" x="6" y="66" width="307" height="68"/>
+                    <rect key="frame" x="6" y="66" width="307" height="73"/>
                     <subviews>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="接收方的id" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rah-zU-Y6q" userLabel="编辑框-对方id">
                             <rect key="frame" x="0.0" y="0.0" width="107" height="30"/>
@@ -116,12 +115,12 @@
                             </connections>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="11" userLabel="按钮-发送消息">
-                            <rect key="frame" x="0.0" y="38" width="307" height="30"/>
+                            <rect key="frame" x="0.0" y="38" width="307" height="35"/>
                             <color key="backgroundColor" red="0.1450980392" green="0.85882352939999995" blue="0.69411764710000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="30" id="fU1-Ta-OR5"/>
+                                <constraint firstAttribute="height" constant="35" id="fU1-Ta-OR5"/>
                             </constraints>
-                            <size key="titleShadowOffset" width="0.5" height="0.5"/>
+                            <size key="titleShadowOffset" width="0.0" height="0.5"/>
                             <state key="normal" title="发送消息">
                                 <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -140,19 +139,19 @@
                         <constraint firstItem="11" firstAttribute="top" secondItem="rah-zU-Y6q" secondAttribute="bottom" constant="8" id="g0u-sI-zTY"/>
                         <constraint firstItem="10" firstAttribute="leading" secondItem="rah-zU-Y6q" secondAttribute="trailing" constant="8" id="mqY-XR-ovo"/>
                         <constraint firstItem="10" firstAttribute="leading" secondItem="rah-zU-Y6q" secondAttribute="trailing" constant="8" id="u7z-2h-DI4"/>
-                        <constraint firstAttribute="height" constant="68" id="y3Y-Xg-0xr"/>
+                        <constraint firstAttribute="height" constant="73" id="y3Y-Xg-0xr"/>
                         <constraint firstItem="11" firstAttribute="leading" secondItem="emD-kk-O1n" secondAttribute="leading" id="z1N-F8-AUW"/>
                         <constraint firstItem="10" firstAttribute="top" secondItem="emD-kk-O1n" secondAttribute="top" id="zp7-0b-MHq"/>
                     </constraints>
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dashed_line.png" translatesAutoresizingMaskIntoConstraints="NO" id="S1P-do-RPH" userLabel="分隔线">
-                    <rect key="frame" x="0.0" y="144" width="320" height="1"/>
+                    <rect key="frame" x="0.0" y="149" width="320" height="1"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="qt8-4P-mug"/>
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="guP-mS-gsz" userLabel="[layout] status UI">
-                    <rect key="frame" x="6" y="151" width="307" height="13"/>
+                    <rect key="frame" x="6" y="156" width="307" height="13"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="线程动态：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B87-75-64A">
                             <rect key="frame" x="0.0" y="0.0" width="52" height="13"/>
@@ -212,7 +211,7 @@
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="16" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="X3J-23-sPr">
-                    <rect key="frame" x="6" y="167" width="307" height="394"/>
+                    <rect key="frame" x="6" y="172" width="307" height="389"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </tableView>
             </subviews>
@@ -241,7 +240,7 @@
             <connections>
                 <action selector="E_clickBgToHideKeyboard:" destination="-1" eventType="touchDown" id="Ws6-8s-ASb"/>
             </connections>
-            <point key="canvasLocation" x="-2733" y="-2250"/>
+            <point key="canvasLocation" x="-4372.8000000000002" y="-2023.9880059970017"/>
         </view>
     </objects>
     <resources>

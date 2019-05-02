@@ -72,9 +72,10 @@ public class LogicProcessor
 						+"的应答包成功了,from="+pFromClient.getTo()+".");
 		}
 
-		boolean processedOK = this.serverCoreHandler.getServerEventListener().onTransBuffer_CallBack(
-				pFromClient.getTo(), pFromClient.getFrom(), pFromClient.getDataContent()
-				, pFromClient.getFp(), pFromClient.getTypeu(), session);
+//		boolean processedOK = this.serverCoreHandler.getServerEventListener().onTransBuffer_CallBack(
+//				pFromClient.getTo(), pFromClient.getFrom(), pFromClient.getDataContent()
+//				, pFromClient.getFp(), pFromClient.getTypeu(), session);
+		boolean processedOK = this.serverCoreHandler.getServerEventListener().onTransBuffer_C2S_CallBack(pFromClient, session);
 	}
 	
 	public void processACK(Protocal pFromClient, String remoteAddress) throws Exception

@@ -68,10 +68,13 @@ public class GlobalSendHelper
 					logger.debug("[IMCORE-netty<C2C>-桥接↑]>> 客户端"+remoteAddress+"的数据已跨机器送出失败，将作离线处理了【NO】。(数据[from:"+pFromClient.getFrom()
 							+",fp:"+pFromClient.getFp()+"to:"+pFromClient.getTo()+",content:"+pFromClient.getDataContent()
 							+"]【第一阶段APP+WEB跨机通信算法】)");
+//
+//					boolean offlineProcessedOK = serverCoreHandler.getServerEventListener()
+//							.onTransBuffer_C2C_RealTimeSendFaild_CallBack(pFromClient.getTo()
+//									, pFromClient.getFrom(), pFromClient.getDataContent(), pFromClient.getFp(), pFromClient.getTypeu());
 
 					boolean offlineProcessedOK = serverCoreHandler.getServerEventListener()
-							.onTransBuffer_C2C_RealTimeSendFaild_CallBack(pFromClient.getTo()
-									, pFromClient.getFrom(), pFromClient.getDataContent(), pFromClient.getFp(), pFromClient.getTypeu());
+							.onTransBuffer_C2C_RealTimeSendFaild_CallBack(pFromClient);
 					if(pFromClient.isQoS() && offlineProcessedOK)
 					{
 						needDelegateACK = true;
@@ -109,17 +112,20 @@ public class GlobalSendHelper
 				{
 					if(sendOK)
 					{
-						serverCoreHandler.getServerEventListener().onTransBuffer_C2C_CallBack(
-								pFromClient.getTo(), pFromClient.getFrom()
-								, pFromClient.getDataContent(), pFromClient.getFp(), pFromClient.getTypeu());
+//						serverCoreHandler.getServerEventListener().onTransBuffer_C2C_CallBack(
+//								pFromClient.getTo(), pFromClient.getFrom()
+//								, pFromClient.getDataContent(), pFromClient.getFp(), pFromClient.getTypeu());
+						serverCoreHandler.getServerEventListener().onTransBuffer_C2C_CallBack(pFromClient);
 					}
 					else
 					{
 						logger.info("[IMCORE-netty<C2C>]>> 客户端"+remoteAddress+"的通用数据尝试实时发送没有成功，将交给应用层进行离线存储哦...");
 
+//						boolean offlineProcessedOK = serverCoreHandler.getServerEventListener()
+//								.onTransBuffer_C2C_RealTimeSendFaild_CallBack(pFromClient.getTo()
+//										, pFromClient.getFrom(), pFromClient.getDataContent(), pFromClient.getFp(), pFromClient.getTypeu());
 						boolean offlineProcessedOK = serverCoreHandler.getServerEventListener()
-								.onTransBuffer_C2C_RealTimeSendFaild_CallBack(pFromClient.getTo()
-										, pFromClient.getFrom(), pFromClient.getDataContent(), pFromClient.getFp(), pFromClient.getTypeu());
+								.onTransBuffer_C2C_RealTimeSendFaild_CallBack(pFromClient);
 						if(pFromClient.isQoS() && offlineProcessedOK)
 						{
 							try
@@ -163,7 +169,7 @@ public class GlobalSendHelper
 		OnlineProcessor.getInstance().__printOnline();
 		
 		boolean sucess = false;
-		if(!OnlineProcessor.isOnline(pFromClient.getTo()))
+		if(ServerLauncher.bridgeEnabled && !OnlineProcessor.isOnline(pFromClient.getTo()))
 		{
 			logger.debug("[IMCORE-netty<S2C>-桥接↑]>> 客户端"+pFromClient.getTo()+"不在线，数据[from:"+pFromClient.getFrom()
 					+",fp:"+pFromClient.getFp()+"to:"+pFromClient.getTo()+",content:"+pFromClient.getDataContent()

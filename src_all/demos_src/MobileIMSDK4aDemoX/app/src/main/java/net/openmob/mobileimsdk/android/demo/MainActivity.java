@@ -29,6 +29,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,7 +42,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends Activity
+public class MainActivity extends AppCompatActivity
 {
 	private final static String TAG = MainActivity.class.getSimpleName();
 	
@@ -49,6 +50,7 @@ public class MainActivity extends Activity
 	
 	private EditText editId = null;
 	private EditText editContent = null;
+	private TextView viewStatus = null;
 	private TextView viewMyid = null;
 	private Button btnSend = null;
 	
@@ -100,14 +102,16 @@ public class MainActivity extends Activity
 		btnSend = (Button)this.findViewById(R.id.send_btn);
 		editId = (EditText)this.findViewById(R.id.id_editText);
 		editContent = (EditText)this.findViewById(R.id.content_editText);
+		viewStatus = (TextView)this.findViewById(R.id.status_view);
 		viewMyid = (TextView)this.findViewById(R.id.myid_view);
 		
 		chatInfoListView = (ListView)this.findViewById(R.id.demo_main_activity_layout_listView);
 		chatInfoListAdapter = new MyAdapter(this);
 		chatInfoListView.setAdapter(chatInfoListAdapter);
+
+		this.viewMyid.setText(ClientCoreSDK.getInstance().getInstance().getCurrentLoginUserId());
 		
-		this.setTitle("MobileIMSDK v3 Demo(当前登陆："
-				+ClientCoreSDK.getInstance().getInstance().getCurrentLoginUserId()+")");
+		this.setTitle("MobileIMSDK v4 Demo");
 	}
 	
 	private void initListeners()
@@ -146,7 +150,7 @@ public class MainActivity extends Activity
 	public void refreshMyid()
 	{
 		boolean connectedToServer = ClientCoreSDK.getInstance().isConnectedToServer();
-		this.viewMyid.setText(connectedToServer ? "通信正常":"连接断开");
+		this.viewStatus.setText(connectedToServer ? "通信正常":"连接断开");
 	}
 	
 	private void doSendMessage()

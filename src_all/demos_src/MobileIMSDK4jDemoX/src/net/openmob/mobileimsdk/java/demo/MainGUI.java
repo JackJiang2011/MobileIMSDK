@@ -136,9 +136,9 @@ public class MainGUI extends JFrame
 		sc.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		this.getContentPane().add(sc, BorderLayout.CENTER);
 		
-		this.setTitle("MobileIMSDK v3演示工程 - (当前登陆:"
+		this.setTitle("MobileIMSDK v4演示工程 - (当前登陆:"
 				+ClientCoreSDK.getInstance().getCurrentLoginUserId()
-				+", 讨论区:52im.net, QQ群:215891622)");
+				+", 讨论区:52im.net, QQ群:101279154)");
 		this.setLocationRelativeTo(null);
 		this.setSize(1000,700);
 		

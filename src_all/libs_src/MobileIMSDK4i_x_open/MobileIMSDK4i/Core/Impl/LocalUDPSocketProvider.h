@@ -21,17 +21,17 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GCDAsyncUdpSocket.h"
+#import "MBGCDAsyncUdpSocket.h"
 #import "CompletionDefine.h"
 
 @interface LocalUDPSocketProvider : NSObject <GCDAsyncUdpSocketDelegate>
 
 + (LocalUDPSocketProvider *)sharedInstance;
 
-- (GCDAsyncUdpSocket *)resetLocalUDPSocket;
-- (GCDAsyncUdpSocket *) getLocalUDPSocket;
+- (MBGCDAsyncUdpSocket *)resetLocalUDPSocket;
+- (MBGCDAsyncUdpSocket *) getLocalUDPSocket;
 - (void) setConnectionObserver:(ConnectionCompletion)connObserver;
-- (int)tryConnectToHost:(NSError **)errPtr withSocket:(GCDAsyncUdpSocket *)skt completion:(ConnectionCompletion)finish;
+- (int)tryConnectToHost:(NSError **)errPtr withSocket:(MBGCDAsyncUdpSocket *)skt completion:(ConnectionCompletion)finish;
 - (BOOL) isLocalUDPSocketReady;
 - (void) closeLocalUDPSocket;
 

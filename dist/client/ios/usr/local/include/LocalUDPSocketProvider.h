@@ -21,7 +21,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GCDAsyncUdpSocket.h"
+#import "MBGCDAsyncUdpSocket.h"
 #import "CompletionDefine.h"
 
 /*!
@@ -49,7 +49,7 @@
  * @see GCDAsyncUdpSocket
  * @see [ConfigEntity getLocalUDPPort]
  */
-- (GCDAsyncUdpSocket *)resetLocalUDPSocket;
+- (MBGCDAsyncUdpSocket *)resetLocalUDPSocket;
 
 /*!
  * 获得本地UDPSocket的实例引用.
@@ -61,7 +61,7 @@
  * @see [LocalUDPSocketProvider isLocalUDPSocketReady]
  * @see [LocalUDPSocketProvider resetLocalUDPSocket]
  */
-- (GCDAsyncUdpSocket *) getLocalUDPSocket;
+- (MBGCDAsyncUdpSocket *) getLocalUDPSocket;
 
 /*!
  * 设置UDP Socket连接结果事件观察者.
@@ -91,7 +91,7 @@
  *  @return 0 表示connect的意图是否成功发出（实际上真正连接是通过异常的delegate方法回来的，不在此方法考虑之列），否则表示错误码
  *  @see GCDAsyncUdpSocket, ConnectionCompletion
  */
-- (int)tryConnectToHost:(NSError **)errPtr withSocket:(GCDAsyncUdpSocket *)skt completion:(ConnectionCompletion)finish;
+- (int)tryConnectToHost:(NSError **)errPtr withSocket:(MBGCDAsyncUdpSocket *)skt completion:(ConnectionCompletion)finish;
 
 /*!
  * 本类中的Socket对象是否是健康的。

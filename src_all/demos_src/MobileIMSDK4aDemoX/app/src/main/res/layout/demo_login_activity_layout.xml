@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="@color/colorWhite">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,7 +25,8 @@
                 android:singleLine="true"
                 android:background="@drawable/edittext_bg"
                 android:ems="10"
-                android:textColor="#ff007aff"
+                android:textColor="@color/colorBlue"
+                android:textColorHint="@color/colorTextHint"
                 android:text="rbcore.52im.net"
                 android:hint="Domain or ip address #"
                 android:paddingLeft="6dp"
@@ -54,7 +56,8 @@
                 android:paddingRight="6dp"
                 android:singleLine="true"
                 android:text="7901"
-                android:textColor="#ff007aff"
+                android:textColor="@color/colorBlue"
+                android:textColorHint="@color/colorTextHint"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -75,6 +78,8 @@
                 android:singleLine="true"
                 android:paddingLeft="6dp"
                 android:paddingRight="6dp"
+                android:textColor="@color/colorText"
+                android:textColorHint="@color/colorTextHint"
                 android:textSize="14sp" >
 
                 <requestFocus />
@@ -92,6 +97,8 @@
                 android:hint="登陆密码"
                 android:paddingLeft="6dp"
                 android:paddingRight="6dp"
+                android:textColor="@color/colorText"
+                android:textColorHint="@color/colorTextHint"
                 android:textSize="14sp" />
         </LinearLayout>
         
@@ -121,11 +128,11 @@
             <Button
                 android:id="@+id/login_btn"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/main_search_button_blue_bg"
+                android:layout_height="36dp"
+                android:background="@drawable/main_search_button_green_bg"
                 android:text="登  陆"
                 android:textColor="#ffffff"
-                android:textSize="14sp" />
+                android:textSize="16sp" />
         </LinearLayout>
     </LinearLayout>
 
@@ -134,7 +141,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="bottom|center_horizontal"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <ImageView
             android:id="@+id/imageView1"

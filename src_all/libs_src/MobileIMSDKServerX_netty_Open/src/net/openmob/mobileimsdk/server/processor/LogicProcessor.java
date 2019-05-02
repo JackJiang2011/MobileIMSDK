@@ -91,9 +91,10 @@ public class LogicProcessor
 			);
 		}
 
-		boolean processedOK = this.serverCoreHandler.getServerEventListener().onTransBuffer_CallBack(
-				pFromClient.getTo(), pFromClient.getFrom(), pFromClient.getDataContent()
-				, pFromClient.getFp(), pFromClient.getTypeu(), session);
+//		boolean processedOK = this.serverCoreHandler.getServerEventListener().onTransBuffer_CallBack(
+//				pFromClient.getTo(), pFromClient.getFrom(), pFromClient.getDataContent()
+//				, pFromClient.getFp(), pFromClient.getTypeu(), session);
+		boolean processedOK = this.serverCoreHandler.getServerEventListener().onTransBuffer_C2S_CallBack(pFromClient, session);
 	}
 	
 	public void processACK(final Protocal pFromClient, final String remoteAddress) throws Exception
