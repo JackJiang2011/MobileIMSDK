@@ -125,34 +125,10 @@ public class LocalUDPDataReciever
 			DatagramSocket localUDPSocket = LocalUDPSocketProvider.getInstance().getLocalUDPSocket();
 			if (localUDPSocket != null && !localUDPSocket.isClosed())
 			{
-				/** ## Bug FIX 20190326 [Bug 1, Bug 2] - STAT
-				 ## [Bug 20190326_1 描述: 因socket未被释放，导致监听线程无法退出，从而导致OOM的发生]
-				 ## [Bug 20190326_2 描述: 因socket未被释放，导致虽手机网络物理连接正常(如WiFi)，但不能宽带上网时，导致宽带恢上网后仍不能重连成功]*/
-				localUDPSocket.setSoTimeout(KeepAliveDaemon.NETWORK_CONNECTION_TIME_OUT + KeepAliveDaemon.KEEP_ALIVE_INTERVAL);
-				/** ## Bug FIX 20190326[1,2] - STAT */
-
-				try{
-					localUDPSocket.receive(packet);
-					Message m = Message.obtain();
-					m.obj = packet;
-					messageHandler.sendMessage(m);
-				}
-				catch(SocketTimeoutException e){
-					Log.i(TAG, "【IMCORE】【udpListeningImpl】localUDPSocket.receive() 抛出了异常" +
-							"SocketTimeoutException，应该是socket被close了，本次网络监听阻塞已被解除，socket" +
-							"监听线程也将正常结束生命周期。。。("+(thread == null ?"":thread.getId())+")");
-
-					/** ## Bug FIX 20190326 [Bug 2] - STAT */
-					try{
-						if(localUDPSocket != null) {
-							localUDPSocket.close();
-							localUDPSocket = null;
-						}
-					}catch(Exception ee){
-						Log.i(TAG, "【IMCORE】【udpListeningImpl】IN localUDPSocket.close(), cause="+ee.getMessage());
-					}
-					/** ## Bug FIX 20190326 [Bug 2] - END */
-				}
+				localUDPSocket.receive(packet);
+				Message m = Message.obtain();
+				m.obj = packet;
+				messageHandler.sendMessage(m);
 			}
 		}
 	}

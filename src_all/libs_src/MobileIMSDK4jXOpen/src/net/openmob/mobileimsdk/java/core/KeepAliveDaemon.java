@@ -72,7 +72,7 @@ public class KeepAliveDaemon
 			int code = LocalUDPDataSender.getInstance().sendKeepAlive();
 
 			boolean isInitialedForKeepAlive = (lastGetKeepAliveResponseFromServerTimstamp == 0);
-			if(code == 0 && lastGetKeepAliveResponseFromServerTimstamp == 0)
+			if(isInitialedForKeepAlive)
 				lastGetKeepAliveResponseFromServerTimstamp = System.currentTimeMillis();
 
 			if(!isInitialedForKeepAlive)

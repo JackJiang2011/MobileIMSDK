@@ -88,7 +88,7 @@ public class KeepAliveDaemon
 						protected void onPostExecute(Integer code)
 						{
 							boolean isInitialedForKeepAlive = (lastGetKeepAliveResponseFromServerTimstamp == 0);
-							if(code == 0 && lastGetKeepAliveResponseFromServerTimstamp == 0)
+							if(isInitialedForKeepAlive)
 								lastGetKeepAliveResponseFromServerTimstamp = System.currentTimeMillis();
 
 							if(!isInitialedForKeepAlive)

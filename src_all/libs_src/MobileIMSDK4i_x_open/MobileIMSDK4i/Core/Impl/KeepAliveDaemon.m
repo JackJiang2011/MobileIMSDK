@@ -103,7 +103,7 @@ static KeepAliveDaemon *instance = nil;
             self.debugObserver_(nil, [NSNumber numberWithInt:2]);
         
         BOOL isInitialedForKeepAlive = (self.lastGetKeepAliveResponseFromServerTimstamp == 0);
-        if(code == 0 && self.lastGetKeepAliveResponseFromServerTimstamp == 0)
+        if(isInitialedForKeepAlive)
             self.lastGetKeepAliveResponseFromServerTimstamp = [ToolKits getTimeStampWithMillisecond_l];
         
         if(!isInitialedForKeepAlive)
