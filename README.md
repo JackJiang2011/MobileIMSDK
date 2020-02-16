@@ -203,9 +203,11 @@ MobileIMSDK版本更新日志：[点此查看](http://www.52im.net/thread-1270-1
 
 ![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/mibileimsdk_web_demo_on_pc_browsers.png)
 
-# 附录2：基于MobileIMSDK的全功能IM——RainbowChat产品【案例】
-> <code>关于RainbowChat的更多资料请见：</code>[RainbowChat 全部功能截图](http://www.52im.net/thread-20-1-1.html)。
-:point_right: :point_right:【特别说明】：因github图片被墙，部分图未同步成功，请从 [RainbowChat 全部功能截图](http://www.52im.net/thread-20-1-1.html) 中查看！:point_left: :point_left:
+# 附录2：基于MobileIMSDK的全功能IM产品【案例】
+> <code>关于RainbowChat产品的更多资料请见：</code>[RainbowChat产品的全部功能截图](http://www.52im.net/thread-20-1-1.html)。
+
+:point_right: :point_right:【特别说明】：因github图片被墙，部分图未同步成功，请从 [RainbowChat产品的全部功能截图](http://www.52im.net/thread-20-1-1.html) 中查看！:point_left: :point_left:
+
 ![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/more_products/rainbowchat_v4_1.jpg)
 ![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/more_products/rainbowchat_v4_2.jpg)
 ![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/more_products/rainbowchat_v4_03.jpg)
@@ -213,7 +215,7 @@ MobileIMSDK版本更新日志：[点此查看](http://www.52im.net/thread-1270-1
 ![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/more_products/rainbowchat_v4_05.jpg)
 ![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/more_products/rainbowchat_v4_6.jpg)
 
-> <code>更多清晰运行截图请见：</code>[RainbowChat 全部功能截图](http://www.52im.net/thread-20-1-1.html)。
+> <code>更多清晰运行截图请见：</code>[RainbowCha产品的全部功能截图](http://www.52im.net/thread-20-1-1.html)。
 
 # 附录3：基于MobileIMSDK的某云客服IM子系统【案例】
 ### :triangular_flag_on_post: 下图为某云客服产品IM子系统-Web版访客端：
