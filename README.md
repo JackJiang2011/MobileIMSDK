@@ -35,7 +35,7 @@
 * 常见问题讨论学习：[点此进入](http://www.52im.net/forum.php?mod=collection&action=view&ctid=2&fromop=all) :point_left:
 * 移动端即时通讯交流群：![](https://raw.githubusercontent.com/JackJiang2011/MobileIMSDK/master/preview/more_screenshots/others/qq_group_icon_16-16.png) `320837163` :point_left:
 * bug/建议发送至：`jb2011@163.com`
-* 技术支持/合作/咨询请联系作者QQ：`413980957`
+* 技术支持/合作/咨询请联系作者QQ：`413980957` （[关于作者](http://www.52im.net/thread-2792-1-1.html)）:point_left:）
 
 # 一、简介
 ![](https://raw.githubusercontent.com/JackJiang2011/MobileIMSDK/master/preview/more_screenshots/others/github_header_logo_h.png)
@@ -157,19 +157,20 @@ MobileIMSDK版本更新日志：[点此查看](http://www.52im.net/thread-1270-1
 但禁止在超越License约束内容的情况下用于商业用途等，请尊重知识产权。
 更详细的授权说明，请见[MobileIMSDK社区介绍贴](http://www.52im.net/thread-52-1-1.html)中的“十二、授权方式”一节。
 
-> <b>补充说明：</b>如您还需获得更多技术支持或技术合作请联系作者，QQ：<code>413980957</code>。
+> <b>补充说明：</b>如您还需获得更多技术支持或技术合作请联系作者，QQ：<code>413980957</code>（:point_right: [关于作者](http://www.52im.net/thread-2792-1-1.html)）。
 
 # 十三、联系方式
 * 讨论学习和资料区：:earth_americas: [点此进入](http://www.52im.net/forum-89-1.html)；
-* 移动端即时通讯学习交流群：`320837163` <a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=347e290d9cc726233b8c106272c100c8b56c366914452ebcd577f520e3617649"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="即时通讯(IM/推送)开发2" title="即时通讯(IM/推送)开发2"></a> （[更多QQ群点此进入](http://www.52im.net/portal.php?mod=topic&topicid=2)）；
+* 移动端即时通讯学习交流群：`215477170` <a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=b05cf91f7b0aa8f00159793feb080c75f4fe0778b5b5385c5b8485905a2d8a4a"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="即时通讯(IM/推送)开发2" title="即时通讯(IM/推送)开发2"></a> （[更多QQ群点此进入](http://www.52im.net/portal.php?mod=topic&topicid=2)）；
 * bug和建议请发送至：:love_letter: `jb2011@163.com`；
-* 技术支持、技术合作或咨询请联系作者QQ：:penguin: `413980957`、微信：`hellojackjiang`。
+* 技术培训/转让/合作/咨询等欢迎联系作者QQ：:penguin: `413980957`、微信：`hellojackjiang`  （:point_right: [关于作者](http://www.52im.net/thread-2792-1-1.html)）。
 
 # 十四、捐助作者
 优秀的开源需要您的支持才能走的更远，衷心感谢您的支持与理解，也希望您能从开源中收益。
 * 捐助链接： [点此进入](http://www.52im.net/thread-411-1-1.html)。
 
 # 十五、关注作者
+* 关于作者：[点击进入](http://www.52im.net/thread-2792-1-1.html)）:point_left:
 * 推荐关注：[BeautyEye工程](https://github.com/JackJiang2011/beautyeye)
 * 博客地址：[点击入进](http://www.52im.net/space-uid-1.html)
 * Github主页：[点击进入](https://github.com/JackJiang2011)
@@ -209,6 +210,10 @@ MobileIMSDK版本更新日志：[点此查看](http://www.52im.net/thread-1270-1
 ![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/more_products/rainbowchat_v4_02.jpg)
 ![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/more_products/rainbowchat_v4_03.jpg)
 ![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/more_products/rainbowchat_v4_04.jpg)
+![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/more_products/rainbowchat_v4_05.jpg)
+![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/more_products/rainbowchat_v4_06.jpg)
+
+> <code>更多清晰运行截图请见：</code>[RainbowChat前端APP功能截图网页](http://www.52im.net/thread-20-1-1.html)。
 
 # 附录3：基于MobileIMSDK的某云客服IM子系统【案例】
 ### :triangular_flag_on_post: 下图为某云客服产品IM子系统-Web版访客端：
