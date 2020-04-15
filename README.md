@@ -51,7 +51,7 @@
 * 可与姊妹工程 [MobileIMSDK-Web](http://www.52im.net/thread-959-1-1.html) 无缝互通实现网页端聊天或推送等；:point_left:
 * 可应用于跨设备、跨网络的聊天APP、企业OA、消息推送等各种场景。
 
-> MobileIMSDK工程始于2013年10月（当前最新版v4.0.1，[版本更新日志点此查看](http://www.52im.net/thread-1270-1-1.html) ），起初用作某产品的即时通讯底层实现，完全从零开发。<br>
+> MobileIMSDK工程始于2013年10月（当前最新版v4.0.2，[版本更新日志点此查看](http://www.52im.net/thread-1270-1-1.html) ），起初用作某产品的即时通讯底层实现，完全从零开发。<br>
 MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所启发和帮助。
 
 :point_right: 您可能需要：[查看更多关于MobileIMSDK的疑问及解答](http://www.52im.net/thread-60-1-1.html)。
@@ -173,7 +173,7 @@ MobileIMSDK版本更新日志：[点此查看](http://www.52im.net/thread-1270-1
 * 捐助链接： [点此进入](http://www.52im.net/thread-411-1-1.html)。
 
 # 十五、关注作者
-* 关于作者：[点击进入](http://www.52im.net/thread-2792-1-1.html)）:point_left:
+* 关于作者：[点击进入](http://www.52im.net/thread-2792-1-1.html) :point_left:
 * 推荐关注：[BeautyEye工程](https://github.com/JackJiang2011/beautyeye)
 * 博客地址：[点击入进](http://www.52im.net/space-uid-1.html)
 * Github主页：[点击进入](https://github.com/JackJiang2011)

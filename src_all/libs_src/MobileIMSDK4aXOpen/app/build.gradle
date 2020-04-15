@@ -1,18 +1,20 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 28
     defaultConfig {
         applicationId "net.openmob.mobileimsdk.android"
         minSdkVersion 10
-        targetSdkVersion 26
+        targetSdkVersion 28
         versionCode 1
-        versionName "4.0.1"
+        versionName "4.0.2"
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            // TODO 如您需要混淆MobileIMSDK代码，请参见：http://www.52im.net/thread-61-1-1.html，注意读"附录3" ！
         }
     }
     compileOptions {
@@ -27,8 +29,8 @@ android {
 }
 
 dependencies {
-    compile files('libs/gson-2.2.4.jar')
-    compile files('libs/MobileIMSDKServerX_META.jar')
+    implementation files('libs/gson-2.2.4.jar')
+    implementation files('libs/MobileIMSDKServerX_META.jar')
 }
 
 // 打出“MobileIMSDK4a.jar”，以便放到其它工程里使用

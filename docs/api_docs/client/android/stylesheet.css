@@ -8,13 +8,15 @@ Overall document style
 body {
     background-color:#ffffff;
     color:#353833;
-    font-family:'DejaVu Sans', Arial, Helvetica, sans-serif;
+    font-family:Roboto,'Noto Sans','Noto Sans JP','Noto Sans KR','Noto Naskh Arabic','Noto Sans Thai','Noto Sans Hebrew','Noto Sans Bengali',sans-serif;
     font-size:14px;
     margin:0;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
 }
 a:link, a:visited {
     text-decoration:none;
-    color:#258aaf;
+    color:#039be5;
 }
 a:hover, a:focus {
     text-decoration:none;
@@ -114,7 +116,7 @@ Document title and Copyright styles
 Navigation bar styles
 */
 .bar {
-    background-color:#80af27;
+    background-color:#5bc648;
     color:#FFFFFF;
     padding:.8em .5em .4em .8em;
     height:auto;/*height:1.8em;*/
@@ -122,7 +124,7 @@ Navigation bar styles
     margin:0;
 }
 .topNav {
-    background-color:#80af27;
+    background-color:#5bc648;
     color:#FFFFFF;
     float:left;
     padding:0;
@@ -135,7 +137,7 @@ Navigation bar styles
 }
 .bottomNav {
     margin-top:10px;
-    background-color:#80af27;
+    background-color:#5bc648;
     color:#FFFFFF;
     float:left;
     padding:0;
@@ -147,7 +149,7 @@ Navigation bar styles
     font-size:12px;
 }
 .subNav {
-    background-color:rgb(248,255,239);
+    background-color:#f7f9fa;
     float:left;
     width:100%;
     overflow:hidden;
