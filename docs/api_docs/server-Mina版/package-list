@@ -1,9 +1,0 @@
-net.nettime.mobileimsdk.server.bridge
-net.openmob.mobileimsdk.server
-net.openmob.mobileimsdk.server.event
-net.openmob.mobileimsdk.server.processor
-net.openmob.mobileimsdk.server.protocal
-net.openmob.mobileimsdk.server.protocal.c
-net.openmob.mobileimsdk.server.protocal.s
-net.openmob.mobileimsdk.server.qos
-net.openmob.mobileimsdk.server.utils
