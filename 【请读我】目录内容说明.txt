@@ -1,8 +1,8 @@
 /demos 目录：
-内含编译好的可执行Demo（包括手机端Deno、服务端Demo），直接安装到手机或双击运行即可。
+内含编译好的可执行Demo（包括手机端Demo、服务端Demo），直接安装到手机或双击运行即可。
 
 /dist 目录：
-内含编译好的 MobileIMSDK v3.x 核心库lib，开发者可直接引用到自已的工程中，而不一定非要把源码拷进去再用。
+内含编译好的 MobileIMSDK v5.x 核心库lib，开发者可直接引用到自已的工程中，而不一定非要把源码拷进去再用。
 
 /docs 目录：
 内含api文档。
@@ -14,7 +14,7 @@
 内含历次版本更新内容记录。
 
 /src_all 目录：
-内含 MobileIMSDK v3.x 版的Demo源码和核心库源码。
+内含 MobileIMSDK v5.x 版的Demo源码和核心库源码。
 
 
 
