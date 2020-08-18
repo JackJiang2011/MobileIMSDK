@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MobileIMSDK4a_udp_Open.iml" filepath="$PROJECT_DIR$/.idea/modules/MobileIMSDK4a_udp_Open.iml" group="MobileIMSDK4a_udp_Open" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="MobileIMSDK4a_udp_Open/app" />
+    </modules>
+  </component>
+</project>

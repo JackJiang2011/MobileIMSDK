@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical" >
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <EditText
+                android:id="@+id/serverIP_editText"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:background="@drawable/edittext_bg"
+                android:ems="10"
+                android:textColor="#ff007aff"
+                android:text="rbcore.52im.net"
+                android:hint="Domain or ip address #"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:textSize="14sp" >
+
+                <requestFocus />
+            </EditText>
+            
+            <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="："
+	            android:textAppearance="?android:attr/textAppearanceLarge"
+	            android:textColor="#666666"
+	            android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/serverPort_editText"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
+                android:background="@drawable/edittext_bg"
+                android:ems="10"
+                android:hint="Port #"
+                android:inputType="numberDecimal"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:singleLine="true"
+                android:text="7901"
+                android:textColor="#ff007aff"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <EditText
+                android:id="@+id/loginName_editText"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/edittext_bg"
+                android:ems="10"
+                android:hint="登陆账号"
+                android:singleLine="true"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:textSize="14sp" >
+
+                <requestFocus />
+            </EditText>
+
+            <EditText
+                android:id="@+id/loginPsw_editText"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/edittext_bg"
+                android:password="true"
+                android:ems="10"
+                android:singleLine="true"
+                android:hint="登陆密码"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:textSize="14sp" />
+        </LinearLayout>
+        
+        <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/dashed_line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center" >
+            
+            <TextView
+                android:id="@+id/demo_version"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textColor="#aaaaaa"
+                android:textSize="10sp" />
+
+            <Button
+                android:id="@+id/login_btn"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/main_search_button_blue_bg"
+                android:text="登  陆"
+                android:textColor="#ffffff"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="bottom|center_horizontal"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="19dp"
+            android:src="@drawable/copyright_img" />
+
+    </LinearLayout>
+  
+</LinearLayout>

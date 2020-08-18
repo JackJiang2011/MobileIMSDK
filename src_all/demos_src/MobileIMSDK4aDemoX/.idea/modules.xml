@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/MobileIMSDK4aDemoX.iml" filepath="$PROJECT_DIR$/MobileIMSDK4aDemoX.iml" group="MobileIMSDK4aDemoX" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="MobileIMSDK4aDemoX/app" />
-    </modules>
-  </component>
-</project>

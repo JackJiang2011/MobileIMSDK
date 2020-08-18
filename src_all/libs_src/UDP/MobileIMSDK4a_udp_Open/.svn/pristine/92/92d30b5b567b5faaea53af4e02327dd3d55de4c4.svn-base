@@ -1,0 +1,53 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "net.openmob.mobileimsdk.android"
+        minSdkVersion 10
+        targetSdkVersion 26
+        versionCode 1
+        versionName "4.0.1"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_6
+        targetCompatibility JavaVersion.VERSION_1_6
+    }
+
+    // 打jar时，有了下面这段就不提示lint问题
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    compile files('libs/gson-2.2.4.jar')
+    compile files('libs/MobileIMSDKServerX_META.jar')
+}
+
+// 打出“MobileIMSDK4a.jar”，以便放到其它工程里使用
+task makeJar(type: Jar) {
+
+    // 删除之前已打过的jar
+    delete 'build/dist/MobileIMSDK4a.jar'
+
+    // 要打包的类目录
+    from file('build/intermediates/classes/release')
+    // 打包完成的jar包名
+    archiveName = 'MobileIMSDK4a.jar'
+    // 打包完成后的jar包位置
+    destinationDir = file('build/dist')
+
+    // 过滤不需要的系统生成class
+    exclude "**/**/BuildConfig.class"
+    exclude "**/**/BuildConfig\$*.class"
+    exclude "**/R.class"
+    exclude "**/R\$*.class"
+}
+makeJar.dependsOn(build)
