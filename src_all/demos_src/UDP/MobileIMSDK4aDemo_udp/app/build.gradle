@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     defaultConfig {
-        applicationId "net.openmob.mobileimsdk.android.demo"
+        applicationId "net.x52im.mobileimsdk.android.demo_udp"
         minSdkVersion 14
-        targetSdkVersion 28
-        versionCode 104
-        versionName "v4.0.2b200415.1"
+        targetSdkVersion 29
+        versionCode 105
+        versionName "v5.0b200819.1"
         //testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -16,13 +16,24 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
     //implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:28.0.0'
+//    implementation 'com.android.support:appcompat-v7:28.0.0'
 
-    implementation files('libs/gson-2.2.4.jar')
-    implementation files('libs/MobileIMSDKServerX_META.jar')
-    implementation files('libs/MobileIMSDK4a.jar')
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.2.0'
+
+    // MobileIMSDK的依赖库
+    implementation 'com.google.code.gson:gson:2.8.6'
+
+    // MobileIMSDK的SDK库
+    implementation files('libs/MobileIMSDKServer_META.jar')
+    implementation files('libs/MobileIMSDK4a_udp.jar')
 }

@@ -1,0 +1,626 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EA3969C81A0DEFA40099FBF9 /* green_light@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA3969C71A0DEFA40099FBF9 /* green_light@2x.png */; };
+		EA48F5421BEF816C007AE6A1 /* UIViewController+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = EA48F5411BEF816C007AE6A1 /* UIViewController+Ext.m */; };
+		EA48F5461BEF8FE0007AE6A1 /* IMClientManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA48F5451BEF8FE0007AE6A1 /* IMClientManager.m */; };
+		EA761DA319FFE9BB00CBABA1 /* info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA761DA219FFE9BB00CBABA1 /* info@2x.png */; };
+		EA79B32E1BF0955100D214F5 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EA79B32D1BF0955100D214F5 /* MBProgressHUD.m */; };
+		EA79B3311BF0993700D214F5 /* OnLoginProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = EA79B3301BF0993700D214F5 /* OnLoginProgress.m */; };
+		EA7B6EE519FF4CEF0007867A /* qzone_mark_img_myvoice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA7B6EE319FF4CEF0007867A /* qzone_mark_img_myvoice@2x.png */; };
+		EA82573819FF5E080063AC95 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA82573319FF5DA90063AC95 /* CoreGraphics.framework */; };
+		EA82573919FF5E110063AC95 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA82572F19FF5D940063AC95 /* UIKit.framework */; };
+		EA82573A19FF5E160063AC95 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA82573519FF5DB30063AC95 /* QuartzCore.framework */; };
+		EA82573B19FF5E1C0063AC95 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA82573119FF5D9B0063AC95 /* Foundation.framework */; };
+		EA8BDD2C1BEEFB190069EF2B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8BDD2A1BEEFB190069EF2B /* LoginViewController.m */; };
+		EA8BDD2D1BEEFB190069EF2B /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA8BDD2B1BEEFB190069EF2B /* LoginViewController.xib */; };
+		EA8E539719FF5F8100F9CE5B /* Toast+UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8E539619FF5F8100F9CE5B /* Toast+UIView.m */; };
+		EA8E53B519FF734800F9CE5B /* ChatBaseEventImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8E53B019FF734800F9CE5B /* ChatBaseEventImpl.m */; };
+		EA8E53BD19FF818400F9CE5B /* ChatTransDataEventImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8E53BA19FF818400F9CE5B /* ChatTransDataEventImpl.m */; };
+		EA8E53BE19FF818400F9CE5B /* MessageQoSEventImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8E53BC19FF818400F9CE5B /* MessageQoSEventImpl.m */; };
+		EA94F40119FF97E00030D5AE /* dashed_line.png in Resources */ = {isa = PBXBuildFile; fileRef = EA94F40019FF97E00030D5AE /* dashed_line.png */; };
+		EA98E4B91A0CFC1D005A7299 /* gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA98E4B71A0CFC1D005A7299 /* gray@2x.png */; };
+		EA98E4BA1A0CFC1D005A7299 /* green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA98E4B81A0CFC1D005A7299 /* green@2x.png */; };
+		EAA12B891A00C3E700E8CD07 /* Images-3.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAA12B881A00C3E700E8CD07 /* Images-3.xcassets */; };
+		EAC6A7091A909022007BDF92 /* ChatInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC6A7071A909022007BDF92 /* ChatInfoTableViewCell.m */; };
+		EAC6A70A1A909022007BDF92 /* ChatInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC6A7081A909022007BDF92 /* ChatInfoTableViewCell.xib */; };
+		EAC6A70D1A909700007BDF92 /* ChatInfoTableViewCellDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC6A70C1A909700007BDF92 /* ChatInfoTableViewCellDTO.m */; };
+		EAD014411BF34B5000D4A052 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD0143F1BF34B5000D4A052 /* LaunchScreen.xib */; };
+		EAD014451BF34C1700D4A052 /* srart_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EAD014431BF34C1700D4A052 /* srart_bg.jpg */; };
+		EAD3047519F60C2D00B75F51 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD3047419F60C2D00B75F51 /* main.m */; };
+		EAD3047819F60C2D00B75F51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD3047719F60C2D00B75F51 /* AppDelegate.m */; };
+		EAD3047B19F60C2D00B75F51 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD3047A19F60C2D00B75F51 /* MainViewController.m */; };
+		EAD304A819F6118000B75F51 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD304A719F6118000B75F51 /* MainViewController.xib */; };
+		EADDE6C71A0A2AB4002FFB8E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EADDE6C61A0A2AB4002FFB8E /* SystemConfiguration.framework */; };
+		EAE3B0D21D59C10700D94245 /* libMobileIMSDK4iX_common.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAE3B0D11D59C10700D94245 /* libMobileIMSDK4iX_common.a */; };
+		EAF526F61BF447E2006E31CB /* logo_img@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF526F41BF447E2006E31CB /* logo_img@2x.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		EA2746AA1BC40BAA004157D4 /* libMobileIMSDK4i_common.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMobileIMSDK4i_common.a; path = MobileIMSDK4iLib/libMobileIMSDK4i_common.a; sourceTree = "<group>"; };
+		EA3969C71A0DEFA40099FBF9 /* green_light@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "green_light@2x.png"; sourceTree = "<group>"; };
+		EA48F5401BEF816C007AE6A1 /* UIViewController+Ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+Ext.h"; path = "MobileIMSDK4iDemo/UIViewController+Ext.h"; sourceTree = "<group>"; };
+		EA48F5411BEF816C007AE6A1 /* UIViewController+Ext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+Ext.m"; path = "MobileIMSDK4iDemo/UIViewController+Ext.m"; sourceTree = "<group>"; };
+		EA48F5441BEF8FE0007AE6A1 /* IMClientManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMClientManager.h; path = MobileIMSDK4iDemo/IMClientManager.h; sourceTree = "<group>"; };
+		EA48F5451BEF8FE0007AE6A1 /* IMClientManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMClientManager.m; path = MobileIMSDK4iDemo/IMClientManager.m; sourceTree = "<group>"; };
+		EA761DA219FFE9BB00CBABA1 /* info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info@2x.png"; sourceTree = "<group>"; };
+		EA79B32C1BF0955100D214F5 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		EA79B32D1BF0955100D214F5 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		EA79B32F1BF0993700D214F5 /* OnLoginProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OnLoginProgress.h; path = MobileIMSDK4iDemo/OnLoginProgress.h; sourceTree = "<group>"; };
+		EA79B3301BF0993700D214F5 /* OnLoginProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OnLoginProgress.m; path = MobileIMSDK4iDemo/OnLoginProgress.m; sourceTree = "<group>"; };
+		EA7B6EE319FF4CEF0007867A /* qzone_mark_img_myvoice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qzone_mark_img_myvoice@2x.png"; sourceTree = "<group>"; };
+		EA82572F19FF5D940063AC95 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		EA82573119FF5D9B0063AC95 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		EA82573319FF5DA90063AC95 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		EA82573519FF5DB30063AC95 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		EA8BDD291BEEFB190069EF2B /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = MobileIMSDK4iDemo/LoginViewController.h; sourceTree = "<group>"; };
+		EA8BDD2A1BEEFB190069EF2B /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = MobileIMSDK4iDemo/LoginViewController.m; sourceTree = "<group>"; };
+		EA8BDD2B1BEEFB190069EF2B /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController.xib; path = MobileIMSDK4iDemo/LoginViewController.xib; sourceTree = "<group>"; };
+		EA8E539519FF5F8100F9CE5B /* Toast+UIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Toast+UIView.h"; sourceTree = "<group>"; };
+		EA8E539619FF5F8100F9CE5B /* Toast+UIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Toast+UIView.m"; sourceTree = "<group>"; };
+		EA8E53AF19FF734800F9CE5B /* ChatBaseEventImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatBaseEventImpl.h; sourceTree = "<group>"; };
+		EA8E53B019FF734800F9CE5B /* ChatBaseEventImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatBaseEventImpl.m; sourceTree = "<group>"; };
+		EA8E53B919FF818400F9CE5B /* ChatTransDataEventImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTransDataEventImpl.h; sourceTree = "<group>"; };
+		EA8E53BA19FF818400F9CE5B /* ChatTransDataEventImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatTransDataEventImpl.m; sourceTree = "<group>"; };
+		EA8E53BB19FF818400F9CE5B /* MessageQoSEventImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageQoSEventImpl.h; sourceTree = "<group>"; };
+		EA8E53BC19FF818400F9CE5B /* MessageQoSEventImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageQoSEventImpl.m; sourceTree = "<group>"; };
+		EA94F40019FF97E00030D5AE /* dashed_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashed_line.png; sourceTree = "<group>"; };
+		EA98E4B71A0CFC1D005A7299 /* gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gray@2x.png"; sourceTree = "<group>"; };
+		EA98E4B81A0CFC1D005A7299 /* green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "green@2x.png"; sourceTree = "<group>"; };
+		EAA12B881A00C3E700E8CD07 /* Images-3.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Images-3.xcassets"; path = "MobileIMSDK4iDemo/Images-3.xcassets"; sourceTree = SOURCE_ROOT; };
+		EAB64DD61BCA92E6006ED58E /* ProtocalFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocalFactory.h; sourceTree = "<group>"; };
+		EAB64DD71BCA92E6006ED58E /* QoS4ReciveDaemon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QoS4ReciveDaemon.h; sourceTree = "<group>"; };
+		EAB64DD81BCA92E6006ED58E /* QoS4SendDaemon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QoS4SendDaemon.h; sourceTree = "<group>"; };
+		EAC6A7061A909022007BDF92 /* ChatInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatInfoTableViewCell.h; path = MobileIMSDK4iDemo/ChatInfoTableViewCell.h; sourceTree = "<group>"; };
+		EAC6A7071A909022007BDF92 /* ChatInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChatInfoTableViewCell.m; path = MobileIMSDK4iDemo/ChatInfoTableViewCell.m; sourceTree = "<group>"; };
+		EAC6A7081A909022007BDF92 /* ChatInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ChatInfoTableViewCell.xib; path = MobileIMSDK4iDemo/ChatInfoTableViewCell.xib; sourceTree = "<group>"; };
+		EAC6A70B1A909700007BDF92 /* ChatInfoTableViewCellDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatInfoTableViewCellDTO.h; path = MobileIMSDK4iDemo/ChatInfoTableViewCellDTO.h; sourceTree = "<group>"; };
+		EAC6A70C1A909700007BDF92 /* ChatInfoTableViewCellDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChatInfoTableViewCellDTO.m; path = MobileIMSDK4iDemo/ChatInfoTableViewCellDTO.m; sourceTree = "<group>"; };
+		EAD014401BF34B5000D4A052 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = MobileIMSDK4iDemo/Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		EAD014431BF34C1700D4A052 /* srart_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = srart_bg.jpg; sourceTree = "<group>"; };
+		EAD3046F19F60C2D00B75F51 /* MobileIMSDK4iDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileIMSDK4iDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAD3047319F60C2D00B75F51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EAD3047419F60C2D00B75F51 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EAD3047619F60C2D00B75F51 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = MobileIMSDK4iDemo/AppDelegate.h; sourceTree = "<group>"; };
+		EAD3047719F60C2D00B75F51 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = MobileIMSDK4iDemo/AppDelegate.m; sourceTree = "<group>"; };
+		EAD3047919F60C2D00B75F51 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = MobileIMSDK4iDemo/MainViewController.h; sourceTree = "<group>"; };
+		EAD3047A19F60C2D00B75F51 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = MobileIMSDK4iDemo/MainViewController.m; sourceTree = "<group>"; };
+		EAD304A719F6118000B75F51 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainViewController.xib; path = MobileIMSDK4iDemo/MainViewController.xib; sourceTree = "<group>"; };
+		EADDE6C61A0A2AB4002FFB8E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		EADDE6CB1A0A309E002FFB8E /* AutoReLoginDaemon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoReLoginDaemon.h; sourceTree = "<group>"; };
+		EADDE6CC1A0A309E002FFB8E /* CharsetHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharsetHelper.h; sourceTree = "<group>"; };
+		EADDE6CD1A0A309E002FFB8E /* ChatBaseEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatBaseEvent.h; sourceTree = "<group>"; };
+		EADDE6CE1A0A309E002FFB8E /* ChatTransDataEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTransDataEvent.h; sourceTree = "<group>"; };
+		EADDE6CF1A0A309E002FFB8E /* ClientCoreSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClientCoreSDK.h; sourceTree = "<group>"; };
+		EADDE6D01A0A309E002FFB8E /* CompletionDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletionDefine.h; sourceTree = "<group>"; };
+		EADDE6D11A0A309E002FFB8E /* ConfigEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigEntity.h; sourceTree = "<group>"; };
+		EADDE6D31A0A309E002FFB8E /* ErrorCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorCode.h; sourceTree = "<group>"; };
+		EADDE6D41A0A309E002FFB8E /* KeepAliveDaemon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeepAliveDaemon.h; sourceTree = "<group>"; };
+		EADDE6D51A0A309E002FFB8E /* LocalUDPDataReciever.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalUDPDataReciever.h; sourceTree = "<group>"; };
+		EADDE6D61A0A309E002FFB8E /* LocalUDPDataSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalUDPDataSender.h; sourceTree = "<group>"; };
+		EADDE6D71A0A309E002FFB8E /* LocalUDPSocketProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalUDPSocketProvider.h; sourceTree = "<group>"; };
+		EADDE6D81A0A309E002FFB8E /* MessageQoSEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageQoSEvent.h; sourceTree = "<group>"; };
+		EADDE6D91A0A309E002FFB8E /* NSMutableDictionary+Ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+Ext.h"; sourceTree = "<group>"; };
+		EADDE6DB1A0A309E002FFB8E /* PErrorResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PErrorResponse.h; sourceTree = "<group>"; };
+		EADDE6DC1A0A309E002FFB8E /* PKeepAlive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKeepAlive.h; sourceTree = "<group>"; };
+		EADDE6DD1A0A309E002FFB8E /* PKeepAliveResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKeepAliveResponse.h; sourceTree = "<group>"; };
+		EADDE6DE1A0A309E002FFB8E /* PLoginInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLoginInfo.h; sourceTree = "<group>"; };
+		EADDE6DF1A0A309E002FFB8E /* PLoginInfoResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLoginInfoResponse.h; sourceTree = "<group>"; };
+		EADDE6E01A0A309E002FFB8E /* Protocal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Protocal.h; sourceTree = "<group>"; };
+		EADDE6E31A0A309E002FFB8E /* ProtocalType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocalType.h; sourceTree = "<group>"; };
+		EADDE6E41A0A309E002FFB8E /* ToolKits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolKits.h; sourceTree = "<group>"; };
+		EADDE6E51A0A309E002FFB8E /* UDPUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDPUtils.h; sourceTree = "<group>"; };
+		EAE3B0D11D59C10700D94245 /* libMobileIMSDK4iX_common.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobileIMSDK4iX_common.a; sourceTree = "<group>"; };
+		EAF526F41BF447E2006E31CB /* logo_img@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_img@2x.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EAD3046C19F60C2D00B75F51 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EADDE6C71A0A2AB4002FFB8E /* SystemConfiguration.framework in Frameworks */,
+				EA82573B19FF5E1C0063AC95 /* Foundation.framework in Frameworks */,
+				EA82573A19FF5E160063AC95 /* QuartzCore.framework in Frameworks */,
+				EA82573919FF5E110063AC95 /* UIKit.framework in Frameworks */,
+				EA82573819FF5E080063AC95 /* CoreGraphics.framework in Frameworks */,
+				EAE3B0D21D59C10700D94245 /* libMobileIMSDK4iX_common.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EA48F5431BEF8F3F007AE6A1 /* demo_gui */ = {
+			isa = PBXGroup;
+			children = (
+				EAD0143F1BF34B5000D4A052 /* LaunchScreen.xib */,
+				EA48F5401BEF816C007AE6A1 /* UIViewController+Ext.h */,
+				EA48F5411BEF816C007AE6A1 /* UIViewController+Ext.m */,
+				EA79B3261BF08DFF00D214F5 /* 登陆 */,
+				EA79B3271BF08E0C00D214F5 /* 主界面 */,
+			);
+			name = demo_gui;
+			sourceTree = "<group>";
+		};
+		EA79B3261BF08DFF00D214F5 /* 登陆 */ = {
+			isa = PBXGroup;
+			children = (
+				EA8BDD291BEEFB190069EF2B /* LoginViewController.h */,
+				EA8BDD2A1BEEFB190069EF2B /* LoginViewController.m */,
+				EA8BDD2B1BEEFB190069EF2B /* LoginViewController.xib */,
+				EA79B32F1BF0993700D214F5 /* OnLoginProgress.h */,
+				EA79B3301BF0993700D214F5 /* OnLoginProgress.m */,
+			);
+			name = "登陆";
+			sourceTree = "<group>";
+		};
+		EA79B3271BF08E0C00D214F5 /* 主界面 */ = {
+			isa = PBXGroup;
+			children = (
+				EAD3047919F60C2D00B75F51 /* MainViewController.h */,
+				EAD3047A19F60C2D00B75F51 /* MainViewController.m */,
+				EAD304A719F6118000B75F51 /* MainViewController.xib */,
+				EAC6A7061A909022007BDF92 /* ChatInfoTableViewCell.h */,
+				EAC6A70B1A909700007BDF92 /* ChatInfoTableViewCellDTO.h */,
+				EAC6A70C1A909700007BDF92 /* ChatInfoTableViewCellDTO.m */,
+				EAC6A7071A909022007BDF92 /* ChatInfoTableViewCell.m */,
+				EAC6A7081A909022007BDF92 /* ChatInfoTableViewCell.xib */,
+			);
+			name = "主界面";
+			sourceTree = "<group>";
+		};
+		EA79B32B1BF093A900D214F5 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				EA79B32C1BF0955100D214F5 /* MBProgressHUD.h */,
+				EA79B32D1BF0955100D214F5 /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		EA7B6EE019FF4CDE0007867A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EA7B6EE119FF4CDE0007867A /* images */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		EA7B6EE119FF4CDE0007867A /* images */ = {
+			isa = PBXGroup;
+			children = (
+				EAF526F41BF447E2006E31CB /* logo_img@2x.png */,
+				EAD014431BF34C1700D4A052 /* srart_bg.jpg */,
+				EA3969C71A0DEFA40099FBF9 /* green_light@2x.png */,
+				EA98E4B71A0CFC1D005A7299 /* gray@2x.png */,
+				EA98E4B81A0CFC1D005A7299 /* green@2x.png */,
+				EA761DA219FFE9BB00CBABA1 /* info@2x.png */,
+				EA94F40019FF97E00030D5AE /* dashed_line.png */,
+				EA7B6EE319FF4CEF0007867A /* qzone_mark_img_myvoice@2x.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		EA82573719FF5DC50063AC95 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EA2746AA1BC40BAA004157D4 /* libMobileIMSDK4i_common.a */,
+				EADDE6C61A0A2AB4002FFB8E /* SystemConfiguration.framework */,
+				EA82573319FF5DA90063AC95 /* CoreGraphics.framework */,
+				EA82573119FF5D9B0063AC95 /* Foundation.framework */,
+				EA82573519FF5DB30063AC95 /* QuartzCore.framework */,
+				EA82572F19FF5D940063AC95 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EA8E539419FF5F8100F9CE5B /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				EA8E539519FF5F8100F9CE5B /* Toast+UIView.h */,
+				EA8E539619FF5F8100F9CE5B /* Toast+UIView.m */,
+			);
+			path = Toast;
+			sourceTree = "<group>";
+		};
+		EA8E53AE19FF734800F9CE5B /* demo_event */ = {
+			isa = PBXGroup;
+			children = (
+				EA8E53B919FF818400F9CE5B /* ChatTransDataEventImpl.h */,
+				EA8E53BA19FF818400F9CE5B /* ChatTransDataEventImpl.m */,
+				EA8E53BB19FF818400F9CE5B /* MessageQoSEventImpl.h */,
+				EA8E53BC19FF818400F9CE5B /* MessageQoSEventImpl.m */,
+				EA8E53AF19FF734800F9CE5B /* ChatBaseEventImpl.h */,
+				EA8E53B019FF734800F9CE5B /* ChatBaseEventImpl.m */,
+			);
+			name = demo_event;
+			path = MobileIMSDK4iDemo/im_impl_demo;
+			sourceTree = "<group>";
+		};
+		EAA12B8C1A00E2F800E8CD07 /* Thirdpart */ = {
+			isa = PBXGroup;
+			children = (
+				EADDE6731A0A15C5002FFB8E /* MobileIMSDK4iLib */,
+				EA79B32B1BF093A900D214F5 /* MBProgressHUD */,
+				EA8E539419FF5F8100F9CE5B /* Toast */,
+			);
+			name = Thirdpart;
+			sourceTree = "<group>";
+		};
+		EAD3046619F60C2D00B75F51 = {
+			isa = PBXGroup;
+			children = (
+				EAD3049819F60CA900B75F51 /* Source */,
+				EA82573719FF5DC50063AC95 /* Frameworks */,
+				EAD3047019F60C2D00B75F51 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EAD3047019F60C2D00B75F51 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EAD3046F19F60C2D00B75F51 /* MobileIMSDK4iDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EAD3047219F60C2D00B75F51 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EA7B6EE019FF4CDE0007867A /* Resources */,
+				EAD3047319F60C2D00B75F51 /* Info.plist */,
+				EAD3047419F60C2D00B75F51 /* main.m */,
+			);
+			name = "Supporting Files";
+			path = MobileIMSDK4iDemo;
+			sourceTree = "<group>";
+		};
+		EAD3049819F60CA900B75F51 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				EAA12B8C1A00E2F800E8CD07 /* Thirdpart */,
+				EA8E53AE19FF734800F9CE5B /* demo_event */,
+				EA48F5431BEF8F3F007AE6A1 /* demo_gui */,
+				EAD3047619F60C2D00B75F51 /* AppDelegate.h */,
+				EAD3047719F60C2D00B75F51 /* AppDelegate.m */,
+				EA48F5441BEF8FE0007AE6A1 /* IMClientManager.h */,
+				EA48F5451BEF8FE0007AE6A1 /* IMClientManager.m */,
+				EAA12B881A00C3E700E8CD07 /* Images-3.xcassets */,
+				EAD3047219F60C2D00B75F51 /* Supporting Files */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		EADDE6731A0A15C5002FFB8E /* MobileIMSDK4iLib */ = {
+			isa = PBXGroup;
+			children = (
+				EAE3B0D11D59C10700D94245 /* libMobileIMSDK4iX_common.a */,
+				EADDE6C81A0A309E002FFB8E /* usr */,
+			);
+			path = MobileIMSDK4iLib;
+			sourceTree = "<group>";
+		};
+		EADDE6C81A0A309E002FFB8E /* usr */ = {
+			isa = PBXGroup;
+			children = (
+				EADDE6C91A0A309E002FFB8E /* local */,
+			);
+			path = usr;
+			sourceTree = "<group>";
+		};
+		EADDE6C91A0A309E002FFB8E /* local */ = {
+			isa = PBXGroup;
+			children = (
+				EADDE6CA1A0A309E002FFB8E /* include */,
+			);
+			path = local;
+			sourceTree = "<group>";
+		};
+		EADDE6CA1A0A309E002FFB8E /* include */ = {
+			isa = PBXGroup;
+			children = (
+				EAB64DD61BCA92E6006ED58E /* ProtocalFactory.h */,
+				EAB64DD71BCA92E6006ED58E /* QoS4ReciveDaemon.h */,
+				EAB64DD81BCA92E6006ED58E /* QoS4SendDaemon.h */,
+				EADDE6CB1A0A309E002FFB8E /* AutoReLoginDaemon.h */,
+				EADDE6CC1A0A309E002FFB8E /* CharsetHelper.h */,
+				EADDE6CD1A0A309E002FFB8E /* ChatBaseEvent.h */,
+				EADDE6CE1A0A309E002FFB8E /* ChatTransDataEvent.h */,
+				EADDE6CF1A0A309E002FFB8E /* ClientCoreSDK.h */,
+				EADDE6D01A0A309E002FFB8E /* CompletionDefine.h */,
+				EADDE6D11A0A309E002FFB8E /* ConfigEntity.h */,
+				EADDE6D31A0A309E002FFB8E /* ErrorCode.h */,
+				EADDE6D41A0A309E002FFB8E /* KeepAliveDaemon.h */,
+				EADDE6D51A0A309E002FFB8E /* LocalUDPDataReciever.h */,
+				EADDE6D61A0A309E002FFB8E /* LocalUDPDataSender.h */,
+				EADDE6D71A0A309E002FFB8E /* LocalUDPSocketProvider.h */,
+				EADDE6D81A0A309E002FFB8E /* MessageQoSEvent.h */,
+				EADDE6D91A0A309E002FFB8E /* NSMutableDictionary+Ext.h */,
+				EADDE6DB1A0A309E002FFB8E /* PErrorResponse.h */,
+				EADDE6DC1A0A309E002FFB8E /* PKeepAlive.h */,
+				EADDE6DD1A0A309E002FFB8E /* PKeepAliveResponse.h */,
+				EADDE6DE1A0A309E002FFB8E /* PLoginInfo.h */,
+				EADDE6DF1A0A309E002FFB8E /* PLoginInfoResponse.h */,
+				EADDE6E01A0A309E002FFB8E /* Protocal.h */,
+				EADDE6E31A0A309E002FFB8E /* ProtocalType.h */,
+				EADDE6E41A0A309E002FFB8E /* ToolKits.h */,
+				EADDE6E51A0A309E002FFB8E /* UDPUtils.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EAD3046E19F60C2D00B75F51 /* MobileIMSDK4iDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EAD3049219F60C2D00B75F51 /* Build configuration list for PBXNativeTarget "MobileIMSDK4iDemo" */;
+			buildPhases = (
+				EAD3046B19F60C2D00B75F51 /* Sources */,
+				EAD3046C19F60C2D00B75F51 /* Frameworks */,
+				EAD3046D19F60C2D00B75F51 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MobileIMSDK4iDemo;
+			productName = RainbowCore4i;
+			productReference = EAD3046F19F60C2D00B75F51 /* MobileIMSDK4iDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EAD3046719F60C2D00B75F51 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = 52im.net;
+				TargetAttributes = {
+					EAD3046E19F60C2D00B75F51 = {
+						CreatedOnToolsVersion = 6.0.1;
+						DevelopmentTeam = A3GUV2D3KJ;
+					};
+				};
+			};
+			buildConfigurationList = EAD3046A19F60C2D00B75F51 /* Build configuration list for PBXProject "MobileIMSDK4iDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				English,
+				en,
+				Base,
+			);
+			mainGroup = EAD3046619F60C2D00B75F51;
+			productRefGroup = EAD3047019F60C2D00B75F51 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EAD3046E19F60C2D00B75F51 /* MobileIMSDK4iDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EAD3046D19F60C2D00B75F51 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EAD014451BF34C1700D4A052 /* srart_bg.jpg in Resources */,
+				EAC6A70A1A909022007BDF92 /* ChatInfoTableViewCell.xib in Resources */,
+				EA3969C81A0DEFA40099FBF9 /* green_light@2x.png in Resources */,
+				EA761DA319FFE9BB00CBABA1 /* info@2x.png in Resources */,
+				EAD304A819F6118000B75F51 /* MainViewController.xib in Resources */,
+				EA7B6EE519FF4CEF0007867A /* qzone_mark_img_myvoice@2x.png in Resources */,
+				EA98E4BA1A0CFC1D005A7299 /* green@2x.png in Resources */,
+				EA94F40119FF97E00030D5AE /* dashed_line.png in Resources */,
+				EAF526F61BF447E2006E31CB /* logo_img@2x.png in Resources */,
+				EA8BDD2D1BEEFB190069EF2B /* LoginViewController.xib in Resources */,
+				EAD014411BF34B5000D4A052 /* LaunchScreen.xib in Resources */,
+				EA98E4B91A0CFC1D005A7299 /* gray@2x.png in Resources */,
+				EAA12B891A00C3E700E8CD07 /* Images-3.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EAD3046B19F60C2D00B75F51 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA8E53B519FF734800F9CE5B /* ChatBaseEventImpl.m in Sources */,
+				EAC6A7091A909022007BDF92 /* ChatInfoTableViewCell.m in Sources */,
+				EA8E53BE19FF818400F9CE5B /* MessageQoSEventImpl.m in Sources */,
+				EA79B3311BF0993700D214F5 /* OnLoginProgress.m in Sources */,
+				EAD3047B19F60C2D00B75F51 /* MainViewController.m in Sources */,
+				EA8BDD2C1BEEFB190069EF2B /* LoginViewController.m in Sources */,
+				EA8E53BD19FF818400F9CE5B /* ChatTransDataEventImpl.m in Sources */,
+				EAD3047819F60C2D00B75F51 /* AppDelegate.m in Sources */,
+				EAD3047519F60C2D00B75F51 /* main.m in Sources */,
+				EA48F5461BEF8FE0007AE6A1 /* IMClientManager.m in Sources */,
+				EA79B32E1BF0955100D214F5 /* MBProgressHUD.m in Sources */,
+				EA48F5421BEF816C007AE6A1 /* UIViewController+Ext.m in Sources */,
+				EA8E539719FF5F8100F9CE5B /* Toast+UIView.m in Sources */,
+				EAC6A70D1A909700007BDF92 /* ChatInfoTableViewCellDTO.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		EAD0143F1BF34B5000D4A052 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EAD014401BF34B5000D4A052 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EAD3049019F60C2D00B75F51 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		EAD3049119F60C2D00B75F51 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EAD3049319F60C2D00B75F51 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = b200801.1;
+				DEVELOPMENT_TEAM = A3GUV2D3KJ;
+				INFOPLIST_FILE = MobileIMSDK4iDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/MobileIMSDK4iLib/Debug-iphoneos",
+					"$(PROJECT_DIR)/MobileIMSDK4iLib/Release-iphoneos",
+					"$(PROJECT_DIR)/MobileIMSDK4iLib",
+					"$(PROJECT_DIR)/MobileIMSDK4iLib/usr",
+				);
+				MARKETING_VERSION = 4.0.2;
+				PRODUCT_BUNDLE_IDENTIFIER = net.52im.MobileIMSDK4iDemoX;
+				PRODUCT_NAME = MobileIMSDK4iDemo;
+				PROVISIONING_PROFILE = "";
+			};
+			name = Debug;
+		};
+		EAD3049419F60C2D00B75F51 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = b200801.1;
+				DEVELOPMENT_TEAM = A3GUV2D3KJ;
+				INFOPLIST_FILE = MobileIMSDK4iDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/MobileIMSDK4iLib/Debug-iphoneos",
+					"$(PROJECT_DIR)/MobileIMSDK4iLib/Release-iphoneos",
+					"$(PROJECT_DIR)/MobileIMSDK4iLib",
+					"$(PROJECT_DIR)/MobileIMSDK4iLib/usr",
+				);
+				MARKETING_VERSION = 4.0.2;
+				PRODUCT_BUNDLE_IDENTIFIER = net.52im.MobileIMSDK4iDemoX;
+				PRODUCT_NAME = MobileIMSDK4iDemo;
+				PROVISIONING_PROFILE = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EAD3046A19F60C2D00B75F51 /* Build configuration list for PBXProject "MobileIMSDK4iDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EAD3049019F60C2D00B75F51 /* Debug */,
+				EAD3049119F60C2D00B75F51 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EAD3049219F60C2D00B75F51 /* Build configuration list for PBXNativeTarget "MobileIMSDK4iDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EAD3049319F60C2D00B75F51 /* Debug */,
+				EAD3049419F60C2D00B75F51 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EAD3046719F60C2D00B75F51 /* Project object */;
+}

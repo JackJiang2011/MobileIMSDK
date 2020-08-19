@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="srart_bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="5v1-wk-Bre">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="69b-q1-tWX" userLabel="header">
+                    <rect key="frame" x="40" y="78" width="240" height="165"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo_img.png" translatesAutoresizingMaskIntoConstraints="NO" id="rur-Kp-hPb">
+                            <rect key="frame" x="0.0" y="0.0" width="240" height="165"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="165" id="O8i-Mo-oRW"/>
+                        <constraint firstAttribute="width" constant="240" id="Vgg-cz-Cls"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P3Z-qU-eK0" userLabel="copyright">
+                    <rect key="frame" x="0.0" y="518" width="320" height="34"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="copyright_img" translatesAutoresizingMaskIntoConstraints="NO" id="3vY-9T-Mkr">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="34"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="34" id="35b-5f-ncc"/>
+                        <constraint firstAttribute="trailing" secondItem="3vY-9T-Mkr" secondAttribute="trailing" id="KOt-ae-yC4"/>
+                        <constraint firstItem="3vY-9T-Mkr" firstAttribute="top" secondItem="P3Z-qU-eK0" secondAttribute="top" id="SPh-Jk-AFw"/>
+                        <constraint firstAttribute="bottom" secondItem="3vY-9T-Mkr" secondAttribute="bottom" id="dPh-Az-VFI"/>
+                        <constraint firstItem="3vY-9T-Mkr" firstAttribute="leading" secondItem="P3Z-qU-eK0" secondAttribute="leading" id="p8t-Me-t7G"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.16857638955116272" green="0.16857638955116272" blue="0.16857638955116272" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="69b-q1-tWX" firstAttribute="top" secondItem="lOD-Yn-fCi" secondAttribute="top" constant="78" id="5wi-h6-vph"/>
+                <constraint firstItem="5v1-wk-Bre" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="6qm-Bh-wQA"/>
+                <constraint firstItem="5v1-wk-Bre" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="BNX-HG-zRo"/>
+                <constraint firstItem="P3Z-qU-eK0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="MPo-uT-Jtf"/>
+                <constraint firstAttribute="bottom" secondItem="5v1-wk-Bre" secondAttribute="bottom" id="NAM-wn-uRO"/>
+                <constraint firstItem="69b-q1-tWX" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="NLe-K5-gzd"/>
+                <constraint firstAttribute="trailing" secondItem="5v1-wk-Bre" secondAttribute="trailing" id="UYP-FT-nvB"/>
+                <constraint firstItem="5v1-wk-Bre" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="W8H-OR-8Yp"/>
+                <constraint firstItem="5v1-wk-Bre" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="jC9-pG-uaQ"/>
+                <constraint firstItem="lOD-Yn-fCi" firstAttribute="bottom" secondItem="P3Z-qU-eK0" secondAttribute="bottom" constant="16" id="lPO-y3-pIw"/>
+                <constraint firstItem="lOD-Yn-fCi" firstAttribute="trailing" secondItem="P3Z-qU-eK0" secondAttribute="trailing" id="ysd-z1-dtf"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <viewLayoutGuide key="safeArea" id="lOD-Yn-fCi"/>
+            <point key="canvasLocation" x="-862" y="783"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="copyright_img" width="181.5" height="34"/>
+        <image name="logo_img.png" width="203.5" height="170"/>
+        <image name="srart_bg.jpg" width="337" height="600"/>
+    </resources>
+</document>

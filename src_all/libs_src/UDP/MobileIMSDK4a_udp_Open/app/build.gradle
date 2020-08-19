@@ -7,7 +7,7 @@ android {
         minSdkVersion 10
         targetSdkVersion 29
         versionCode 1
-        versionName "4.0.2"
+        versionName "5.0"
     }
     buildTypes {
         release {
@@ -18,8 +18,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_6
-        targetCompatibility JavaVersion.VERSION_1_6
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     // 打jar时，有了下面这段就不提示lint问题
@@ -29,8 +29,12 @@ android {
 }
 
 dependencies {
-    implementation files('libs/gson-2.2.4.jar')
-    implementation files('libs/MobileIMSDKServerX_META.jar')
+    // MobileIMSDK的依赖库
+    implementation 'com.google.code.gson:gson:2.8.6'
+
+    // MobileIMSDK与服务端共用的DTO类等（就是普通的JavaBean，源码见：
+    // https://github.com/JackJiang2011/MobileIMSDK/tree/master/src_all/libs_src/MobileIMSDKServerX_netty_Open/src/net/openmob/mobileimsdk/server/protocal）
+    implementation files('libs/MobileIMSDKServer_META.jar')
 }
 
 // 打出“MobileIMSDK4a.jar”，以便放到其它工程里使用
@@ -43,9 +47,11 @@ task makeJar(type: Jar) {
     // from file('build/intermediates/classes/release')    // AS 3.6之前
     from file('build/intermediates/javac/release/classes') // AS 3.6之后(含)
     // 打包完成的jar包名
-    archiveName = 'MobileIMSDK4a.jar'
+    //archiveName = 'MobileIMSDK4a.jar'
+    archiveFileName = 'MobileIMSDK4a_udp.jar'
     // 打包完成后的jar包位置
-    destinationDir = file('build/dist')
+    //destinationDir = file('build/dist')
+    destinationDirectory = file('build/dist')
 
     // 过滤不需要的系统生成class
     exclude "**/**/BuildConfig.class"
