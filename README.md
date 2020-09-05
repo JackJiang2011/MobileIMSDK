@@ -41,7 +41,7 @@
 ![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/more_screenshots/others/my_mp_qr_400_b.png) 
 
 # 一、简介
-![](https://raw.githubusercontent.com/JackJiang2011/MobileIMSDK/master/preview/more_screenshots/others/github_header_logo_h.png)
+![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/more_screenshots/others/github_header_logo_h.png)
 
 <b>MobileIMSDK是一套专为移动端开发的原创IM通信层框架：</b> 
 * 历经8年、久经考验；
