@@ -1,0 +1,37 @@
+--------------------------------------
+【源码说明】：
+
+1）/Server/MobileIMSDKServer_Open：
+为服务端核心库源码的Eclipse工程（另：精编注释版见下方说明）；
+
+2）/UDP_Client/MobileIMSDK4a_udp_Open：
+为UDP协议的Android版客户端核心库源码的Android Studio4.0.1工程（另：精编注释版见下方说明）；
+
+3）/UDP_Client/MobileIMSDK4j_udp_Open：
+为UDP协议的标准Java客户端版核心库源码的Eclipse工程（另：精编注释版见下方说明）；
+
+4）/UDP_Client/MobileIMSDK4i_udp_open：
+为UDP协议的iOS版客户端核心库源码的XCode工程（另：精编注释版见下方说明）；
+
+5）/TCP_Client/MobileIMSDK4a_tcp_Open：
+为TCP协议的Android版客户端核心库源码的Android Studio4.0.1工程（另：精编注释版见下方说明）；
+
+6）/TCP_Client/MobileIMSDK4j_tcp_Open：
+为TCP协议的标准Java客户端版核心库源码的Eclipse工程（另：精编注释版见下方说明）；
+
+7）/TCP_Client/MobileIMSDK4i_tcp_open：
+为TCP协议的iOS版客户端核心库源码的XCode工程（另：精编注释版见下方说明）；
+
+--------------------------------------
+
+【精编注释版源码（含详细文档级代码注释、算法原理图、CHM版API文档）】：
+[1 详细说明]：
+关于精编注释版和开源版的说明，请见：http://www.52im.net/thread-411-1-1.html
+
+[2 作者建议]：
+如果您的产品需要对MobileIMSDK进行定制化开发、或者有类似技术需求需要参考MobileIMSDK的实现等，强烈建议您拍下“精编注释版”，因为这有助于您：理解算法、修改代码，因为精编注释版代码与作者的工作代码完全保持一致，基于此你当然也很容易与作者的思路保持一致（而不致于发生理解性错误）！
+
+[3 补充说明]：
+精篇注释版的代码与开源版是等价的没有区别，编译出的结果是完全一样的，所以如您只需要开源版，请放心使用，不会有任何问题。
+
+--------------------------------------

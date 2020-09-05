@@ -1,0 +1,120 @@
+//  ----------------------------------------------------------------------
+//  Copyright (C) 2020  即时通讯网(52im.net) & Jack Jiang.
+//  The MobileIMSDK_TCP (MobileIMSDK v5.x TCP版) Project.
+//  All rights reserved.
+//
+//  > Github地址: https://github.com/JackJiang2011/MobileIMSDK
+//  > 文档地址:    http://www.52im.net/forum-89-1.html
+//  > 技术社区：   http://www.52im.net/
+//  > 技术交流群： 320837163 (http://www.52im.net/topic-qqgroup.html)
+//  > 作者公众号： “即时通讯技术圈】”，欢迎关注！
+//  > 联系作者：   http://www.52im.net/thread-2792-1-1.html
+//
+//  "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
+//  ----------------------------------------------------------------------
+
+#import "ConfigEntity.h"
+#import "KeepAliveDaemon.h"
+
+static NSString *serverIp = @"rbcore.52im.net";
+static int serverPort = 8901;
+static int localUdpSendAndListeningPort = 0;//7801;
+static NSString *appKey = nil;
+
+@implementation ConfigEntity
+
++ (void)registerWithAppKey:(NSString *)key
+{
+    appKey = key;
+}
+
++ (void) setServerIp:(NSString*)sIp
+{
+    serverIp = sIp;
+}
++ (NSString *)getServerIp
+{
+    return serverIp;
+}
+
++ (void) setServerPort:(int)sPort
+{
+    serverPort = sPort;
+}
++ (int) getServerPort
+{
+    return serverPort;
+}
+
++ (void) setLocalUdpSendAndListeningPort:(int)lPort
+{
+    localUdpSendAndListeningPort = lPort;
+}
++ (int) getLocalUdpSendAndListeningPort
+{
+    return localUdpSendAndListeningPort;
+}
+
++ (void) setSenseMode:(SenseMode)mode
+{
+    int keepAliveInterval = 0;
+    int networkConnectionTimeout = 0;
+    
+    switch(mode)
+    {
+        case SenseMode3S:
+            // 心跳间隔3秒
+            keepAliveInterval = 3000;// 3s
+            // 5秒后未收到服务端心跳反馈即认为连接已断开（相当于连续2个心跳间隔(即算法最大6秒延迟后)后仍未收到服务端反馈）
+            networkConnectionTimeout = keepAliveInterval * 1 + 2000;// 5s
+            break;
+        case SenseMode10S:
+            // 心跳间隔10秒
+            keepAliveInterval = 10000;// 10s
+            // 15秒后未收到服务端心跳反馈即认为连接已断开（相当于连续2个心跳间隔(即算法最大20秒延迟后)后仍未收到服务端反馈）
+            networkConnectionTimeout = keepAliveInterval * 1 + 5000;// 15s
+            break;
+        case SenseMode15S:
+            // 心跳间隔15秒
+            keepAliveInterval = 15000;// 15s
+            // 20秒后未收到服务端心跳反馈即认为连接已断开（相当于连续2个心跳间隔(即算法最大30秒延迟后)后仍未收到服务端反馈）
+            networkConnectionTimeout = keepAliveInterval * 1 + 5000;// 20s
+            break;
+        case SenseMode30S:
+            // 心跳间隔30秒
+            keepAliveInterval = 30000;// 30s
+            // 35秒后未收到服务端心跳反馈即认为连接已断开（相当于连续2个心跳间隔(即算法最大60秒延迟后)后仍未收到服务端反馈）
+            networkConnectionTimeout = keepAliveInterval * 1 + 5000;// 35s
+            break;
+        case SenseMode60S:
+            // 心跳间隔60秒
+            keepAliveInterval = 60000;// 60s
+            // 65秒后未收到服务端心跳反馈即认为连接已断开（相当于连续2个心跳间隔(即算法最大120秒延迟后)后仍未收到服务端反馈）
+            networkConnectionTimeout = keepAliveInterval * 1 + 5000;// 65s
+            break;
+        case SenseMode120S:
+            // 心跳间隔120秒
+            keepAliveInterval = 120000;// 120s
+            // 125秒后未收到服务端心跳反馈即认为连接已断开（相当于连续2个心跳间隔(即算法最大240秒延迟后)后仍未收到服务端反馈）
+            networkConnectionTimeout = keepAliveInterval * 1 + 5000;// 125s
+            break;
+    }
+    
+    if(keepAliveInterval > 0)
+    {
+        // 设置Kepp alive心跳间隔
+        [KeepAliveDaemon setKEEP_ALIVE_INTERVAL:keepAliveInterval];
+    }
+    
+    if(networkConnectionTimeout > 0)
+    {
+        // 设置与服务端掉线的超时时长
+        [KeepAliveDaemon setNETWORK_CONNECTION_TIME_OUT:networkConnectionTimeout];
+    }
+    
+    // 与服务端掉线后的重连尝试间隔
+    // [AutoReLoginDaemon setAUTO_RE$LOGIN_INTERVAL:2 * 1000];// 5s
+}
+
+
+@end

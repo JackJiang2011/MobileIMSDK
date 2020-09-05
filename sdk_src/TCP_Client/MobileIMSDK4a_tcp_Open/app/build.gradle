@@ -1,0 +1,66 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+    defaultConfig {
+        applicationId "net.x52im.mobileimsdk.android"
+        minSdkVersion 14
+        targetSdkVersion 29
+        versionCode 1
+        versionName "5.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            // TODO 如您需要混淆MobileIMSDK代码，请参见：http://www.52im.net/thread-61-1-1.html，注意读"附录3" ！
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    // 打jar时，有了下面这段就不提示lint问题
+    lintOptions {
+        abortOnError false
+    }
+}
+
+
+dependencies {
+    // MobileIMSDK的依赖库
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation files('libs/netty-all-4.1.50.Final.jar')
+
+    // MobileIMSDK与服务端共用的DTO类等（就是普通的JavaBean，源码见：
+    // https://github.com/JackJiang2011/MobileIMSDK/tree/master/src_all/libs_src/MobileIMSDKServerX_netty_Open/src/net/openmob/mobileimsdk/server/protocal）
+    implementation files('libs/MobileIMSDKServer_META.jar')
+}
+
+// 打出“MobileIMSDK4a.jar”，以便放到其它工程里使用
+task makeJar(type: Jar) {
+
+    // 删除之前已打过的jar
+    delete 'build/dist/MobileIMSDK4a_tcp.jar'
+
+    // 要打包的类目录 (AS3.6及以后的版本，这个编译生成的class目录居然变了)
+    // from file('build/intermediates/classes/release')    // AS 3.6之前
+    from file('build/intermediates/javac/release/classes') // AS 3.6之后(含)
+
+    // 打包完成的jar包名
+    // archiveName = 'MobileIMSDK4a.jar'
+    archiveFileName = 'MobileIMSDK4a_tcp.jar'
+
+    // 打包完成后的jar包位置
+    // destinationDir = file('build/dist')
+    destinationDirectory = file('build/dist')
+
+    // 过滤不需要的系统生成class
+    exclude "**/**/BuildConfig.class"
+    exclude "**/**/BuildConfig\$*.class"
+    exclude "**/R.class"
+    exclude "**/R\$*.class"
+}
+makeJar.dependsOn(build)

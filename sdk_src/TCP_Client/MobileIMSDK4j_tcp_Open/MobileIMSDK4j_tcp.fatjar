@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Fri Aug 21 15:19:05 CST 2020
+onejar.license.required=true
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=MobileIMSDK4j_tcp.jar
+manifest.mergeall=true
+manifest.mainclass=
+manifest.file=<createnew>
+jarname.isextern=false
+onejar.expand=
+excludes=<jar|swing-worker-1.2(1.6-).jar>;<jar|netty-all-4.1.50.Final.jar>;<jar|gson-2.8.6.jar>;<jar|MobileIMSDKServer_META.jar>
+includes=

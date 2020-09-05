@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="lib/swing-worker-1.2(1.6-).jar"/>
+	<classpathentry kind="lib" path="lib/beautyeye_lnf.jar"/>
+	<classpathentry kind="lib" path="lib/ninepatch4j.jar"/>
+	<classpathentry kind="lib" path="lib/EPC_widget.jar"/>
+	<classpathentry kind="lib" path="lib/EPC_common.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.7.0_51"/>
+	<classpathentry kind="lib" path="lib/gson-2.8.6.jar"/>
+	<classpathentry kind="lib" path="lib/MobileIMSDK4j_udp.jar"/>
+	<classpathentry kind="lib" path="lib/MobileIMSDKServer_META.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

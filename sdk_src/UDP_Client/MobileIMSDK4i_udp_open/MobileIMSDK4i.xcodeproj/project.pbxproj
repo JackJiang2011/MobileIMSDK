@@ -1,0 +1,664 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EA874A4624F79FB2009BDB02 /* LocalSocketProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EA874A4424F79FB2009BDB02 /* LocalSocketProvider.m */; };
+		EA874A4724F79FB2009BDB02 /* LocalSocketProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EA874A4524F79FB2009BDB02 /* LocalSocketProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA874A4924F8097C009BDB02 /* ChatMessageEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = EA874A4824F8097C009BDB02 /* ChatMessageEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EACBFFD41BA07F5400C070F1 /* NSMutableDictionary+Ext.h in Headers */ = {isa = PBXBuildFile; fileRef = EADDE60D1A0A1261002FFB8E /* NSMutableDictionary+Ext.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EADDE63A1A0A1261002FFB8E /* ClientCoreSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE5F51A0A1261002FFB8E /* ClientCoreSDK.m */; };
+		EADDE63B1A0A1261002FFB8E /* ConfigEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE5F71A0A1261002FFB8E /* ConfigEntity.m */; };
+		EADDE63C1A0A1261002FFB8E /* AutoReLoginDaemon.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE5FE1A0A1261002FFB8E /* AutoReLoginDaemon.m */; };
+		EADDE63D1A0A1261002FFB8E /* KeepAliveDaemon.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE6001A0A1261002FFB8E /* KeepAliveDaemon.m */; };
+		EADDE6411A0A1261002FFB8E /* QoS4ReciveDaemon.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE6081A0A1261002FFB8E /* QoS4ReciveDaemon.m */; };
+		EADDE6421A0A1261002FFB8E /* QoS4SendDaemon.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE60A1A0A1261002FFB8E /* QoS4SendDaemon.m */; };
+		EADDE6431A0A1261002FFB8E /* NSMutableDictionary+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE60E1A0A1261002FFB8E /* NSMutableDictionary+Ext.m */; };
+		EADDE6441A0A1261002FFB8E /* CharsetHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE6111A0A1261002FFB8E /* CharsetHelper.m */; };
+		EADDE6451A0A1261002FFB8E /* ProtocalFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE6131A0A1261002FFB8E /* ProtocalFactory.m */; };
+		EADDE6461A0A1261002FFB8E /* PErrorResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE6161A0A1261002FFB8E /* PErrorResponse.m */; };
+		EADDE6471A0A1261002FFB8E /* PKeepAlive.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE6181A0A1261002FFB8E /* PKeepAlive.m */; };
+		EADDE6481A0A1261002FFB8E /* PKeepAliveResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE61A1A0A1261002FFB8E /* PKeepAliveResponse.m */; };
+		EADDE6491A0A1261002FFB8E /* PLoginInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE61C1A0A1261002FFB8E /* PLoginInfo.m */; };
+		EADDE64A1A0A1261002FFB8E /* PLoginInfoResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE61E1A0A1261002FFB8E /* PLoginInfoResponse.m */; };
+		EADDE64B1A0A1261002FFB8E /* Protocal.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE6201A0A1261002FFB8E /* Protocal.m */; };
+		EADDE64C1A0A1261002FFB8E /* ToolKits.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE6241A0A1261002FFB8E /* ToolKits.m */; };
+		EADDE64D1A0A1261002FFB8E /* UDPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE6261A0A1261002FFB8E /* UDPUtils.m */; };
+		EADDE64E1A0A1261002FFB8E /* MBReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE62A1A0A1261002FFB8E /* MBReachability.m */; };
+		EADDE64F1A0A1261002FFB8E /* NSObject+RMArchivable.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE62D1A0A1261002FFB8E /* NSObject+RMArchivable.m */; };
+		EADDE6501A0A1261002FFB8E /* NSObject+RMCopyable.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE62F1A0A1261002FFB8E /* NSObject+RMCopyable.m */; };
+		EADDE6511A0A1261002FFB8E /* NSUserDefaults+RMSaveCustomObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE6311A0A1261002FFB8E /* NSUserDefaults+RMSaveCustomObject.m */; };
+		EADDE6521A0A1261002FFB8E /* RMMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE6331A0A1261002FFB8E /* RMMapper.m */; };
+		EADDE6531A0A1261002FFB8E /* MBGCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE6391A0A1261002FFB8E /* MBGCDAsyncUdpSocket.m */; };
+		EADDE6551A0A139C002FFB8E /* ClientCoreSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = EADDE5F41A0A1261002FFB8E /* ClientCoreSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EADDE6561A0A139C002FFB8E /* ConfigEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = EADDE5F61A0A1261002FFB8E /* ConfigEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EADDE6571A0A139C002FFB8E /* ChatBaseEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = EADDE5F91A0A1261002FFB8E /* ChatBaseEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EADDE6591A0A139C002FFB8E /* MessageQoSEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = EADDE5FB1A0A1261002FFB8E /* MessageQoSEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EADDE65A1A0A139C002FFB8E /* AutoReLoginDaemon.h in Headers */ = {isa = PBXBuildFile; fileRef = EADDE5FD1A0A1261002FFB8E /* AutoReLoginDaemon.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EADDE65B1A0A139C002FFB8E /* KeepAliveDaemon.h in Headers */ = {isa = PBXBuildFile; fileRef = EADDE5FF1A0A1261002FFB8E /* KeepAliveDaemon.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EADDE65F1A0A139C002FFB8E /* QoS4ReciveDaemon.h in Headers */ = {isa = PBXBuildFile; fileRef = EADDE6071A0A1261002FFB8E /* QoS4ReciveDaemon.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EADDE6601A0A139C002FFB8E /* QoS4SendDaemon.h in Headers */ = {isa = PBXBuildFile; fileRef = EADDE6091A0A1261002FFB8E /* QoS4SendDaemon.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EADDE6611A0A139C002FFB8E /* CompletionDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = EADDE60C1A0A1261002FFB8E /* CompletionDefine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EADDE6641A0A139C002FFB8E /* CharsetHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = EADDE6101A0A1261002FFB8E /* CharsetHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EADDE6651A0A139C002FFB8E /* ProtocalFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = EADDE6121A0A1261002FFB8E /* ProtocalFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EADDE6661A0A139C002FFB8E /* ErrorCode.h in Headers */ = {isa = PBXBuildFile; fileRef = EADDE6141A0A1261002FFB8E /* ErrorCode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EADDE6671A0A139C002FFB8E /* PErrorResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = EADDE6151A0A1261002FFB8E /* PErrorResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EADDE6681A0A139C002FFB8E /* PKeepAlive.h in Headers */ = {isa = PBXBuildFile; fileRef = EADDE6171A0A1261002FFB8E /* PKeepAlive.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EADDE6691A0A139C002FFB8E /* PKeepAliveResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = EADDE6191A0A1261002FFB8E /* PKeepAliveResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EADDE66A1A0A139C002FFB8E /* PLoginInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = EADDE61B1A0A1261002FFB8E /* PLoginInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EADDE66B1A0A139C002FFB8E /* PLoginInfoResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = EADDE61D1A0A1261002FFB8E /* PLoginInfoResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EADDE66C1A0A139C002FFB8E /* Protocal.h in Headers */ = {isa = PBXBuildFile; fileRef = EADDE61F1A0A1261002FFB8E /* Protocal.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EADDE66D1A0A139C002FFB8E /* ProtocalType.h in Headers */ = {isa = PBXBuildFile; fileRef = EADDE6211A0A1261002FFB8E /* ProtocalType.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EADDE66E1A0A139C002FFB8E /* ToolKits.h in Headers */ = {isa = PBXBuildFile; fileRef = EADDE6231A0A1261002FFB8E /* ToolKits.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EADDE66F1A0A139C002FFB8E /* UDPUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = EADDE6251A0A1261002FFB8E /* UDPUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EADF349424F7977400AF7862 /* LocalDataReciever.h in Headers */ = {isa = PBXBuildFile; fileRef = EADF349224F7977400AF7862 /* LocalDataReciever.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EADF349524F7977400AF7862 /* LocalDataReciever.m in Sources */ = {isa = PBXBuildFile; fileRef = EADF349324F7977400AF7862 /* LocalDataReciever.m */; };
+		EADF349824F79B1000AF7862 /* LocalDataSender.m in Sources */ = {isa = PBXBuildFile; fileRef = EADF349624F79B1000AF7862 /* LocalDataSender.m */; };
+		EADF349924F79B1000AF7862 /* LocalDataSender.h in Headers */ = {isa = PBXBuildFile; fileRef = EADF349724F79B1000AF7862 /* LocalDataSender.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		EADDE5DA1A0A122E002FFB8E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		EA874A4424F79FB2009BDB02 /* LocalSocketProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalSocketProvider.m; sourceTree = "<group>"; };
+		EA874A4524F79FB2009BDB02 /* LocalSocketProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalSocketProvider.h; sourceTree = "<group>"; };
+		EA874A4824F8097C009BDB02 /* ChatMessageEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageEvent.h; sourceTree = "<group>"; };
+		EADDE5DC1A0A122E002FFB8E /* libMobileIMSDK4i.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMobileIMSDK4i.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		EADDE5E71A0A122E002FFB8E /* MobileIMSDK4iTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobileIMSDK4iTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EADDE5EA1A0A122E002FFB8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EADDE5F41A0A1261002FFB8E /* ClientCoreSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClientCoreSDK.h; sourceTree = "<group>"; };
+		EADDE5F51A0A1261002FFB8E /* ClientCoreSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClientCoreSDK.m; sourceTree = "<group>"; };
+		EADDE5F61A0A1261002FFB8E /* ConfigEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigEntity.h; sourceTree = "<group>"; };
+		EADDE5F71A0A1261002FFB8E /* ConfigEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigEntity.m; sourceTree = "<group>"; };
+		EADDE5F91A0A1261002FFB8E /* ChatBaseEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatBaseEvent.h; sourceTree = "<group>"; };
+		EADDE5FB1A0A1261002FFB8E /* MessageQoSEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageQoSEvent.h; sourceTree = "<group>"; };
+		EADDE5FD1A0A1261002FFB8E /* AutoReLoginDaemon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoReLoginDaemon.h; sourceTree = "<group>"; };
+		EADDE5FE1A0A1261002FFB8E /* AutoReLoginDaemon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoReLoginDaemon.m; sourceTree = "<group>"; };
+		EADDE5FF1A0A1261002FFB8E /* KeepAliveDaemon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeepAliveDaemon.h; sourceTree = "<group>"; };
+		EADDE6001A0A1261002FFB8E /* KeepAliveDaemon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeepAliveDaemon.m; sourceTree = "<group>"; };
+		EADDE6071A0A1261002FFB8E /* QoS4ReciveDaemon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QoS4ReciveDaemon.h; sourceTree = "<group>"; };
+		EADDE6081A0A1261002FFB8E /* QoS4ReciveDaemon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QoS4ReciveDaemon.m; sourceTree = "<group>"; };
+		EADDE6091A0A1261002FFB8E /* QoS4SendDaemon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QoS4SendDaemon.h; sourceTree = "<group>"; };
+		EADDE60A1A0A1261002FFB8E /* QoS4SendDaemon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QoS4SendDaemon.m; sourceTree = "<group>"; };
+		EADDE60C1A0A1261002FFB8E /* CompletionDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletionDefine.h; sourceTree = "<group>"; };
+		EADDE60D1A0A1261002FFB8E /* NSMutableDictionary+Ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+Ext.h"; sourceTree = "<group>"; };
+		EADDE60E1A0A1261002FFB8E /* NSMutableDictionary+Ext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+Ext.m"; sourceTree = "<group>"; };
+		EADDE6101A0A1261002FFB8E /* CharsetHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharsetHelper.h; sourceTree = "<group>"; };
+		EADDE6111A0A1261002FFB8E /* CharsetHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharsetHelper.m; sourceTree = "<group>"; };
+		EADDE6121A0A1261002FFB8E /* ProtocalFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocalFactory.h; sourceTree = "<group>"; };
+		EADDE6131A0A1261002FFB8E /* ProtocalFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtocalFactory.m; sourceTree = "<group>"; };
+		EADDE6141A0A1261002FFB8E /* ErrorCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorCode.h; sourceTree = "<group>"; };
+		EADDE6151A0A1261002FFB8E /* PErrorResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PErrorResponse.h; sourceTree = "<group>"; };
+		EADDE6161A0A1261002FFB8E /* PErrorResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PErrorResponse.m; sourceTree = "<group>"; };
+		EADDE6171A0A1261002FFB8E /* PKeepAlive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKeepAlive.h; sourceTree = "<group>"; };
+		EADDE6181A0A1261002FFB8E /* PKeepAlive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKeepAlive.m; sourceTree = "<group>"; };
+		EADDE6191A0A1261002FFB8E /* PKeepAliveResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKeepAliveResponse.h; sourceTree = "<group>"; };
+		EADDE61A1A0A1261002FFB8E /* PKeepAliveResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKeepAliveResponse.m; sourceTree = "<group>"; };
+		EADDE61B1A0A1261002FFB8E /* PLoginInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLoginInfo.h; sourceTree = "<group>"; };
+		EADDE61C1A0A1261002FFB8E /* PLoginInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLoginInfo.m; sourceTree = "<group>"; };
+		EADDE61D1A0A1261002FFB8E /* PLoginInfoResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLoginInfoResponse.h; sourceTree = "<group>"; };
+		EADDE61E1A0A1261002FFB8E /* PLoginInfoResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLoginInfoResponse.m; sourceTree = "<group>"; };
+		EADDE61F1A0A1261002FFB8E /* Protocal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Protocal.h; sourceTree = "<group>"; };
+		EADDE6201A0A1261002FFB8E /* Protocal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Protocal.m; sourceTree = "<group>"; };
+		EADDE6211A0A1261002FFB8E /* ProtocalType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocalType.h; sourceTree = "<group>"; };
+		EADDE6231A0A1261002FFB8E /* ToolKits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolKits.h; sourceTree = "<group>"; };
+		EADDE6241A0A1261002FFB8E /* ToolKits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolKits.m; sourceTree = "<group>"; };
+		EADDE6251A0A1261002FFB8E /* UDPUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDPUtils.h; sourceTree = "<group>"; };
+		EADDE6261A0A1261002FFB8E /* UDPUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDPUtils.m; sourceTree = "<group>"; };
+		EADDE6291A0A1261002FFB8E /* MBReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBReachability.h; sourceTree = "<group>"; };
+		EADDE62A1A0A1261002FFB8E /* MBReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBReachability.m; sourceTree = "<group>"; };
+		EADDE62C1A0A1261002FFB8E /* NSObject+RMArchivable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+RMArchivable.h"; sourceTree = "<group>"; };
+		EADDE62D1A0A1261002FFB8E /* NSObject+RMArchivable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RMArchivable.m"; sourceTree = "<group>"; };
+		EADDE62E1A0A1261002FFB8E /* NSObject+RMCopyable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+RMCopyable.h"; sourceTree = "<group>"; };
+		EADDE62F1A0A1261002FFB8E /* NSObject+RMCopyable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RMCopyable.m"; sourceTree = "<group>"; };
+		EADDE6301A0A1261002FFB8E /* NSUserDefaults+RMSaveCustomObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+RMSaveCustomObject.h"; sourceTree = "<group>"; };
+		EADDE6311A0A1261002FFB8E /* NSUserDefaults+RMSaveCustomObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+RMSaveCustomObject.m"; sourceTree = "<group>"; };
+		EADDE6321A0A1261002FFB8E /* RMMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMMapper.h; sourceTree = "<group>"; };
+		EADDE6331A0A1261002FFB8E /* RMMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMMapper.m; sourceTree = "<group>"; };
+		EADDE6381A0A1261002FFB8E /* MBGCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBGCDAsyncUdpSocket.h; sourceTree = "<group>"; };
+		EADDE6391A0A1261002FFB8E /* MBGCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBGCDAsyncUdpSocket.m; sourceTree = "<group>"; };
+		EADF349224F7977400AF7862 /* LocalDataReciever.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalDataReciever.h; sourceTree = "<group>"; };
+		EADF349324F7977400AF7862 /* LocalDataReciever.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalDataReciever.m; sourceTree = "<group>"; };
+		EADF349624F79B1000AF7862 /* LocalDataSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalDataSender.m; sourceTree = "<group>"; };
+		EADF349724F79B1000AF7862 /* LocalDataSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalDataSender.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EADDE5D91A0A122E002FFB8E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EADDE5E41A0A122E002FFB8E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EADDE5D31A0A122E002FFB8E = {
+			isa = PBXGroup;
+			children = (
+				EADDE5DE1A0A122E002FFB8E /* MobileIMSDK4i */,
+				EADDE5E81A0A122E002FFB8E /* MobileIMSDK4iTests */,
+				EADDE5DD1A0A122E002FFB8E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EADDE5DD1A0A122E002FFB8E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EADDE5DC1A0A122E002FFB8E /* libMobileIMSDK4i.a */,
+				EADDE5E71A0A122E002FFB8E /* MobileIMSDK4iTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EADDE5DE1A0A122E002FFB8E /* MobileIMSDK4i */ = {
+			isa = PBXGroup;
+			children = (
+				EADDE5F31A0A1261002FFB8E /* Core */,
+				EADDE6271A0A1261002FFB8E /* Thirdpart */,
+			);
+			path = MobileIMSDK4i;
+			sourceTree = "<group>";
+		};
+		EADDE5E81A0A122E002FFB8E /* MobileIMSDK4iTests */ = {
+			isa = PBXGroup;
+			children = (
+				EADDE5E91A0A122E002FFB8E /* Supporting Files */,
+			);
+			path = MobileIMSDK4iTests;
+			sourceTree = "<group>";
+		};
+		EADDE5E91A0A122E002FFB8E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EADDE5EA1A0A122E002FFB8E /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EADDE5F31A0A1261002FFB8E /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				EADDE5F41A0A1261002FFB8E /* ClientCoreSDK.h */,
+				EADDE5F51A0A1261002FFB8E /* ClientCoreSDK.m */,
+				EADDE5F61A0A1261002FFB8E /* ConfigEntity.h */,
+				EADDE5F71A0A1261002FFB8E /* ConfigEntity.m */,
+				EADDE5F81A0A1261002FFB8E /* Delegate */,
+				EADDE5FC1A0A1261002FFB8E /* Impl */,
+				EADDE60B1A0A1261002FFB8E /* Other */,
+				EADDE60F1A0A1261002FFB8E /* Protocal */,
+				EADDE6221A0A1261002FFB8E /* Utils */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		EADDE5F81A0A1261002FFB8E /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				EADDE5F91A0A1261002FFB8E /* ChatBaseEvent.h */,
+				EA874A4824F8097C009BDB02 /* ChatMessageEvent.h */,
+				EADDE5FB1A0A1261002FFB8E /* MessageQoSEvent.h */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
+		EADDE5FC1A0A1261002FFB8E /* Impl */ = {
+			isa = PBXGroup;
+			children = (
+				EADDE5FD1A0A1261002FFB8E /* AutoReLoginDaemon.h */,
+				EADDE5FE1A0A1261002FFB8E /* AutoReLoginDaemon.m */,
+				EADDE5FF1A0A1261002FFB8E /* KeepAliveDaemon.h */,
+				EADDE6001A0A1261002FFB8E /* KeepAliveDaemon.m */,
+				EADF349224F7977400AF7862 /* LocalDataReciever.h */,
+				EADF349324F7977400AF7862 /* LocalDataReciever.m */,
+				EADF349724F79B1000AF7862 /* LocalDataSender.h */,
+				EADF349624F79B1000AF7862 /* LocalDataSender.m */,
+				EA874A4524F79FB2009BDB02 /* LocalSocketProvider.h */,
+				EA874A4424F79FB2009BDB02 /* LocalSocketProvider.m */,
+				EADDE6071A0A1261002FFB8E /* QoS4ReciveDaemon.h */,
+				EADDE6081A0A1261002FFB8E /* QoS4ReciveDaemon.m */,
+				EADDE6091A0A1261002FFB8E /* QoS4SendDaemon.h */,
+				EADDE60A1A0A1261002FFB8E /* QoS4SendDaemon.m */,
+			);
+			path = Impl;
+			sourceTree = "<group>";
+		};
+		EADDE60B1A0A1261002FFB8E /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				EADDE60C1A0A1261002FFB8E /* CompletionDefine.h */,
+				EADDE60D1A0A1261002FFB8E /* NSMutableDictionary+Ext.h */,
+				EADDE60E1A0A1261002FFB8E /* NSMutableDictionary+Ext.m */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		EADDE60F1A0A1261002FFB8E /* Protocal */ = {
+			isa = PBXGroup;
+			children = (
+				EADDE6101A0A1261002FFB8E /* CharsetHelper.h */,
+				EADDE6111A0A1261002FFB8E /* CharsetHelper.m */,
+				EADDE6121A0A1261002FFB8E /* ProtocalFactory.h */,
+				EADDE6131A0A1261002FFB8E /* ProtocalFactory.m */,
+				EADDE6141A0A1261002FFB8E /* ErrorCode.h */,
+				EADDE6151A0A1261002FFB8E /* PErrorResponse.h */,
+				EADDE6161A0A1261002FFB8E /* PErrorResponse.m */,
+				EADDE6171A0A1261002FFB8E /* PKeepAlive.h */,
+				EADDE6181A0A1261002FFB8E /* PKeepAlive.m */,
+				EADDE6191A0A1261002FFB8E /* PKeepAliveResponse.h */,
+				EADDE61A1A0A1261002FFB8E /* PKeepAliveResponse.m */,
+				EADDE61B1A0A1261002FFB8E /* PLoginInfo.h */,
+				EADDE61C1A0A1261002FFB8E /* PLoginInfo.m */,
+				EADDE61D1A0A1261002FFB8E /* PLoginInfoResponse.h */,
+				EADDE61E1A0A1261002FFB8E /* PLoginInfoResponse.m */,
+				EADDE61F1A0A1261002FFB8E /* Protocal.h */,
+				EADDE6201A0A1261002FFB8E /* Protocal.m */,
+				EADDE6211A0A1261002FFB8E /* ProtocalType.h */,
+			);
+			path = Protocal;
+			sourceTree = "<group>";
+		};
+		EADDE6221A0A1261002FFB8E /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				EADDE6231A0A1261002FFB8E /* ToolKits.h */,
+				EADDE6241A0A1261002FFB8E /* ToolKits.m */,
+				EADDE6251A0A1261002FFB8E /* UDPUtils.h */,
+				EADDE6261A0A1261002FFB8E /* UDPUtils.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		EADDE6271A0A1261002FFB8E /* Thirdpart */ = {
+			isa = PBXGroup;
+			children = (
+				EADDE6281A0A1261002FFB8E /* Reachability */,
+				EADDE62B1A0A1261002FFB8E /* RMMapper */,
+				EADDE6371A0A1261002FFB8E /* UDP */,
+			);
+			path = Thirdpart;
+			sourceTree = "<group>";
+		};
+		EADDE6281A0A1261002FFB8E /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				EADDE6291A0A1261002FFB8E /* MBReachability.h */,
+				EADDE62A1A0A1261002FFB8E /* MBReachability.m */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
+		EADDE62B1A0A1261002FFB8E /* RMMapper */ = {
+			isa = PBXGroup;
+			children = (
+				EADDE62C1A0A1261002FFB8E /* NSObject+RMArchivable.h */,
+				EADDE62D1A0A1261002FFB8E /* NSObject+RMArchivable.m */,
+				EADDE62E1A0A1261002FFB8E /* NSObject+RMCopyable.h */,
+				EADDE62F1A0A1261002FFB8E /* NSObject+RMCopyable.m */,
+				EADDE6301A0A1261002FFB8E /* NSUserDefaults+RMSaveCustomObject.h */,
+				EADDE6311A0A1261002FFB8E /* NSUserDefaults+RMSaveCustomObject.m */,
+				EADDE6321A0A1261002FFB8E /* RMMapper.h */,
+				EADDE6331A0A1261002FFB8E /* RMMapper.m */,
+			);
+			path = RMMapper;
+			sourceTree = "<group>";
+		};
+		EADDE6371A0A1261002FFB8E /* UDP */ = {
+			isa = PBXGroup;
+			children = (
+				EADDE6381A0A1261002FFB8E /* MBGCDAsyncUdpSocket.h */,
+				EADDE6391A0A1261002FFB8E /* MBGCDAsyncUdpSocket.m */,
+			);
+			path = UDP;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		EADDE6541A0A1379002FFB8E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EADDE6551A0A139C002FFB8E /* ClientCoreSDK.h in Headers */,
+				EADDE6561A0A139C002FFB8E /* ConfigEntity.h in Headers */,
+				EADDE6571A0A139C002FFB8E /* ChatBaseEvent.h in Headers */,
+				EADDE6591A0A139C002FFB8E /* MessageQoSEvent.h in Headers */,
+				EADDE65A1A0A139C002FFB8E /* AutoReLoginDaemon.h in Headers */,
+				EADDE65B1A0A139C002FFB8E /* KeepAliveDaemon.h in Headers */,
+				EADDE65F1A0A139C002FFB8E /* QoS4ReciveDaemon.h in Headers */,
+				EADDE6601A0A139C002FFB8E /* QoS4SendDaemon.h in Headers */,
+				EADDE6611A0A139C002FFB8E /* CompletionDefine.h in Headers */,
+				EADDE6641A0A139C002FFB8E /* CharsetHelper.h in Headers */,
+				EADDE6651A0A139C002FFB8E /* ProtocalFactory.h in Headers */,
+				EADDE6661A0A139C002FFB8E /* ErrorCode.h in Headers */,
+				EADDE6671A0A139C002FFB8E /* PErrorResponse.h in Headers */,
+				EADDE6681A0A139C002FFB8E /* PKeepAlive.h in Headers */,
+				EADDE6691A0A139C002FFB8E /* PKeepAliveResponse.h in Headers */,
+				EADDE66A1A0A139C002FFB8E /* PLoginInfo.h in Headers */,
+				EADDE66B1A0A139C002FFB8E /* PLoginInfoResponse.h in Headers */,
+				EADDE66C1A0A139C002FFB8E /* Protocal.h in Headers */,
+				EADDE66D1A0A139C002FFB8E /* ProtocalType.h in Headers */,
+				EA874A4724F79FB2009BDB02 /* LocalSocketProvider.h in Headers */,
+				EADF349924F79B1000AF7862 /* LocalDataSender.h in Headers */,
+				EADF349424F7977400AF7862 /* LocalDataReciever.h in Headers */,
+				EA874A4924F8097C009BDB02 /* ChatMessageEvent.h in Headers */,
+				EADDE66E1A0A139C002FFB8E /* ToolKits.h in Headers */,
+				EACBFFD41BA07F5400C070F1 /* NSMutableDictionary+Ext.h in Headers */,
+				EADDE66F1A0A139C002FFB8E /* UDPUtils.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		EADDE5DB1A0A122E002FFB8E /* MobileIMSDK4i */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EADDE5ED1A0A122E002FFB8E /* Build configuration list for PBXNativeTarget "MobileIMSDK4i" */;
+			buildPhases = (
+				EADDE5D81A0A122E002FFB8E /* Sources */,
+				EADDE5D91A0A122E002FFB8E /* Frameworks */,
+				EADDE5DA1A0A122E002FFB8E /* CopyFiles */,
+				EADDE6541A0A1379002FFB8E /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MobileIMSDK4i;
+			productName = RainbowCore4iLib;
+			productReference = EADDE5DC1A0A122E002FFB8E /* libMobileIMSDK4i.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		EADDE5E61A0A122E002FFB8E /* MobileIMSDK4iTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EADDE5F01A0A122E002FFB8E /* Build configuration list for PBXNativeTarget "MobileIMSDK4iTests" */;
+			buildPhases = (
+				EADDE5E31A0A122E002FFB8E /* Sources */,
+				EADDE5E41A0A122E002FFB8E /* Frameworks */,
+				EADDE5E51A0A122E002FFB8E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MobileIMSDK4iTests;
+			productName = RainbowCore4iLibTests;
+			productReference = EADDE5E71A0A122E002FFB8E /* MobileIMSDK4iTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EADDE5D41A0A122E002FFB8E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = cngeeker.com;
+				TargetAttributes = {
+					EADDE5DB1A0A122E002FFB8E = {
+						CreatedOnToolsVersion = 6.0.1;
+					};
+					EADDE5E61A0A122E002FFB8E = {
+						CreatedOnToolsVersion = 6.0.1;
+					};
+				};
+			};
+			buildConfigurationList = EADDE5D71A0A122E002FFB8E /* Build configuration list for PBXProject "MobileIMSDK4i" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				English,
+				en,
+			);
+			mainGroup = EADDE5D31A0A122E002FFB8E;
+			productRefGroup = EADDE5DD1A0A122E002FFB8E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EADDE5DB1A0A122E002FFB8E /* MobileIMSDK4i */,
+				EADDE5E61A0A122E002FFB8E /* MobileIMSDK4iTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EADDE5E51A0A122E002FFB8E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EADDE5D81A0A122E002FFB8E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EADDE63C1A0A1261002FFB8E /* AutoReLoginDaemon.m in Sources */,
+				EADDE6421A0A1261002FFB8E /* QoS4SendDaemon.m in Sources */,
+				EADDE6521A0A1261002FFB8E /* RMMapper.m in Sources */,
+				EADDE64C1A0A1261002FFB8E /* ToolKits.m in Sources */,
+				EADDE6501A0A1261002FFB8E /* NSObject+RMCopyable.m in Sources */,
+				EADDE64B1A0A1261002FFB8E /* Protocal.m in Sources */,
+				EADDE6431A0A1261002FFB8E /* NSMutableDictionary+Ext.m in Sources */,
+				EADDE6441A0A1261002FFB8E /* CharsetHelper.m in Sources */,
+				EADDE6471A0A1261002FFB8E /* PKeepAlive.m in Sources */,
+				EADDE6511A0A1261002FFB8E /* NSUserDefaults+RMSaveCustomObject.m in Sources */,
+				EADDE63B1A0A1261002FFB8E /* ConfigEntity.m in Sources */,
+				EADF349524F7977400AF7862 /* LocalDataReciever.m in Sources */,
+				EADDE64F1A0A1261002FFB8E /* NSObject+RMArchivable.m in Sources */,
+				EADDE6411A0A1261002FFB8E /* QoS4ReciveDaemon.m in Sources */,
+				EADDE64E1A0A1261002FFB8E /* MBReachability.m in Sources */,
+				EADF349824F79B1000AF7862 /* LocalDataSender.m in Sources */,
+				EADDE6461A0A1261002FFB8E /* PErrorResponse.m in Sources */,
+				EA874A4624F79FB2009BDB02 /* LocalSocketProvider.m in Sources */,
+				EADDE63D1A0A1261002FFB8E /* KeepAliveDaemon.m in Sources */,
+				EADDE6481A0A1261002FFB8E /* PKeepAliveResponse.m in Sources */,
+				EADDE6491A0A1261002FFB8E /* PLoginInfo.m in Sources */,
+				EADDE64A1A0A1261002FFB8E /* PLoginInfoResponse.m in Sources */,
+				EADDE6451A0A1261002FFB8E /* ProtocalFactory.m in Sources */,
+				EADDE63A1A0A1261002FFB8E /* ClientCoreSDK.m in Sources */,
+				EADDE6531A0A1261002FFB8E /* MBGCDAsyncUdpSocket.m in Sources */,
+				EADDE64D1A0A1261002FFB8E /* UDPUtils.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EADDE5E31A0A122E002FFB8E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		EADDE5EB1A0A122E002FFB8E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		EADDE5EC1A0A122E002FFB8E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EADDE5EE1A0A122E002FFB8E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PRODUCT_NAME = MobileIMSDK4i;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		EADDE5EF1A0A122E002FFB8E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PRODUCT_NAME = MobileIMSDK4i;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		EADDE5F11A0A122E002FFB8E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MobileIMSDK4iTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = MobileIMSDK4iTests;
+			};
+			name = Debug;
+		};
+		EADDE5F21A0A122E002FFB8E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MobileIMSDK4iTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = MobileIMSDK4iTests;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EADDE5D71A0A122E002FFB8E /* Build configuration list for PBXProject "MobileIMSDK4i" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EADDE5EB1A0A122E002FFB8E /* Debug */,
+				EADDE5EC1A0A122E002FFB8E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EADDE5ED1A0A122E002FFB8E /* Build configuration list for PBXNativeTarget "MobileIMSDK4i" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EADDE5EE1A0A122E002FFB8E /* Debug */,
+				EADDE5EF1A0A122E002FFB8E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EADDE5F01A0A122E002FFB8E /* Build configuration list for PBXNativeTarget "MobileIMSDK4iTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EADDE5F11A0A122E002FFB8E /* Debug */,
+				EADDE5F21A0A122E002FFB8E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EADDE5D41A0A122E002FFB8E /* Project object */;
+}

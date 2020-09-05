@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Fri Aug 21 15:30:42 CST 2020
+onejar.license.required=true
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=MobileIMSDK4jDemo_tcp.jar
+manifest.mergeall=true
+manifest.mainclass=net.x52im.mobileimsdk.java.demo.Launch
+manifest.file=<createnew>
+jarname.isextern=false
+onejar.expand=
+excludes=
+includes=

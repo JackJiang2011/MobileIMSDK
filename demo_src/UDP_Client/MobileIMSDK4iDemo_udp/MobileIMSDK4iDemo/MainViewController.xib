@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController">
+            <connections>
+                <outlet property="connectStatus" destination="78P-71-v8g" id="0a3-L6-JOt"/>
+                <outlet property="friendId" destination="rah-zU-Y6q" id="ZNT-Nj-Ey3"/>
+                <outlet property="iviewAutoRelogin" destination="yXc-AW-IEJ" id="yjp-Mp-QCL"/>
+                <outlet property="iviewKeepAlive" destination="Ux2-r2-OTw" id="gUk-q3-spm"/>
+                <outlet property="iviewQoSReceive" destination="b0g-AT-06G" id="7DR-z9-O6M"/>
+                <outlet property="iviewQoSSend" destination="Qos-ZT-T4v" id="RNS-Vo-Awv"/>
+                <outlet property="messageField" destination="10" id="14"/>
+                <outlet property="myUserId" destination="IsL-NP-GLk" id="sZj-kg-ctK"/>
+                <outlet property="tableView" destination="X3J-23-sPr" id="k0H-Hm-Ml6"/>
+                <outlet property="view" destination="6" id="7"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="6" customClass="UIControl">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NXW-fA-q0A" userLabel="[layout] auth UI">
+                    <rect key="frame" x="6" y="61" width="401" height="39"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="通信状态：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MuS-yx-spP" userLabel="lb-通信状态：">
+                            <rect key="frame" x="0.0" y="0.0" width="66" height="19"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="13"/>
+                            <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="连接断开" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="78P-71-v8g" userLabel="lb-状态标识">
+                            <rect key="frame" x="61" y="2" width="54" height="16"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="当前账号：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4sS-F8-aHg" userLabel="lb-当前账号：">
+                            <rect key="frame" x="0.0" y="18" width="66" height="19"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="13"/>
+                            <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="IsL-NP-GLk" userLabel="lb-账号内容">
+                            <rect key="frame" x="61" y="20" width="60" height="15"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NgB-WR-itT" userLabel="按钮-退出登陆">
+                            <rect key="frame" x="301" y="4" width="100" height="30"/>
+                            <color key="backgroundColor" red="0.99215686270000003" green="0.57254901960000004" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="SpI-3p-LMQ"/>
+                                <constraint firstAttribute="width" constant="100" id="hsQ-TG-p6p"/>
+                            </constraints>
+                            <state key="normal" title="退出登陆">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="titleShadowColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="6"/>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="signOut:" destination="-1" eventType="touchUpInside" id="3fp-6m-q09"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="NgB-WR-itT" firstAttribute="top" secondItem="NXW-fA-q0A" secondAttribute="top" constant="4" id="4YE-48-VmK"/>
+                        <constraint firstAttribute="trailing" secondItem="NgB-WR-itT" secondAttribute="trailing" id="gXV-hz-1DA"/>
+                        <constraint firstAttribute="height" constant="39" id="nDg-jy-Jij"/>
+                    </constraints>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dashed_line.png" translatesAutoresizingMaskIntoConstraints="NO" id="F65-cV-K4l" userLabel="分隔线">
+                    <rect key="frame" x="0.0" y="102" width="414" height="1"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="ray-L4-gjV"/>
+                    </constraints>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="emD-kk-O1n" userLabel="[layout] send UI">
+                    <rect key="frame" x="6" y="110" width="401" height="73"/>
+                    <subviews>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="接收方的id" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rah-zU-Y6q" userLabel="编辑框-对方id">
+                            <rect key="frame" x="0.0" y="0.0" width="107" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="KYe-Kq-gaH"/>
+                                <constraint firstAttribute="width" constant="107" id="LZI-8M-Bd0"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                            <connections>
+                                <action selector="E_textFieldDidEndOnExit:" destination="-1" eventType="editingDidEndOnExit" id="OgY-sq-OGF"/>
+                            </connections>
+                        </textField>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="message to send (via udp)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="10" userLabel="编辑框-发送内容">
+                            <rect key="frame" x="115" y="0.0" width="286" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="05A-xl-IEq"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                            <connections>
+                                <action selector="E_textFieldDidEndOnExit:" destination="-1" eventType="editingDidEndOnExit" id="C7g-w7-Qjr"/>
+                            </connections>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="11" userLabel="按钮-发送消息">
+                            <rect key="frame" x="0.0" y="38" width="401" height="35"/>
+                            <color key="backgroundColor" red="0.35686274509803922" green="0.77647058823529413" blue="0.28235294117647058" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="35" id="fU1-Ta-OR5"/>
+                            </constraints>
+                            <state key="normal" title="发送消息">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="6"/>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="send:" destination="-1" eventType="touchUpInside" id="17"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="rah-zU-Y6q" firstAttribute="top" secondItem="emD-kk-O1n" secondAttribute="top" id="46I-Vo-I1k"/>
+                        <constraint firstItem="rah-zU-Y6q" firstAttribute="leading" secondItem="emD-kk-O1n" secondAttribute="leading" id="6eM-CH-ZDe"/>
+                        <constraint firstAttribute="trailing" secondItem="11" secondAttribute="trailing" id="8i0-ju-cgy"/>
+                        <constraint firstAttribute="trailing" secondItem="10" secondAttribute="trailing" id="DvD-3z-JPO"/>
+                        <constraint firstItem="11" firstAttribute="top" secondItem="rah-zU-Y6q" secondAttribute="bottom" constant="8" id="g0u-sI-zTY"/>
+                        <constraint firstItem="10" firstAttribute="leading" secondItem="rah-zU-Y6q" secondAttribute="trailing" constant="8" id="mqY-XR-ovo"/>
+                        <constraint firstItem="10" firstAttribute="leading" secondItem="rah-zU-Y6q" secondAttribute="trailing" constant="8" id="u7z-2h-DI4"/>
+                        <constraint firstAttribute="height" constant="73" id="y3Y-Xg-0xr"/>
+                        <constraint firstItem="11" firstAttribute="leading" secondItem="emD-kk-O1n" secondAttribute="leading" id="z1N-F8-AUW"/>
+                        <constraint firstItem="10" firstAttribute="top" secondItem="emD-kk-O1n" secondAttribute="top" id="zp7-0b-MHq"/>
+                    </constraints>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dashed_line.png" translatesAutoresizingMaskIntoConstraints="NO" id="S1P-do-RPH" userLabel="分隔线">
+                    <rect key="frame" x="0.0" y="193" width="414" height="1"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="qt8-4P-mug"/>
+                    </constraints>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="guP-mS-gsz" userLabel="[layout] status UI">
+                    <rect key="frame" x="6" y="200" width="401" height="13"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="线程动态：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B87-75-64A">
+                            <rect key="frame" x="0.0" y="0.0" width="52" height="13"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="shadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <size key="shadowOffset" width="0.0" height="1"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gray.png" translatesAutoresizingMaskIntoConstraints="NO" id="yXc-AW-IEJ" userLabel="iv-掉线重连线程">
+                            <rect key="frame" x="50" y="0.0" width="12" height="12"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="掉线重连" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WoO-UC-vhv">
+                            <rect key="frame" x="64" y="0.0" width="41" height="12"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gray.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ux2-r2-OTw" userLabel="iv-KeepAlive线程">
+                            <rect key="frame" x="113" y="0.0" width="12" height="12"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="KeepAlive" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mca-yK-RRi">
+                            <rect key="frame" x="127" y="0.0" width="48" height="12"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gray.png" translatesAutoresizingMaskIntoConstraints="NO" id="Qos-ZT-T4v" userLabel="iv-QoS线程">
+                            <rect key="frame" x="182" y="0.0" width="12" height="12"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="QoS(发)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ggF-BN-1pq">
+                            <rect key="frame" x="196" y="0.0" width="38" height="12"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gray.png" translatesAutoresizingMaskIntoConstraints="NO" id="b0g-AT-06G" userLabel="iv-QoS线程">
+                            <rect key="frame" x="244" y="0.0" width="12" height="12"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="QoS(收)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QyR-CT-jZn">
+                            <rect key="frame" x="258" y="0.0" width="38" height="12"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="13" id="D58-6b-Gzq"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="16" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="X3J-23-sPr">
+                    <rect key="frame" x="6" y="216" width="401" height="639"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="guP-mS-gsz" firstAttribute="top" secondItem="S1P-do-RPH" secondAttribute="bottom" constant="6" id="2wg-JF-VIX"/>
+                <constraint firstItem="S1P-do-RPH" firstAttribute="leading" secondItem="6" secondAttribute="leading" id="6q7-wK-t7k"/>
+                <constraint firstAttribute="trailing" secondItem="S1P-do-RPH" secondAttribute="trailing" id="BpM-hi-kWs"/>
+                <constraint firstAttribute="trailing" secondItem="X3J-23-sPr" secondAttribute="trailing" constant="7" id="Ch8-CO-A8h"/>
+                <constraint firstItem="X3J-23-sPr" firstAttribute="top" secondItem="guP-mS-gsz" secondAttribute="bottom" constant="3" id="Epc-FO-gPB"/>
+                <constraint firstItem="NXW-fA-q0A" firstAttribute="top" secondItem="DfI-1d-QAp" secondAttribute="top" constant="17" id="FgT-tT-byf"/>
+                <constraint firstItem="guP-mS-gsz" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="6" id="Hw4-uk-CK4"/>
+                <constraint firstItem="DfI-1d-QAp" firstAttribute="bottom" secondItem="X3J-23-sPr" secondAttribute="bottom" constant="7" id="KFa-oy-gWb"/>
+                <constraint firstItem="NXW-fA-q0A" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="6" id="Pmv-UU-esJ"/>
+                <constraint firstAttribute="trailing" secondItem="NXW-fA-q0A" secondAttribute="trailing" constant="7" id="Sdx-3V-Xbs"/>
+                <constraint firstAttribute="trailing" secondItem="guP-mS-gsz" secondAttribute="trailing" constant="7" id="V0S-yq-CrH"/>
+                <constraint firstItem="emD-kk-O1n" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="6" id="X0l-1b-iW4"/>
+                <constraint firstItem="F65-cV-K4l" firstAttribute="top" secondItem="NXW-fA-q0A" secondAttribute="bottom" constant="2" id="cD8-dv-04S"/>
+                <constraint firstItem="emD-kk-O1n" firstAttribute="top" secondItem="F65-cV-K4l" secondAttribute="bottom" constant="7" id="gMD-ny-ze7"/>
+                <constraint firstItem="S1P-do-RPH" firstAttribute="top" secondItem="emD-kk-O1n" secondAttribute="bottom" constant="10" id="hmY-bD-Msx"/>
+                <constraint firstItem="X3J-23-sPr" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="6" id="jFn-dV-0Wq"/>
+                <constraint firstAttribute="trailing" secondItem="F65-cV-K4l" secondAttribute="trailing" id="ndE-Bj-i5R"/>
+                <constraint firstAttribute="trailing" secondItem="emD-kk-O1n" secondAttribute="trailing" constant="7" id="tbD-sS-SbW"/>
+                <constraint firstItem="F65-cV-K4l" firstAttribute="leading" secondItem="6" secondAttribute="leading" id="vVX-k6-NBq"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="DfI-1d-QAp"/>
+            <connections>
+                <action selector="E_clickBgToHideKeyboard:" destination="-1" eventType="touchDown" id="Ws6-8s-ASb"/>
+            </connections>
+            <point key="canvasLocation" x="-4372.8000000000002" y="-2023.9880059970017"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="dashed_line.png" width="568" height="1"/>
+        <image name="gray.png" width="12" height="12"/>
+    </resources>
+</document>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>C277EFBB-F2A4-4DCB-A590-53AAFD1EBFEB</string>
+	<key>IDESourceControlProjectName</key>
+	<string>RainbowCore4i</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>9ed5075a-f848-b344-865b-7ca12b13ffea++78</key>
+		<string>http://dmhbl.com:4040/svn/EFIMCore/trunk/RainbowCore4i</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>RainbowCore4i.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>9ed5075a-f848-b344-865b-7ca12b13ffea++78</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>9ed5075a-f848-b344-865b-7ca12b13ffea++78</key>
+		<string>http://dmhbl.com:4040/svn/EFIMCore</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>http://dmhbl.com:4040/svn/EFIMCore/trunk/RainbowCore4i/RainbowCore4i.xcodeproj</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>9ed5075a-f848-b344-865b-7ca12b13ffea++78</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>9ed5075a-f848-b344-865b-7ca12b13ffea++78</string>
+			<key>IDESourceControlWCCName</key>
+			<string>RainbowCore4i</string>
+		</dict>
+	</array>
+</dict>
+</plist>

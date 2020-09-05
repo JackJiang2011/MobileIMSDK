@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Tue Aug 25 14:50:05 CST 2020
+onejar.license.required=true
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=MobileIMSDKServer.jar
+manifest.mergeall=true
+manifest.mainclass=
+manifest.file=<createnew>
+jarname.isextern=false
+onejar.expand=
+excludes=<po|MobileIMSDKServer_Open>~log4j.properties;<jar|log4j-1.2.17.jar>;<jar|rabbitmq-client.jar>;<jar|slf4j-api-1.7.21.jar>;<jar|slf4j-log4j12-1.7.21.jar>;<jar|netty-all-4.1.50.Final.jar>;<jar|gson-2.8.6.jar>
+includes=

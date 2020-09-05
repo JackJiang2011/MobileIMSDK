@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Fri Aug 21 15:15:01 CST 2020
+onejar.license.required=true
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=MobileIMSDKServer_META.jar
+manifest.mergeall=true
+manifest.mainclass=
+manifest.file=<createnew>
+jarname.isextern=false
+onejar.expand=
+excludes=<po|MobileIMSDKServer_tcp>~net/~x52im/~mobileimsdk/~server/~bridge/;<po|MobileIMSDKServer_tcp>~net/~x52im/~mobileimsdk/~server/~event/;<po|MobileIMSDKServer_tcp>~net/~x52im/~mobileimsdk/~server/~netty/;<po|MobileIMSDKServer_tcp>~net/~x52im/~mobileimsdk/~server/~processor/;<po|MobileIMSDKServer_tcp>~net/~x52im/~mobileimsdk/~server/~qos/;<po|MobileIMSDKServer_tcp>~net/~x52im/~mobileimsdk/~server/~utils/;<po|MobileIMSDKServer_tcp>~net/~x52im/~mobileimsdk/~server/~package.html;<po|MobileIMSDKServer_tcp>~net/~x52im/~mobileimsdk/~server/~ServerCoreHandler$1.class;<po|MobileIMSDKServer_tcp>~net/~x52im/~mobileimsdk/~server/~ServerCoreHandler.class;<po|MobileIMSDKServer_tcp>~net/~x52im/~mobileimsdk/~server/~ServerLauncher$1.class;<po|MobileIMSDKServer_tcp>~net/~x52im/~mobileimsdk/~server/~ServerLauncher$2.class;<po|MobileIMSDKServer_tcp>~net/~x52im/~mobileimsdk/~server/~ServerLauncher.class;<po|MobileIMSDKServer_tcp>~log4j.properties;<jar|log4j-1.2.17.jar>;<jar|rabbitmq-client.jar>;<jar|slf4j-api-1.7.21.jar>;<jar|slf4j-log4j12-1.7.21.jar>;<jar|netty-all-4.1.50.Final.jar>;<jar|gson-2.8.6.jar>
+includes=
