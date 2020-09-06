@@ -1,3 +1,3 @@
 
 【关于MobileIMSDK的iOS版Demo的编译和安装】
-因Demo程序很难上苹果的App商店，目前无法直接安装MobileIMSDK的iOS版，请至目录：/src_all/demos/MobileIMSDK4iDemo_x，用Xcode打开后自行编译安装即可，谢谢。
+因Demo程序很难上苹果的App商店，目前无法直接安装MobileIMSDK的iOS版，请至目录：/demo_src/，用Xcode打开后自行编译安装即可，谢谢。

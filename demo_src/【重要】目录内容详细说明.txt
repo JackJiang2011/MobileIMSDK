@@ -1,0 +1,24 @@
+【目录说明】：
+
+1）/Server/MobileIMSDKServerDemo：
+为服务端Demo工程源码的Eclipse工程；
+
+2）/UDP_Client/MobileIMSDK4aDemo_udp：
+为UDP协议的Android版客户端Demo工程源码的Android Studio4.0.1工程（另：精编注释版见下方说明）；
+
+3）/UDP_Client/MobileIMSDK4jDemo_udp：
+为UDP协议的标准Java客户端版Demo工程源码的Eclipse工程（另：精编注释版见下方说明）；
+
+4）/UDP_Client/MobileIMSDK4iDemo_udp：
+为UDP协议的iOS版客户端Demo工程源码的XCode工程（另：精编注释版见下方说明）；
+
+5）/TCP_Client/MobileIMSDK4aDemo_udp：
+为TCP协议的Android版客户端Demo工程源码的Android Studio4.0.1工程（另：精编注释版见下方说明）；
+
+6）/TCP_Client/MobileIMSDK4jDemo_udp：
+为TCP协议的标准Java客户端Demo工程源码的Eclipse工程（另：精编注释版见下方说明）；
+
+7）/TCP_Client/MobileIMSDK4iDemo_udp：
+为TCP协议的iOS版客户端Demo工程源码的XCode工程（另：精编注释版见下方说明）；
+
+
