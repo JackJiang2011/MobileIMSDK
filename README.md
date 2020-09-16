@@ -20,11 +20,10 @@
 * [客户端开发指南(iOS)](http://www.52im.net/thread-62-1-1.html)
 * [客户端开发指南(Java)](http://www.52im.net/thread-59-1-1.html)
 * [服务端开发指南](http://www.52im.net/thread-63-1-1.html)
-* [客户端SDK API文档(Android)](http://docs.52im.net/extend/docs/api/mobileimsdk/android/)
-* [客户端SDK API文档(iOS)](http://docs.52im.net/extend/docs/api/mobileimsdk/ios/)
-* [客户端SDK API文档(Java)](http://docs.52im.net/extend/docs/api/mobileimsdk/java/)
-* [服务端SDK API文档(基于Mina框架)](http://docs.52im.net/extend/docs/api/mobileimsdk/server/)
-* [服务端SDK API文档(基于Netty框架)](http://docs.52im.net/extend/docs/api/mobileimsdk/server_netty/)
+* [客户端SDK API文档(Android)](http://docs.52im.net/extend/docs/api/mobileimsdk/android_tcp/)
+* [客户端SDK API文档(iOS)](http://docs.52im.net/extend/docs/api/mobileimsdk/ios_tcp/)
+* [客户端SDK API文档(Java)](http://docs.52im.net/extend/docs/api/mobileimsdk/java_tcp/)
+* [服务端SDK API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/server/)
 
 > #### ▌ 资源下载
 * [MobileIMSDK最新版打包下载](https://github.com/JackJiang2011/MobileIMSDK/releases/latest) :point_left:
@@ -66,7 +65,7 @@ MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所
 * 代码托管：  https://github.com/JackJiang2011/MobileIMSDK 
 * 项目资料：  [点击查看更多资料](http://www.52im.net/forum-89-1.html)
 
-**OsChina.net**
+**码云gitee**
 
 * 代码托管：  https://gitee.com/jackjiang/MobileIMSDK 
 * 项目资料：  [点击查看更多资料](http://www.52im.net/forum-89-1.html)
@@ -79,9 +78,9 @@ MobileIMSDK版本更新日志：[点此查看](http://www.52im.net/thread-1270-1
 # 四、框架组成
 <b>整套MobileIMSDK框架由以下5部分组成：</b>
 
-1. <b>Android客户端SDK：</b>用于Android版即时通讯客户端，支持Android 2\.3及以上，[查看API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/android/)；
-2. <b>iOS客户端SDK：</b>用于开发iOS版即时通讯客户端，支持iOS 8\.0及以上，[查看API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/ios/)；
-3. <b>Java客户端SDK：</b>用于开发跨平台的PC端即时通讯客户端，支持Java 1\.6及以上，[查看API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/java/)；
+1. <b>Android客户端SDK：</b>用于Android版即时通讯客户端，支持Android 2\.3及以上，[查看API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/android_tcp/)；
+2. <b>iOS客户端SDK：</b>用于开发iOS版即时通讯客户端，支持iOS 8\.0及以上，[查看API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/ios_tcp/)；
+3. <b>Java客户端SDK：</b>用于开发跨平台的PC端即时通讯客户端，支持Java 1\.6及以上，[查看API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/java_tcp/)；
 4. <b>服务端SDK：</b>用于开发即时通讯服务端，支持Java 1\.7及以上版本，[查看API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/server/)。
 
 :point_right: <b>另外：</b>MobileIMSDK可与姊妹工程 [MobileIMSDK-Web](http://www.52im.net/thread-959-1-1.html) 无缝互通，从而实现Web网页端聊天或推送等。
