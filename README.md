@@ -7,25 +7,29 @@
 * [MobileIMSDK版本更新日志](http://www.52im.net/thread-1270-1-1.html)
 * [MobileIMSDK常见问题解答](http://www.52im.net/thread-60-1-1.html) :point_left:
 * [MobileIMSDK性能测试报告](http://www.52im.net/thread-57-1-1.html)
-* [客户端Demo安装和使用帮助(Android)](http://www.52im.net/thread-55-1-1.html)
-* [客户端Demo安装和使用帮助(iOS)](http://www.52im.net/thread-54-1-1.html)
-* [客户端Demo安装和使用帮助(Java)](http://www.52im.net/thread-56-1-1.html)
-* [服务端Demo安装和使用帮助](http://www.52im.net/thread-1272-1-1.html) :new:
 * [应用案例RainbowChat体验版](http://www.52im.net/thread-19-1-1.html) :point_left:
 * [应用案例RainbowChat体验版截图预览](http://www.52im.net/thread-20-1-1.html)
 * [应用案例某Chat的部分非敏感运营数据](http://www.52im.net/thread-21-1-1.html)
 
-> #### 开发文档
+> #### Demo安装
+* [客户端Demo安装和使用帮助(Android)](http://www.52im.net/thread-55-1-1.html)
+* [客户端Demo安装和使用帮助(iOS)](http://www.52im.net/thread-54-1-1.html)
+* [客户端Demo安装和使用帮助(Java)](http://www.52im.net/thread-56-1-1.html)
+* [服务端Demo安装和使用帮助](http://www.52im.net/thread-1272-1-1.html) :new:
+
+> #### 开发指南
 * [客户端开发指南(Android)](http://www.52im.net/thread-61-1-1.html)
 * [客户端开发指南(iOS)](http://www.52im.net/thread-62-1-1.html)
 * [客户端开发指南(Java)](http://www.52im.net/thread-59-1-1.html)
 * [服务端开发指南](http://www.52im.net/thread-63-1-1.html)
+
+> #### API文档
 * [客户端SDK API文档(Android)](http://docs.52im.net/extend/docs/api/mobileimsdk/android_tcp/)
 * [客户端SDK API文档(iOS)](http://docs.52im.net/extend/docs/api/mobileimsdk/ios_tcp/)
 * [客户端SDK API文档(Java)](http://docs.52im.net/extend/docs/api/mobileimsdk/java_tcp/)
 * [服务端SDK API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/server/)
 
-> #### 资源下载
+> #### 打包下载
 * [MobileIMSDK最新版打包下载](https://github.com/JackJiang2011/MobileIMSDK/releases/latest) :point_left:
 * [MobileIMSDK的Github地址](https://github.com/JackJiang2011/MobileIMSDK)
 
