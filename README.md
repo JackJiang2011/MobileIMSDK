@@ -24,9 +24,9 @@
 * [服务端开发指南](http://www.52im.net/thread-63-1-1.html)
 
 > #### API文档
-* [客户端SDK API文档(Android)](http://docs.52im.net/extend/docs/api/mobileimsdk/android_tcp/)
-* [客户端SDK API文档(iOS)](http://docs.52im.net/extend/docs/api/mobileimsdk/ios_tcp/)
-* [客户端SDK API文档(Java)](http://docs.52im.net/extend/docs/api/mobileimsdk/java_tcp/)
+* 客户端SDK API文档(Android)：[TCP版](http://docs.52im.net/extend/docs/api/mobileimsdk/android_tcp/)、[UDP版](http://docs.52im.net/extend/docs/api/mobileimsdk/android/)
+* 客户端SDK API文档(iOS)：[TCP版](http://docs.52im.net/extend/docs/api/mobileimsdk/ios_tcp/)、[UDP版](http://docs.52im.net/extend/docs/api/mobileimsdk/ios/)
+* 客户端SDK API文档(Java)：[TCP版](http://docs.52im.net/extend/docs/api/mobileimsdk/java_tcp/)、[UDP版](http://docs.52im.net/extend/docs/api/mobileimsdk/java/)
 * [服务端SDK API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/server/)
 
 > #### 打包下载
