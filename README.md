@@ -1,6 +1,6 @@
-# 快捷目录
+# 一、快捷目录
 
-> #### 网络理论
+> #### 理论资料
 * [网络编程理论经典《TCP/IP详解》（在线阅读版）](http://www.52im.net/topic-tcpipvol1.html) :triangular_flag_on_post:
 
 > #### 相关资料
@@ -31,19 +31,19 @@
 
 > #### 打包下载
 * [MobileIMSDK最新版打包下载](https://github.com/JackJiang2011/MobileIMSDK/releases/latest) :point_left:
-* [MobileIMSDK的Github地址](https://github.com/JackJiang2011/MobileIMSDK)
+* 国外地址：[MobileIMSDK的Github地址](https://github.com/JackJiang2011/MobileIMSDK)
+* 国内地址：[MobileIMSDK的码云gitee地址](https://gitee.com/jackjiang/MobileIMSDK )（访问速度快！）
 
 > #### 学习交流
-* 讨论学习和资料区：[点此进入](http://www.52im.net/forum-89-1.html)
-* 常见问题讨论学习：[点此进入](http://www.52im.net/forum.php?mod=collection&action=view&ctid=2&fromop=all) :point_left:
-* 移动端即时通讯交流群：![](https://raw.githubusercontent.com/JackJiang2011/MobileIMSDK/master/preview/more_screenshots/others/qq_group_icon_16-16.png) `320837163` :point_left:
-* bug/建议发送至：`jb2011@163.com`
+* 技术交流社区：[点此进入](http://www.52im.net/forum-89-1.html)
+* 常见问题讨论：[点此进入](http://www.52im.net/forum.php?mod=collection&action=view&ctid=2&fromop=all) :point_left:
+* 技术交流Q群：![](https://raw.githubusercontent.com/JackJiang2011/MobileIMSDK/master/preview/more_screenshots/others/qq_group_icon_16-16.png) `215477170` :point_left:
 * 技术支持/合作/咨询请联系作者QQ：`413980957` （[关于作者](http://www.52im.net/thread-2792-1-1.html) :point_left:）
 * 关注我的公众号：:point_down: :point_down:
 
 ![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/more_screenshots/others/my_mp_qr_400_b.png) 
 
-# 一、简介
+# 二、项目简介
 ![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/more_screenshots/others/github_header_logo_h.png)
 
 <b>MobileIMSDK是一套专为移动端开发的原创IM通信层框架：</b> 
@@ -62,7 +62,7 @@ MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所
 
 :point_right: 另一姊妹工程：[轻量级Web端即时通讯框架：MobileIMSDK-Web](http://www.52im.net/thread-959-1-1.html) 也在持续更新中，专用于手机或PC端的网页聊天和消息推送等。
 
-# 二、代码托管同步更新
+# 三、代码托管同步更新
 
 **GitHub.com**
 
@@ -76,10 +76,10 @@ MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所
 
 MobileIMSDK版本更新日志：[点此查看](http://www.52im.net/thread-1270-1-1.html) :point_left:
 
-# 三、设计目标
+# 四、设计目标
 让开发者专注于应用逻辑的开发，底层<code>复杂的即时通讯算法交由SDK开发人员</code>，从而<code>解偶即时通讯应用开发的复杂性</code>。
 
-# 四、框架组成
+# 五、框架组成
 <b>整套MobileIMSDK框架由以下5部分组成：</b>
 
 1. <b>Android客户端SDK：</b>用于Android版即时通讯客户端，支持Android 2\.3及以上，[查看API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/android_tcp/)；
@@ -89,7 +89,7 @@ MobileIMSDK版本更新日志：[点此查看](http://www.52im.net/thread-1270-1
 
 :point_right: <b>另外：</b>MobileIMSDK可与姊妹工程 [MobileIMSDK-Web](http://www.52im.net/thread-959-1-1.html) 无缝互通，从而实现Web网页端聊天或推送等。
 
-# 五、技术特征
+# 六、技术特征
 * <b>久经考验：</b>历经8年，从Andriod 2.3、iOS 5.0 时代持续升级至今（绝不烂尾）；
 * <b>超轻量级：</b>高度提炼，lib包50KB以内；
 * <b>多种协议：</b>可能是全网唯一开源可同时支持UDP和TCP两种协议的同类框架  :new:；
@@ -114,30 +114,30 @@ MobileIMSDK版本更新日志：[点此查看](http://www.52im.net/thread-1270-1
   
 :point_right: 您可能需要：[查看更多关于MobileIMSDK的疑问及解答](http://www.52im.net/thread-60-1-1.html)。
 
-# 六、性能测试
+# 七、性能测试
 压力测试表明，MobileIMSDK用于推送场景时，理论单机负载可接近千万级。用于聊天应用时，单机负载也可达数十万。
 
 > 当然，每款应用都有各自的特点和差异，请视具体场景具体评估之，测试数据仅供参考。
 
 :point_right: 性能测试报告：[点此查看](http://www.52im.net/thread-57-1-1.html)。
 
-# 七、演示程序
+# 八、演示程序
 1. <b>Android客户端 Demo：</b>[点此安装和使用](http://www.52im.net/thread-55-1-1.html)；
 2. <b>iOS客户端 Demo：</b>[点此安装和使用](http://www.52im.net/thread-54-1-1.html)；
 3. <b>Java客户端 Demo：</b>[点此安装和使用](http://www.52im.net/thread-56-1-1.html)；
 3. <b>服务端 Demo：</b>[点此安装和使用](http://www.52im.net/thread-1272-1-1.html)  :new:。
 
-# 八、应用案例
+# 九、应用案例
 #### ① 基于MobileIMSDK的产品级聊天APP：
 > 目前仅作演示之用：[点击下载体验](http://www.52im.net/thread-19-1-1.html) 或 [查看运行截图](http://www.52im.net/thread-20-1-1.html)。
 
 #### ② MobileIMSDK在高网络延迟下的案例：
 > 某款基于MobileIMSDK的商业商品，曾运营于跨洲际的复杂网络环境下，端到端通信延迟在洲际网络繁忙时可高达600ms以上（与服务端的单向延迟约为300ms左右，而通常大家访问国内主流门户的延迟约为20~50ms），某段时期的非敏感运营数据 [点此查看](http://www.52im.net/forum.php?mod=viewthread&tid=21&page=1&extra=#pid35)。
 
-# 九、资源下载
+# 十、资源下载
 :paperclip: 最新发布版：[点击下载](https://github.com/JackJiang2011/MobileIMSDK/releases/latest)（<code>内含完整demo、api文档、编译分发包等</code>）。
 
-# 十、典型应用场景
+# 十一、典型应用场景
 ### :triangular_flag_on_post: 场景1：聊天APP
 * <b>应用说明：</b>可用于开发类似于微信、QQ等聊天工具。<br>
 * <b>消息走向：</b>需使用C2C、C2S、S2C全部类型。<br>
@@ -155,30 +155,30 @@ MobileIMSDK版本更新日志：[点此查看](http://www.52im.net/thread-1270-1
 * <b>应用说明：</b>可用于实现企业OA中各种系统级、用户级消息的实时互动，充分利用即时通讯技术提升传统OA的价值。<br>
 * <b>消息走向：</b>可使用C2C、C2S、S2C全部类型，这与聊天APP在很多方面已无差别，但企业OA有自已的用户关系管理模型和逻辑，较之全功能聊天APP要简单的多。
 
-# 十一、开发指南
+# 十二、开发指南
 1. <b>Android客户端开发指南：</b>[点此查看](http://www.52im.net/thread-61-1-1.html)；
 2. <b>iOS客户端开发指南：</b>[点此查看](http://www.52im.net/thread-62-1-1.html)；
 3. <b>Java客户端开发指南：</b>[点此查看](http://www.52im.net/thread-59-1-1.html)；
 4. <b>Server端开发指南：</b>[点此查看](http://www.52im.net/thread-63-1-1.html)。
 
-# 十二、授权方式
+# 十三、授权方式
 你可永久免费且自由地使用MobileIMSDK，如：用于研究、学习、甚至商业用途，
 但禁止在超越License约束内容的情况下用于商业用途等，请尊重知识产权。
 更详细的授权说明，请见[MobileIMSDK社区介绍贴](http://www.52im.net/thread-52-1-1.html)中的“十二、授权方式”一节。
 
 > <b>补充说明：</b>如您还需获得更多技术支持或技术合作请联系作者，QQ：<code>413980957</code>（:point_right: [关于作者](http://www.52im.net/thread-2792-1-1.html)）。
 
-# 十三、联系方式
+# 十四、联系方式
 * 讨论学习和资料区：:earth_americas: [点此进入](http://www.52im.net/forum-89-1.html)；
 * 移动端即时通讯学习交流群：`215477170` <a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=b05cf91f7b0aa8f00159793feb080c75f4fe0778b5b5385c5b8485905a2d8a4a"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="即时通讯(IM/推送)开发2" title="即时通讯(IM/推送)开发2"></a> （[更多QQ群点此进入](http://www.52im.net/portal.php?mod=topic&topicid=2)）；
 * bug和建议请发送至：:love_letter: `jb2011@163.com`；
 * 技术培训/转让/合作/咨询等欢迎联系作者QQ：:penguin: `413980957`、微信：`hellojackjiang`  （:point_right: [关于作者](http://www.52im.net/thread-2792-1-1.html)）。
 
-# 十四、捐助作者
+# 十五、捐助作者
 优秀的开源需要您的支持才能走的更远，衷心感谢您的支持与理解，也希望您能从开源中收益。
 * 捐助链接： [点此进入](http://www.52im.net/thread-411-1-1.html)。
 
-# 十五、关注作者
+# 十六、关注作者
 * 关于作者：[点击进入](http://www.52im.net/thread-2792-1-1.html) :point_left:
 * 推荐关注：[BeautyEye工程](https://github.com/JackJiang2011/beautyeye)
 * 博客地址：[点击入进](http://www.52im.net/space-uid-1.html)
