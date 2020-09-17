@@ -192,14 +192,12 @@ MobileIMSDK版本更新日志：[点此查看](http://www.52im.net/thread-1270-1
 > <code>安装和使用：</code>[进入Android版Demo帮助页](http://www.52im.net/thread-55-1-1.html)、[进入iOS版Demo帮助页](http://www.52im.net/thread-54-1-1.html)。
 
 ![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/more_screenshots/others/ios_android_real_run2.jpg)
-![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/more_screenshots/others/ios_android_real_run.jpg)
 ![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/ios_demo_main.png)
 
 ### :triangular_flag_on_post: Windows 运行效果：
 > <code>安装和使用：</code>[进入Java版Demo帮助页](http://www.52im.net/thread-56-1-1.html)。
 
 ![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/java_demo_main.png)
-![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/more_screenshots/others/windows_real_run.png)
 
 ### :triangular_flag_on_post: Mac OS X 运行效果：
 > <code>安装和使用：</code>[进入Java版Demo帮助页](http://www.52im.net/thread-56-1-1.html)。
