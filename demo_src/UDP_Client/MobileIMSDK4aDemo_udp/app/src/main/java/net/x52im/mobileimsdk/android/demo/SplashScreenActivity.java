@@ -16,11 +16,14 @@
  */
 package net.x52im.mobileimsdk.android.demo;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
@@ -55,7 +58,10 @@ public class SplashScreenActivity extends Activity
 		        finish();
 		    }
 		}// FIX END
-		
+
+		// 沉浸式效果（系统状态栏将变的透明，界面从状态栏下方透过）
+		setStatusBarTranslucent(this, true);
+
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);  
 		final View view = View.inflate(this, R.layout.splash_screen_activity_layout, null);
@@ -93,5 +99,24 @@ public class SplashScreenActivity extends Activity
 		Intent intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
 		startActivity(intent);
 		finish();
+	}
+
+	/**
+	 * 调用此方法，可以实现承浸式界面效果（比如用于显示图片、app启动时的闪屏界面
+	 * 等，尤其刘海屏下的视觉效果会很棒）。
+	 * <p>
+	 * 注：承浸式界面效果由Android系统在android 4.4版及以上系统中提供。
+	 *
+	 * @param ac 要设置的界面
+	 * @param translucent true 实现承浸式界面效果
+	 */
+	@TargetApi(Build.VERSION_CODES.KITKAT)
+	public static void setStatusBarTranslucent(Activity ac, boolean translucent)
+	{
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
+		{
+			ac.getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
+					, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+		}
 	}
 }
