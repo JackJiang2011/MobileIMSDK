@@ -67,12 +67,12 @@ MobileIMSDK现已公开并免费供开发者使用，希望对需要的人有所
 **GitHub.com**
 
 * 代码托管：  https://github.com/JackJiang2011/MobileIMSDK 
-* 项目资料：  [点击查看更多资料](http://www.52im.net/forum-89-1.html)
+* 技术社区：  [点击查看更多资料](http://www.52im.net/forum-89-1.html)
 
 **码云gitee**
 
 * 代码托管：  https://gitee.com/jackjiang/MobileIMSDK 
-* 项目资料：  [点击查看更多资料](http://www.52im.net/forum-89-1.html)
+* 技术社区：  [点击查看更多资料](http://www.52im.net/forum-89-1.html)
 
 MobileIMSDK版本更新日志：[点此查看](http://www.52im.net/thread-1270-1-1.html) :point_left:
 
