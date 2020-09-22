@@ -68,6 +68,9 @@ public class ServerLauncherImpl extends ServerLauncher
 		ServerLauncher.bridgeEnabled = false;
 		// TODO 跨服桥接器MQ的URI（本参数只在ServerLauncher.bridgeEnabled为true时有意义）
 //		BridgeProcessor.IMMQ_URI = "amqp://js:19844713@192.168.0.190";
+		
+		// 设置最大TCP帧内容长度（不设置则默认最大是 6 * 1024字节）
+//		GatewayTCP.TCP_FRAME_MAX_BODY_LENGTH = 60 * 1024;
 	}
 	
 	/**

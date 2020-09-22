@@ -10,7 +10,7 @@
 		EAB3051B24ACE1B100C78B0E /* MBGCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB3051924ACE1B100C78B0E /* MBGCDAsyncSocket.m */; };
 		EAB3051C24ACE1B100C78B0E /* MBGCDAsyncSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = EAB3051A24ACE1B100C78B0E /* MBGCDAsyncSocket.h */; };
 		EAB3052024ACE2B100C78B0E /* TCPFrameCodec.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB3051E24ACE2B100C78B0E /* TCPFrameCodec.m */; };
-		EAB3052124ACE2B100C78B0E /* TCPFrameCodec.h in Headers */ = {isa = PBXBuildFile; fileRef = EAB3051F24ACE2B100C78B0E /* TCPFrameCodec.h */; };
+		EAB3052124ACE2B100C78B0E /* TCPFrameCodec.h in Headers */ = {isa = PBXBuildFile; fileRef = EAB3051F24ACE2B100C78B0E /* TCPFrameCodec.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EACBFFD41BA07F5400C070F1 /* NSMutableDictionary+Ext.h in Headers */ = {isa = PBXBuildFile; fileRef = EADDE60D1A0A1261002FFB8E /* NSMutableDictionary+Ext.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EADDE63A1A0A1261002FFB8E /* ClientCoreSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE5F51A0A1261002FFB8E /* ClientCoreSDK.m */; };
 		EADDE63B1A0A1261002FFB8E /* ConfigEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE5F71A0A1261002FFB8E /* ConfigEntity.m */; };
@@ -371,7 +371,6 @@
 				EADDE65F1A0A139C002FFB8E /* QoS4ReciveDaemon.h in Headers */,
 				EADDE6601A0A139C002FFB8E /* QoS4SendDaemon.h in Headers */,
 				EADDE6611A0A139C002FFB8E /* CompletionDefine.h in Headers */,
-				EAB3052124ACE2B100C78B0E /* TCPFrameCodec.h in Headers */,
 				EADDE6641A0A139C002FFB8E /* CharsetHelper.h in Headers */,
 				EADDE6651A0A139C002FFB8E /* ProtocalFactory.h in Headers */,
 				EADDE6661A0A139C002FFB8E /* ErrorCode.h in Headers */,
@@ -384,6 +383,7 @@
 				EADDE66C1A0A139C002FFB8E /* Protocal.h in Headers */,
 				EADDE66D1A0A139C002FFB8E /* ProtocalType.h in Headers */,
 				EADDE66E1A0A139C002FFB8E /* ToolKits.h in Headers */,
+				EAB3052124ACE2B100C78B0E /* TCPFrameCodec.h in Headers */,
 				EACBFFD41BA07F5400C070F1 /* NSMutableDictionary+Ext.h in Headers */,
 				EADDE66F1A0A139C002FFB8E /* TCPUtils.h in Headers */,
 			);

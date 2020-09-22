@@ -164,10 +164,10 @@ static LocalSocketProvider *instance = nil;
     if (tag == TCP_TAG_FIXED_LENGTH_HEADER)
     {
         int bodyLength = [TCPFrameCodec decodeBodyLength:data];
-        if(bodyLength <= 0 || bodyLength > TCP_FRAME_MAX_BODY_LENGTH)
+        if(bodyLength <= 0 || bodyLength > [TCPFrameCodec getTCP_FRAME_MAX_BODY_LENGTH])
         {
             if([ClientCoreSDK isENABLED_DEBUG])
-                NSLog(@"【IMCORE-TCP-SOCKET】【CAUTION】【原始帧-头】中实际解析出的bodyLength=%d (而SDK中最大允许长度为>0 && <= %d)，它是不合法的，将断开本次scoket连接！", bodyLength, TCP_FRAME_MAX_BODY_LENGTH);
+                NSLog(@"【IMCORE-TCP-SOCKET】【CAUTION】【原始帧-头】中实际解析出的bodyLength=%d (而SDK中最大允许长度为>0 && <= %d)，它是不合法的，将断开本次scoket连接！", bodyLength, [TCPFrameCodec getTCP_FRAME_MAX_BODY_LENGTH]);
             [socket disconnect];
         }
         else
@@ -184,7 +184,7 @@ static LocalSocketProvider *instance = nil;
         if([ClientCoreSDK isENABLED_DEBUG])
             NSLog(@"【IMCORE-TCP-SOCKET】已正常从【原始帧-体】中解码出msg=%@", msg);
         [[LocalDataReciever sharedInstance] handleProtocal:data];
-        [socket readDataToLength:TCP_FRAME_FIXED_HEADER_LENGTH withTimeout:-1 tag:TCP_TAG_FIXED_LENGTH_HEADER];
+        [socket readDataToLength:[TCPFrameCodec getTCP_FRAME_FIXED_HEADER_LENGTH] withTimeout:-1 tag:TCP_TAG_FIXED_LENGTH_HEADER];
     }
     else
     {
@@ -202,7 +202,7 @@ static LocalSocketProvider *instance = nil;
     if(self.connectionCompletionOnce_ != nil)
         self.connectionCompletionOnce_(YES);
     
-    [socket readDataToLength:TCP_FRAME_FIXED_HEADER_LENGTH withTimeout:-1 tag:TCP_TAG_FIXED_LENGTH_HEADER];
+    [socket readDataToLength:[TCPFrameCodec getTCP_FRAME_FIXED_HEADER_LENGTH] withTimeout:-1 tag:TCP_TAG_FIXED_LENGTH_HEADER];
 }
 
 - (void)socketDidDisconnect:(MBGCDAsyncSocket *)sock withError:(nullable NSError *)err

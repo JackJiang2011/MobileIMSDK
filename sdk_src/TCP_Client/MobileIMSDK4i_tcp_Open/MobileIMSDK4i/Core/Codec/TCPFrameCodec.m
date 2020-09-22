@@ -15,6 +15,19 @@
 
 #import "TCPFrameCodec.h"
 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - 静态全局类变量
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+static int TCP_FRAME_FIXED_HEADER_LENGTH = 4;    // 4 bytes
+static int TCP_FRAME_MAX_BODY_LENGTH = 6 * 1024; // 6K bytes
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - 静态公开方法
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 @implementation TCPFrameCodec
 
 + (NSData *)encodeFrame:(NSData *)bodyDataOfFrame
@@ -44,5 +57,25 @@
    
     return bodyLength;
 }
+
++ (void)setTCP_FRAME_FIXED_HEADER_LENGTH:(int)l
+{
+    TCP_FRAME_FIXED_HEADER_LENGTH = l;
+}
+
++ (int)getTCP_FRAME_FIXED_HEADER_LENGTH
+{
+    return TCP_FRAME_FIXED_HEADER_LENGTH;
+}
+
++ (void)setTCP_FRAME_MAX_BODY_LENGTH:(int)l
+{
+    TCP_FRAME_MAX_BODY_LENGTH = l;
+}
++ (int)getTCP_FRAME_MAX_BODY_LENGTH
+{
+    return TCP_FRAME_MAX_BODY_LENGTH;
+}
+
 
 @end

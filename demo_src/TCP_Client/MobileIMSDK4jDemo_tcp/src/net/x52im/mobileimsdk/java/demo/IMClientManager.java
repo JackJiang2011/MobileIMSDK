@@ -18,6 +18,7 @@ package net.x52im.mobileimsdk.java.demo;
 
 import net.x52im.mobileimsdk.java.ClientCoreSDK;
 import net.x52im.mobileimsdk.java.conf.ConfigEntity;
+import net.x52im.mobileimsdk.java.core.LocalSocketProvider;
 import net.x52im.mobileimsdk.java.demo.event.ChatBaseEventImpl;
 import net.x52im.mobileimsdk.java.demo.event.ChatMessageEventImpl;
 import net.x52im.mobileimsdk.java.demo.event.MessageQoSEventImpl;
@@ -64,9 +65,12 @@ public class IMClientManager
 	    
 			// MobileIMSDK核心IM框架的敏感度模式设置
 //			ConfigEntity.setSenseMode(SenseMode.MODE_10S);
+			
+			// 设置最大TCP帧内容长度（不设置则默认最大是 6 * 1024字节）
+//			LocalSocketProvider.TCP_FRAME_MAX_BODY_LENGTH = 60 * 1024;
 	    
 			// 开启/关闭DEBUG信息输出
-//	    	ClientCoreSDK.DEBUG = false;
+	    	ClientCoreSDK.DEBUG = true;
 	    
 			// 设置事件回调
 			baseEventListener = new ChatBaseEventImpl();

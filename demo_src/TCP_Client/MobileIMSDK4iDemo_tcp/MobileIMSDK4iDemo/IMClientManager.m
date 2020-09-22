@@ -16,6 +16,7 @@
 #import "IMClientManager.h"
 #import "ClientCoreSDK.h"
 #import "ConfigEntity.h"
+#import "TCPFrameCodec.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -86,6 +87,9 @@ static IMClientManager *instance = nil;
         
         // RainbowCore核心IM框架的敏感度模式设置
 //      [ConfigEntity setSenseMode:SenseMode10S];
+        
+        // 设置最大TCP帧内容长度（不设置则默认最大是 6 * 1024字节）
+//      [TCPFrameCodec setTCP_FRAME_MAX_BODY_LENGTH:60 * 1024];
         
         // 开启DEBUG信息输出
         [ClientCoreSDK setENABLED_DEBUG:YES];

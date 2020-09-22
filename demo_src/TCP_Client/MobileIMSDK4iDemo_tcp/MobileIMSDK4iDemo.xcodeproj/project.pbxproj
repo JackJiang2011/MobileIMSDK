@@ -66,6 +66,7 @@
 		EA33F7C724B5B84A00E81885 /* ProtocalFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocalFactory.h; sourceTree = "<group>"; };
 		EA33F7C824B5B84A00E81885 /* CharsetHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharsetHelper.h; sourceTree = "<group>"; };
 		EA3969C71A0DEFA40099FBF9 /* green_light@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "green_light@2x.png"; sourceTree = "<group>"; };
+		EA3C6FA02519E33700585710 /* TCPFrameCodec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPFrameCodec.h; sourceTree = "<group>"; };
 		EA48F5401BEF816C007AE6A1 /* UIViewController+Ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+Ext.h"; path = "MobileIMSDK4iDemo/UIViewController+Ext.h"; sourceTree = "<group>"; };
 		EA48F5411BEF816C007AE6A1 /* UIViewController+Ext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+Ext.m"; path = "MobileIMSDK4iDemo/UIViewController+Ext.m"; sourceTree = "<group>"; };
 		EA48F5441BEF8FE0007AE6A1 /* IMClientManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMClientManager.h; path = MobileIMSDK4iDemo/IMClientManager.h; sourceTree = "<group>"; };
@@ -165,6 +166,7 @@
 		EA33F7AE24B5B84A00E81885 /* include */ = {
 			isa = PBXGroup;
 			children = (
+				EA3C6FA02519E33700585710 /* TCPFrameCodec.h */,
 				EADF349124F6B13C00AF7862 /* ChatMessageEvent.h */,
 				EA33F7B824B5B84A00E81885 /* AutoReLoginDaemon.h */,
 				EA33F7C824B5B84A00E81885 /* CharsetHelper.h */,
