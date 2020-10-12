@@ -1,9 +1,0 @@
-
-
-问题描述：
-引用了MobileIMSDK。。。.a的工程在Marcus的模拟器上能正常运行，但打成ipa包时会报截图上的错误。
-
-
-解决方法：
-1）在MobieIMSDK_X的.plist添加一个属性：key=BITCODE_GENERATION_MODE，value=bitcode
-2）在引用mb.a的工程里，要把BitCode改成NO（这个设置好奇怪，但先不纠结了，以后再说！）。
