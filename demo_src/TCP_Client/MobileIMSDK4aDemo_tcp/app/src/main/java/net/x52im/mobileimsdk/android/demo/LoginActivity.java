@@ -22,7 +22,6 @@ import java.util.Observer;
 import net.x52im.mobileimsdk.android.conf.ConfigEntity;
 import net.x52im.mobileimsdk.android.core.LocalDataSender;
 import net.x52im.mobileimsdk.android.core.LocalSocketProvider;
-import net.x52im.mobileimsdk.android.demo.R;
 
 import android.app.Activity;
 import android.app.AlertDialog;

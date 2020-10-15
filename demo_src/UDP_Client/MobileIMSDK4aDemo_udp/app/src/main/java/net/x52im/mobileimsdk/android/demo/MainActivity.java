@@ -26,11 +26,16 @@ import java.util.Map;
 import net.x52im.mobileimsdk.android.demo.R;
 import net.x52im.mobileimsdk.android.ClientCoreSDK;
 import net.x52im.mobileimsdk.android.core.LocalDataSender;
+import net.x52im.mobileimsdk.android.demo.service.GeniusService;
 
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -76,6 +81,10 @@ public class MainActivity extends AppCompatActivity
 		initViews();
 		initListeners();
 		initOthers();
+
+		// 启动前台服务（注意：该服务仅用于提升Demo的运行优先级，确保在高版本
+		// Andriod系统上进程保活和网络保活，此服务与SDK本身无关，也不是必须的）
+		doBindService();
 	}
 	
 	/** 
@@ -98,7 +107,11 @@ public class MainActivity extends AppCompatActivity
 	{
 		// 释放IM占用资源
 		IMClientManager.getInstance(this).release();
-		//
+
+		// 解绑前台服务（注意：该服务仅用于提升Demo的运行优先级，确保在高版本
+		// Andriod系统上进程保活和网络保活，此服务与SDK本身无关，也不是必须的）
+		doUnbindService();
+
 		super.onDestroy();
 	}
 	
@@ -345,4 +358,44 @@ public class MainActivity extends AppCompatActivity
     	green,
     }
 	//--------------------------------------------------------------- inner classes END
+
+	//--------------------------------------------------------------- 前台服务相关代码 START
+	/** 前台服务对象（绑定MobileIMSDK的Demo后，确保Demo能常驻内存，因为Andriod高版本对于进程保活、网络保活现在限制非常严格） */
+	private GeniusService boundService;
+
+	/** 绑定时需要使用的连接对象 */
+	private ServiceConnection serviceConnection = new ServiceConnection()
+	{
+		public void onServiceConnected(ComponentName className, IBinder service)
+		{
+			boundService = ((GeniusService.LocalBinder)service).getService();
+		}
+
+		public void onServiceDisconnected(ComponentName className)
+		{
+			boundService = null;
+		}
+	};
+
+	/**
+	 * 将本activity与后台服务绑定起来.
+	 */
+	protected void doBindService()
+	{
+		this.getApplicationContext().bindService(new Intent(this.getApplicationContext(), GeniusService.class), serviceConnection, Context.BIND_AUTO_CREATE);
+	}
+
+	/**
+	 * 解绑服务（服务将失去功能，随时会被系统回收）.
+	 */
+	protected void doUnbindService()
+	{
+		try{
+			this.getApplicationContext().unbindService(serviceConnection);
+		}
+		catch (Exception e){
+//			Log.w(TAG, e);
+		}
+	}
+	//--------------------------------------------------------------- 前台服务相关代码 END
 }

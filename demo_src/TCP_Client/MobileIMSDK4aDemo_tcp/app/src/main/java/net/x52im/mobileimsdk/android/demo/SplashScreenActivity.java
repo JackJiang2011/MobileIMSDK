@@ -28,8 +28,6 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 
-import net.x52im.mobileimsdk.android.demo.R;
-
 /**
  * 应用程序启动类：显示闪屏界面并跳转到主界面.
  * 

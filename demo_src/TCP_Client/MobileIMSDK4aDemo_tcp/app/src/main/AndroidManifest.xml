@@ -5,6 +5,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- Android 9.0中需要此权限的添加，不然崩溃 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:allowBackup="true"
@@ -13,7 +15,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name="net.x52im.mobileimsdk.android.demo.SplashScreenActivity"
+            android:name=".SplashScreenActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeBlackBar"
@@ -25,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="net.x52im.mobileimsdk.android.demo.LoginActivity"
+            android:name=".LoginActivity"
             android:configChanges="screenSize|keyboardHidden|orientation"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity"
@@ -33,13 +35,16 @@
             android:windowSoftInputMode="adjustUnspecified|stateHidden" >
         </activity>
         <activity
-            android:name="net.x52im.mobileimsdk.android.demo.MainActivity"
+            android:name=".MainActivity"
             android:configChanges="screenSize|keyboardHidden|orientation"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustUnspecified|stateHidden">
         </activity>
-    </application>
 
+        <!-- 一个为了Demo能更好保活的前台服务 -->
+        <service android:name=".service.GeniusService" />
+
+    </application>
 </manifest>
