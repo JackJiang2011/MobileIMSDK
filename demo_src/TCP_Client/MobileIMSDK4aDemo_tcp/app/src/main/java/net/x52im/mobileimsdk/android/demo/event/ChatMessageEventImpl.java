@@ -73,7 +73,7 @@ public class ChatMessageEventImpl implements ChatMessageEvent
 		Log.d(TAG, "【DEBUG_UI】收到服务端错误消息，errorCode="+errorCode+", errorMsg="+errorMsg);
 		
 		if(errorCode ==  ErrorCode.ForS.RESPONSE_FOR_UNLOGIN)
-			this.mainGUI.showIMInfo_brightred("服务端会话已失效，自动登陆/重连将启动! ("+errorCode+")");
+			;//this.mainGUI.showIMInfo_brightred("服务端会话已失效，自动登陆/重连将启动! ("+errorCode+")");
 		else
 			this.mainGUI.showIMInfo_red("Server反馈错误码："+errorCode+",errorMsg="+errorMsg);
 	}
