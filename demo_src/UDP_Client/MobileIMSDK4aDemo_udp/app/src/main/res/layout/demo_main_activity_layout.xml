@@ -21,7 +21,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -30,14 +31,23 @@
                 android:textColor="#666666"
                 android:textSize="14sp" />
 
+            <ImageView
+                android:id="@+id/status_iconView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/gray"
+                android:layout_marginRight="5dp"
+                />
+
             <TextView
                 android:id="@+id/status_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="未连接"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="#ff00ff"
+                android:textColor="@color/common_light_red"
                 android:textSize="14sp" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -165,6 +175,82 @@
         android:layout_marginTop="15dp"
         android:scaleType="fitXY"
         android:src="@drawable/dashed_line" />
+
+    <!-- 用于Debug的线程动态的各种指示图标 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingLeft="5dp"
+        android:layout_marginBottom="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="线程动态："
+            android:textColor="#007AFF"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:id="@+id/demo_main_activity_layout_autoLoginFlagIV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/gray"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="重连线程"
+            android:textColor="#AAAAAA"
+            android:layout_marginLeft="2dp"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:id="@+id/demo_main_activity_layout_keepAliveFlagIV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/gray"
+            android:layout_marginLeft="7dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="心跳线程"
+            android:textColor="#AAAAAA"
+            android:layout_marginLeft="2dp"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:id="@+id/demo_main_activity_layout_qosSendFlagIV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/gray"
+            android:layout_marginLeft="7dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="送达保证(发)"
+            android:textColor="#AAAAAA"
+            android:layout_marginLeft="2dp"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:id="@+id/demo_main_activity_layout_qosReceiveFlagIV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/gray"
+            android:layout_marginLeft="7dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="送达保证(收)"
+            android:textColor="#AAAAAA"
+            android:layout_marginLeft="2dp"
+            android:textSize="12sp" />
+    </LinearLayout>
 
     <ListView
         android:id="@+id/demo_main_activity_layout_listView"

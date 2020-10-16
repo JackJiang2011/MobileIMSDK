@@ -41,6 +41,9 @@ public class KeepAliveDaemon {
     private boolean _willStop = false;
     private boolean init = false;
 
+    /** !本属性仅作DEBUG之用：DEBUG事件观察者 */
+    private Observer debugObserver;
+
     public static KeepAliveDaemon getInstance() {
         if (instance == null)
             instance = new KeepAliveDaemon();
@@ -80,6 +83,10 @@ public class KeepAliveDaemon {
     }
 
     private void onKeepAlive(int code) {
+        // for DEBUG
+        if(this.debugObserver != null)
+            this.debugObserver.update(null, 2);
+
         boolean isInitialedForKeepAlive = (lastGetKeepAliveResponseFromServerTimstamp.longValue() == 0);
         //## Bug FIX 20190513 v4.0.1 START
         //## 解决极端情况下手机网络断开时，无法进入下面的"断开"通知流程
@@ -115,12 +122,20 @@ public class KeepAliveDaemon {
         handler.removeCallbacks(runnable);
         keepAliveRunning = false;
         lastGetKeepAliveResponseFromServerTimstamp.set(0);
+
+        // for DEBUG
+        if(this.debugObserver != null)
+            this.debugObserver.update(null, 0);
     }
 
     public void start(boolean immediately) {
         stop();
         handler.postDelayed(runnable, immediately ? 0 : KEEP_ALIVE_INTERVAL);
         keepAliveRunning = true;
+
+        // for DEBUG
+        if(this.debugObserver != null)
+            this.debugObserver.update(null, 1);
     }
 
     public boolean isKeepAliveRunning() {
@@ -137,5 +152,23 @@ public class KeepAliveDaemon {
 
     public void setNetworkConnectionLostObserver(Observer networkConnectionLostObserver) {
         this.networkConnectionLostObserver = networkConnectionLostObserver;
+    }
+
+    /**
+     * !本方法仅用于DEBUG，开发者无需关注！
+     *
+     * @return DEBUG事件观察者
+     */
+    public Observer getDebugObserver() {
+        return debugObserver;
+    }
+
+    /**
+     * !本方法仅用于DEBUG，开发者无需关注！
+     *
+     * @param debugObserver DEBUG事件观察者
+     */
+    public void setDebugObserver(Observer debugObserver) {
+        this.debugObserver = debugObserver;
     }
 }

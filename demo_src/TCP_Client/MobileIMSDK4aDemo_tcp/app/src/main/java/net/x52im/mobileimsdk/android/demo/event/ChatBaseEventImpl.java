@@ -55,7 +55,7 @@ public class ChatBaseEventImpl implements ChatBaseEvent
 			if(this.mainGUI != null)
 			{
 				this.mainGUI.refreshMyid();
-				this.mainGUI.showIMInfo_green("IM服务器登录/重连成功,errorCode="+errorCode);
+//				this.mainGUI.showIMInfo_green("IM服务器登录/重连成功,errorCode="+errorCode);
 			}
 		}
 		else 
@@ -95,7 +95,7 @@ public class ChatBaseEventImpl implements ChatBaseEvent
 		if(this.mainGUI != null)
 		{
 			this.mainGUI.refreshMyid();
-			this.mainGUI.showIMInfo_red("与IM服务器的连接已断开, 自动登陆/重连将启动! ("+errorCode+")");
+//			this.mainGUI.showIMInfo_red("与IM服务器的连接已断开, 自动登陆/重连将启动! ("+errorCode+")");
 		}
 	}
 	

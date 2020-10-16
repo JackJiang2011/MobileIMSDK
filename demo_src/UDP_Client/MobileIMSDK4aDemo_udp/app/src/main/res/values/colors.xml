@@ -12,4 +12,7 @@
     <color name="colorText">#353535</color>
     <color name="colorTextHint">#aaaaaa</color>
 
+    <color name="common_light_green">#42c958</color>
+    <color name="common_light_red">#FF00FF</color>
+
 </resources>

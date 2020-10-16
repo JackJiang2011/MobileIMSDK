@@ -17,6 +17,7 @@
 package net.x52im.mobileimsdk.android.core;
 
 import java.util.ArrayList;
+import java.util.Observer;
 import java.util.concurrent.ConcurrentHashMap;
 
 import net.x52im.mobileimsdk.android.ClientCoreSDK;
@@ -39,6 +40,9 @@ public class QoS4ReciveDaemon {
     private boolean running = false;
     private boolean _excuting = false;
     private boolean init = false;
+
+    /** !本属性仅作DEBUG之用：DEBUG事件观察者 */
+    private Observer debugObserver;
 
     public static QoS4ReciveDaemon getInstance() {
         if (instance == null)
@@ -77,6 +81,10 @@ public class QoS4ReciveDaemon {
             if (ClientCoreSDK.DEBUG)
                 Log.d(TAG, "【IMCORE-UDP】【QoS接收方】+++++ END 暂存处理线程正在运行中，当前长度" + recievedMessages.size() + ".");
 
+            // for DEBUG
+            if(this.debugObserver != null)
+                this.debugObserver.update(null, 2);
+
             _excuting = false;
             handler.postDelayed(runnable, CHECH_INTERVAL);
         };
@@ -93,11 +101,19 @@ public class QoS4ReciveDaemon {
         }
         handler.postDelayed(runnable, immediately ? 0 : CHECH_INTERVAL);
         running = true;
+
+        // for DEBUG
+        if(this.debugObserver != null)
+            this.debugObserver.update(null, 1);
     }
 
     public void stop() {
         handler.removeCallbacks(runnable);
         running = false;
+
+        // for DEBUG
+        if(this.debugObserver != null)
+            this.debugObserver.update(null, 0);
     }
 
     public boolean isRunning() {
@@ -141,5 +157,23 @@ public class QoS4ReciveDaemon {
 
     public int size() {
         return recievedMessages.size();
+    }
+
+    /**
+     * !本方法仅用于DEBUG，开发者无需关注！
+     *
+     * @return DEBUG事件观察者
+     */
+    public Observer getDebugObserver() {
+        return debugObserver;
+    }
+
+    /**
+     * !本方法仅用于DEBUG，开发者无需关注！
+     *
+     * @param debugObserver DEBUG事件观察者
+     */
+    public void setDebugObserver(Observer debugObserver) {
+        this.debugObserver = debugObserver;
     }
 }

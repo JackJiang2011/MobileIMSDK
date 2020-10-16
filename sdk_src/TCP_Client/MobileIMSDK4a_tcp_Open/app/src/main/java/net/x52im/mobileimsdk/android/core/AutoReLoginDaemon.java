@@ -23,6 +23,8 @@ import net.x52im.mobileimsdk.android.utils.MBThreadPoolExecutor;
 import android.os.Handler;
 import android.util.Log;
 
+import java.util.Observer;
+
 public class AutoReLoginDaemon {
     private final static String TAG = AutoReLoginDaemon.class.getSimpleName();
     private static AutoReLoginDaemon instance = null;
@@ -33,6 +35,9 @@ public class AutoReLoginDaemon {
     private boolean autoReLoginRunning = false;
     private boolean _excuting = false;
     private boolean init = false;
+
+    /** !本属性仅作DEBUG之用：DEBUG事件观察者 */
+    private Observer debugObserver;
 
     public static AutoReLoginDaemon getInstance() {
         if (instance == null)
@@ -77,6 +82,10 @@ public class AutoReLoginDaemon {
     }
 
     private void onSendLogin(int result) {
+        // for DEBUG
+        if(this.debugObserver != null)
+            this.debugObserver.update(null, 2);
+
         if (result == 0) {
 //			LocalUDPDataReciever.getInstance().startup();
         }
@@ -88,12 +97,20 @@ public class AutoReLoginDaemon {
     public void stop() {
         handler.removeCallbacks(runnable);
         autoReLoginRunning = false;
+
+        // for DEBUG
+        if(this.debugObserver != null)
+            this.debugObserver.update(null, 0);
     }
 
     public void start(boolean immediately) {
         stop();
         handler.postDelayed(runnable, immediately ? 0 : AUTO_RE$LOGIN_INTERVAL);
         autoReLoginRunning = true;
+
+        // for DEBUG
+        if(this.debugObserver != null)
+            this.debugObserver.update(null, 1);
     }
 
     public boolean isAutoReLoginRunning() {
@@ -102,5 +119,23 @@ public class AutoReLoginDaemon {
 
     public boolean isInit() {
         return init;
+    }
+
+    /**
+     * !本方法仅用于DEBUG，开发者无需关注！
+     *
+     * @return DEBUG事件观察者
+     */
+    public Observer getDebugObserver() {
+        return debugObserver;
+    }
+
+    /**
+     * !本方法仅用于DEBUG，开发者无需关注！
+     *
+     * @param debugObserver DEBUG事件观察者
+     */
+    public void setDebugObserver(Observer debugObserver) {
+        this.debugObserver = debugObserver;
     }
 }

@@ -22,7 +22,12 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Observer;
 
+import net.x52im.mobileimsdk.android.core.AutoReLoginDaemon;
+import net.x52im.mobileimsdk.android.core.KeepAliveDaemon;
+import net.x52im.mobileimsdk.android.core.QoS4ReciveDaemon;
+import net.x52im.mobileimsdk.android.core.QoS4SendDaemon;
 import net.x52im.mobileimsdk.android.demo.R;
 import net.x52im.mobileimsdk.android.ClientCoreSDK;
 import net.x52im.mobileimsdk.android.core.LocalDataSender;
@@ -33,6 +38,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.Color;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -43,6 +49,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -63,6 +70,7 @@ public class MainActivity extends AppCompatActivity
 	private EditText editId = null;
 	private EditText editContent = null;
 	private TextView viewStatus = null;
+	private ImageView imgStatus = null;
 	private TextView viewMyid = null;
 	private Button btnSend = null;
 	
@@ -86,7 +94,20 @@ public class MainActivity extends AppCompatActivity
 		// Andriod系统上进程保活和网络保活，此服务与SDK本身无关，也不是必须的）
 		doBindService();
 	}
-	
+
+	/**
+	 * Activity每次从后台回到前台时调用本方法。
+	 */
+	protected void onResume()
+	{
+		super.onResume();
+
+		// just for debug START
+		// Refresh MobileIMSDK background status to show
+		this.refreshMobileIKSDKThreadStatusForDEBUG();
+		// just for debug END
+	}
+
 	/** 
 	 * 捕获back键，实现调用 {@link #doExit()}方法.
 	 */
@@ -123,6 +144,7 @@ public class MainActivity extends AppCompatActivity
 		editId = (EditText)this.findViewById(R.id.id_editText);
 		editContent = (EditText)this.findViewById(R.id.content_editText);
 		viewStatus = (TextView)this.findViewById(R.id.status_view);
+		imgStatus = (ImageView)this.findViewById(R.id.status_iconView);
 		viewMyid = (TextView)this.findViewById(R.id.myid_view);
 		
 		chatInfoListView = (ListView)this.findViewById(R.id.demo_main_activity_layout_listView);
@@ -132,6 +154,10 @@ public class MainActivity extends AppCompatActivity
 		this.viewMyid.setText(ClientCoreSDK.getInstance().getInstance().getCurrentLoginUserId());
 		
 		this.setTitle("MobileIMSDK_UDP v5 Demo");
+
+		// just for debug START
+		this.initObserversForDEBUG();
+		// just for debug END
 	}
 	
 	private void initListeners()
@@ -160,7 +186,16 @@ public class MainActivity extends AppCompatActivity
 	public void refreshMyid()
 	{
 		boolean connectedToServer = ClientCoreSDK.getInstance().isConnectedToServer();
-		this.viewStatus.setText(connectedToServer ? "通信正常":"连接断开");
+		if(connectedToServer) {
+			this.viewStatus.setText("通信正常");
+			this.viewStatus.setTextColor(getResources().getColor(R.color.common_light_green));
+			this.imgStatus.setImageResource(R.drawable.green);
+		}
+		else{
+			this.viewStatus.setText("连接断开");
+			this.viewStatus.setTextColor(getResources().getColor(R.color.common_light_red));
+			this.imgStatus.setImageResource(R.drawable.gray);
+		}
 	}
 	
 	private void doSendMessage()
@@ -398,4 +433,60 @@ public class MainActivity extends AppCompatActivity
 		}
 	}
 	//--------------------------------------------------------------- 前台服务相关代码 END
+
+	//--------------------------------------------------------------- just for debug START
+	/* 以下代码用于DEBUG时显示各种SDK里的线程状态状态 */
+
+	private void refreshMobileIKSDKThreadStatusForDEBUG()
+	{
+		this.showDebugStatusImage(AutoReLoginDaemon.getInstance().isAutoReLoginRunning()?1:0
+				, findViewById(R.id.demo_main_activity_layout_autoLoginFlagIV));
+		this.showDebugStatusImage(KeepAliveDaemon.getInstance().isKeepAliveRunning()?1:0
+				, findViewById(R.id.demo_main_activity_layout_keepAliveFlagIV));
+		this.showDebugStatusImage(QoS4SendDaemon.getInstance().isRunning()?1:0
+				, findViewById(R.id.demo_main_activity_layout_qosSendFlagIV));
+		this.showDebugStatusImage(QoS4ReciveDaemon.getInstance().isRunning()?1:0
+				, findViewById(R.id.demo_main_activity_layout_qosReceiveFlagIV));
+	}
+
+	private void initObserversForDEBUG()
+	{
+		AutoReLoginDaemon.getInstance().setDebugObserver(
+				createObserverCompletionForDEBUG(findViewById(R.id.demo_main_activity_layout_autoLoginFlagIV)));
+		KeepAliveDaemon.getInstance().setDebugObserver(
+				createObserverCompletionForDEBUG(findViewById(R.id.demo_main_activity_layout_keepAliveFlagIV)));
+		QoS4SendDaemon.getInstance().setDebugObserver(
+				createObserverCompletionForDEBUG(findViewById(R.id.demo_main_activity_layout_qosSendFlagIV)));
+		QoS4ReciveDaemon.getInstance().setDebugObserver(
+				createObserverCompletionForDEBUG(findViewById(R.id.demo_main_activity_layout_qosReceiveFlagIV)));
+	}
+
+	private Observer createObserverCompletionForDEBUG(ImageView iv)
+	{
+		return (o, arg) -> {
+			if(arg != null) {
+				int status = (int) arg;
+				showDebugStatusImage(status, iv);
+			}
+		};
+	}
+
+	private void showDebugStatusImage(int status , ImageView iv)
+	{
+		if(iv.getVisibility() == View.INVISIBLE || iv.getVisibility() == View.GONE)
+			iv.setVisibility(View.VISIBLE);
+
+		// 持续运行中
+		if(status == 1)
+			iv.setImageResource(R.drawable.green);
+			// 单次执行
+		else if(status == 2) {
+			iv.setImageResource(R.drawable.thread_live_anim);
+			((AnimationDrawable) iv.getDrawable()).start();
+		}
+		// 已停止
+		else
+			iv.setImageResource(R.drawable.gray);
+	}
+	//--------------------------------------------------------------- just for debug END
 }
