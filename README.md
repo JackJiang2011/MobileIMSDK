@@ -175,7 +175,7 @@ MobileIMSDK版本更新日志：[点此查看](http://www.52im.net/thread-1270-1
 
 # 十四、联系方式
 * 讨论学习和资料区：:earth_americas: [点此进入](http://www.52im.net/forum-89-1.html)；
-* 移动端即时通讯学习交流群：`215477170` <a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=b05cf91f7b0aa8f00159793feb080c75f4fe0778b5b5385c5b8485905a2d8a4a"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="即时通讯(IM/推送)开发2" title="即时通讯(IM/推送)开发2"></a> （[更多QQ群点此进入](http://www.52im.net/portal.php?mod=topic&topicid=2)）；
+* 即时通讯技术交流群：`215477170` <a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=b05cf91f7b0aa8f00159793feb080c75f4fe0778b5b5385c5b8485905a2d8a4a"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="即时通讯(IM/推送)开发2" title="即时通讯(IM/推送)开发2"></a> （[更多QQ群点此进入](http://www.52im.net/portal.php?mod=topic&topicid=2)）；
 * bug和建议请发送至：:love_letter: `jb2011@163.com`；
 * 技术培训/转让/合作/咨询等欢迎联系作者QQ：:penguin: `413980957`、微信：`hellojackjiang`  （:point_right: [关于作者](http://www.52im.net/thread-2792-1-1.html)）。
 
@@ -220,7 +220,7 @@ MobileIMSDK版本更新日志：[点此查看](http://www.52im.net/thread-1270-1
 # 附录2：基于MobileIMSDK的全功能IM产品【案例】
 > <code>关于RainbowChat产品的更多资料请见：</code>[RainbowChat产品的全部功能截图](http://www.52im.net/thread-20-1-1.html) （真机实拍视频：[Andriod端](https://v.youku.com/v_show/id_XNDIzMzM4MzA3Mg==.html)、[iOS端](https://v.youku.com/v_show/id_XNDcwMDA4MDQwMA==.html)）。
 
-:point_right: :point_right:【特别说明】：因github图片被墙，部分图未同步成功，请从 [RainbowChat产品的全部功能截图](http://www.52im.net/thread-20-1-1.html) 中查看！:point_left: :point_left:
+:point_right: :point_right:【特别说明】：因github图片被墙，图未同步成功，请从 [RainbowChat产品的全部功能截图](http://www.52im.net/thread-20-1-1.html) 中查看！:point_left: :point_left:
 
 ![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/more_products/rainbowchat_v4_1.jpg)
 ![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/more_products/rainbowchat_v4_2.jpg)
