@@ -1,42 +1,42 @@
 # 一、快捷目录
 
-> #### 1.1 理论资料
+> #### 1.1、理论资料
 * [网络编程理论经典《TCP/IP详解》（在线阅读版）](http://www.52im.net/topic-tcpipvol1.html) :triangular_flag_on_post:
 
-> #### 1.2 相关资料
+> #### 1.2、相关资料
 * [MobileIMSDK版本更新日志](http://www.52im.net/thread-1270-1-1.html)
 * [MobileIMSDK常见问题解答](http://www.52im.net/thread-60-1-1.html) :point_left:
 * [MobileIMSDK性能测试报告](http://www.52im.net/thread-57-1-1.html)
 
-> #### 1.3 产品案例
+> #### 1.3、产品案例
 * [RainbowChat体验版](http://www.52im.net/thread-19-1-1.html) :point_left:
 * [RainbowChat体验版截图预览](http://www.52im.net/thread-20-1-1.html)
 * [某Chat的部分非敏感运营数据](http://www.52im.net/thread-21-1-1.html)
 
-> #### 1.4 Demo安装
+> #### 1.4、Demo安装
 * [客户端Demo安装和使用帮助(Android)](http://www.52im.net/thread-55-1-1.html)
 * [客户端Demo安装和使用帮助(iOS)](http://www.52im.net/thread-54-1-1.html)
 * [客户端Demo安装和使用帮助(Java)](http://www.52im.net/thread-56-1-1.html)
 * [服务端Demo安装和使用帮助](http://www.52im.net/thread-1272-1-1.html) :new:
 
-> #### 1.5 开发指南
+> #### 1.5、开发指南
 * [客户端开发指南(Android)](http://www.52im.net/thread-61-1-1.html)
 * [客户端开发指南(iOS)](http://www.52im.net/thread-62-1-1.html)
 * [客户端开发指南(Java)](http://www.52im.net/thread-59-1-1.html)
 * [服务端开发指南](http://www.52im.net/thread-63-1-1.html)
 
-> #### 1.6 API文档
+> #### 1.6、API文档
 * 客户端SDK API文档(Android)：[TCP版](http://docs.52im.net/extend/docs/api/mobileimsdk/android_tcp/)、[UDP版](http://docs.52im.net/extend/docs/api/mobileimsdk/android/)
 * 客户端SDK API文档(iOS)：[TCP版](http://docs.52im.net/extend/docs/api/mobileimsdk/ios_tcp/)、[UDP版](http://docs.52im.net/extend/docs/api/mobileimsdk/ios/)
 * 客户端SDK API文档(Java)：[TCP版](http://docs.52im.net/extend/docs/api/mobileimsdk/java_tcp/)、[UDP版](http://docs.52im.net/extend/docs/api/mobileimsdk/java/)
 * [服务端SDK API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/server/)
 
-> #### 1.7 打包下载
+> #### 1.7、打包下载
 * [MobileIMSDK最新版打包下载](https://github.com/JackJiang2011/MobileIMSDK/releases/latest) :point_left:
 * 国外地址：[MobileIMSDK的Github地址](https://github.com/JackJiang2011/MobileIMSDK)
 * 国内地址：[MobileIMSDK的码云gitee地址](https://gitee.com/jackjiang/MobileIMSDK )（访问速度快！）
 
-> #### 1.8 学习交流
+> #### 1.8、学习交流
 * 技术交流社区：[点此进入](http://www.52im.net/forum-89-1.html)
 * 常见问题讨论：[点此进入](http://www.52im.net/forum.php?mod=collection&action=view&ctid=2&fromop=all) :point_left:
 * 技术交流Q群：![](https://raw.githubusercontent.com/JackJiang2011/MobileIMSDK/master/preview/more_screenshots/others/qq_group_icon_16-16.png) `215477170` :point_left:
@@ -137,8 +137,9 @@ MobileIMSDK版本更新日志：[点此查看](http://www.52im.net/thread-1270-1
 > 某款基于MobileIMSDK的商业商品，曾运营于跨洲际的复杂网络环境下，端到端通信延迟在洲际网络繁忙时可高达600ms以上（与服务端的单向延迟约为300ms左右，而通常大家访问国内主流门户的延迟约为20~50ms），某段时期的非敏感运营数据 [点此查看](http://www.52im.net/forum.php?mod=viewthread&tid=21&page=1&extra=#pid35)。
 
 # 十、打包下载（含源码等全部资源）
-:paperclip: 最新发布版（国外地址）：[MobileIMSDK的Github最新版打包地址](https://github.com/JackJiang2011/MobileIMSDK/releases/latest)
-:paperclip: 最新发布版（国内地址）：[MobileIMSDK的码云gitee最新版打包地址](https://gitee.com/jackjiang/MobileIMSDK )（访问速度快！ :point_left:）
+:paperclip: 1）最新发布版（国外地址）：[MobileIMSDK的Github最新版打包地址](https://github.com/JackJiang2011/MobileIMSDK/releases/latest)
+
+:paperclip: 2）最新发布版（国内地址）：[MobileIMSDK的码云gitee最新版打包地址](https://gitee.com/jackjiang/MobileIMSDK )（访问速度快！ :point_left:）
 > 说明：最新发布版打包内容中，已包含完整的demo源码、sdk源码、api文档、编译后的分发包等。
 
 # 十一、典型应用场景
