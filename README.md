@@ -1,3 +1,5 @@
+:warning: 特别提示：如果Github下载太慢，请前往：[https://gitee.com/jackjiang/MobileIMSDK](https://gitee.com/jackjiang/MobileIMSDK)，代码完全同步，请放心下载！
+
 # 一、快捷目录
 
 > #### 1.1、理论资料
