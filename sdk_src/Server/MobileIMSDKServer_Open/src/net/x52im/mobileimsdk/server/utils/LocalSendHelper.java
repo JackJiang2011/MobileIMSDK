@@ -65,9 +65,7 @@ public class LocalSendHelper
 	public static void sendData(String to_user_id, String dataContent
 			, boolean QoS, String fingerPrint, int typeu, MBObserver resultObserver) throws Exception 
     {
-    	sendData(
-    		ProtocalFactory.createCommonData(dataContent, "0", to_user_id, QoS, fingerPrint, typeu)
-    		, resultObserver);
+    	sendData(ProtocalFactory.createCommonData(dataContent, "0", to_user_id, QoS, fingerPrint, typeu), resultObserver);
     }
     
     public static void sendData(Protocal p, MBObserver resultObserver) throws Exception 
@@ -152,7 +150,7 @@ public class LocalSendHelper
 		
 		if(resultObserver == null)
 		{
-			MBObserver sendResultObserver = new MBObserver(){
+			resultObserver = new MBObserver(){
 				@Override
 				public void update(boolean sendOK, Object extraObj)
 				{
@@ -165,8 +163,7 @@ public class LocalSendHelper
 			};
 		}
 		
-		Protocal perror = ProtocalFactory.createPErrorResponse(
-				ErrorCode.ForS.RESPONSE_FOR_UNLOGIN, p.toGsonString(), "-1"); // 尚未登陆则user_id就不存在了,用-1表示吧，目前此情形下该参数无意义
+		Protocal perror = ProtocalFactory.createPErrorResponse(ErrorCode.ForS.RESPONSE_FOR_UNLOGIN, p.toGsonString(), "-1"); // 尚未登陆则user_id就不存在了,用-1表示吧，目前此情形下该参数无意义
 		sendData(session, perror, resultObserver);
 	}
 

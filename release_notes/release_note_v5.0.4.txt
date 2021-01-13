@@ -1,0 +1,8 @@
+
+----------------------------------- v5.0.4发布于2021-01-13
+MobileIMSDK v5.0.4版更新说明：
+
+【解决的Bug】
+1. [服务端][bug]修复了LocalSendHelper.replyDataForUnlogined(..)方法中的一处bug；
+
+
