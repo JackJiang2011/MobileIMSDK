@@ -108,6 +108,7 @@ public class ClientCoreSDK {
     }
 
     public void release() {
+        ClientCoreSDK.getInstance().setConnectedToServer(false);// Bug FIX:  2021-02-23 add by Jack Jiang
         LocalSocketProvider.getInstance().closeLocalSocket();
         AutoReLoginDaemon.getInstance().stop(); // 2014-11-08 add by Jack Jiang
         QoS4SendDaemon.getInstance().stop();
