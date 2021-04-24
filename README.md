@@ -41,7 +41,7 @@
 > #### 1.8、学习交流
 * 技术交流社区：[点此进入](http://www.52im.net/forum-89-1.html)
 * 常见问题讨论：[点此进入](http://www.52im.net/forum.php?mod=collection&action=view&ctid=2&fromop=all) :point_left:
-* 技术交流Q群：![](https://raw.githubusercontent.com/JackJiang2011/MobileIMSDK/master/preview/more_screenshots/others/qq_group_icon_16-16.png) `215477170` :point_left:
+* 技术交流Q群：![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/more_screenshots/others/qq_group_icon_16-16.png) `215477170` :point_left:
 * 技术支持/合作/咨询请联系作者QQ：`413980957` （[关于作者](http://www.52im.net/thread-2792-1-1.html) :point_left:）
 * 关注我的公众号：:point_down: :point_down:
 
@@ -257,3 +257,8 @@ MobileIMSDK版本更新日志：[点此查看](http://www.52im.net/thread-1270-1
 > <code>更多截图和视频：</code>[更多截图点此进入](http://www.52im.net/thread-2470-1-1.html)、[更多演示视频点此进入](http://www.52im.net/thread-2491-1-1.html)。
 
 ![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/more_products/rainbowchat_web/rbchat_web_main_2.jpg)
+
+### :triangular_flag_on_post: RainbowChat-Web产品主界面(独立UI效果)：
+> <code>更多截图和视频：</code>[更多截图点此进入](http://www.52im.net/thread-2470-1-1.html)、[更多演示视频点此进入](http://www.52im.net/thread-2491-1-1.html)。
+
+![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/more_products/rainbowchat_web/rbchat_web_main_0.jpg)
