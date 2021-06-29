@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2020  即时通讯网(52im.net) & Jack Jiang.
- * The MobileIMSDK v5.x Project. 
+ * Copyright (C) 2021  即时通讯网(52im.net) & Jack Jiang.
+ * The MobileIMSDK v6.x Project. 
  * All rights reserved.
  * 
  * > Github地址：https://github.com/JackJiang2011/MobileIMSDK
@@ -12,15 +12,16 @@
  *  
  * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
  * 
- * PLoginInfo.java at 2020-8-22 16:00:58, code by Jack Jiang.
+ * PLoginInfo.java at 2021-6-29 10:15:36, code by Jack Jiang.
  */
 package net.x52im.mobileimsdk.server.protocal.c;
 
 public class PLoginInfo
 {
-	private String loginUserId = null;
-	private String loginToken = null;
-	private String extra = null;
+	protected String loginUserId = null;
+	protected String loginToken = null;
+	protected String extra = null;
+	protected long firstLoginTime = 0;
 	
 	public PLoginInfo(String loginUserId, String loginToken)
 	{
@@ -62,5 +63,20 @@ public class PLoginInfo
 	public void setExtra(String extra)
 	{
 		this.extra = extra;
+	}
+
+	public long getFirstLoginTime()
+	{
+		return firstLoginTime;
+	}
+
+	public void setFirstLoginTime(long firstLoginTime)
+	{
+		this.firstLoginTime = firstLoginTime;
+	}
+	
+	public static boolean isFirstLogin(long firstLoginTime)
+	{
+		return firstLoginTime <= 0;
 	}
 }

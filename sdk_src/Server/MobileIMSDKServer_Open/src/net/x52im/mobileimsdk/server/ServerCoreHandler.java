@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2020  即时通讯网(52im.net) & Jack Jiang.
- * The MobileIMSDK v5.x Project. 
+ * Copyright (C) 2021  即时通讯网(52im.net) & Jack Jiang.
+ * The MobileIMSDK v6.x Project. 
  * All rights reserved.
  * 
  * > Github地址：https://github.com/JackJiang2011/MobileIMSDK
@@ -12,11 +12,10 @@
  *  
  * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
  * 
- * ServerCoreHandler.java at 2020-8-22 16:00:59, code by Jack Jiang.
+ * ServerCoreHandler.java at 2021-6-29 10:15:36, code by Jack Jiang.
  */
 package net.x52im.mobileimsdk.server;
 
-import io.netty.buffer.ByteBuf;
 import io.netty.channel.Channel;
 import net.x52im.mobileimsdk.server.event.MessageQoSEventListenerS2C;
 import net.x52im.mobileimsdk.server.event.ServerEventListener;
@@ -84,9 +83,8 @@ public class ServerCoreHandler
         session.close();
     }
 
-    public void messageReceived(Channel session, ByteBuf bytebuf) throws Exception 
-    {
-    	Protocal pFromClient = ServerToolKits.fromIOBuffer(bytebuf);
+    public void messageReceived(Channel session, Protocal pFromClient) throws Exception     
+	{
     	String remoteAddress = ServerToolKits.clientInfoToString(session);
     	
     	switch(pFromClient.getType())
@@ -119,8 +117,7 @@ public class ServerCoreHandler
 	    			if("0".equals(pFromClient.getTo()))
 	    				logicProcessor.processC2SMessage(session, pFromClient, remoteAddress);
 	    			else
-	    				logicProcessor.processC2CMessage(bridgeProcessor, session
-	    						, pFromClient, remoteAddress);
+	    				logicProcessor.processC2CMessage(bridgeProcessor, session, pFromClient, remoteAddress);
 	    		}
 	    		else
 	    		{
@@ -130,7 +127,7 @@ public class ServerCoreHandler
 	    	}
 	    	case ProtocalType.C.FROM_CLIENT_TYPE_OF_KEEP$ALIVE:
 	    	{
-	    		if(!OnlineProcessor.isLogined(session))
+		        if(!OnlineProcessor.isLogined(session))
 	    		{
 	    			LocalSendHelper.replyDataForUnlogined(session, pFromClient, null);
 	    			return;
@@ -168,7 +165,8 @@ public class ServerCoreHandler
     
     public void sessionClosed(Channel session) throws Exception 
     {
-    	String user_id = OnlineProcessor.getUserIdFromSession(session);
+    	String user_id = OnlineProcessor.getUserIdFromChannel(session);
+    	
     	if(user_id != null)
     	{
 	    	Channel sessionInOnlinelist = OnlineProcessor.getInstance().getOnlineSession(user_id);
@@ -192,7 +190,7 @@ public class ServerCoreHandler
     		if(sessionInOnlinelist != null && session != null && session == sessionInOnlinelist)
     		//## Bug FIX: 20171211 END
     		{
-				session.attr(OnlineProcessor.USER_ID_IN_SESSION_ATTRIBUTE_ATTR).set(null);
+				OnlineProcessor.removeAttributesForChannel(session);
     			OnlineProcessor.getInstance().removeUser(user_id);
 
     			if(serverEventListener != null)
@@ -203,7 +201,7 @@ public class ServerCoreHandler
     		}
     		else
     		{
-    			logger.warn("[IMCORE-{}]【2】【注意】会话{}不在在线列表中，意味着它是被客户端弃用的，本次忽略这条关闭事件即可！"
+    			logger.warn("[IMCORE-{}]【2】【注意】会话{}不在在线列表中，意味着它是被客户端弃用/或被服务端强踢，本次忽略这条关闭事件即可！"
     					, Gateway.$(session), ServerToolKits.clientInfoToString(session));
     		}
     	}

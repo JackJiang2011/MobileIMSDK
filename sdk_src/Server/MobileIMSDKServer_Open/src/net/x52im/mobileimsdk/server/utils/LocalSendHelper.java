@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2020  即时通讯网(52im.net) & Jack Jiang.
- * The MobileIMSDK v5.x Project. 
+ * Copyright (C) 2021  即时通讯网(52im.net) & Jack Jiang.
+ * The MobileIMSDK v6.x Project. 
  * All rights reserved.
  * 
  * > Github地址：https://github.com/JackJiang2011/MobileIMSDK
@@ -12,15 +12,15 @@
  *  
  * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
  * 
- * LocalSendHelper.java at 2020-8-22 16:00:59, code by Jack Jiang.
+ * LocalSendHelper.java at 2021-6-29 10:15:35, code by Jack Jiang.
  */
 package net.x52im.mobileimsdk.server.utils;
 
-import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
+import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import net.x52im.mobileimsdk.server.ServerCoreHandler;
 import net.x52im.mobileimsdk.server.network.Gateway;
 import net.x52im.mobileimsdk.server.network.GatewayUDP;
@@ -38,32 +38,27 @@ public class LocalSendHelper
 {
 	private static Logger logger = LoggerFactory.getLogger(ServerCoreHandler.class);  
 	
-	public static void sendData(String to_user_id
-			, String dataContent, MBObserver resultObserver) throws Exception 
+	public static void sendData(String to_user_id, String dataContent, MBObserver resultObserver) throws Exception 
     {
     	sendData(to_user_id, dataContent, true, null, -1, resultObserver);
     }
 	
-	public static void sendData(String to_user_id, String dataContent
-			, int typeu, MBObserver resultObserver) throws Exception 
+	public static void sendData(String to_user_id, String dataContent, int typeu, MBObserver resultObserver) throws Exception 
     {
     	sendData(to_user_id, dataContent, true, null, typeu, resultObserver);
     }
 	
-	public static void sendData(String to_user_id, String dataContent
-			, boolean QoS, int typeu, MBObserver resultObserver) throws Exception 
+	public static void sendData(String to_user_id, String dataContent, boolean QoS, int typeu, MBObserver resultObserver) throws Exception 
     {
     	sendData(to_user_id, dataContent, QoS, null, typeu, resultObserver);
     }
 	
-	public static void sendData(String to_user_id, String dataContent
-			, boolean QoS, String fingerPrint, MBObserver resultObserver) throws Exception 
+	public static void sendData(String to_user_id, String dataContent, boolean QoS, String fingerPrint, MBObserver resultObserver) throws Exception 
     {
     	sendData(to_user_id, dataContent, QoS, fingerPrint, -1, resultObserver);
     }
 	
-	public static void sendData(String to_user_id, String dataContent
-			, boolean QoS, String fingerPrint, int typeu, MBObserver resultObserver) throws Exception 
+	public static void sendData(String to_user_id, String dataContent, boolean QoS, String fingerPrint, int typeu, MBObserver resultObserver) throws Exception 
     {
     	sendData(ProtocalFactory.createCommonData(dataContent, "0", to_user_id, QoS, fingerPrint, typeu), resultObserver);
     }
@@ -101,23 +96,26 @@ public class LocalSendHelper
 			{
 		    	if(p != null)
 		    	{
-		    		final byte[] res = p.toBytes();
-		    		
-		    		ByteBuf to = Unpooled.copiedBuffer(res);
+		    		Object to = null;
+		    		if(Gateway.isWebSocketChannel(session)){
+		    			final String res = p.toGsonString();
+		    			to = new TextWebSocketFrame(res);
+		    		}
+		    		else{
+		    			final byte[] res = p.toBytes();
+		    			to = Unpooled.copiedBuffer(res);
+		    		}
 		    		ChannelFuture cf = session.writeAndFlush(to);//.sync();
 		    		
 		    		cf.addListener(new ChannelFutureListener() {
-		    	         public void operationComplete(ChannelFuture future) 
-		    	         {
-		    	        	 if( future.isSuccess())
-		    	        	 {
+		    	         public void operationComplete(ChannelFuture future) {
+		    	        	 if( future.isSuccess()){
 		    	        		 if(p.isQoS() && !QoS4SendDaemonS2C.getInstance().exist(p.getFp()))
 		    	        			 QoS4SendDaemonS2C.getInstance().put(p);
 		    	        	 }
-		    	        	 else
-		    	        	 {
-		    	        		 logger.warn("[IMCORE-{}]给客户端：{}的数据->{},发送失败！[{}](此消息应考虑作离线处理哦)."
-		    	        				 , Gateway.$(session), ServerToolKits.clientInfoToString(session), p.toGsonString(), res.length);
+		    	        	 else{
+		    	        		 logger.warn("[IMCORE-{}]给客户端：{}的数据->{},发送失败(此消息应考虑作离线处理哦)."
+		    	        				 , Gateway.$(session), ServerToolKits.clientInfoToString(session), p.toGsonString());
 		    	        	 }
 
 		 		    		if(resultObserver != null)
@@ -152,8 +150,7 @@ public class LocalSendHelper
 		{
 			resultObserver = new MBObserver(){
 				@Override
-				public void update(boolean sendOK, Object extraObj)
-				{
+				public void update(boolean sendOK, Object extraObj){
 					logger.warn("[IMCORE-{}]>> 客户端{}未登陆，服务端反馈发送成功？{}（会话即将关闭）"
 							, Gateway.$(session), ServerToolKits.clientInfoToString(session), sendOK);
 					
@@ -181,5 +178,17 @@ public class LocalSendHelper
 			if(resultObserver != null)
 				resultObserver.update(false, null);
 		}
+	}
+	
+	public static void sendKickout(final Channel sessionBeKick, String to_user_id, int code, String reason) throws Exception
+	{
+		MBObserver sendResultObserver = new MBObserver(){
+			@Override
+			public void update(boolean sendOK, Object extraObj){
+				logger.warn("[IMCORE-{}]>> 客户端{}的被踢指令发送成功？{}（会话即将关闭）", Gateway.$(sessionBeKick), ServerToolKits.clientInfoToString(sessionBeKick), sendOK);
+				sessionBeKick.close();
+			}
+		};
+		LocalSendHelper.sendData(sessionBeKick, ProtocalFactory.createPKickout(to_user_id, code, reason), sendResultObserver);
 	}
 }

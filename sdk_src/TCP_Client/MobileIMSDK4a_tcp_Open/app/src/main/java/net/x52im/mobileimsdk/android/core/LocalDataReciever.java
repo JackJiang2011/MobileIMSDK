@@ -212,7 +212,8 @@ public class LocalDataReciever {
 //		QoS4SendDaemon.getInstance(context).stop();
         LocalSocketProvider.getInstance().closeLocalSocket();
         QoS4ReciveDaemon.getInstance().stop();
-        ClientCoreSDK.getInstance().getChatBaseEvent().onLinkClose(-1);
+        if(ClientCoreSDK.getInstance().getChatBaseEvent() != null)
+            ClientCoreSDK.getInstance().getChatBaseEvent().onLinkClose(-1);
         AutoReLoginDaemon.getInstance().start(true);// 建议：此参数可由true改为false，防止服务端重启等情况下，客户端立即重连等
     }
 

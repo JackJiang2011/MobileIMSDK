@@ -67,7 +67,7 @@ public class MessageQoSEventImpl implements MessageQoSEvent
 	 *
 	 * @param theFingerPrint 已被收到的消息的指纹特征码（唯一ID），应用层可据此ID来找到原先已发生的消息并可在
 	 *                          UI是将其标记为”已送达“或”已读“以便提升用户体验
-	 * @see net.openmob.mobileimsdk.server.protocal.Protocal
+	 * @see net.x52im.mobileimsdk.server.protocal.Protocal
 	 */
 	@Override
 	public void messagesBeReceived(String theFingerPrint)

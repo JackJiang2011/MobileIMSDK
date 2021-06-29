@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2020  即时通讯网(52im.net) & Jack Jiang.
- * The MobileIMSDK v5.x Project. 
+ * Copyright (C) 2021  即时通讯网(52im.net) & Jack Jiang.
+ * The MobileIMSDK v6.x Project. 
  * All rights reserved.
  * 
  * > Github地址：https://github.com/JackJiang2011/MobileIMSDK
@@ -12,7 +12,7 @@
  *  
  * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
  * 
- * ProtocalType.java at 2020-8-22 16:00:59, code by Jack Jiang.
+ * ProtocalType.java at 2021-6-29 10:15:36, code by Jack Jiang.
  */
 package net.x52im.mobileimsdk.server.protocal;
 
@@ -59,5 +59,8 @@ public interface ProtocalType
 		
 		/** 由服务端发出 - 协议类型：反馈回显指令给客户端 */
 		int FROM_SERVER_TYPE_OF_RESPONSE$ECHO = 53;
+		
+		/** 由服务端发出 - 协议类型：向客户端发出“被踢”指令 */
+		int FROM_SERVER_TYPE_OF_KICKOUT = 54;
 	}
 }

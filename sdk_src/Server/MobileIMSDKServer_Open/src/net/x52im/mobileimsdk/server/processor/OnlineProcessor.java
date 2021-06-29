@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2020  即时通讯网(52im.net) & Jack Jiang.
- * The MobileIMSDK v5.x Project. 
+ * Copyright (C) 2021  即时通讯网(52im.net) & Jack Jiang.
+ * The MobileIMSDK v6.x Project. 
  * All rights reserved.
  * 
  * > Github地址：https://github.com/JackJiang2011/MobileIMSDK
@@ -12,7 +12,7 @@
  *  
  * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
  * 
- * OnlineProcessor.java at 2020-8-22 16:00:59, code by Jack Jiang.
+ * OnlineProcessor.java at 2021-6-29 10:15:35, code by Jack Jiang.
  */
 package net.x52im.mobileimsdk.server.processor;
 
@@ -23,15 +23,20 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 import net.x52im.mobileimsdk.server.network.Gateway;
+import net.x52im.mobileimsdk.server.protocal.s.PKickoutInfo;
+import net.x52im.mobileimsdk.server.utils.LocalSendHelper;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class OnlineProcessor
 {
-	public final static String USER_ID_IN_SESSION_ATTRIBUTE = "__user_id__";
-	public static final AttributeKey<String> USER_ID_IN_SESSION_ATTRIBUTE_ATTR = 
-			AttributeKey.newInstance(USER_ID_IN_SESSION_ATTRIBUTE);
+	public final static String USER_ID_ATTRIBUTE = "__user_id__";
+	public final static String FIRST_LOGIN_TIME_ATTRIBUTE = "__first_login_time__";
+
+	public static final AttributeKey<String> USER_ID_ATTRIBUTE_ATTR = AttributeKey.newInstance(USER_ID_ATTRIBUTE);
+	public static final AttributeKey<Long> FIRST_LOGIN_TIME_ATTRIBUTE_ATTR = AttributeKey.newInstance(FIRST_LOGIN_TIME_ATTRIBUTE);
+	
 	public static boolean DEBUG = false;
 	private static Logger logger = LoggerFactory.getLogger(OnlineProcessor.class); 
 	private static OnlineProcessor instance = null;
@@ -49,17 +54,71 @@ public class OnlineProcessor
 	{
 	}
 	
-	public void putUser(String user_id, Channel session)
+	public boolean putUser(String user_id, long firstLoginTime, Channel newSession)
 	{
-		if(onlineSessions.containsKey(user_id))
+		boolean putOk = true;
+		final Channel oldSession = onlineSessions.get(user_id);
+		if(oldSession != null)
 		{
-			logger.debug("[IMCORE-{}]【注意】用户id={}已经在在线列表中了，session也是同一个吗？{}"
-					, Gateway.$(session), user_id, (onlineSessions.get(user_id).hashCode() == session.hashCode()));
+
+			boolean isTheSame = (oldSession.compareTo(newSession) == 0);
 			
-			// TODO 同一账号的重复登陆情况可在此展开处理逻辑
+			logger.debug("[IMCORE-{}]【注意】用户id={}已经在在线列表中了，session也是同一个吗？{}", Gateway.$(newSession), user_id, isTheSame);
+
+			/************* 以下将展开同一账号重复登陆情况的处理逻辑 *************/
+
+			if(!isTheSame)
+			{
+
+				if(firstLoginTime <= 0)
+				{
+					logger.debug("[IMCORE-{}]【注意】用户id={}提交过来的firstLoginTime未设置(值={}, 应该是真的首次登陆？！)，将无条件踢出前面的会话！"
+							, Gateway.$(newSession), user_id, firstLoginTime);
+					sendKickoutDuplicateLogin(oldSession, user_id);	
+					onlineSessions.put(user_id, newSession);
+				}
+				else
+				{
+					long firstLoginTimeForOld = OnlineProcessor.getFirstLoginTimeFromChannel(oldSession);
+					if(firstLoginTime >= firstLoginTimeForOld)
+					{
+						logger.debug("[IMCORE-{}]【提示】用户id={}提交过来的firstLoginTime为{}、firstLoginTimeForOld为{}，新的“首次登陆时间”【晚于】列表中的“老的”、正常踢出老的即可！"
+								, Gateway.$(newSession), user_id, firstLoginTime, firstLoginTimeForOld);
+						sendKickoutDuplicateLogin(oldSession, user_id);		
+						onlineSessions.put(user_id, newSession);
+					}
+					else
+					{
+						logger.debug("[IMCORE-{}]【注意】用户id={}提交过来的firstLoginTime为{}、firstLoginTimeForOld为{}，新的“首次登陆时间”【早于】列表中的“老的”，表示“新”的会话应该是未被正常通知的“已踢”会话，应再次向“新”会话发出被踢通知！！"
+								, Gateway.$(newSession), user_id, firstLoginTime, firstLoginTimeForOld);
+						sendKickoutDuplicateLogin(newSession, user_id);	
+						putOk = false;
+					}
+				}
+			}
+			else
+			{
+				onlineSessions.put(user_id, newSession);
+			}
 		}
-		onlineSessions.put(user_id, session);
+		else
+		{
+			onlineSessions.put(user_id, newSession);
+		}
+
 		__printOnline();// just for debug
+		
+		return putOk;
+	}
+
+private void sendKickoutDuplicateLogin(final Channel sessionBeKick, String to_user_id)
+	{
+		try{
+			LocalSendHelper.sendKickout(sessionBeKick, to_user_id, PKickoutInfo.KICKOUT_FOR_DUPLICATE_LOGIN, null);
+		}
+		catch (Exception e){
+			logger.warn("[IMCORE-"+Gateway.$(sessionBeKick)+"] sendKickoutDuplicate的过程中发生了异常：", e);
+		}
 	}
 	
 	public void __printOnline()
@@ -105,23 +164,40 @@ public class OnlineProcessor
 
 	public static boolean isLogined(Channel session)
 	{
-		return session != null && getUserIdFromSession(session) != null;
-	}
-	
-	public static String getUserIdFromSession(Channel session)
-	{
-		Object attr = null;
-		if(session != null)
-		{
-			attr = session.attr(USER_ID_IN_SESSION_ATTRIBUTE_ATTR).get();
-			if(attr != null)
-				return (String)attr;
-		}
-		return null;
+		return session != null && getUserIdFromChannel(session) != null;
 	}
 	
 	public static boolean isOnline(String userId)
 	{
 		return OnlineProcessor.getInstance().getOnlineSession(userId) != null;
+	}
+	
+	public static void setUserIdForChannel(Channel session, String userId)
+	{
+		session.attr(OnlineProcessor.USER_ID_ATTRIBUTE_ATTR).set(userId);
+	}
+	
+	public static void setFirstLoginTimeForChannel(Channel session, long firstLoginTime)
+	{
+		session.attr(OnlineProcessor.FIRST_LOGIN_TIME_ATTRIBUTE_ATTR).set(firstLoginTime);
+	}
+	public static String getUserIdFromChannel(Channel session)
+	{
+		return (session != null ? session.attr(USER_ID_ATTRIBUTE_ATTR).get() : null);
+	}
+	
+	public static long getFirstLoginTimeFromChannel(Channel session)
+	{
+		if(session != null){
+			Long attr = session.attr(FIRST_LOGIN_TIME_ATTRIBUTE_ATTR).get();
+			return attr != null ? attr : -1;
+		}
+		return -1;
+	}
+	
+	public static void removeAttributesForChannel(Channel session)
+	{
+		session.attr(OnlineProcessor.USER_ID_ATTRIBUTE_ATTR).set(null);
+		session.attr(OnlineProcessor.FIRST_LOGIN_TIME_ATTRIBUTE_ATTR).set(null);
 	}
 }

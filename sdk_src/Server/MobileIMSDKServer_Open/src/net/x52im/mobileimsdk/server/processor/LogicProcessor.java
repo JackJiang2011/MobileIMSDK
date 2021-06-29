@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2020  即时通讯网(52im.net) & Jack Jiang.
- * The MobileIMSDK v5.x Project. 
+ * Copyright (C) 2021  即时通讯网(52im.net) & Jack Jiang.
+ * The MobileIMSDK v6.x Project. 
  * All rights reserved.
  * 
  * > Github地址：https://github.com/JackJiang2011/MobileIMSDK
@@ -12,7 +12,7 @@
  *  
  * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
  * 
- * LogicProcessor.java at 2020-8-22 16:00:59, code by Jack Jiang.
+ * LogicProcessor.java at 2021-6-29 10:15:35, code by Jack Jiang.
  */
 package net.x52im.mobileimsdk.server.processor;
 
@@ -35,7 +35,6 @@ import org.slf4j.LoggerFactory;
 public class LogicProcessor
 {
 	private static Logger logger = LoggerFactory.getLogger(LogicProcessor.class);  
-	
 	private ServerCoreHandler serverCoreHandler = null;
 
 	public LogicProcessor(ServerCoreHandler serverCoreHandler)
@@ -95,15 +94,13 @@ public class LogicProcessor
 	public void processLogin(final Channel session, final Protocal pFromClient, final String remoteAddress) throws Exception
 	{
 		final PLoginInfo loginInfo = ProtocalFactory.parsePLoginInfo(pFromClient.getDataContent());
-		logger.info("[IMCORE-{}]>> 客户端"+remoteAddress+"发过来的登陆信息内容是：loginInfo={}|getToken={}"
-				, Gateway.$(session), loginInfo.getLoginUserId(), loginInfo.getLoginToken());
+		logger.info("[IMCORE-{}]>> 客户端"+remoteAddress+"发过来的登陆信息内容是：uid={}、token={}、firstLoginTime={}"
+				, Gateway.$(session), loginInfo.getLoginUserId(), loginInfo.getLoginToken(), loginInfo.getFirstLoginTime());
 		
-		//## Bug FIX: 20170603 by Jack Jiang
-		//##          解决在某些极端情况下由于Java PC客户端程序的不合法数据提交而导致登陆数据处理流程发生异常。
 		if(loginInfo == null || loginInfo.getLoginUserId() == null)
 		{
-			logger.warn("[IMCORE-{}]>> 收到客户端{}登陆信息，但loginInfo或loginInfo.getLoginUserId()是null，登陆无法继续[loginInfo={},loginInfo.getLoginUserId()={}]！"
-					, Gateway.$(session), remoteAddress, loginInfo, loginInfo.getLoginUserId());
+			logger.warn("[IMCORE-{}]>> 收到客户端{}登陆信息，但loginInfo或loginInfo.getLoginUserId()是null，登陆无法继续[uid={}、token={}、firstLoginTime={}]！"
+					, Gateway.$(session), remoteAddress, loginInfo, loginInfo.getLoginUserId(), loginInfo.getFirstLoginTime());
 			
 			if(!GatewayUDP.isUDPChannel(session))
 				session.close();
@@ -113,31 +110,16 @@ public class LogicProcessor
 		
 		if(serverCoreHandler.getServerEventListener() != null)
 		{
+			final long firstLoginTimeFromClient = loginInfo.getFirstLoginTime();
+			final boolean firstLogin = PLoginInfo.isFirstLogin(firstLoginTimeFromClient);//(firstLoginTimeFromClient <= 0);
+			final long firstLoginTimeToClient = (firstLogin? System.currentTimeMillis() : firstLoginTimeFromClient);
+			
 			boolean alreadyLogined = OnlineProcessor.isLogined(session);//(_try_user_id != -1);
 			if(alreadyLogined)
 			{
-				logger.debug("[IMCORE-{}]>> 【注意】客户端{}的会话正常且已经登陆过，而此时又重新登陆：getLoginName={}|getLoginPsw={}"
-        				, Gateway.$(session), remoteAddress, loginInfo.getLoginUserId(), loginInfo.getLoginToken());
-				
-				MBObserver retObserver = new MBObserver(){
-					@Override
-					public void update(boolean _sendOK, Object extraObj)
-					{
-						if(_sendOK)
-						{
-							session.attr(OnlineProcessor.USER_ID_IN_SESSION_ATTRIBUTE_ATTR).set(loginInfo.getLoginUserId());
-							OnlineProcessor.getInstance().putUser(loginInfo.getLoginUserId(), session);
-							serverCoreHandler.getServerEventListener().onUserLoginSucess(loginInfo.getLoginUserId(), loginInfo.getExtra(), session);
-						}
-						else
-						{
-							logger.warn("[IMCORE-{}]>> 发给客户端{}的登陆成功信息发送失败了！", Gateway.$(session), remoteAddress);
-						}
-					}
-				};
-				
-				LocalSendHelper.sendData(session
-						, ProtocalFactory.createPLoginInfoResponse(0, loginInfo.getLoginUserId()), retObserver);
+				logger.debug("[IMCORE-{}]>> 【注意】客户端{}的会话正常且已经登陆过，而此时又重新登陆：uid={}、token={}、firstLoginTime={}"
+        				, Gateway.$(session), remoteAddress, loginInfo.getLoginUserId(), loginInfo.getLoginToken(), loginInfo.getFirstLoginTime());
+				processLoginSucessSend(session, loginInfo, remoteAddress);
 			}
 			else
 			{
@@ -145,23 +127,7 @@ public class LogicProcessor
 						loginInfo.getLoginUserId(), loginInfo.getLoginToken(), loginInfo.getExtra(), session);
 				if(code == 0)
 				{
-					MBObserver sendResultObserver = new MBObserver(){
-						@Override
-						public void update(boolean __sendOK, Object extraObj)
-						{
-							if(__sendOK)
-							{
-								session.attr(OnlineProcessor.USER_ID_IN_SESSION_ATTRIBUTE_ATTR).set(loginInfo.getLoginUserId());
-								OnlineProcessor.getInstance().putUser(loginInfo.getLoginUserId(), session);
-								serverCoreHandler.getServerEventListener().onUserLoginSucess(loginInfo.getLoginUserId(), loginInfo.getExtra(), session);
-							}
-							else
-								logger.warn("[IMCORE-{}]>> 发给客户端{}的登陆成功信息发送失败了【no】！", Gateway.$(session), remoteAddress);
-							
-						}
-					};
-					LocalSendHelper.sendData(session
-							, ProtocalFactory.createPLoginInfoResponse(code, loginInfo.getLoginUserId()), sendResultObserver);
+					processLoginSucessSend(session, loginInfo, remoteAddress);
 				}
 				else
 				{
@@ -176,7 +142,7 @@ public class LogicProcessor
 						}
 					};
 					
-					LocalSendHelper.sendData(session, ProtocalFactory.createPLoginInfoResponse(code, "-1"), GatewayUDP.isUDPChannel(session)?null:sendResultObserver);
+					LocalSendHelper.sendData(session, ProtocalFactory.createPLoginInfoResponse(code, -1, "-1"), GatewayUDP.isUDPChannel(session)?null:sendResultObserver);
 				}
 			}
 		}
@@ -185,16 +151,42 @@ public class LogicProcessor
 			logger.warn("[IMCORE-{}]>> 收到客户端{}登陆信息，但回调对象是null，没有进行回调.", Gateway.$(session), remoteAddress);
 		}
 	}
+	
+	private void processLoginSucessSend(final Channel session, final PLoginInfo loginInfo, final String remoteAddress) throws Exception
+	{
+		final long firstLoginTimeFromClient = loginInfo.getFirstLoginTime();
+		final boolean firstLogin = PLoginInfo.isFirstLogin(firstLoginTimeFromClient);//(firstLoginTimeFromClient <= 0);
+		final long firstLoginTimeToClient = (firstLogin? System.currentTimeMillis() : firstLoginTimeFromClient);
+
+		MBObserver sendResultObserver = new MBObserver(){
+			@Override
+			public void update(boolean __sendOK, Object extraObj)
+			{
+				if(__sendOK)
+				{
+					boolean putOK = OnlineProcessor.getInstance().putUser(loginInfo.getLoginUserId(), firstLoginTimeFromClient, session);
+					if(putOK)
+					{
+						OnlineProcessor.setUserIdForChannel(session, loginInfo.getLoginUserId());
+						OnlineProcessor.setFirstLoginTimeForChannel(session, firstLoginTimeToClient);
+						serverCoreHandler.getServerEventListener().onUserLoginSucess(loginInfo.getLoginUserId(), loginInfo.getExtra(), session);
+					}
+				}
+				else
+					logger.warn("[IMCORE-{}]>> 发给客户端{}的登陆成功信息发送失败了【no】！", Gateway.$(session), remoteAddress);
+				
+			}
+		};
+		LocalSendHelper.sendData(session, ProtocalFactory.createPLoginInfoResponse(0, firstLoginTimeToClient, loginInfo.getLoginUserId()), sendResultObserver);
+	}
 
 	public void processKeepAlive(Channel session, Protocal pFromClient, String remoteAddress) throws Exception
 	{
-		String userId = OnlineProcessor.getUserIdFromSession(session);
-		if(userId != null)
-		{
+		String userId = OnlineProcessor.getUserIdFromChannel(session);
+		if(userId != null){
 			LocalSendHelper.sendData(ProtocalFactory.createPKeepAliveResponse(userId), null);
 		}
-		else
-		{
+		else{
 			logger.warn("[IMCORE-{}]>> Server在回客户端{}的响应包时，调用getUserIdFromSession返回null，用户在这一瞬间掉线了？！", Gateway.$(session), remoteAddress);
 		}
 	}

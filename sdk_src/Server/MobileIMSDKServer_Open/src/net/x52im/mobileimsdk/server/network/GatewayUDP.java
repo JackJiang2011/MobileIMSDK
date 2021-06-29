@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2020  即时通讯网(52im.net) & Jack Jiang.
- * The MobileIMSDK v5.x Project. 
+ * Copyright (C) 2021  即时通讯网(52im.net) & Jack Jiang.
+ * The MobileIMSDK v6.x Project. 
  * All rights reserved.
  * 
  * > Github地址：https://github.com/JackJiang2011/MobileIMSDK
@@ -12,7 +12,7 @@
  *  
  * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
  * 
- * GatewayUDP.java at 2020-8-22 16:00:59, code by Jack Jiang.
+ * GatewayUDP.java at 2021-6-29 10:15:35, code by Jack Jiang.
  */
 package net.x52im.mobileimsdk.server.network;
 
@@ -45,6 +45,7 @@ public class GatewayUDP extends Gateway
  	protected Channel __serverChannel4Netty = null;
  	protected ServerBootstrap bootstrap = null;
 
+	@Override
  	public void init(ServerCoreHandler serverCoreHandler)
     {
     	bootstrap = new ServerBootstrap()
@@ -53,14 +54,15 @@ public class GatewayUDP extends Gateway
     		.childHandler(initChildChannelHandler(serverCoreHandler));
     }
     
+ 	@Override
     public void bind() throws Exception
     {
 		ChannelFuture cf = bootstrap.bind("0.0.0.0", PORT).syncUninterruptibly();
 		if (cf.isSuccess()) {
-        	logger.info("[IMCORE-udp] 基于MobileIMSDK的UDP服务绑定端口成功 √");
+        	logger.info("[IMCORE-udp] 基于MobileIMSDK的UDP服务绑定端口"+PORT+"成功 √");
         }
         else{
-        	logger.info("[IMCORE-udp] 基于MobileIMSDK的UDP服务绑定端口失败 ×");
+        	logger.info("[IMCORE-udp] 基于MobileIMSDK的UDP服务绑定端口"+PORT+"失败 ×");
         }
 		__serverChannel4Netty = cf.channel();
 		__serverChannel4Netty.closeFuture().addListener(new ChannelFutureListener() {
@@ -75,6 +77,7 @@ public class GatewayUDP extends Gateway
 		logger.info("[IMCORE-udp] 基于MobileIMSDK的UDP服务正在端口" + PORT+"上监听中...");
     }
 	
+	@Override
 	public void shutdown()
 	{
     	if (__serverChannel4Netty != null) 

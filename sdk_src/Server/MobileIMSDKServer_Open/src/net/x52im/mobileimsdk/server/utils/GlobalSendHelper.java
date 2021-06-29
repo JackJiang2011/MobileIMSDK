@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2020  即时通讯网(52im.net) & Jack Jiang.
- * The MobileIMSDK v5.x Project. 
+ * Copyright (C) 2021  即时通讯网(52im.net) & Jack Jiang.
+ * The MobileIMSDK v6.x Project. 
  * All rights reserved.
  * 
  * > Github地址：https://github.com/JackJiang2011/MobileIMSDK
@@ -12,7 +12,7 @@
  *  
  * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
  * 
- * GlobalSendHelper.java at 2020-8-22 16:00:58, code by Jack Jiang.
+ * GlobalSendHelper.java at 2021-6-29 10:15:35, code by Jack Jiang.
  */
 package net.x52im.mobileimsdk.server.utils;
 
@@ -161,8 +161,7 @@ public class GlobalSendHelper
 		}
 	}
 	
-	public static void sendDataS2C(BridgeProcessor bridgeProcessor, Protocal pFromClient
-			, final MBObserver resultObserver) throws Exception
+	public static void sendDataS2C(BridgeProcessor bridgeProcessor, Protocal pFromClient, final MBObserver resultObserver) throws Exception
 	{
 		// TODO just for DEBUG
 		OnlineProcessor.getInstance().__printOnline();
@@ -210,6 +209,5 @@ public class GlobalSendHelper
 		
 		if(resultObserver != null)
 			resultObserver.update(sucess, null);
-		
 	}
 }

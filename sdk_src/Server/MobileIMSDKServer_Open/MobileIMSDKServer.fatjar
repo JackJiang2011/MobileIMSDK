@@ -1,5 +1,5 @@
 #Fat Jar Configuration File
-#Tue Aug 25 14:50:05 CST 2020
+#Tue Jun 29 10:14:26 CST 2021
 onejar.license.required=true
 manifest.classpath=
 manifest.removesigners=true
@@ -10,5 +10,5 @@ manifest.mainclass=
 manifest.file=<createnew>
 jarname.isextern=false
 onejar.expand=
-excludes=<po|MobileIMSDKServer_Open>~log4j.properties;<jar|log4j-1.2.17.jar>;<jar|rabbitmq-client.jar>;<jar|slf4j-api-1.7.21.jar>;<jar|slf4j-log4j12-1.7.21.jar>;<jar|netty-all-4.1.50.Final.jar>;<jar|gson-2.8.6.jar>
+excludes=<po|MobileIMSDKServer_Open>~log4j2.xml;<jar|rabbitmq-client.jar>;<jar|netty-all-4.1.50.Final.jar>;<jar|gson-2.8.6.jar>;<jar|log4j-api-2.12.1.jar>;<jar|log4j-core-2.12.1.jar>;<jar|log4j-slf4j-impl-2.13.3.jar>;<jar|slf4j-api-1.7.30.jar>
 includes=

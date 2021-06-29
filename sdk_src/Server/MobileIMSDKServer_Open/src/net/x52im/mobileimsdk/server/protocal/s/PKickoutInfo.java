@@ -12,11 +12,41 @@
  *  
  * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
  * 
- * PKeepAliveResponse.java at 2021-6-29 10:15:35, code by Jack Jiang.
+ * PKickoutInfo.java at 2021-6-29 10:15:35, code by Jack Jiang.
  */
 package net.x52im.mobileimsdk.server.protocal.s;
 
-public class PKeepAliveResponse
+public class PKickoutInfo
 {
+	public final static int KICKOUT_FOR_DUPLICATE_LOGIN = 1;
+	public final static int KICKOUT_FOR_ADMIN = 2;
+	
+	protected int code = -1;
+	protected String reason = null;
+	
+	public PKickoutInfo(int code, String reason)
+	{
+		this.code = code;
+		this.reason = reason;
+	}
 
+	public int getCode()
+	{
+		return code;
+	}
+
+	public void setCode(int code)
+	{
+		this.code = code;
+	}
+
+	public String getReason()
+	{
+		return reason;
+	}
+
+	public void setReason(String reason)
+	{
+		this.reason = reason;
+	}
 }

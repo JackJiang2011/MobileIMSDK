@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="libs/log4j-1.2.17.jar"/>
 	<classpathentry kind="lib" path="libs/rabbitmq-client.jar"/>
-	<classpathentry kind="lib" path="libs/slf4j-api-1.7.21.jar"/>
-	<classpathentry kind="lib" path="libs/slf4j-log4j12-1.7.21.jar"/>
 	<classpathentry kind="lib" path="libs/netty-all-4.1.50.Final.jar"/>
 	<classpathentry kind="lib" path="libs/gson-2.8.6.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.7.0_51"/>
+	<classpathentry kind="lib" path="libs/log4j-api-2.12.1.jar"/>
+	<classpathentry kind="lib" path="libs/log4j-core-2.12.1.jar"/>
+	<classpathentry kind="lib" path="libs/log4j-slf4j-impl-2.13.3.jar"/>
+	<classpathentry kind="lib" path="libs/slf4j-api-1.7.30.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_45"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

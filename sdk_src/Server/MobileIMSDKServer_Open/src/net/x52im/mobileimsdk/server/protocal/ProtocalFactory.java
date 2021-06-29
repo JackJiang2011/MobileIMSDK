@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2020  即时通讯网(52im.net) & Jack Jiang.
- * The MobileIMSDK v5.x Project. 
+ * Copyright (C) 2021  即时通讯网(52im.net) & Jack Jiang.
+ * The MobileIMSDK v6.x Project. 
  * All rights reserved.
  * 
  * > Github地址：https://github.com/JackJiang2011/MobileIMSDK
@@ -12,7 +12,7 @@
  *  
  * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
  * 
- * ProtocalFactory.java at 2020-8-22 16:00:59, code by Jack Jiang.
+ * ProtocalFactory.java at 2021-6-29 10:15:36, code by Jack Jiang.
  */
 package net.x52im.mobileimsdk.server.protocal;
 
@@ -20,6 +20,7 @@ import net.x52im.mobileimsdk.server.protocal.c.PKeepAlive;
 import net.x52im.mobileimsdk.server.protocal.c.PLoginInfo;
 import net.x52im.mobileimsdk.server.protocal.s.PErrorResponse;
 import net.x52im.mobileimsdk.server.protocal.s.PKeepAliveResponse;
+import net.x52im.mobileimsdk.server.protocal.s.PKickoutInfo;
 import net.x52im.mobileimsdk.server.protocal.s.PLoginInfoResponse;
 
 import com.google.gson.Gson;
@@ -48,8 +49,7 @@ public class ProtocalFactory
 	
 	public static Protocal createPKeepAliveResponse(String to_user_id)
 	{
-		return new Protocal(ProtocalType.S.FROM_SERVER_TYPE_OF_RESPONSE$KEEP$ALIVE
-				, create(new PKeepAliveResponse()), "0", to_user_id);
+		return new Protocal(ProtocalType.S.FROM_SERVER_TYPE_OF_RESPONSE$KEEP$ALIVE, create(new PKeepAliveResponse()), "0", to_user_id);
 	}
 	
 	public static PKeepAliveResponse parsePKeepAliveResponse(String dataContentOfProtocal)
@@ -59,8 +59,7 @@ public class ProtocalFactory
 	
 	public static Protocal createPKeepAlive(String from_user_id)
 	{
-		return new Protocal(ProtocalType.C.FROM_CLIENT_TYPE_OF_KEEP$ALIVE
-				, create(new PKeepAlive()), from_user_id, "0");
+		return new Protocal(ProtocalType.C.FROM_CLIENT_TYPE_OF_KEEP$ALIVE, create(new PKeepAlive()), from_user_id, "0");
 	}
 	
 	public static PKeepAlive parsePKeepAlive(String dataContentOfProtocal)
@@ -70,8 +69,7 @@ public class ProtocalFactory
 	
 	public static Protocal createPErrorResponse(int errorCode, String errorMsg, String user_id)
 	{
-		return new Protocal(ProtocalType.S.FROM_SERVER_TYPE_OF_RESPONSE$FOR$ERROR
-				, create(new PErrorResponse(errorCode, errorMsg)), "0", user_id);
+		return new Protocal(ProtocalType.S.FROM_SERVER_TYPE_OF_RESPONSE$FOR$ERROR, create(new PErrorResponse(errorCode, errorMsg)), "0", user_id);
 	}
 	
 	public static PErrorResponse parsePErrorResponse(String dataContentOfProtocal)
@@ -86,8 +84,7 @@ public class ProtocalFactory
 	
 	public static Protocal createPLoginInfo(String userId, String token, String extra)
 	{
-		return new Protocal(ProtocalType.C.FROM_CLIENT_TYPE_OF_LOGIN
-				, create(new PLoginInfo(userId, token, extra)), userId, "0");
+		return new Protocal(ProtocalType.C.FROM_CLIENT_TYPE_OF_LOGIN, create(new PLoginInfo(userId, token, extra)), userId, "0");
 	}
 	
 	public static PLoginInfo parsePLoginInfo(String dataContentOfProtocal)
@@ -95,10 +92,10 @@ public class ProtocalFactory
 		return parse(dataContentOfProtocal, PLoginInfo.class);
 	}
 	
-	public static Protocal createPLoginInfoResponse(int code, String user_id)
+	public static Protocal createPLoginInfoResponse(int code, long firstLoginTime, String user_id)
 	{
 		return new Protocal(ProtocalType.S.FROM_SERVER_TYPE_OF_RESPONSE$LOGIN
-				, create(new PLoginInfoResponse(code))
+				, create(new PLoginInfoResponse(code, firstLoginTime))
 				, "0"
 				, user_id // changed -1 to user_id: modified by Jack Jiang 20150911 -> 目的是让登陆响应包能正常支持QoS机制
 				, true, Protocal.genFingerPrint()// add QoS support by Jack Jiang 20150911
@@ -110,31 +107,30 @@ public class ProtocalFactory
 		return parse(dataContentOfProtocal, PLoginInfoResponse.class);
 	}
 	
-	public static Protocal createCommonData(String dataContent, String from_user_id, String to_user_id
-			, boolean QoS, String fingerPrint)
+	public static Protocal createCommonData(String dataContent, String from_user_id, String to_user_id, boolean QoS, String fingerPrint)
 	{
 		return createCommonData(dataContent, from_user_id, to_user_id, QoS, fingerPrint, -1);
 	}
 	
-	public static Protocal createCommonData(String dataContent, String from_user_id, String to_user_id
-			, boolean QoS, String fingerPrint, int typeu)
+	public static Protocal createCommonData(String dataContent, String from_user_id, String to_user_id, boolean QoS, String fingerPrint, int typeu)
 	{
-		return new Protocal(ProtocalType.C.FROM_CLIENT_TYPE_OF_COMMON$DATA
-				, dataContent, from_user_id, to_user_id, QoS, fingerPrint, typeu);
+		return new Protocal(ProtocalType.C.FROM_CLIENT_TYPE_OF_COMMON$DATA, dataContent, from_user_id, to_user_id, QoS, fingerPrint, typeu);
 	}
 	
-	public static Protocal createRecivedBack(String from_user_id, String to_user_id
-			, String recievedMessageFingerPrint)
+	public static Protocal createRecivedBack(String from_user_id, String to_user_id, String recievedMessageFingerPrint)
 	{
 		return createRecivedBack(from_user_id, to_user_id, recievedMessageFingerPrint, false);
 	}
 	
-	public static Protocal createRecivedBack(String from_user_id, String to_user_id
-			, String recievedMessageFingerPrint, boolean bridge)
+	public static Protocal createRecivedBack(String from_user_id, String to_user_id, String recievedMessageFingerPrint, boolean bridge)
 	{
-		Protocal p = new Protocal(ProtocalType.C.FROM_CLIENT_TYPE_OF_RECIVED
-				, recievedMessageFingerPrint, from_user_id, to_user_id);// 该包当然不需要QoS支持！
+		Protocal p = new Protocal(ProtocalType.C.FROM_CLIENT_TYPE_OF_RECIVED, recievedMessageFingerPrint, from_user_id, to_user_id);
 		p.setBridge(bridge);
 		return p;
+	}
+	
+	public static Protocal createPKickout(String to_user_id, int code, String reason)
+	{
+		return new Protocal(ProtocalType.S.FROM_SERVER_TYPE_OF_KICKOUT, create(new PKickoutInfo(code, reason)), "0", to_user_id);
 	}
 }

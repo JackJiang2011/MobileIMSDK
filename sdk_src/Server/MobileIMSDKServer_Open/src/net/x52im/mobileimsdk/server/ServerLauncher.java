@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2020  即时通讯网(52im.net) & Jack Jiang.
- * The MobileIMSDK v5.x Project. 
+ * Copyright (C) 2021  即时通讯网(52im.net) & Jack Jiang.
+ * The MobileIMSDK v6.x Project. 
  * All rights reserved.
  * 
  * > Github地址：https://github.com/JackJiang2011/MobileIMSDK
@@ -12,7 +12,7 @@
  *  
  * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
  * 
- * ServerLauncher.java at 2020-8-22 16:00:59, code by Jack Jiang.
+ * ServerLauncher.java at 2021-6-29 10:15:35, code by Jack Jiang.
  */
 package net.x52im.mobileimsdk.server;
 
@@ -23,6 +23,7 @@ import net.x52im.mobileimsdk.server.event.ServerEventListener;
 import net.x52im.mobileimsdk.server.network.Gateway;
 import net.x52im.mobileimsdk.server.network.GatewayTCP;
 import net.x52im.mobileimsdk.server.network.GatewayUDP;
+import net.x52im.mobileimsdk.server.network.GatewayWebsocket;
 import net.x52im.mobileimsdk.server.qos.QoS4ReciveDaemonC2S;
 import net.x52im.mobileimsdk.server.qos.QoS4SendDaemonS2C;
 
@@ -44,6 +45,7 @@ public abstract class ServerLauncher
     
     private Gateway udp = null;
     private Gateway tcp = null;
+    private Gateway ws = null;
     
     public ServerLauncher() throws IOException 
     {
@@ -70,6 +72,12 @@ public abstract class ServerLauncher
 	    	tcp = new GatewayTCP();
 	    	tcp.init(this.serverCoreHandler);
     	}
+    	
+    	if(Gateway.isSupportWebSocket(supportedGateways))
+    	{
+    		ws = new GatewayWebsocket();
+    		ws.init(this.serverCoreHandler);
+    	}
     }
     
     public void startup() throws Exception
@@ -86,10 +94,11 @@ public abstract class ServerLauncher
 //    			QoS4ReciveDaemonC2B.getInstance().startup();
 //    			QoS4SendDaemonB2C.getInstance().startup(true).setServerLauncher(this);
     			serverCoreHandler.lazyStartupBridgeProcessor();
-    			logger.info("[IMCORE-tcp] 配置项：已开启与MobileIMSDK Web的互通.");
+
+    			logger.info("[IMCORE] 配置项：已开启与MobileIMSDK Web的互通.");
     		}
     		else{
-    			logger.info("[IMCORE-tcp] 配置项：未开启与MobileIMSDK Web的互通.");
+    			logger.info("[IMCORE] 配置项：未开启与MobileIMSDK Web的互通.");
     		}
     		
     		bind();
@@ -97,7 +106,7 @@ public abstract class ServerLauncher
     	}
     	else
     	{
-    		logger.warn("[IMCORE-tcp] 基于MobileIMSDK的TCP服务正在运行中，本次startup()失败，请先调用shutdown()后再试！");
+    		logger.warn("[IMCORE] 基于MobileIMSDK的通信服务正在运行中，本次startup()失败，请先调用shutdown()后再试！");
     	}
     }
     
@@ -107,6 +116,8 @@ public abstract class ServerLauncher
     		udp.bind();
     	if(tcp != null)
     		tcp.bind();
+    	if(ws != null)
+    		ws.bind();
     }
 
     public void shutdown()
@@ -115,13 +126,11 @@ public abstract class ServerLauncher
     		udp.shutdown();
     	if(tcp != null)
     		tcp.shutdown();
+    	if(ws != null)
+    		ws.shutdown();
     	
     	QoS4ReciveDaemonC2S.getInstance().stop();
     	QoS4SendDaemonS2C.getInstance().stop();
-    	if(ServerLauncher.bridgeEnabled){
-//    		QoS4ReciveDaemonC2B.getInstance().stop();
-//    		QoS4SendDaemonB2C.getInstance().stop();
-    	}
     	
     	this.running = false;
     }

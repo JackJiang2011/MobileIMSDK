@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2020  即时通讯网(52im.net) & Jack Jiang.
- * The MobileIMSDK v5.x Project. 
+ * Copyright (C) 2021  即时通讯网(52im.net) & Jack Jiang.
+ * The MobileIMSDK v6.x Project. 
  * All rights reserved.
  * 
  * > Github地址：https://github.com/JackJiang2011/MobileIMSDK
@@ -12,7 +12,7 @@
  *  
  * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
  * 
- * Protocal.java at 2020-8-22 16:00:59, code by Jack Jiang.
+ * Protocal.java at 2021-6-29 10:15:35, code by Jack Jiang.
  */
 package net.x52im.mobileimsdk.server.protocal;
 
@@ -30,6 +30,9 @@ public class Protocal
 	protected String fp = null;
 	protected boolean QoS = false;
 	protected int typeu = -1;
+	protected long cm = -1;
+	protected long sm = -1;
+
 	protected transient int retryCount = 0;
 
 	public Protocal(int type, String dataContent, String from, String to)
@@ -141,6 +144,26 @@ public class Protocal
 		this.typeu = typeu;
 	}
 	
+	public long getCm()
+	{
+		return cm;
+	}
+
+	public void setCm(long cm)
+	{
+		this.cm = cm;
+	}
+
+	public long getSm()
+	{
+		return sm;
+	}
+
+	public void setSm(long sm)
+	{
+		this.sm = sm;
+	}
+	
 	public String toGsonString()
 	{
 		return new Gson().toJson(this);
@@ -158,6 +181,8 @@ public class Protocal
 				, this.getDataContent(), this.getFrom(), this.getTo(), this.isQoS(), this.getFp());
 		cloneP.setBridge(this.bridge); // since 3.0
 		cloneP.setTypeu(this.typeu);   // since 3.0
+		cloneP.setCm(this.cm);         // since 6.0
+		cloneP.setSm(this.sm);         // since 6.0
 		return cloneP;
 	}
 	

@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2020  即时通讯网(52im.net) & Jack Jiang.
- * The MobileIMSDK v5.x Project. 
+ * Copyright (C) 2021  即时通讯网(52im.net) & Jack Jiang.
+ * The MobileIMSDK v6.x Project. 
  * All rights reserved.
  * 
  * > Github地址：https://github.com/JackJiang2011/MobileIMSDK
@@ -12,7 +12,7 @@
  *  
  * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
  * 
- * GatewayTCP.java at 2020-8-22 16:00:59, code by Jack Jiang.
+ * GatewayTCP.java at 2021-6-29 10:15:36, code by Jack Jiang.
  */
 package net.x52im.mobileimsdk.server.network;
 
@@ -51,6 +51,7 @@ public class GatewayTCP extends Gateway
  	
  	protected ServerBootstrap bootstrap = null;
 
+	@Override
  	public void init(ServerCoreHandler serverCoreHandler)
     {
         bootstrap = new ServerBootstrap()
@@ -63,14 +64,15 @@ public class GatewayTCP extends Gateway
         bootstrap.childOption(ChannelOption.TCP_NODELAY, true);
     }
     
+	@Override
     public void bind() throws Exception
     {
         ChannelFuture cf = bootstrap.bind(PORT).sync();
         if (cf.isSuccess()) {
-        	logger.info("[IMCORE-tcp] 基于MobileIMSDK的TCP服务绑定端口成功 √");
+        	logger.info("[IMCORE-tcp] 基于MobileIMSDK的TCP服务绑定端口"+PORT+"成功 √");
         }
         else{
-        	logger.info("[IMCORE-tcp] 基于MobileIMSDK的TCP服务绑定端口失败 ×");
+        	logger.info("[IMCORE-tcp] 基于MobileIMSDK的TCP服务绑定端口"+PORT+"失败 ×");
         }
         
 		__serverChannel4Netty = cf.channel();
@@ -86,6 +88,7 @@ public class GatewayTCP extends Gateway
 		logger.info("[IMCORE-tcp] 基于MobileIMSDK的TCP服务正在端口"+ PORT +"上监听中...");
     }
   
+	@Override
 	public void shutdown()
 	{
     	if (__serverChannel4Netty != null) 
