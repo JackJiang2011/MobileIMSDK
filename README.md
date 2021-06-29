@@ -19,18 +19,21 @@
 * [客户端Demo安装和使用帮助(Android)](http://www.52im.net/thread-55-1-1.html)
 * [客户端Demo安装和使用帮助(iOS)](http://www.52im.net/thread-54-1-1.html)
 * [客户端Demo安装和使用帮助(Java)](http://www.52im.net/thread-56-1-1.html)
+* [客户端Demo安装和使用帮助(H5)](已开发完成，敬请期待！)
 * [服务端Demo安装和使用帮助](http://www.52im.net/thread-1272-1-1.html) :new:
 
 > #### 1.5、开发指南
 * [客户端开发指南(Android)](http://www.52im.net/thread-61-1-1.html)
 * [客户端开发指南(iOS)](http://www.52im.net/thread-62-1-1.html)
 * [客户端开发指南(Java)](http://www.52im.net/thread-59-1-1.html)
+* [客户端开发指南(H5)](已开发完成，敬请期待！)
 * [服务端开发指南](http://www.52im.net/thread-63-1-1.html)
 
 > #### 1.6、API文档
 * 客户端SDK API文档(Android)：[TCP版](http://docs.52im.net/extend/docs/api/mobileimsdk/android_tcp/)、[UDP版](http://docs.52im.net/extend/docs/api/mobileimsdk/android/)
 * 客户端SDK API文档(iOS)：[TCP版](http://docs.52im.net/extend/docs/api/mobileimsdk/ios_tcp/)、[UDP版](http://docs.52im.net/extend/docs/api/mobileimsdk/ios/)
 * 客户端SDK API文档(Java)：[TCP版](http://docs.52im.net/extend/docs/api/mobileimsdk/java_tcp/)、[UDP版](http://docs.52im.net/extend/docs/api/mobileimsdk/java/)
+* 客户端SDK API文档(H5)：已开发完成，敬请期待！
 * [服务端SDK API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/server/)
 
 > #### 1.7、打包下载
@@ -53,13 +56,13 @@
 <b>MobileIMSDK是一套专为移动端开发的原创IM通信层框架：</b> 
 * 历经8年、久经考验；
 * 超轻量级、高度提炼，lib包50KB以内；
-* 精心封装，一套API同时支持UDP、TCP两种协议（可能是全网唯一开源的）；
-* 客户端支持iOS、Android、标准Java平台；
+* 精心封装，一套API优雅支持UDP、TCP、WebSocket 三种协议（可能是全网唯一开源的）；
+* 客户端支持iOS、Android、标准Java、H5、小程序(开发中..)、Uniap(开发中..)；
 * 服务端基于Netty，性能卓越、易于扩展；:point_left:
 * 可与姊妹工程 [MobileIMSDK-Web](http://www.52im.net/thread-959-1-1.html) 无缝互通实现网页端聊天或推送等；:point_left:
 * 可应用于跨设备、跨网络的聊天APP、企业OA、消息推送等各种场景。
 
-> MobileIMSDK工程始于2013年10月（当前最新版是v5.0.4，[版本更新日志点此查看](http://www.52im.net/thread-1270-1-1.html) ），起初用作某自用产品的即时通讯底层，完全从零开发。<br>
+> MobileIMSDK工程始于2013年10月（当前最新版是v6.0(开发中...)，[版本更新日志点此查看](http://www.52im.net/thread-1270-1-1.html) ），起初用作某自用产品的即时通讯底层，完全从零开发。<br>
 MobileIMSDK现已完全开源，希望对需要的人有所启发和帮助。
 
 :point_right: 您可能需要：[查看更多关于MobileIMSDK的疑问及解答](http://www.52im.net/thread-60-1-1.html)。
@@ -96,8 +99,8 @@ MobileIMSDK版本更新日志：[点此查看](http://www.52im.net/thread-1270-1
 # 六、技术特征
 * <b>久经考验：</b>历经8年，从Andriod 2.3、iOS 5.0 时代持续升级至今（绝不烂尾）；
 * <b>超轻量级：</b>高度提炼，lib包50KB以内；
-* <b>多种协议：</b>可能是全网唯一开源可同时支持UDP和TCP两种协议的同类框架  :new:；
-* <b>多种网络：</b>精心优化的TCP、UDP协议实现，可应用于卫星网、移动网、嵌入式物联网等场景；
+* <b>多种协议：</b>可能是全网唯一开源可同时支持UDP、TCP、WebSocket三种协议的同类框架  :new:；
+* <b>多种网络：</b>精心优化的TCP、UDP、WebSocket协议实现，可应用于卫星网、移动网、嵌入式物联网等场景；
 * <b>高效费比：</b>独有的UDP协议实现，无连接特性，同等条件下可实现更高的网络负载和吞吐能力；
 * <b>消息走向：</b>支持即时通讯技术中消息的所有可能走向，共3种（即C2C、C2S、S2C）；
 * <b>QoS机制：</b>完善的消息送达保证机制（多重保障），不漏过每一条消息；
