@@ -32,6 +32,7 @@ import net.x52im.mobileimsdk.android.core.LocalDataSender;
 import net.x52im.mobileimsdk.android.core.QoS4ReciveDaemon;
 import net.x52im.mobileimsdk.android.core.QoS4SendDaemon;
 import net.x52im.mobileimsdk.android.demo.service.GeniusService;
+import net.x52im.mobileimsdk.android.utils.MBAsyncTask;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -83,8 +84,7 @@ public class MainActivity extends AppCompatActivity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		
-		//
+
 		this.setContentView(R.layout.demo_main_activity_layout);
 		
 		initViews();
@@ -154,33 +154,22 @@ public class MainActivity extends AppCompatActivity
 
 		this.viewMyid.setText(ClientCoreSDK.getInstance().getInstance().getCurrentLoginUserId());
 		
-		this.setTitle("MobileIMSDK TCP v5 Demo");
+		this.setTitle("MobileIMSDK TCP v6 Demo");
 
 		// just for debug START
 		this.initObserversForDEBUG();
 		// just for debug END
 	}
 	
-	private void initListeners()
-	{
-		btnLogout.setOnClickListener(new OnClickListener(){
-			@Override
-			public void onClick(View v)
-			{
-				// 退出登陆
-				doLogout();
-				// 退出程序
-				doExit();
-			}
+	private void initListeners() {
+		btnLogout.setOnClickListener(v -> {
+			// 退出登陆
+			doLogout();
+			// 退出程序
+			doExit();
 		});
 		
-		btnSend.setOnClickListener(new OnClickListener(){
-			@Override
-			public void onClick(View v)
-			{
-				doSendMessage();
-			}
-		});
+		btnSend.setOnClickListener(v -> doSendMessage());
 	}
 	
 	private void initOthers()
@@ -219,7 +208,7 @@ public class MainActivity extends AppCompatActivity
 			showIMInfo_black("我对"+friendId+"说："+msg);
 			
 			// 发送消息（Android系统要求必须要在独立的线程中发送哦）
-		    new LocalDataSender.SendCommonDataAsync(msg, friendId)//, true)
+		    new LocalDataSender.SendCommonDataAsync(msg, friendId)
 			{
 				@Override
 				protected void onPostExecute(Integer code)
@@ -238,13 +227,13 @@ public class MainActivity extends AppCompatActivity
 		}
 	}
 	
-	private void doLogout()
+	public void doLogout()
 	{
 		// 发出退出登陆请求包（Android系统要求必须要在独立的线程中发送哦）
-		new AsyncTask<Object, Integer, Integer>(){
+		new MBAsyncTask()
+		{
 			@Override
-			protected Integer doInBackground(Object... params)
-			{
+			protected Integer doInBackground(Object... params) {
 				int code = -1;
 				try{
 					code = LocalDataSender.getInstance().sendLoginout();
@@ -262,8 +251,7 @@ public class MainActivity extends AppCompatActivity
 			}
 
 			@Override
-			protected void onPostExecute(Integer code)
-			{
+			protected void onPostExecute(Integer code) {
 				refreshMyid();
 				if(code == 0)
 					Log.d(MainActivity.class.getSimpleName(), "注销登陆请求已完成！");
@@ -272,9 +260,8 @@ public class MainActivity extends AppCompatActivity
 			}
 		}.execute();
 	}
-	
-	private void doExit()
-	{
+
+	public void doExit() {
 		finish();
 		System.exit(0);
 	}
@@ -308,14 +295,14 @@ public class MainActivity extends AppCompatActivity
 	 */
 	public class MyAdapter extends BaseAdapter
 	{
-		private List<Map<String, Object>> mData;
-        private LayoutInflater mInflater;
-        private SimpleDateFormat hhmmDataFormat = new SimpleDateFormat("HH:mm:ss");
+		private final List<Map<String, Object>> mData;
+        private final LayoutInflater mInflater;
+        private final SimpleDateFormat hhmmDataFormat = new SimpleDateFormat("HH:mm:ss");
          
         public MyAdapter(Context context)
         {
             this.mInflater = LayoutInflater.from(context);
-            mData = new ArrayList<Map<String, Object>>();
+            mData = new ArrayList<>();
         }
         
         public void addItem(String content, ChatInfoColorType color)
@@ -347,17 +334,17 @@ public class MainActivity extends AppCompatActivity
         }
  
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) 
+        public View getView(int position, View convertView, ViewGroup parent)
         {
             ViewHolder holder = null;
-            if (convertView == null) 
+            if (convertView == null)
             {
                 holder=new ViewHolder();  
                 convertView = mInflater.inflate(R.layout.demo_main_activity_list_item_layout, null);
                 holder.content = (TextView)convertView.findViewById(R.id.demo_main_activity_list_item_layout_tvcontent);
                 convertView.setTag(holder);
             }
-            else 
+            else
             {
                 holder = (ViewHolder)convertView.getTag();
             }

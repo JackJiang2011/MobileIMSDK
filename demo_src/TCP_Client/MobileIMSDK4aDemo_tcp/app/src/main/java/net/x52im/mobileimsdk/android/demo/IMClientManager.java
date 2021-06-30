@@ -33,8 +33,6 @@ import android.content.Context;
  */
 public class IMClientManager
 {
-	private static String TAG = IMClientManager.class.getSimpleName();
-	
 	private static IMClientManager instance = null;
 	
 	/** MobileIMSDK是否已被初始化. true表示已初化完成，否则未初始化. */

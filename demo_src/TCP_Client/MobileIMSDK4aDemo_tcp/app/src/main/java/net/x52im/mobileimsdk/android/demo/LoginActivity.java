@@ -22,6 +22,7 @@ import java.util.Observer;
 import net.x52im.mobileimsdk.android.conf.ConfigEntity;
 import net.x52im.mobileimsdk.android.core.LocalDataSender;
 import net.x52im.mobileimsdk.android.core.LocalSocketProvider;
+import net.x52im.mobileimsdk.server.protocal.c.PLoginInfo;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -73,8 +74,7 @@ public class LoginActivity extends AppCompatActivity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		
-		//
+
 		this.setContentView(R.layout.demo_login_activity_layout);
 		
 		// 界面UI基本设置
@@ -115,18 +115,12 @@ public class LoginActivity extends AppCompatActivity
 		// Demo程序的版本号
 		viewVersion.setText(getProgrammVersion());
 		
-		this.setTitle("MobileIMSDK_TCP v5 Demo登陆");
+		this.setTitle("MobileIMSDK_TCP v6 Demo登陆");
 	}
 	
 	private void initListeners()
 	{
-		btnLogin.setOnClickListener(new OnClickListener(){
-			@Override
-			public void onClick(View v)
-			{
-				doLogin();
-			}
-		});
+		btnLogin.setOnClickListener(v -> doLogin());
 	}
 	
 	private void initForLogin()
@@ -134,33 +128,29 @@ public class LoginActivity extends AppCompatActivity
 		// 实例化登陆进度提示封装类
 		onLoginProgress = new OnLoginProgress(this);
 		// 准备好异步登陆结果回调观察者（将在登陆方法中使用）
-		onLoginSucessObserver = new Observer(){
-			@Override
-			public void update(Observable observable, Object data)
+		onLoginSucessObserver = (observable, data) -> {
+			// * 已收到服务端登陆反馈则当然应立即取消显示登陆进度条
+			onLoginProgress.showProgressing(false);
+			// 服务端返回的登陆结果值
+			int code = (Integer)data;
+			// 登陆成功
+			if(code == 0)
 			{
-				// * 已收到服务端登陆反馈则当然应立即取消显示登陆进度条
-				onLoginProgress.showProgressing(false);
-				// 服务端返回的登陆结果值
-				int code = (Integer)data;
-				// 登陆成功
-				if(code == 0)
-				{
-					//** 提示：登陆/连接 MobileIMSDK服务器成功后的事情在此实现即可
-					
-					// 进入主界面
-					startActivity(new Intent(LoginActivity.this, MainActivity.class));
-					// 同时关闭登陆界面
-					finish();
-				}
-				// 登陆失败
-				else
-				{
-					new AlertDialog.Builder(LoginActivity.this)
-						.setTitle("友情提示")  
-						.setMessage("Sorry，IM服务器连接失败，错误码="+code)
-						.setPositiveButton("知道了", null) 
-				.show(); 
-				}
+				//** 提示：登陆/连接 MobileIMSDK服务器成功后的事情在此实现即可
+
+				// 进入主界面
+				startActivity(new Intent(LoginActivity.this, MainActivity.class));
+				// 同时关闭登陆界面
+				finish();
+			}
+			// 登陆失败
+			else
+			{
+				new AlertDialog.Builder(LoginActivity.this)
+					.setTitle("友情提示")
+					.setMessage("Sorry，IM服务器连接失败，错误码="+code)
+					.setPositiveButton("知道了", null)
+					.show();
 			}
 		};
 	}
@@ -186,12 +176,10 @@ public class LoginActivity extends AppCompatActivity
 			LocalSocketProvider.getInstance().closeLocalSocket();
 						
 			ConfigEntity.serverIP = serverIP.trim();
-			try
-			{
+			try {
 				ConfigEntity.serverPort = Integer.parseInt(serverPort.trim());
 			}
-			catch (Exception e2)
-			{
+			catch (Exception e2) {
 				Toast.makeText(getApplicationContext(), "请输入合法的端口号！", Toast.LENGTH_SHORT).show();
 				return;
 			}
@@ -208,8 +196,7 @@ public class LoginActivity extends AppCompatActivity
 			doLoginImpl();
 		}
 		else
-			Log.e(MainActivity.class.getSimpleName()
-					, "txt.len="+(editLoginName.getText().toString().trim().length()));
+			Log.e(MainActivity.class.getSimpleName(), "txt.len="+(editLoginName.getText().toString().trim().length()));
 	}
 	/**
 	 * 真正的登陆信息发送实现方法。
@@ -221,9 +208,12 @@ public class LoginActivity extends AppCompatActivity
 		// * 设置好服务端反馈的登陆结果观察者（当客户端收到服务端反馈过来的登陆消息时将被通知）
 		IMClientManager.getInstance(this).getBaseEventListener()
 			.setLoginOkForLaunchObserver(onLoginSucessObserver);
-				
+
+		String loginName = editLoginName.getText().toString().trim();
+		String loginToken = editLoginPsw.getText().toString().trim();
+
 		// 异步提交登陆id和token
-		new LocalDataSender.SendLoginDataAsync(editLoginName.getText().toString().trim(), editLoginPsw.getText().toString().trim())
+		new LocalDataSender.SendLoginDataAsync(new PLoginInfo(loginName, loginToken))
 		{
 			/**
 			 * 登陆信息发送完成后将调用本方法（注意：此处仅是登陆信息发送完成
@@ -257,15 +247,11 @@ public class LoginActivity extends AppCompatActivity
 	private String getProgrammVersion()
 	{
 		PackageInfo info;
-		try
-		{
+		try {
 			info = getPackageManager().getPackageInfo(getPackageName(), 0);
-//			versionCode = info.versionCode;   
-//			versionName = info.versionName; 
 			return info.versionName;
 		}
-		catch (NameNotFoundException e)
-		{
+		catch (NameNotFoundException e) {
 			Log.w(TAG, "读程序版本信息时出错,"+e.getMessage(),e);
 			return "N/A";
 		}
@@ -286,20 +272,10 @@ public class LoginActivity extends AppCompatActivity
 			builder.setIcon(android.R.drawable.ic_dialog_alert);
 			builder.setTitle("Network not avaliable");//
 			builder.setMessage("Current network is not avaliable, set it?");//
-			builder.setPositiveButton("Setting", new DialogInterface.OnClickListener() {
-
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS)); //直接进入手机中的wifi网络设置界面
-				}
+			builder.setPositiveButton("Setting", (dialog, which) -> {
+				startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS)); //直接进入手机中的wifi网络设置界面
 			});
-			builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					dialog.cancel();
-				}
-			});
+			builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
 			builder.create();
 			builder.show();
 		}
@@ -339,13 +315,7 @@ public class LoginActivity extends AppCompatActivity
 			progressDialogForPairing.setCanceledOnTouchOutside(false);
 			
 			handler = new Handler();
-			runnable = new Runnable(){
-				@Override
-				public void run()
-				{
-					onTimeout();
-				}
-			};
+			runnable = () -> onTimeout();
 		}
 
 		/**
@@ -357,21 +327,13 @@ public class LoginActivity extends AppCompatActivity
 			new AlertDialog.Builder(LoginActivity.this)
 				.setTitle("超时了")  
 				.setMessage("登陆超时，可能是网络故障或服务器无法连接，是否重试？")
-				.setPositiveButton("重试！", new DialogInterface.OnClickListener(){
-					@Override
-					public void onClick(DialogInterface dialog,int which)
-					{
-						// 确认要重试时（再次尝试登陆哦）
-						doLogin();
-					}
-				}) 
-				.setNegativeButton("取消" , new DialogInterface.OnClickListener(){
-					@Override
-					public void onClick(DialogInterface dialog,int which)
-					{
-						// 不需要重试则要停止“登陆中”的进度提示哦
-						OnLoginProgress.this.showProgressing(false);
-					}
+				.setPositiveButton("重试！", (dialog, which) -> {
+					// 确认要重试时（再次尝试登陆哦）
+					doLogin();
+				})
+				.setNegativeButton("取消" , (dialog, which) -> {
+					// 不需要重试则要停止“登陆中”的进度提示哦
+					OnLoginProgress.this.showProgressing(false);
 				})
 			.show(); 
 		}
