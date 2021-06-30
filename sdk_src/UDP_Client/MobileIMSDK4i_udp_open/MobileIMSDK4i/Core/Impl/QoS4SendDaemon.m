@@ -107,7 +107,7 @@ static QoS4SendDaemon *instance = nil;
                         if(sendCode == COMMON_CODE_OK)
                         {
                             [p increaseRetryCount];
-                            
+                            [self.sendMessagesTimestamp setObject:[NSNumber numberWithLong:[ToolKits getTimeStampWithMillisecond_l]] forKey:p.fp];
                             if([ClientCoreSDK isENABLED_DEBUG])
                                 NSLog(@"【IMCORE-UDP】【QoS】指纹为%@的消息包已成功进行重传，此次之后重传次数已达%d(最多%d次).", p.fp, [p getRetryCount], QOS_TRY_COUNT);
                         }

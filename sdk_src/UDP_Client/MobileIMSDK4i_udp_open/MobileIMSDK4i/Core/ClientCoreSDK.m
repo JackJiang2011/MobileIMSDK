@@ -131,7 +131,7 @@ static ClientCoreSDK *instance = nil;
 - (void) reachabilityChanged:(NSNotification *)note
 {
     MBReachability* reachability = [note object];
-    NSParameterAssert([reachability isKindOfClass:[Reachability class]]);
+    NSParameterAssert([reachability isKindOfClass:[MBReachability class]]);
     
     NetworkStatus netStatus = [reachability currentReachabilityStatus];
     BOOL connectionRequired = [reachability connectionRequired];
