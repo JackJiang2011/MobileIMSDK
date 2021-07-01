@@ -17,11 +17,14 @@
 package net.x52im.mobileimsdk.android.core;
 
 import net.x52im.mobileimsdk.android.ClientCoreSDK;
+import net.x52im.mobileimsdk.android.utils.MBAsyncTask;
 import net.x52im.mobileimsdk.android.utils.MBObserver;
+import net.x52im.mobileimsdk.android.utils.MBThreadPoolExecutor;
 import net.x52im.mobileimsdk.android.utils.TCPUtils;
 import net.x52im.mobileimsdk.server.protocal.ErrorCode;
 import net.x52im.mobileimsdk.server.protocal.Protocal;
 import net.x52im.mobileimsdk.server.protocal.ProtocalFactory;
+import net.x52im.mobileimsdk.server.protocal.c.PLoginInfo;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -42,7 +45,7 @@ public class LocalDataSender {
     private LocalDataSender() {
     }
 
-    int sendLogin(String loginUserId, String loginToken, String extra) {
+    int sendLogin(PLoginInfo loginInfo) {
 
         int codeForCheck = this.checkBeforeSend();
         if (codeForCheck != ErrorCode.COMMON_CODE_OK)
@@ -55,7 +58,7 @@ public class LocalDataSender {
 
             MBObserver connectionDoneObserver = (sucess, extraObj) -> {
                 if (sucess)
-                    sendLoginImpl(loginUserId, loginToken, extra);
+                    sendLoginImpl(loginInfo);
                 else
                     Log.w(TAG, "【IMCORE-TCP】[来自Netty的连接结果回调观察者通知]socket连接失败，本次登陆信息未成功发出！");
             };
@@ -63,17 +66,15 @@ public class LocalDataSender {
             return LocalSocketProvider.getInstance().resetLocalSocket() != null
                     ? ErrorCode.COMMON_CODE_OK : ErrorCode.ForC.BAD_CONNECT_TO_SERVER;
         } else {
-            return this.sendLoginImpl(loginUserId, loginToken, extra);
+            return this.sendLoginImpl(loginInfo);
         }
     }
 
-    int sendLoginImpl(String loginUserId, String loginToken, String extra) {
-        byte[] b = ProtocalFactory.createPLoginInfo(loginUserId, loginToken, extra).toBytes();
+    int sendLoginImpl(PLoginInfo loginInfo) {
+        byte[] b = ProtocalFactory.createPLoginInfo(loginInfo).toBytes();
         int code = send(b, b.length);
         if (code == 0) {
-            ClientCoreSDK.getInstance().setCurrentLoginUserId(loginUserId);
-            ClientCoreSDK.getInstance().setCurrentLoginToken(loginToken);
-            ClientCoreSDK.getInstance().setCurrentLoginExtra(extra);
+            ClientCoreSDK.getInstance().setCurrentLoginInfo(loginInfo);
         }
 
         return code;
@@ -82,8 +83,7 @@ public class LocalDataSender {
     public int sendLoginout() {
         int code = ErrorCode.COMMON_CODE_OK;
         if (ClientCoreSDK.getInstance().isLoginHasInit()) {
-            byte[] b = ProtocalFactory.createPLoginoutInfo(
-                    ClientCoreSDK.getInstance().getCurrentLoginUserId()).toBytes();
+			byte[] b = ProtocalFactory.createPLoginoutInfo(ClientCoreSDK.getInstance().getCurrentLoginUserId()).toBytes();
             code = send(b, b.length);
             if (code == 0) {
                 // do nothing
@@ -146,18 +146,12 @@ public class LocalDataSender {
     private int checkBeforeSend() {
         if (!ClientCoreSDK.getInstance().isInitialed())
             return ErrorCode.ForC.CLIENT_SDK_NO_INITIALED;
-
-//		if(!ClientCoreSDK.getInstance().isLocalDeviceNetworkOk()) {
-//			Log.e(TAG, "【IMCORE-TCP】本地网络不能工作，send数据没有继续!");
-//			return ErrorCode.ForC.LOCAL_NETWORK_NOT_WORKING;
-//		}
-
         return ErrorCode.COMMON_CODE_OK;
     }
 
     //------------------------------------------------------------------------------------------ utilities class
 
-    public static abstract class SendCommonDataAsync extends AsyncTask<Object, Integer, Integer> {
+    public static abstract class SendCommonDataAsync extends MBAsyncTask{
         protected Protocal p = null;
 
         public SendCommonDataAsync(String dataContentWidthStr, String to_user_id) {
@@ -192,29 +186,16 @@ public class LocalDataSender {
         protected abstract void onPostExecute(Integer code);
     }
 
-    public static abstract class SendLoginDataAsync extends AsyncTask<Object, Integer, Integer> {
-        protected String loginUserId = null;
-        protected String loginToken = null;
-        protected String extra = null;
+    public static abstract class SendLoginDataAsync extends MBAsyncTask{
+        protected PLoginInfo loginInfo = null;
 
-        public SendLoginDataAsync(String loginUserId, String loginToken) {
-            this(loginUserId, loginToken, null);
-        }
-
-        public SendLoginDataAsync(String loginUserId, String loginToken, String extra) {
-            this.loginUserId = loginUserId;
-            this.loginToken = loginToken;
-            this.extra = extra;
-
-//			//### Bug Fix 2015-11-07 by Jack Jiang
-//			// 确保首先进行核心库的初始化（此方法多次调用是无害的，但必须要
-//			// 保证在使用IM核心库的任何实质方法前调用（初始化）1次））
-//			ClientCoreSDK.getInstance().init(context);
+        public SendLoginDataAsync(PLoginInfo loginInfo) {
+			this.loginInfo = loginInfo;
         }
 
         @Override
         protected Integer doInBackground(Object... params) {
-            int code = LocalDataSender.getInstance().sendLogin(loginUserId, loginToken, this.extra);
+            int code = LocalDataSender.getInstance().sendLogin(this.loginInfo);
             return code;
         }
 

@@ -47,21 +47,18 @@ public class TCPUtils {
             if (skt.isActive()) {
                 try {
                     ByteBuf to = Unpooled.copiedBuffer(d, 0, dataLen);
+
                     ChannelFuture cf = skt.writeAndFlush(to);//.sync();
                     sendSucess = true;
-                    // Perform post-closure operation
+
                     cf.addListener((ChannelFutureListener) future -> {
-                        // The message has been written successfully
                         if (future.isSuccess()) {
                             Log.i(TAG, "[IMCORE-netty-send异步回调] >> 数据已成功发出[dataLen=" + dataLen + "].");
                         }
-                        // The messsage couldn't be written out completely for some reason.
-                        // (e.g. Connection is closed)
                         else {
                             Log.w(TAG, "[IMCORE-netty-send异步回调] >> 数据发送失败！[dataLen=" + dataLen + "].");
                         }
 
-                        // 通知观察者，数据发送结果
                         if (resultObserver != null)
                             resultObserver.update(future.isSuccess(), null);
                     });

@@ -12,4 +12,4 @@
 -keep class com.google.gson.** { *;}
 
 # 保留MobileIMSDK的Protocal相关类
--keep class net.openmob.mobileimsdk.server.protocal.** { *; }
+-keep class net.x52im.mobileimsdk.server.protocal.** { *; }

@@ -16,7 +16,10 @@
  */
 package net.x52im.mobileimsdk.android.event;
 
+import net.x52im.mobileimsdk.android.ClientCoreSDK;
+import net.x52im.mobileimsdk.server.protocal.s.PKickoutInfo;
 public interface ChatBaseEvent {
 	void onLoginResponse(int errorCode);
 	void onLinkClose(int errorCode);
+	void onKickout(PKickoutInfo kickoutInfo);
 }

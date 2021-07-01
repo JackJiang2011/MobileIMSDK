@@ -150,12 +150,8 @@ public class LocalSocketProvider {
 
     public Channel getLocalSocket() {
         if (isLocalSocketReady()) {
-//			if(ClientCoreSDK.DEBUG)
-//				Log.d(TAG, "【IMCORE-TCP】isLocalSocketReady()==true，直接返回本地socket引用哦。");
             return localSocket;
         } else {
-//			if(ClientCoreSDK.DEBUG)
-//				Log.d(TAG, "【IMCORE-TCP】isLocalSocketReady()==false，需要先resetLocalSocket()...");
             return resetLocalSocket();
         }
     }

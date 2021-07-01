@@ -26,6 +26,7 @@ import net.x52im.mobileimsdk.android.core.QoS4SendDaemon;
 import net.x52im.mobileimsdk.android.event.ChatBaseEvent;
 import net.x52im.mobileimsdk.android.event.ChatMessageEvent;
 import net.x52im.mobileimsdk.android.event.MessageQoSEvent;
+import net.x52im.mobileimsdk.server.protocal.c.PLoginInfo;
 
 import android.app.Application;
 import android.content.BroadcastReceiver;
@@ -60,9 +61,7 @@ public class ClientCoreSDK {
 //	private boolean localDeviceNetworkOk = true;
     private boolean connectedToServer = true;
     private boolean loginHasInit = false;
-    private String currentLoginUserId = null;
-    private String currentLoginToken = null;
-    private String currentLoginExtra = null;
+    private PLoginInfo currentLoginInfo = null;
 
     private ChatBaseEvent chatBaseEvent = null;
     private ChatMessageEvent chatMessageEvent = null;
@@ -132,31 +131,36 @@ public class ClientCoreSDK {
         this.setConnectedToServer(false);
     }
 
-    public String getCurrentLoginUserId() {
-        return currentLoginUserId;
-    }
+    public void setCurrentLoginInfo(PLoginInfo currentLoginInfo) {
+		this.currentLoginInfo = currentLoginInfo;
+	}
 
-    public ClientCoreSDK setCurrentLoginUserId(String currentLoginUserId) {
-        this.currentLoginUserId = currentLoginUserId;
-        return this;
-    }
+    public PLoginInfo getCurrentLoginInfo() {
+		return this.currentLoginInfo;
+	}
 
-    public String getCurrentLoginToken() {
-        return currentLoginToken;
-    }
+	public void saveFirstLoginTime(long firstLoginTime) {
+		if(this.currentLoginInfo != null)
+			this.currentLoginInfo.setFirstLoginTime(firstLoginTime);
+	}
 
-    public void setCurrentLoginToken(String currentLoginToken) {
-        this.currentLoginToken = currentLoginToken;
-    }
+    @Deprecated
+	public String getCurrentLoginUserId()
+	{
+		return this.currentLoginInfo.getLoginUserId();
+	}
 
-    public String getCurrentLoginExtra() {
-        return currentLoginExtra;
-    }
+    @Deprecated
+	public String getCurrentLoginToken()
+	{
+		return this.currentLoginInfo.getLoginToken();
+	}
 
-    public ClientCoreSDK setCurrentLoginExtra(String currentLoginExtra) {
-        this.currentLoginExtra = currentLoginExtra;
-        return this;
-    }
+    @Deprecated
+	public String getCurrentLoginExtra()
+	{
+		return this.currentLoginInfo.getExtra();
+	}
 
     public boolean isLoginHasInit() {
         return loginHasInit;
@@ -164,11 +168,6 @@ public class ClientCoreSDK {
 
     public ClientCoreSDK setLoginHasInit(boolean loginHasInit) {
         this.loginHasInit = loginHasInit;
-//		if(!logined)
-//		{
-//			currentLoginName = null;
-//			currentLoginPsw = null;
-//		}
         return this;
     }
 
@@ -183,11 +182,6 @@ public class ClientCoreSDK {
     public boolean isInitialed() {
         return this._init;
     }
-
-//	public boolean isLocalDeviceNetworkOk()
-//	{
-//		return localDeviceNetworkOk;
-//	}
 
     public void setChatBaseEvent(ChatBaseEvent chatBaseEvent) {
         this.chatBaseEvent = chatBaseEvent;

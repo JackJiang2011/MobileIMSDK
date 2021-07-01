@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2020  即时通讯网(52im.net) & Jack Jiang.
- * The MobileIMSDK_UDP (MobileIMSDK v5.x UDP版) Project.
+ * The MobileIMSDK_TCP (MobileIMSDK v5.x TCP版) Project. 
  * All rights reserved.
  *
  * > Github地址：https://github.com/JackJiang2011/MobileIMSDK

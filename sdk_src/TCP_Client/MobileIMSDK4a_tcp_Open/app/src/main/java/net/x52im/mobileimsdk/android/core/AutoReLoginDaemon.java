@@ -28,7 +28,7 @@ import java.util.Observer;
 public class AutoReLoginDaemon {
     private final static String TAG = AutoReLoginDaemon.class.getSimpleName();
     private static AutoReLoginDaemon instance = null;
-    public static int AUTO_RE$LOGIN_INTERVAL = 5000;//2000;
+    public static int AUTO_RE$LOGIN_INTERVAL = 3000;//2000;
 
     private Handler handler = null;
     private Runnable runnable = null;
@@ -56,7 +56,6 @@ public class AutoReLoginDaemon {
         handler = new Handler();
         runnable = () -> {
             if (!_excuting) {
-                // 在独立线程中执行doSendLogin()发送登陆请求，完成后在主线程中执行onSendLogin()
                 MBThreadPoolExecutor.runInBackground(() -> {
                     final int code = doSendLogin();
                     MBThreadPoolExecutor.runOnMainThread(() -> onSendLogin(code));
@@ -72,12 +71,8 @@ public class AutoReLoginDaemon {
         if (ClientCoreSDK.DEBUG)
             Log.d(TAG, "【IMCORE-TCP】自动重新登陆线程执行中, autoReLogin?" + ClientCoreSDK.autoReLogin + "...");
         int code = -1;
-        if (ClientCoreSDK.autoReLogin) {
-            code = LocalDataSender.getInstance().sendLogin(
-                    ClientCoreSDK.getInstance().getCurrentLoginUserId()
-                    , ClientCoreSDK.getInstance().getCurrentLoginToken()
-                    , ClientCoreSDK.getInstance().getCurrentLoginExtra());
-        }
+        if (ClientCoreSDK.autoReLogin) 
+            code = LocalDataSender.getInstance().sendLogin(ClientCoreSDK.getInstance().getCurrentLoginInfo());        
         return code;
     }
 

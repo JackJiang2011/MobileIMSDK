@@ -30,6 +30,7 @@ import android.util.Log;
 
 public class QoS4SendDaemon {
     private final static String TAG = QoS4SendDaemon.class.getSimpleName();
+
     private static QoS4SendDaemon instance = null;
     public final static int CHECH_INTERVAL = 5000;
     public final static int MESSAGES_JUST$NOW_TIME = 3 * 1000;
@@ -64,7 +65,6 @@ public class QoS4SendDaemon {
         runnable = () -> {
             if (!_excuting) {
                 final ArrayList<Protocal> lostMessages = new ArrayList<>();
-                // 在独立线程中执行doRetryCheck()检查消息重传列表，完成后在主线程中执行onRetryCheck()
                 MBThreadPoolExecutor.runInBackground(() -> {
                     final ArrayList<Protocal> ret = doRetryCheck(lostMessages);
                     MBThreadPoolExecutor.runOnMainThread(() -> onRetryCheck(ret));

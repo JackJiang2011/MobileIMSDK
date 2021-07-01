@@ -25,6 +25,7 @@ import net.x52im.mobileimsdk.server.protocal.Protocal;
 import net.x52im.mobileimsdk.server.protocal.ProtocalFactory;
 import net.x52im.mobileimsdk.server.protocal.ProtocalType;
 import net.x52im.mobileimsdk.server.protocal.s.PErrorResponse;
+import net.x52im.mobileimsdk.server.protocal.s.PKickoutInfo;
 import net.x52im.mobileimsdk.server.protocal.s.PLoginInfoResponse;
 
 import android.util.Log;
@@ -64,20 +65,12 @@ public class LocalDataReciever {
             final Protocal pFromServer = ProtocalFactory.parse(fullProtocalOfBody, fullProtocalOfBody.length);
 
             if (pFromServer.isQoS()) {
-                // # Bug FIX B20170620_001 START 【1/2】
-                // # [Bug描述]：当服务端认证接口返回非0的code时，客记端会进入自动登陆尝试死循环。
-                // # [Bug原因]：原因在于客户端收到服务端的响应包时，因服务端发过来的包需要QoS，客户端会先发送一
-                //             个ACK包，那么此ACK包到达服务端后会因客户端“未登陆”而再次发送一“未登陆”错误信息
-                //             包给客户端，客户端在收到此包后会触发自动登陆重试，进而进入死循环。
-                // # [解决方法]：客户端判定当收到的是服务端的登陆响应包且code不等于0就不需要回ACK包给服务端。
-                // # [此解决方法带来的服务端表现]：服务端会因客户端网络关闭而将响应包进行重传直到超时丢弃，但并不影响什么。
                 if (pFromServer.getType() == ProtocalType.S.FROM_SERVER_TYPE_OF_RESPONSE$LOGIN
                         && ProtocalFactory.parsePLoginInfoResponse(pFromServer.getDataContent()).getCode() != 0) {
                     if (ClientCoreSDK.DEBUG)
                         Log.d(TAG, "【IMCORE-TCP】【BugFIX】这是服务端的登陆返回响应包，" +
                                 "且服务端判定登陆失败(即code!=0)，本次无需发送ACK应答包！");
                 }
-                // # Bug FIX 20170620 END 【1/2】
                 else {
                     if (QoS4ReciveDaemon.getInstance().hasRecieved(pFromServer.getFp())) {
                         if (ClientCoreSDK.DEBUG)
@@ -115,7 +108,10 @@ public class LocalDataReciever {
                     onServerResponseError(pFromServer);
                     break;
                 }
-
+				case ProtocalType.S.FROM_SERVER_TYPE_OF_KICKOUT: {
+					onKickout(pFromServer);
+					break;
+				}
                 default:
                     Log.w(TAG, "【IMCORE-TCP】收到的服务端消息类型：" + pFromServer.getType() + "，但目前该类型客户端不支持解析和处理！");
                     break;
@@ -127,11 +123,9 @@ public class LocalDataReciever {
 
     protected void onRecievedCommonData(Protocal pFromServer) {
 //		Log.d(TAG, ">>>>>>>>>>>>>>>>>>>>>>>>>>>>收到"+pFromServer.getFrom()+"发过来的消息："+pFromServer.getDataContent()+".["+pFromServer.getTo()+"]");
-        // 收到通用数据的回调
         if (ClientCoreSDK.getInstance().getChatMessageEvent() != null) {
             ClientCoreSDK.getInstance().getChatMessageEvent().onRecieveMessage(
-                    pFromServer.getFp(), pFromServer.getFrom()
-                    , pFromServer.getDataContent(), pFromServer.getTypeu());
+                    pFromServer.getFp(), pFromServer.getFrom(), pFromServer.getDataContent(), pFromServer.getTypeu());
         }
     }
 
@@ -155,14 +149,12 @@ public class LocalDataReciever {
     protected void onServerResponseLogined(Protocal pFromServer) {
         PLoginInfoResponse loginInfoRes = ProtocalFactory.parsePLoginInfoResponse(pFromServer.getDataContent());
         if (loginInfoRes.getCode() == 0) {
+			if(!ClientCoreSDK.getInstance().isLoginHasInit()) {
+				ClientCoreSDK.getInstance().saveFirstLoginTime(loginInfoRes.getFirstLoginTime());
+			}
             fireConnectedToServer();
         } else {
             Log.d(TAG, "【IMCORE-TCP】登陆验证失败，错误码=" + loginInfoRes.getCode() + "！");
-
-//			// # Bug FIX B20170620_001 START 【2/2】
-//			// 登陆失败后关闭网络监听是合理的作法
-//			LocalUDPDataReciever.getInstance().stop();
-//			// # Bug FIX B20170620_001 END 【2/2】
 
             LocalSocketProvider.getInstance().closeLocalSocket();
             ClientCoreSDK.getInstance().setConnectedToServer(false);
@@ -189,17 +181,31 @@ public class LocalDataReciever {
         }
     }
 
+	protected void onKickout(Protocal pFromServer)
+	{
+		if (ClientCoreSDK.DEBUG)
+			Log.d(TAG, "【IMCORE-TCP】收到服务端发过来的“被踢”指令.");
+
+		ClientCoreSDK.getInstance().release();
+
+		PKickoutInfo kickoutInfo = ProtocalFactory.parsePKickoutInfo(pFromServer.getDataContent());
+		if(ClientCoreSDK.getInstance().getChatBaseEvent() != null)
+			ClientCoreSDK.getInstance().getChatBaseEvent().onKickout(kickoutInfo);
+
+		if(ClientCoreSDK.getInstance().getChatBaseEvent() != null)
+			ClientCoreSDK.getInstance().getChatBaseEvent().onLinkClose(-1);
+	}
+
     protected void fireConnectedToServer() {
         ClientCoreSDK.getInstance().setLoginHasInit(true);
         AutoReLoginDaemon.getInstance().stop();
+
         KeepAliveDaemon.getInstance().setNetworkConnectionLostObserver(new Observer() {
             @Override
             public void update(Observable observable, Object data) {
                 fireDisconnectedToServer();
             }
         });
-        // ** 2015-02-10 by Jack Jiang：收到登陆成功反馈后，无需立即就发起心跳，因为刚刚才与服务端
-        // ** 成功通信了呢（刚收到服务器的登陆成功反馈），节省1次心跳，降低服务重启后的“雪崩”可能性
         KeepAliveDaemon.getInstance().start(false);
 
         QoS4SendDaemon.getInstance().startup(true);

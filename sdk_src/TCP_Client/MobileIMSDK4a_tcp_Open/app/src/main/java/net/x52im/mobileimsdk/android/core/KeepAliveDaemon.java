@@ -62,7 +62,6 @@ public class KeepAliveDaemon {
         runnable = () -> {
             if (!_excuting) {
                 _willStop = false;
-                // 在独立线程中执行doKeepALive()发送心跳指令，完成后在主线程中执行onKeepAlive()
                 MBThreadPoolExecutor.runInBackground(() -> {
                     final int code = doKeepAlive();
                     MBThreadPoolExecutor.runOnMainThread(() -> onKeepAlive(code));
@@ -88,12 +87,8 @@ public class KeepAliveDaemon {
             this.debugObserver.update(null, 2);
 
         boolean isInitialedForKeepAlive = (lastGetKeepAliveResponseFromServerTimstamp.longValue() == 0);
-        //## Bug FIX 20190513 v4.0.1 START
-        //## 解决极端情况下手机网络断开时，无法进入下面的"断开"通知流程
-//		if(code == 0 && lastGetKeepAliveResponseFromServerTimstamp == 0)
         if (isInitialedForKeepAlive)
             lastGetKeepAliveResponseFromServerTimstamp.set(System.currentTimeMillis());
-        //## Bug FIX 20190513 v4.0.1 END
 
         if (!isInitialedForKeepAlive) {
             long now = System.currentTimeMillis();
