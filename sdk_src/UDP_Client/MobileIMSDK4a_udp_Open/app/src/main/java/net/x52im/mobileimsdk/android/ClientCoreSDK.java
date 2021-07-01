@@ -6,7 +6,7 @@
  * > Github地址：https://github.com/JackJiang2011/MobileIMSDK
  * > 文档地址：  http://www.52im.net/forum-89-1.html
  * > 技术社区：  http://www.52im.net/
- * > 技术交流群：215477170 (http://www.52im.net/topic-qqgroup.html)
+ * > 技术交流群：320837163 (http://www.52im.net/topic-qqgroup.html)
  * > 作者公众号：“即时通讯技术圈】”，欢迎关注！
  * > 联系作者：  http://www.52im.net/thread-2792-1-1.html
  *
@@ -26,6 +26,7 @@ import net.x52im.mobileimsdk.android.core.QoS4SendDaemon;
 import net.x52im.mobileimsdk.android.event.ChatBaseEvent;
 import net.x52im.mobileimsdk.android.event.ChatMessageEvent;
 import net.x52im.mobileimsdk.android.event.MessageQoSEvent;
+import net.x52im.mobileimsdk.server.protocal.c.PLoginInfo;
 
 import android.app.Application;
 import android.content.BroadcastReceiver;
@@ -45,26 +46,9 @@ public class ClientCoreSDK {
 
     private boolean _init = false;
 
-    //## 20200817备注：localDeviceNetworkOk字段的更新依赖于APP收到的系统的网络事件，而此事件在某些极端情况下
-    //##              无法正常收到，进而当网络本身已恢复而此字段并未正确更新的情况下，会导致LocalDataSender中的send
-    //##              数据方法在前置检查时，抛出 "ErrorCode.ForC.LOCAL_NETWORK_NOT_WORKING"错误而不会继续数据发送，
-    //##              进而无法实现重连指令的发出，从而无法实现重连成功。有鉴于此，停用这个字段是更好的选择！
-//	/**
-//	 * 网络是否可用, true表示可用，否则表示不可用.
-//	 * <p>
-//	 * 本字段将在网络事件通知处理中被设置.
-//	 * <p>
-//	 * 注意：本类中的网络状态变更事件，尤其在网络由断变好之后，受Android系统
-//	 * 广播机制的影响事件收到延迟在1~2秒，目前没有找到其它更优的替代方案，但
-//	 * 从算法逻辑上讲不影响本核心类库的工作（仅影响核心库算法的构造难易度而已）！
-//	 */
-//	private boolean localDeviceNetworkOk = true;
-
     private boolean connectedToServer = true;
     private boolean loginHasInit = false;
-    private String currentLoginUserId = null;
-    private String currentLoginToken = null;
-    private String currentLoginExtra = null;
+    private PLoginInfo currentLoginInfo = null;
 
     private ChatBaseEvent chatBaseEvent = null;
     private ChatMessageEvent chatMessageEvent = null;
@@ -134,31 +118,34 @@ public class ClientCoreSDK {
         this.setConnectedToServer(false);
     }
 
-    public String getCurrentLoginUserId() {
-        return currentLoginUserId;
-    }
+    public void setCurrentLoginInfo(PLoginInfo currentLoginInfo) {
+		this.currentLoginInfo = currentLoginInfo;
+	}
 
-    public ClientCoreSDK setCurrentLoginUserId(String currentLoginUserId) {
-        this.currentLoginUserId = currentLoginUserId;
-        return this;
-    }
+    public PLoginInfo getCurrentLoginInfo()
+	{
+		return this.currentLoginInfo;
+	}
 
-    public String getCurrentLoginToken() {
-        return currentLoginToken;
-    }
+	public void saveFirstLoginTime(long firstLoginTime) {
+		if(this.currentLoginInfo != null)
+			this.currentLoginInfo.setFirstLoginTime(firstLoginTime);
+	}
 
-    public void setCurrentLoginToken(String currentLoginToken) {
-        this.currentLoginToken = currentLoginToken;
-    }
+	@Deprecated
+	public String getCurrentLoginUserId() {
+		return this.currentLoginInfo.getLoginUserId();
+	}
+	
+    @Deprecated
+	public String getCurrentLoginToken() {
+		return this.currentLoginInfo.getLoginToken();
+	}
 
-    public String getCurrentLoginExtra() {
-        return currentLoginExtra;
-    }
-
-    public ClientCoreSDK setCurrentLoginExtra(String currentLoginExtra) {
-        this.currentLoginExtra = currentLoginExtra;
-        return this;
-    }
+    @Deprecated
+	public String getCurrentLoginExtra() {
+		return this.currentLoginInfo.getExtra();
+	}
 
     public boolean isLoginHasInit() {
         return loginHasInit;
@@ -166,11 +153,6 @@ public class ClientCoreSDK {
 
     public ClientCoreSDK setLoginHasInit(boolean loginHasInit) {
         this.loginHasInit = loginHasInit;
-//		if(!logined)
-//		{
-//			currentLoginName = null;
-//			currentLoginPsw = null;
-//		}
         return this;
     }
 
@@ -185,11 +167,6 @@ public class ClientCoreSDK {
     public boolean isInitialed() {
         return this._init;
     }
-
-//	public boolean isLocalDeviceNetworkOk()
-//	{
-//		return localDeviceNetworkOk;
-//	}
 
     public void setChatBaseEvent(ChatBaseEvent chatBaseEvent) {
         this.chatBaseEvent = chatBaseEvent;
@@ -232,13 +209,11 @@ public class ClientCoreSDK {
 //				if(ClientCoreSDK.DEBUG)
                 Log.e(TAG, "【IMCORE-UDP】【本地网络通知】检测本地网络连接断开了!");
 
-//				localDeviceNetworkOk = false;
                 LocalSocketProvider.getInstance().closeLocalSocket();
             } else {
                 if (ClientCoreSDK.DEBUG)
                     Log.e(TAG, "【IMCORE-UDP】【本地网络通知】检测本地网络已连接上了!");
 
-//				localDeviceNetworkOk = true;
                 LocalSocketProvider.getInstance().closeLocalSocket();
             }
         }

@@ -6,7 +6,7 @@
  * > Github地址：https://github.com/JackJiang2011/MobileIMSDK
  * > 文档地址：  http://www.52im.net/forum-89-1.html
  * > 技术社区：  http://www.52im.net/
- * > 技术交流群：215477170 (http://www.52im.net/topic-qqgroup.html)
+ * > 技术交流群：320837163 (http://www.52im.net/topic-qqgroup.html)
  * > 作者公众号：“即时通讯技术圈】”，欢迎关注！
  * > 联系作者：  http://www.52im.net/thread-2792-1-1.html
  *
@@ -17,6 +17,7 @@
 package net.x52im.mobileimsdk.android.core;
 
 import java.util.Observer;
+import java.util.concurrent.atomic.AtomicLong;
 
 import net.x52im.mobileimsdk.android.ClientCoreSDK;
 import net.x52im.mobileimsdk.android.utils.MBThreadPoolExecutor;
@@ -32,7 +33,7 @@ public class KeepAliveDaemon {
     public static int KEEP_ALIVE_INTERVAL = 3000;//1000;
 
     private boolean keepAliveRunning = false;
-    private long lastGetKeepAliveResponseFromServerTimstamp = 0;
+    private AtomicLong lastGetKeepAliveResponseFromServerTimstamp = new AtomicLong(0);
     private Observer networkConnectionLostObserver = null;
 
     private Handler handler = null;
@@ -62,7 +63,6 @@ public class KeepAliveDaemon {
         runnable = () -> {
             if (!_excuting) {
                 _willStop = false;
-                // 在独立线程中执行doKeepALive()发送心跳指令，完成后在主线程中执行onKeepAlive()
                 MBThreadPoolExecutor.runInBackground(() -> {
                     final int code = doKeepAlive();
                     MBThreadPoolExecutor.runOnMainThread(() -> onKeepAlive(code));
@@ -86,17 +86,15 @@ public class KeepAliveDaemon {
         if(this.debugObserver != null)
             this.debugObserver.update(null, 2);
 
-        boolean isInitialedForKeepAlive = (lastGetKeepAliveResponseFromServerTimstamp == 0);
+        boolean isInitialedForKeepAlive = (lastGetKeepAliveResponseFromServerTimstamp.longValue() == 0);
         //## Bug FIX 20190513 v4.0.1 START
-        //## 解决极端情况下手机网络断开时，无法进入下面的"断开"通知流程
-//		if(code == 0 && lastGetKeepAliveResponseFromServerTimstamp == 0)
         if (isInitialedForKeepAlive)
-            lastGetKeepAliveResponseFromServerTimstamp = System.currentTimeMillis();
+            lastGetKeepAliveResponseFromServerTimstamp.set(System.currentTimeMillis());
         //## Bug FIX 20190513 v4.0.1 END
 
         if (!isInitialedForKeepAlive) {
             long now = System.currentTimeMillis();
-            if (now - lastGetKeepAliveResponseFromServerTimstamp >= NETWORK_CONNECTION_TIME_OUT) {
+            if (now - lastGetKeepAliveResponseFromServerTimstamp.longValue() >= NETWORK_CONNECTION_TIME_OUT) {
                 stop();
 
                 if (networkConnectionLostObserver != null)
@@ -114,7 +112,7 @@ public class KeepAliveDaemon {
     public void stop() {
         handler.removeCallbacks(runnable);
         keepAliveRunning = false;
-        lastGetKeepAliveResponseFromServerTimstamp = 0;
+        lastGetKeepAliveResponseFromServerTimstamp.set(0);
 
         // for DEBUG
         if(this.debugObserver != null)
@@ -140,7 +138,7 @@ public class KeepAliveDaemon {
     }
 
     public void updateGetKeepAliveResponseFromServerTimstamp() {
-        lastGetKeepAliveResponseFromServerTimstamp = System.currentTimeMillis();
+        lastGetKeepAliveResponseFromServerTimstamp.set(System.currentTimeMillis());
     }
 
     public void setNetworkConnectionLostObserver(Observer networkConnectionLostObserver) {

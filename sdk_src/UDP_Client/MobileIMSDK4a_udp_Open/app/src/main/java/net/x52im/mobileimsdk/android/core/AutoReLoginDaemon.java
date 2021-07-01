@@ -6,7 +6,7 @@
  * > Github地址：https://github.com/JackJiang2011/MobileIMSDK
  * > 文档地址：  http://www.52im.net/forum-89-1.html
  * > 技术社区：  http://www.52im.net/
- * > 技术交流群：215477170 (http://www.52im.net/topic-qqgroup.html)
+ * > 技术交流群：320837163 (http://www.52im.net/topic-qqgroup.html)
  * > 作者公众号：“即时通讯技术圈】”，欢迎关注！
  * > 联系作者：  http://www.52im.net/thread-2792-1-1.html
  *
@@ -17,8 +17,6 @@
 package net.x52im.mobileimsdk.android.core;
 
 import net.x52im.mobileimsdk.android.ClientCoreSDK;
-import net.x52im.mobileimsdk.android.conf.ConfigEntity;
-import net.x52im.mobileimsdk.android.core.LocalDataSender.SendLoginDataAsync;
 import net.x52im.mobileimsdk.android.utils.MBThreadPoolExecutor;
 
 import android.os.Handler;
@@ -59,7 +57,6 @@ public class AutoReLoginDaemon {
         handler = new Handler();
         runnable = () -> {
             if (!_excuting) {
-                // 在独立线程中执行doSendLogin()发送登陆请求，完成后在主线程中执行onSendLogin()
                 MBThreadPoolExecutor.runInBackground(() -> {
                     final int code = doSendLogin();
                     MBThreadPoolExecutor.runOnMainThread(() -> onSendLogin(code));
@@ -75,12 +72,8 @@ public class AutoReLoginDaemon {
         if (ClientCoreSDK.DEBUG)
             Log.d(TAG, "【IMCORE-UDP】自动重新登陆线程执行中, autoReLogin?" + ClientCoreSDK.autoReLogin + "...");
         int code = -1;
-        if (ClientCoreSDK.autoReLogin) {
-            code = LocalDataSender.getInstance().sendLogin(
-                    ClientCoreSDK.getInstance().getCurrentLoginUserId()
-                    , ClientCoreSDK.getInstance().getCurrentLoginToken()
-                    , ClientCoreSDK.getInstance().getCurrentLoginExtra());
-        }
+        if (ClientCoreSDK.autoReLogin) 
+			code = LocalDataSender.getInstance().sendLogin(ClientCoreSDK.getInstance().getCurrentLoginInfo());
         return code;
     }
 

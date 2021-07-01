@@ -21,10 +21,12 @@ import java.net.InetAddress;
 
 import net.x52im.mobileimsdk.android.ClientCoreSDK;
 import net.x52im.mobileimsdk.android.conf.ConfigEntity;
+import net.x52im.mobileimsdk.android.utils.MBAsyncTask;
 import net.x52im.mobileimsdk.android.utils.UDPUtils;
 import net.x52im.mobileimsdk.server.protocal.ErrorCode;
 import net.x52im.mobileimsdk.server.protocal.Protocal;
 import net.x52im.mobileimsdk.server.protocal.ProtocalFactory;
+import net.x52im.mobileimsdk.server.protocal.c.PLoginInfo;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -43,13 +45,11 @@ public class LocalDataSender {
     private LocalDataSender() {
     }
 
-    int sendLogin(String loginUserId, String loginToken, String extra) {
-        byte[] b = ProtocalFactory.createPLoginInfo(loginUserId, loginToken, extra).toBytes();
+    int sendLogin(PLoginInfo loginInfo){
+        byte[] b = ProtocalFactory.createPLoginInfo(loginInfo).toBytes();
         int code = send(b, b.length);
         if (code == 0) {
-            ClientCoreSDK.getInstance().setCurrentLoginUserId(loginUserId);
-            ClientCoreSDK.getInstance().setCurrentLoginToken(loginToken);
-            ClientCoreSDK.getInstance().setCurrentLoginExtra(extra);
+            ClientCoreSDK.getInstance().setCurrentLoginInfo(loginInfo);
         }
 
         return code;
@@ -107,15 +107,6 @@ public class LocalDataSender {
         if (!ClientCoreSDK.getInstance().isInitialed())
             return ErrorCode.ForC.CLIENT_SDK_NO_INITIALED;
 
-//		if(!ClientCoreSDK.getInstance().isLocalDeviceNetworkOk())
-//		{
-//			Log.e(TAG, "【IMCORE】本地网络不能工作，send数据没有继续!");
-//			return ErrorCode.ForC.LOCAL_NETWORK_NOT_WORKING;
-//		}
-
-//		if(!ClientCoreSDK.getInstance().isLogined())
-//			return ErrorCode.COMMON_NO_LOGIN;
-
         DatagramSocket ds = LocalSocketProvider.getInstance().getLocalSocket();
         if (ds != null && !ds.isConnected()) {
             try {
@@ -136,7 +127,7 @@ public class LocalDataSender {
 
     //------------------------------------------------------------------------------------------ utilities class
 
-    public static abstract class SendCommonDataAsync extends AsyncTask<Object, Integer, Integer> {
+    public static abstract class SendCommonDataAsync extends MBAsyncTask {
         protected Protocal p = null;
 
         public SendCommonDataAsync(String dataContentWidthStr, String to_user_id) {
@@ -163,7 +154,7 @@ public class LocalDataSender {
         @Override
         protected Integer doInBackground(Object... params) {
             if (p != null)
-                return LocalDataSender.getInstance().sendCommonData(p);//dataContentWidthStr, to_user_id);
+                return LocalDataSender.getInstance().sendCommonData(p);
             return -1;
         }
 
@@ -171,28 +162,16 @@ public class LocalDataSender {
         protected abstract void onPostExecute(Integer code);
     }
 
-    public static abstract class SendLoginDataAsync extends AsyncTask<Object, Integer, Integer> {
-        protected String loginUserId = null;
-        protected String loginToken = null;
-        protected String extra = null;
+    public static abstract class SendLoginDataAsync extends MBAsyncTask{
+        protected PLoginInfo loginInfo = null;
 
-        public SendLoginDataAsync(String loginUserId, String loginToken) {
-            this(loginUserId, loginToken, null);
-        }
-
-        public SendLoginDataAsync(String loginUserId, String loginToken, String extra) {
-            this.loginUserId = loginUserId;
-            this.loginToken = loginToken;
-            this.extra = extra;
-
-//			//### Bug Fix 2015-11-07 by Jack Jiang
-//			ClientCoreSDK.getInstance().init(context);
+        public SendLoginDataAsync(PLoginInfo loginInfo) {
+			this.loginInfo = loginInfo;
         }
 
         @Override
         protected Integer doInBackground(Object... params) {
-            int code = LocalDataSender.getInstance().sendLogin(loginUserId, loginToken, this.extra);
-            return code;
+            return LocalDataSender.getInstance().sendLogin(this.loginInfo);
         }
 
         @Override

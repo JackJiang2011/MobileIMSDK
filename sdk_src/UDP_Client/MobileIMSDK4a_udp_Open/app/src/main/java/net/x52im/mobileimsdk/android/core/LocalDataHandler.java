@@ -26,6 +26,7 @@ import net.x52im.mobileimsdk.server.protocal.Protocal;
 import net.x52im.mobileimsdk.server.protocal.ProtocalFactory;
 import net.x52im.mobileimsdk.server.protocal.ProtocalType;
 import net.x52im.mobileimsdk.server.protocal.s.PErrorResponse;
+import net.x52im.mobileimsdk.server.protocal.s.PKickoutInfo;
 import net.x52im.mobileimsdk.server.protocal.s.PLoginInfoResponse;
 
 import java.net.DatagramPacket;
@@ -48,7 +49,6 @@ class LocalDataHandler extends Handler {
 
             if (pFromServer.isQoS()) {
                 // # Bug FIX 20170620_001 START 【1/2】
-                // # [Bug描述]：当服务端认证接口返回非0的code时，客记端会进入自动登陆尝试死循环。
                 if (pFromServer.getType() == ProtocalType.S.FROM_SERVER_TYPE_OF_RESPONSE$LOGIN
                         && ProtocalFactory.parsePLoginInfoResponse(pFromServer.getDataContent()).getCode() != 0) {
                     if (ClientCoreSDK.DEBUG)
@@ -92,7 +92,10 @@ class LocalDataHandler extends Handler {
                     onServerResponseError(pFromServer);
                     break;
                 }
-
+				case ProtocalType.S.FROM_SERVER_TYPE_OF_KICKOUT: {
+					onKickout(pFromServer);
+					break;
+				}
                 default:
                     Log.w(TAG, "【IMCORE-UDP】收到的服务端消息类型：" + pFromServer.getType() + "，但目前该类型客户端不支持解析和处理！");
                     break;
@@ -129,6 +132,9 @@ class LocalDataHandler extends Handler {
     private void onServerResponseLogined(Protocal pFromServer) {
         PLoginInfoResponse loginInfoRes = ProtocalFactory.parsePLoginInfoResponse(pFromServer.getDataContent());
         if (loginInfoRes.getCode() == 0) {
+			if(!ClientCoreSDK.getInstance().isLoginHasInit()) {
+				ClientCoreSDK.getInstance().saveFirstLoginTime(loginInfoRes.getFirstLoginTime());
+			}
             fireConnectedToServer();
         } else {
 //			Log.d(TAG, "登陆验证失败，错误码="+loginInfoRes.getCode()+"！");
@@ -156,11 +162,24 @@ class LocalDataHandler extends Handler {
         }
 
         if (ClientCoreSDK.getInstance().getChatMessageEvent() != null) {
-            ClientCoreSDK.getInstance().getChatMessageEvent().onErrorResponse(
-                    errorRes.getErrorCode(), errorRes.getErrorMsg());
+            ClientCoreSDK.getInstance().getChatMessageEvent().onErrorResponse(errorRes.getErrorCode(), errorRes.getErrorMsg());
         }
     }
+	
+	protected void onKickout(Protocal pFromServer)
+	{
+		if (ClientCoreSDK.DEBUG)
+			Log.d(TAG, "【IMCORE-TCP】收到服务端发过来的“被踢”指令.");
 
+		ClientCoreSDK.getInstance().release();
+		PKickoutInfo kickoutInfo = ProtocalFactory.parsePKickoutInfo(pFromServer.getDataContent());
+
+		if(ClientCoreSDK.getInstance().getChatBaseEvent() != null)
+			ClientCoreSDK.getInstance().getChatBaseEvent().onKickout(kickoutInfo);
+
+		if(ClientCoreSDK.getInstance().getChatBaseEvent() != null)
+			ClientCoreSDK.getInstance().getChatBaseEvent().onLinkClose(-1);
+	}
     private void fireConnectedToServer() {
         ClientCoreSDK.getInstance().setLoginHasInit(true);
         AutoReLoginDaemon.getInstance().stop();
@@ -178,14 +197,14 @@ class LocalDataHandler extends Handler {
 //		QoS4SendDaemon.getInstance(context).stop();
 
         /** ## Bug FIX 20190326 [Bug 1] - STAT
-         ## [Bug 20190326_1 描述: 因socket未被释放，导致监听线程无法退出，从而导致OOM的发生] */
         LocalSocketProvider.getInstance().closeLocalSocket();
         /** ## Bug FIX 20190326 [Bug 1] - END */
 
         QoS4ReciveDaemon.getInstance().stop();
 
         ClientCoreSDK.getInstance().setConnectedToServer(false);
-        ClientCoreSDK.getInstance().getChatBaseEvent().onLinkClose(-1);
+		if(ClientCoreSDK.getInstance().getChatBaseEvent() != null)
+        	ClientCoreSDK.getInstance().getChatBaseEvent().onLinkClose(-1);
         AutoReLoginDaemon.getInstance().start(true);
     }
 
