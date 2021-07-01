@@ -27,11 +27,11 @@
                 android:ems="10"
                 android:textColor="@color/colorBlue"
                 android:textColorHint="@color/colorTextHint"
-                android:text="rbcore.52im.net"
+                android:text="192.168.0.111"
                 android:hint="Domain or ip address #"
                 android:paddingLeft="6dp"
                 android:paddingRight="6dp"
-                android:textSize="14sp" >
+                android:textSize="14sp" ><!-- rbcore.52im.net -->
 
                 <requestFocus />
             </EditText>
@@ -91,7 +91,7 @@
                 android:layout_height="40dp"
                 android:layout_weight="1"
                 android:background="@drawable/edittext_bg"
-                android:password="true"
+                android:inputType="textPassword"
                 android:ems="10"
                 android:singleLine="true"
                 android:hint="登陆密码"

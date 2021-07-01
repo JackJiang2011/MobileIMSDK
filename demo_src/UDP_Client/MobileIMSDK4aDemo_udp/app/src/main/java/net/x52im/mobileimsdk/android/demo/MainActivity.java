@@ -6,7 +6,7 @@
  * > Github地址：https://github.com/JackJiang2011/MobileIMSDK
  * > 文档地址：  http://www.52im.net/forum-89-1.html
  * > 技术社区：  http://www.52im.net/
- * > 技术交流群：215477170 (http://www.52im.net/topic-qqgroup.html)
+ * > 技术交流群：320837163 (http://www.52im.net/topic-qqgroup.html)
  * > 作者公众号：“即时通讯技术圈】”，欢迎关注！
  * > 联系作者：  http://www.52im.net/thread-2792-1-1.html
  *  
@@ -32,6 +32,7 @@ import net.x52im.mobileimsdk.android.demo.R;
 import net.x52im.mobileimsdk.android.ClientCoreSDK;
 import net.x52im.mobileimsdk.android.core.LocalDataSender;
 import net.x52im.mobileimsdk.android.demo.service.GeniusService;
+import net.x52im.mobileimsdk.android.utils.MBAsyncTask;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -45,6 +46,7 @@ import android.os.IBinder;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -82,8 +84,7 @@ public class MainActivity extends AppCompatActivity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		
-		//
+
 		this.setContentView(R.layout.demo_main_activity_layout);
 		
 		initViews();
@@ -116,14 +117,14 @@ public class MainActivity extends AppCompatActivity
 	{
 		super.onBackPressed();
 		
-		// ** 注意：Android程序要么就别处理，要处理就一定
-		//			要退干净，否则会有意想不到的问题哦！
+		// ** 注意：Android程序要么就别处理，要处理就一定要退干净，否则会有意想不到的问题哦！
 		// 退出登陆
 		doLogout();
 		// 退出程序
 		doExit();
 	}
-	
+
+	@Override
 	protected void onDestroy()
 	{
 		// 释放IM占用资源
@@ -153,7 +154,7 @@ public class MainActivity extends AppCompatActivity
 
 		this.viewMyid.setText(ClientCoreSDK.getInstance().getInstance().getCurrentLoginUserId());
 		
-		this.setTitle("MobileIMSDK_UDP v5 Demo");
+		this.setTitle("MobileIMSDK_UDP v6 Demo");
 
 		// just for debug START
 		this.initObserversForDEBUG();
@@ -178,6 +179,7 @@ public class MainActivity extends AppCompatActivity
 		refreshMyid();
 		
 		// Set MainGUI instance refrence to listeners
+		// * 说明：正式的APP项目中，建议在Application中管理IMClientManager类，确保SDK的生命周期同步于整个APP的生命周期
 		IMClientManager.getInstance(this).getTransDataListener().setMainGUI(this);
 		IMClientManager.getInstance(this).getBaseEventListener().setMainGUI(this);
 		IMClientManager.getInstance(this).getMessageQoSListener().setMainGUI(this);
@@ -207,7 +209,7 @@ public class MainActivity extends AppCompatActivity
 			showIMInfo_black("我对"+friendId+"说："+msg);
 			
 			// 发送消息（Android系统要求必须要在独立的线程中发送哦）
-		    new LocalDataSender.SendCommonDataAsync(msg, friendId)//, true)
+		    new LocalDataSender.SendCommonDataAsync(msg, friendId)
 			{
 				@Override
 				protected void onPostExecute(Integer code)
@@ -226,13 +228,13 @@ public class MainActivity extends AppCompatActivity
 		}
 	}
 	
-	private void doLogout()
+	public void doLogout()
 	{
 		// 发出退出登陆请求包（Android系统要求必须要在独立的线程中发送哦）
-		new AsyncTask<Object, Integer, Integer>(){
+		new MBAsyncTask()
+		{
 			@Override
-			protected Integer doInBackground(Object... params)
-			{
+			protected Integer doInBackground(Object... params) {
 				int code = -1;
 				try{
 					code = LocalDataSender.getInstance().sendLoginout();
@@ -250,8 +252,7 @@ public class MainActivity extends AppCompatActivity
 			}
 
 			@Override
-			protected void onPostExecute(Integer code)
-			{
+			protected void onPostExecute(Integer code) {
 				refreshMyid();
 				if(code == 0)
 					Log.d(MainActivity.class.getSimpleName(), "注销登陆请求已完成！");
@@ -260,9 +261,8 @@ public class MainActivity extends AppCompatActivity
 			}
 		}.execute();
 	}
-	
-	private void doExit()
-	{
+
+	public void doExit() {
 		finish();
 		System.exit(0);
 	}
@@ -296,14 +296,14 @@ public class MainActivity extends AppCompatActivity
 	 */
 	public class MyAdapter extends BaseAdapter
 	{
-		private List<Map<String, Object>> mData;
-        private LayoutInflater mInflater;
-        private SimpleDateFormat hhmmDataFormat = new SimpleDateFormat("HH:mm:ss");
+		private final List<Map<String, Object>> mData;
+        private final LayoutInflater mInflater;
+        private final SimpleDateFormat hhmmDataFormat = new SimpleDateFormat("HH:mm:ss");
          
         public MyAdapter(Context context)
         {
             this.mInflater = LayoutInflater.from(context);
-            mData = new ArrayList<Map<String, Object>>();
+            mData = new ArrayList<>();
         }
         
         public void addItem(String content, ChatInfoColorType color)
@@ -479,7 +479,7 @@ public class MainActivity extends AppCompatActivity
 		// 持续运行中
 		if(status == 1)
 			iv.setImageResource(R.drawable.green);
-			// 单次执行
+		// 单次执行
 		else if(status == 2) {
 			iv.setImageResource(R.drawable.thread_live_anim);
 			((AnimationDrawable) iv.getDrawable()).start();

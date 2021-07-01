@@ -16,12 +16,15 @@
  */
 package net.x52im.mobileimsdk.android.demo.event;
 
-import java.util.Observer;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.util.Log;
 
 import net.x52im.mobileimsdk.android.demo.MainActivity;
 import net.x52im.mobileimsdk.android.event.ChatBaseEvent;
+import net.x52im.mobileimsdk.server.protocal.s.PKickoutInfo;
 
-import android.util.Log;
+import java.util.Observer;
 
 /**
  * 与IM服务器的连接事件在此ChatBaseEvent子类中实现即可。
@@ -55,7 +58,7 @@ public class ChatBaseEventImpl implements ChatBaseEvent
 			if(this.mainGUI != null)
 			{
 				this.mainGUI.refreshMyid();
-//				this.mainGUI.showIMInfo_green("IM服务器登录/重连成功,errorCode="+errorCode);
+				this.mainGUI.showIMInfo_green("IM服务器登录/重连成功,errorCode="+errorCode);
 			}
 		}
 		else 
@@ -95,10 +98,51 @@ public class ChatBaseEventImpl implements ChatBaseEvent
 		if(this.mainGUI != null)
 		{
 			this.mainGUI.refreshMyid();
-//			this.mainGUI.showIMInfo_red("与IM服务器的连接已断开, 自动登陆/重连将启动! ("+errorCode+")");
+			this.mainGUI.showIMInfo_red("与IM服务器的连接已断开, 自动登陆/重连将启动! ("+errorCode+")");
 		}
 	}
-	
+
+	/**
+	 * 本的用户被服务端踢出的回调事件通知。
+	 *
+	 * @param kickoutInfo 被踢信息对象，{@link PKickoutInfo} 对象中的 code字段定义了被踢原因代码
+	 */
+	@Override
+	public void onKickout(PKickoutInfo kickoutInfo)
+	{
+		Log.e(TAG, "【DEBUG_UI】已收到服务端的\"被踢\"指令，kickoutInfo.code：" + kickoutInfo.getCode());
+
+		String alertContent = "";
+		if(kickoutInfo.getCode() == PKickoutInfo.KICKOUT_FOR_DUPLICATE_LOGIN){
+			alertContent = "账号已在其它地方登陆，当前会话已断开，请退出后重新登陆！";
+		}
+		else if(kickoutInfo.getCode() == PKickoutInfo.KICKOUT_FOR_ADMIN){
+			alertContent = "已被管理员强行踢出聊天，当前会话已断开！";
+		}
+		else{
+			alertContent = "你已被踢出聊天，当前会话已断开（kickoutReason="+kickoutInfo.getReason()+"）！";
+		}
+
+		if(this.mainGUI != null)
+			this.mainGUI.showIMInfo_red(alertContent);
+
+		if(mainGUI != null) {
+			new AlertDialog.Builder(mainGUI)
+					.setTitle("你被踢了")
+					.setMessage(alertContent)
+					.setPositiveButton("知道了！", new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							// 退出登陆
+							mainGUI.doLogout();
+							// 退出程序
+							mainGUI.doExit();
+						}
+					})
+					.show();
+		}
+	}
+
 	public void setLoginOkForLaunchObserver(Observer loginOkForLaunchObserver)
 	{
 		this.loginOkForLaunchObserver = loginOkForLaunchObserver;

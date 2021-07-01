@@ -6,9 +6,8 @@ android {
         applicationId "net.x52im.mobileimsdk.android.demo_udp"
         minSdkVersion 14
         targetSdkVersion 29
-        versionCode 105
-        versionName "v5.0.3b201016.1"
-        //testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        versionCode 104
+        versionName "v6.0b210701.1"
     }
     buildTypes {
         release {

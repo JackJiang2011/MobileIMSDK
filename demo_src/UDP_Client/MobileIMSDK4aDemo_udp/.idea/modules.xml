@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MobileIMSDK4aDemo_udp.iml" filepath="$PROJECT_DIR$/.idea/modules/MobileIMSDK4aDemo_udp.iml" group="MobileIMSDK4aDemo_udp" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="MobileIMSDK4aDemo_udp/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MobileIMSDK4aDemo_udp.iml" filepath="$PROJECT_DIR$/.idea/modules/MobileIMSDK4aDemo_udp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MobileIMSDK4aDemo_udp.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MobileIMSDK4aDemo_udp.app.iml" />
     </modules>
   </component>
 </project>
