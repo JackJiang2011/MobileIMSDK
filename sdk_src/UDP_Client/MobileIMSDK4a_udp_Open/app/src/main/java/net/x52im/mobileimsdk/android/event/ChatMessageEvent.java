@@ -16,8 +16,6 @@
  */
 package net.x52im.mobileimsdk.android.event;
 
-import net.x52im.mobileimsdk.android.ClientCoreSDK;
-
 public interface ChatMessageEvent {
     void onRecieveMessage(String fingerPrintOfProtocal, String userid, String dataContent, int typeu);
     void onErrorResponse(int errorCode, String errorMsg);
