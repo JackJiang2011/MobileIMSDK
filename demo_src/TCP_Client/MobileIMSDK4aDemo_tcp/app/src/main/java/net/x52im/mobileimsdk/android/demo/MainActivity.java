@@ -161,7 +161,8 @@ public class MainActivity extends AppCompatActivity
 		// just for debug END
 	}
 	
-	private void initListeners() {
+	private void initListeners() 
+	{
 		btnLogout.setOnClickListener(v -> {
 			// 退出登陆
 			doLogout();

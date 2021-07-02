@@ -98,7 +98,7 @@ public class ChatBaseEventImpl implements ChatBaseEvent
 		if(this.mainGUI != null)
 		{
 			this.mainGUI.refreshMyid();
-//			this.mainGUI.showIMInfo_red("与IM服务器的连接已断开, 自动登陆/重连将启动! ("+errorCode+")");
+			this.mainGUI.showIMInfo_red("与IM服务器的连接已断开, 自动登陆/重连将启动! ("+errorCode+")");
 		}
 	}
 
@@ -122,6 +122,9 @@ public class ChatBaseEventImpl implements ChatBaseEvent
 		else{
 			alertContent = "你已被踢出聊天，当前会话已断开（kickoutReason="+kickoutInfo.getReason()+"）！";
 		}
+
+		if(this.mainGUI != null)
+			this.mainGUI.showIMInfo_red(alertContent);
 
 		if(mainGUI != null) {
 			new AlertDialog.Builder(mainGUI)
