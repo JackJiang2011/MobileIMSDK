@@ -18,6 +18,8 @@ package net.x52im.mobileimsdk.server.protocal;
 
 import java.util.UUID;
 
+import net.x52im.mobileimsdk.server.ServerLauncher;
+
 import com.google.gson.Gson;
 
 public class Protocal
@@ -30,11 +32,9 @@ public class Protocal
 	protected String fp = null;
 	protected boolean QoS = false;
 	protected int typeu = -1;
-	protected long cm = -1;
-	protected long sm = -1;
-
+	
 	protected transient int retryCount = 0;
-
+	protected long sm = -1;
 	public Protocal(int type, String dataContent, String from, String to)
 	{
 		this(type, dataContent, from, to, -1);
@@ -143,16 +143,7 @@ public class Protocal
 	{
 		this.typeu = typeu;
 	}
-	
-	public long getCm()
-	{
-		return cm;
-	}
 
-	public void setCm(long cm)
-	{
-		this.cm = cm;
-	}
 
 	public long getSm()
 	{
@@ -181,11 +172,15 @@ public class Protocal
 				, this.getDataContent(), this.getFrom(), this.getTo(), this.isQoS(), this.getFp());
 		cloneP.setBridge(this.bridge); // since 3.0
 		cloneP.setTypeu(this.typeu);   // since 3.0
-		cloneP.setCm(this.cm);         // since 6.0
+//		cloneP.setCm(this.cm);         // since 6.0
 		cloneP.setSm(this.sm);         // since 6.0
 		return cloneP;
 	}
 	
+		public static long genServerTimestamp()
+	{
+		return System.currentTimeMillis();
+	}
 	public static String genFingerPrint()
 	{
 		return UUID.randomUUID().toString();

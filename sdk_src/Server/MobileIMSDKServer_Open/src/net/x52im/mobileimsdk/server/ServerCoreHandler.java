@@ -170,8 +170,9 @@ public class ServerCoreHandler
     	if(user_id != null)
     	{
 	    	Channel sessionInOnlinelist = OnlineProcessor.getInstance().getOnlineSession(user_id);
-	    	logger.info("[IMCORE-{}]{}的会话已关闭(user_id={})了..."
-	    			, Gateway.$(session), ServerToolKits.clientInfoToString(session), user_id);
+	    	
+	    	logger.info("[IMCORE-{}]{}的会话已关闭(user_id={}, firstLoginTime={})了..."
+	    			, Gateway.$(session), ServerToolKits.clientInfoToString(session), user_id, OnlineProcessor.getFirstLoginTimeFromChannel(session));
 	    	
 	    	// TODO just for DEBUG：以下代码仅作Debug之用，您随时可删除之！
 	    	{// DEBUG Start

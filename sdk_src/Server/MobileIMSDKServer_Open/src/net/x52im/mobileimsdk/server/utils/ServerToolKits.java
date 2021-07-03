@@ -30,7 +30,7 @@ import net.x52im.mobileimsdk.server.protocal.Protocal;
 import net.x52im.mobileimsdk.server.protocal.ProtocalFactory;
 
 public class ServerToolKits
-{
+{	
     public static void setSenseModeTCP(SenseModeTCP mode)
     {
     	int expire = 0;

@@ -133,4 +133,9 @@ public class ProtocalFactory
 	{
 		return new Protocal(ProtocalType.S.FROM_SERVER_TYPE_OF_KICKOUT, create(new PKickoutInfo(code, reason)), "0", to_user_id);
 	}
+	
+	public static PKickoutInfo parsePKickoutInfo(String dataContentOfProtocal)
+	{
+		return parse(dataContentOfProtocal, PKickoutInfo.class);
+	}
 }

@@ -24,6 +24,7 @@ import net.x52im.mobileimsdk.server.network.MBObserver;
 import net.x52im.mobileimsdk.server.processor.BridgeProcessor;
 import net.x52im.mobileimsdk.server.processor.OnlineProcessor;
 import net.x52im.mobileimsdk.server.protocal.Protocal;
+import net.x52im.mobileimsdk.server.protocal.ProtocalFactory;
 import net.x52im.mobileimsdk.server.qos.QoS4ReciveDaemonC2S;
 
 import org.slf4j.Logger;

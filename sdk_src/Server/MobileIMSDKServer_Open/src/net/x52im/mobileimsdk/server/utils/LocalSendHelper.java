@@ -22,6 +22,7 @@ import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import net.x52im.mobileimsdk.server.ServerCoreHandler;
+import net.x52im.mobileimsdk.server.ServerLauncher;
 import net.x52im.mobileimsdk.server.network.Gateway;
 import net.x52im.mobileimsdk.server.network.GatewayUDP;
 import net.x52im.mobileimsdk.server.network.MBObserver;
@@ -29,6 +30,7 @@ import net.x52im.mobileimsdk.server.processor.OnlineProcessor;
 import net.x52im.mobileimsdk.server.protocal.ErrorCode;
 import net.x52im.mobileimsdk.server.protocal.Protocal;
 import net.x52im.mobileimsdk.server.protocal.ProtocalFactory;
+import net.x52im.mobileimsdk.server.protocal.s.PKickoutInfo;
 import net.x52im.mobileimsdk.server.qos.QoS4SendDaemonS2C;
 
 import org.slf4j.Logger;
@@ -96,6 +98,9 @@ public class LocalSendHelper
 			{
 		    	if(p != null)
 		    	{
+		    		if(ServerLauncher.serverTimestamp)
+		    			p.setSm(Protocal.genServerTimestamp());
+		    		
 		    		Object to = null;
 		    		if(Gateway.isWebSocketChannel(session)){
 		    			final String res = p.toGsonString();

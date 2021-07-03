@@ -34,9 +34,7 @@ public abstract class ServerLauncher
 {
 	private static Logger logger = LoggerFactory.getLogger(ServerLauncher.class); 
 	
-	public static boolean debug = true;
-	/** @deprecated */
-	public static String appKey = null;
+	public static boolean serverTimestamp = false;
     public static boolean bridgeEnabled = false;
     public static int supportedGateways = 0;
 
