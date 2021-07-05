@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2020  即时通讯网(52im.net) & Jack Jiang.
- * The MobileIMSDK_UDP (MobileIMSDK v5.x UDP版) Project. 
+ * Copyright (C) 2021  即时通讯网(52im.net) & Jack Jiang.
+ * The MobileIMSDK_UDP (MobileIMSDK v6.x UDP版) Project. 
  * All rights reserved.
  * 
  * > Github地址：https://github.com/JackJiang2011/MobileIMSDK
@@ -12,7 +12,7 @@
  *  
  * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
  * 
- * ChatBaseEventImpl.java at 2020-8-19 16:02:09, code by Jack Jiang.
+ * ChatBaseEventImpl.java at 2021-7-2 23:04:01, code by Jack Jiang.
  */
 package net.x52im.mobileimsdk.android.demo.event;
 
