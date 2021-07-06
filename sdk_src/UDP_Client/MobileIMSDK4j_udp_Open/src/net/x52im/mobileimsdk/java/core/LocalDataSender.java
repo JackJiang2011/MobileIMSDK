@@ -110,13 +110,13 @@ public class LocalDataSender {
 		if (ds != null && !ds.isConnected()) {
 			try {
 				if (ConfigEntity.serverIP == null) {
-					Log.w(TAG, "【IMCORE_UDP】send数据没有继续，原因是ConfigEntity.server_ip==null!");
+					Log.w(TAG, "【IMCORE-UDP】send数据没有继续，原因是ConfigEntity.server_ip==null!");
 					return ErrorCode.ForC.TO_SERVER_NET_INFO_NOT_SETUP;
 				}
 
 				ds.connect(InetAddress.getByName(ConfigEntity.serverIP), ConfigEntity.serverPort);
 			} catch (Exception e) {
-				Log.w(TAG, "【IMCORE_UDP】send时出错，原因是：" + e.getMessage(), e);
+				Log.w(TAG, "【IMCORE-UDP】send时出错，原因是：" + e.getMessage(), e);
 				return ErrorCode.ForC.BAD_CONNECT_TO_SERVER;
 			}
 		}
@@ -141,7 +141,7 @@ public class LocalDataSender {
 
 		public SendCommonDataAsync(Protocal p) {
 			if (p == null) {
-				Log.w(TAG, "【IMCORE_UDP】无效的参数p==null!");
+				Log.w(TAG, "【IMCORE-UDP】无效的参数p==null!");
 				return;
 			}
 			this.p = p;
@@ -199,7 +199,7 @@ public class LocalDataSender {
 			if (code == 0) {
 				LocalDataReciever.getInstance().startup();
 			} else {
-				Log.d(TAG, "【IMCORE_UDP】数据发送失败, 错误码是：" + code + "！");
+				Log.d(TAG, "【IMCORE-UDP】数据发送失败, 错误码是：" + code + "！");
 			}
 
 			fireAfterSendLogin(code);

@@ -70,14 +70,14 @@ public class QoS4ReciveDaemon {
 				long delta = System.currentTimeMillis() - (recievedTime == null ? 0 : recievedTime);
 				if (delta >= MESSAGES_VALID_TIME) {
 					if (ClientCoreSDK.DEBUG)
-						Log.d(TAG, "【IMCORE_UDP】【QoS接收方】指纹为" + key + "的包已生存" + delta + "ms(最大允许" + MESSAGES_VALID_TIME + "ms), 马上将删除之.");
+						Log.d(TAG, "【IMCORE-UDP】【QoS接收方】指纹为" + key + "的包已生存" + delta + "ms(最大允许" + MESSAGES_VALID_TIME + "ms), 马上将删除之.");
 					recievedMessages.remove(key);
 				}
 			}
 		}
 
 		if (ClientCoreSDK.DEBUG)
-			Log.d(TAG, "【IMCORE_UDP】【QoS接收方】+++++ END 暂存处理线程正在运行中，当前长度" + recievedMessages.size() + ".");
+			Log.d(TAG, "【IMCORE-UDP】【QoS接收方】+++++ END 暂存处理线程正在运行中，当前长度" + recievedMessages.size() + ".");
 
 		_excuting = false;
 	}

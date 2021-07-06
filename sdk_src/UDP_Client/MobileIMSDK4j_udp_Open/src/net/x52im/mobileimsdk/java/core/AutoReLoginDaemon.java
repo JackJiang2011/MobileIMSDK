@@ -59,7 +59,7 @@ public class AutoReLoginDaemon {
 		if (!_excuting) {
 			_excuting = true;
 			if (ClientCoreSDK.DEBUG)
-				Log.p(TAG, "【IMCORE_UDP】自动重新登陆线程执行中, autoReLogin?"+ ClientCoreSDK.autoReLogin + "...");
+				Log.p(TAG, "【IMCORE-UDP】自动重新登陆线程执行中, autoReLogin?"+ ClientCoreSDK.autoReLogin + "...");
 			int code = -1;
 			if (ClientCoreSDK.autoReLogin) {
 				LocalSocketProvider.getInstance().closeLocalSocket();

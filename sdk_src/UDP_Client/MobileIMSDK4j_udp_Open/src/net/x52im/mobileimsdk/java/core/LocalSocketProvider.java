@@ -55,7 +55,7 @@ public class LocalSocketProvider {
 
 			return localSocket;
 		} catch (Exception e) {
-			Log.w(TAG, "【IMCORE_UDP】localSocket创建时出错，原因是：" + e.getMessage(), e);
+			Log.w(TAG, "【IMCORE-UDP】localSocket创建时出错，原因是：" + e.getMessage(), e);
 			closeLocalSocket();
 			return null;
 		}
