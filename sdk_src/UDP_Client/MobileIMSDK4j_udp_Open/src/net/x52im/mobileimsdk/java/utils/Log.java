@@ -205,13 +205,11 @@ public class Log {
 			lv = "FETAL";
 			break;
 		}
-
-		if (level > logLevel) {
-			String txt = " " + lv + " - " + msg
-					+ (ex == null ? "" : "(" + ex.getMessage() + ")") + " ["
-					+ (new Date().toLocaleString()) + "]\r\n";
-			if (logDestType == DEST_RICH_TEXT_COM) {
-				try {
+		
+		if(level>logLevel){
+			String txt=" "+lv+" - "+msg+(ex == null?"":"("+ex.getMessage()+")")+" ["+(new Date().toLocaleString())+"]\r\n";
+			if(logDestType==DEST_RICH_TEXT_COM){
+				try{
 					Log.append(fc, txt, richTextDest);
 					richTextDest.setCaretPosition(richTextDest.getDocument()
 							.getLength());
@@ -234,17 +232,13 @@ public class Log {
 	/**
 	 * 添加字符串到目标JTextPane中,并设定字符串颜色(注意目前仅仅是实现设置颜色).
 	 * 
-	 * @param c
-	 *            文本颜色
-	 * @param s
-	 *            文本内容
-	 * @param p
-	 *            目标面板
+	 * @param c 文本颜色
+	 * @param s 文本内容
+	 * @param p 目标面板
 	 */
 	public static void append(final Color c, final String s, final JTextPane p) {
 		// 以下代码因会从独立的Thread中调用，所以需要借用SwingUtilities.invokeLater()，
-		// 否则会报错：”Exception in thread "Thread-22" java.lang.Error: Interrupted
-		// attempt to aquire write lock“
+		// 否则会报错：”Exception in thread "Thread-22" java.lang.Error: Interrupted attempt to aquire write lock“
 		Runnable runnable = new Runnable() {
 			public void run() {
 				try {

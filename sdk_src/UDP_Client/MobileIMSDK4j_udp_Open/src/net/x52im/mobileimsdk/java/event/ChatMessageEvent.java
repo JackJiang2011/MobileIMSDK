@@ -17,6 +17,6 @@
 package net.x52im.mobileimsdk.java.event;
 
 public interface ChatMessageEvent{
-	public void onRecieveMessage(String fingerPrintOfProtocal, String userid, String dataContent, int typeu);
-	public void onErrorResponse(int errorCode, String errorMsg);
+	void onRecieveMessage(String fingerPrintOfProtocal, String userid, String dataContent, int typeu);
+	void onErrorResponse(int errorCode, String errorMsg);
 }

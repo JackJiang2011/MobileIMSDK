@@ -12,7 +12,7 @@
  *  
  * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
  * 
- * AutoReLoginDaemon.java at 2020-8-21 14:57:42, code by Jack Jiang.
+ * AutoReLoginDaemon.java at 2020-8-21 14:56:14, code by Jack Jiang.
  */
 package net.x52im.mobileimsdk.java.core;
 
@@ -63,10 +63,8 @@ public class AutoReLoginDaemon {
 			int code = -1;
 			if (ClientCoreSDK.autoReLogin) {
 				LocalSocketProvider.getInstance().closeLocalSocket();
-				code = LocalDataSender.getInstance().sendLogin(
-						ClientCoreSDK.getInstance().getCurrentLoginUserId(),
-						ClientCoreSDK.getInstance().getCurrentLoginToken(),
-						ClientCoreSDK.getInstance().getCurrentLoginExtra());
+				code = LocalDataSender.getInstance().sendLogin(ClientCoreSDK.getInstance().getCurrentLoginInfo());
+
 			}
 
 			if (code == 0) {

@@ -63,7 +63,7 @@ public class QoS4ReciveDaemon {
 			_excuting = true;
 
 			if (ClientCoreSDK.DEBUG)
-				Log.d(TAG, "【IMCORE_UDP】【QoS接收方】+++++ START 暂存处理线程正在运行中，当前长度" + recievedMessages.size() + ".");
+				Log.d(TAG, "【IMCORE-UDP】【QoS接收方】+++++ START 暂存处理线程正在运行中，当前长度" + recievedMessages.size() + ".");
 
 			for (String key : recievedMessages.keySet()) {
 				Long recievedTime = recievedMessages.get(key);
@@ -117,12 +117,12 @@ public class QoS4ReciveDaemon {
 
 	public void addRecieved(String fingerPrintOfProtocal) {
 		if (fingerPrintOfProtocal == null) {
-			Log.w(TAG, "【IMCORE_UDP】无效的 fingerPrintOfProtocal==null!");
+			Log.w(TAG, "【IMCORE-UDP】无效的 fingerPrintOfProtocal==null!");
 			return;
 		}
 
 		if (recievedMessages.containsKey(fingerPrintOfProtocal))
-			Log.w(TAG, "【IMCORE_UDP】【QoS接收方】指纹为" + fingerPrintOfProtocal
+			Log.w(TAG, "【IMCORE-UDP】【QoS接收方】指纹为" + fingerPrintOfProtocal
 					+ "的消息已经存在于接收列表中，该消息重复了（原理可能是对方因未收到应答包而错误重传导致），更新收到时间戳哦.");
 
 		putImpl(fingerPrintOfProtocal);

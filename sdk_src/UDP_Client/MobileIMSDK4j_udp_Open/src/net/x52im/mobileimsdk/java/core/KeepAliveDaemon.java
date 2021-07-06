@@ -12,13 +12,14 @@
  *  
  * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
  * 
- * KeepAliveDaemon.java at 2020-8-21 14:57:42, code by Jack Jiang.
+ * KeepAliveDaemon.java at 2020-8-21 14:56:14, code by Jack Jiang.
  */
 package net.x52im.mobileimsdk.java.core;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observer;
+import java.util.concurrent.atomic.AtomicLong;
 
 import javax.swing.Timer;
 
@@ -34,7 +35,7 @@ public class KeepAliveDaemon {
 	public static int KEEP_ALIVE_INTERVAL = 3000;// 1000;
 
 	private boolean keepAliveRunning = false;
-	private long lastGetKeepAliveResponseFromServerTimstamp = 0;
+	private AtomicLong lastGetKeepAliveResponseFromServerTimstamp = new AtomicLong(0);
 	private Observer networkConnectionLostObserver = null;
 	private boolean _excuting = false;
 	private Timer timer = null;
@@ -65,13 +66,13 @@ public class KeepAliveDaemon {
 				Log.i(TAG, "【IMCORE_UDP】心跳线程执行中...");
 			int code = LocalDataSender.getInstance().sendKeepAlive();
 
-			boolean isInitialedForKeepAlive = (lastGetKeepAliveResponseFromServerTimstamp == 0);
+			boolean isInitialedForKeepAlive = (lastGetKeepAliveResponseFromServerTimstamp.longValue() == 0);
 			if (isInitialedForKeepAlive)
-				lastGetKeepAliveResponseFromServerTimstamp = System.currentTimeMillis();
+				lastGetKeepAliveResponseFromServerTimstamp.set(System.currentTimeMillis());
 
 			if (!isInitialedForKeepAlive) {
 				long now = System.currentTimeMillis();
-				if (now - lastGetKeepAliveResponseFromServerTimstamp >= NETWORK_CONNECTION_TIME_OUT) {
+				if (now - lastGetKeepAliveResponseFromServerTimstamp.longValue() >= NETWORK_CONNECTION_TIME_OUT) {
 					stop();
 					if (networkConnectionLostObserver != null)
 						networkConnectionLostObserver.update(null, null);
@@ -92,7 +93,7 @@ public class KeepAliveDaemon {
 		if (timer != null)
 			timer.stop();
 		keepAliveRunning = false;
-		lastGetKeepAliveResponseFromServerTimstamp = 0;
+		lastGetKeepAliveResponseFromServerTimstamp.set(0);
 	}
 
 	public void start(boolean immediately) {
@@ -112,11 +113,10 @@ public class KeepAliveDaemon {
 	}
 
 	public void updateGetKeepAliveResponseFromServerTimstamp() {
-		lastGetKeepAliveResponseFromServerTimstamp = System.currentTimeMillis();
+		lastGetKeepAliveResponseFromServerTimstamp.set(System.currentTimeMillis());
 	}
 
-	public void setNetworkConnectionLostObserver(
-			Observer networkConnectionLostObserver) {
+	public void setNetworkConnectionLostObserver(Observer networkConnectionLostObserver) {
 		this.networkConnectionLostObserver = networkConnectionLostObserver;
 	}
 }

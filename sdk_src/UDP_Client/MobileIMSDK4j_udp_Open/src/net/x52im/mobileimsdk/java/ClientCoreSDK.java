@@ -12,7 +12,7 @@
  *  
  * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
  * 
- * ClientCoreSDK.java at 2020-8-21 14:57:42, code by Jack Jiang.
+ * ClientCoreSDK.java at 2020-8-21 14:56:14, code by Jack Jiang.
  */
 package net.x52im.mobileimsdk.java;
 
@@ -25,10 +25,9 @@ import net.x52im.mobileimsdk.java.core.QoS4SendDaemon;
 import net.x52im.mobileimsdk.java.event.ChatBaseEvent;
 import net.x52im.mobileimsdk.java.event.ChatMessageEvent;
 import net.x52im.mobileimsdk.java.event.MessageQoSEvent;
+import net.x52im.mobileimsdk.server.protocal.c.PLoginInfo;
 
 public class ClientCoreSDK {
-	private final static String TAG = ClientCoreSDK.class.getSimpleName();
-
 	public static boolean DEBUG = true;
 	public static boolean autoReLogin = true;
 
@@ -37,9 +36,7 @@ public class ClientCoreSDK {
 	private boolean _init = false;
 	private boolean connectedToServer = true;
 	private boolean loginHasInit = false;
-	private String currentLoginUserId = null;
-	private String currentLoginToken = null;
-	private String currentLoginExtra = null;
+	private PLoginInfo currentLoginInfo = null;
 
 	private ChatBaseEvent chatBaseEvent = null;
 	private ChatMessageEvent chatMessageEvent = null;
@@ -62,16 +59,14 @@ public class ClientCoreSDK {
 
 	public void release() {
 		LocalSocketProvider.getInstance().closeLocalSocket();
-		AutoReLoginDaemon.getInstance().stop(); // 2014-11-08 add by Jack Jiang
+		AutoReLoginDaemon.getInstance().stop(); 
 		QoS4SendDaemon.getInstance().stop();
 		KeepAliveDaemon.getInstance().stop();
 		LocalDataReciever.getInstance().stop();
 		QoS4ReciveDaemon.getInstance().stop();
 
-		// ## Bug FIX: 20180103 by Jack Jiang START
 		QoS4SendDaemon.getInstance().clear();
 		QoS4ReciveDaemon.getInstance().clear();
-		// ## Bug FIX: 20180103 by Jack Jiang END
 
 		_init = false;
 
@@ -79,30 +74,38 @@ public class ClientCoreSDK {
 		this.setConnectedToServer(false);
 	}
 
-	public String getCurrentLoginUserId() {
-		return currentLoginUserId;
+	public void setCurrentLoginInfo(PLoginInfo currentLoginInfo)
+	{
+		this.currentLoginInfo = currentLoginInfo;
 	}
 
-	public ClientCoreSDK setCurrentLoginUserId(String currentLoginUserId) {
-		this.currentLoginUserId = currentLoginUserId;
-		return this;
+	public PLoginInfo getCurrentLoginInfo()
+	{
+		return this.currentLoginInfo;
 	}
 
-	public String getCurrentLoginToken() {
-		return currentLoginToken;
+	public void saveFirstLoginTime(long firstLoginTime)
+	{
+		if(this.currentLoginInfo != null)
+			this.currentLoginInfo.setFirstLoginTime(firstLoginTime);
 	}
 
-	public void setCurrentLoginToken(String currentLoginToken) {
-		this.currentLoginToken = currentLoginToken;
+	@Deprecated
+	public String getCurrentLoginUserId()
+	{
+		return this.currentLoginInfo.getLoginUserId();
 	}
 
-	public String getCurrentLoginExtra() {
-		return currentLoginExtra;
+	@Deprecated
+	public String getCurrentLoginToken()
+	{
+		return this.currentLoginInfo.getLoginToken();
 	}
 
-	public ClientCoreSDK setCurrentLoginExtra(String currentLoginExtra) {
-		this.currentLoginExtra = currentLoginExtra;
-		return this;
+	@Deprecated
+	public String getCurrentLoginExtra()
+	{
+		return this.currentLoginInfo.getExtra();
 	}
 
 	public boolean isLoginHasInit() {
@@ -134,8 +137,8 @@ public class ClientCoreSDK {
 		return chatBaseEvent;
 	}
 
-	public void setChatMessageEvent(ChatMessageEvent chatMeesageEvent) {
-		this.chatMessageEvent = chatMeesageEvent;
+	public void setChatMessageEvent(ChatMessageEvent chatMessageEvent) {
+		this.chatMessageEvent = chatMessageEvent;
 	}
 
 	public ChatMessageEvent getChatMessageEvent() {

@@ -12,7 +12,7 @@
  *  
  * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
  * 
- * LocalUDPDataReciever.java at 2020-8-21 14:57:42, code by Jack Jiang.
+ * LocalDataReciever.java at 2020-8-21 14:56:14, code by Jack Jiang.
  */
 package net.x52im.mobileimsdk.java.core;
 
@@ -29,6 +29,7 @@ import net.x52im.mobileimsdk.server.protocal.Protocal;
 import net.x52im.mobileimsdk.server.protocal.ProtocalFactory;
 import net.x52im.mobileimsdk.server.protocal.ProtocalType;
 import net.x52im.mobileimsdk.server.protocal.s.PErrorResponse;
+import net.x52im.mobileimsdk.server.protocal.s.PKickoutInfo;
 import net.x52im.mobileimsdk.server.protocal.s.PLoginInfoResponse;
 
 public class LocalDataReciever
@@ -188,6 +189,10 @@ public class LocalDataReciever
 						PLoginInfoResponse loginInfoRes = ProtocalFactory.parsePLoginInfoResponse(pFromServer.getDataContent());
 						if(loginInfoRes.getCode() == 0)
 						{
+							if(!ClientCoreSDK.getInstance().isLoginHasInit()) {
+								ClientCoreSDK.getInstance().saveFirstLoginTime(loginInfoRes.getFirstLoginTime());
+							}
+							
 							ClientCoreSDK.getInstance().setLoginHasInit(true);
 							AutoReLoginDaemon.getInstance().stop();
 							KeepAliveDaemon.getInstance().setNetworkConnectionLostObserver(new Observer(){
@@ -201,7 +206,8 @@ public class LocalDataReciever
 									QoS4ReciveDaemon.getInstance().stop();
 									ClientCoreSDK.getInstance().setConnectedToServer(false);
 //									LocalUDPSocketProvider.getInstance().closeLocalUDPSocket();
-									ClientCoreSDK.getInstance().getChatBaseEvent().onLinkClose(-1);
+									if(ClientCoreSDK.getInstance().getChatBaseEvent() != null)
+										ClientCoreSDK.getInstance().getChatBaseEvent().onLinkClose(-1);
 									AutoReLoginDaemon.getInstance().start(true);
 								}
 							});
@@ -217,10 +223,7 @@ public class LocalDataReciever
 						}
 							
 						if(ClientCoreSDK.getInstance().getChatBaseEvent() != null)
-						{
-							ClientCoreSDK.getInstance().getChatBaseEvent().onLoginResponse(
-								loginInfoRes.getCode());
-						}
+							ClientCoreSDK.getInstance().getChatBaseEvent().onLoginResponse(loginInfoRes.getCode());
 						
 						break;
 					}
@@ -237,8 +240,7 @@ public class LocalDataReciever
 						
 						if(ClientCoreSDK.getInstance().getChatMessageEvent() != null)
 						{
-							ClientCoreSDK.getInstance().getChatMessageEvent().onErrorResponse(
-									errorRes.getErrorCode(), errorRes.getErrorMsg());
+							ClientCoreSDK.getInstance().getChatMessageEvent().onErrorResponse(errorRes.getErrorCode(), errorRes.getErrorMsg());
 						}
 						break;
 					}
@@ -252,6 +254,21 @@ public class LocalDataReciever
 			{
 				Log.w(TAG, "【IMCORE_UDP】处理消息的过程中发生了错误.", e);
 			}
+		}
+		
+		protected void onKickout(Protocal pFromServer)
+		{
+			if (ClientCoreSDK.DEBUG)
+				Log.d(TAG, "【IMCORE-UDP】收到服务端发过来的“被踢”指令.");
+
+			ClientCoreSDK.getInstance().release();
+
+			PKickoutInfo kickoutInfo = ProtocalFactory.parsePKickoutInfo(pFromServer.getDataContent());
+			if(ClientCoreSDK.getInstance().getChatBaseEvent() != null)
+				ClientCoreSDK.getInstance().getChatBaseEvent().onKickout(kickoutInfo);
+
+			if(ClientCoreSDK.getInstance().getChatBaseEvent() != null)
+				ClientCoreSDK.getInstance().getChatBaseEvent().onLinkClose(-1);
 		}
 		
 		private void sendRecievedBack(final Protocal pFromServer)

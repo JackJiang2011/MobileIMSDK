@@ -12,7 +12,7 @@
  *  
  * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
  * 
- * LocalUDPDataSender.java at 2020-8-21 14:57:42, code by Jack Jiang.
+ * LocalDataSender.java at 2020-8-21 14:56:14, code by Jack Jiang.
  */
 package net.x52im.mobileimsdk.java.core;
 
@@ -26,6 +26,7 @@ import net.x52im.mobileimsdk.java.utils.UDPUtils;
 import net.x52im.mobileimsdk.server.protocal.ErrorCode;
 import net.x52im.mobileimsdk.server.protocal.Protocal;
 import net.x52im.mobileimsdk.server.protocal.ProtocalFactory;
+import net.x52im.mobileimsdk.server.protocal.c.PLoginInfo;
 
 import org.jdesktop.swingworker.SwingWorker;
 
@@ -43,13 +44,11 @@ public class LocalDataSender {
 	private LocalDataSender() {
 	}
 
-	int sendLogin(String loginUserId, String loginToken, String extra) {
-		byte[] b = ProtocalFactory.createPLoginInfo(loginUserId, loginToken,extra).toBytes();
+	int sendLogin(PLoginInfo loginInfo) {
+		byte[] b = ProtocalFactory.createPLoginInfo(loginInfo).toBytes();
 		int code = send(b, b.length);
 		if (code == 0) {
-			ClientCoreSDK.getInstance().setCurrentLoginUserId(loginUserId);
-			ClientCoreSDK.getInstance().setCurrentLoginToken(loginToken);
-			ClientCoreSDK.getInstance().setCurrentLoginExtra(extra);
+			ClientCoreSDK.getInstance().setCurrentLoginInfo(loginInfo);
 		}
 
 		return code;
@@ -77,8 +76,7 @@ public class LocalDataSender {
 		return sendCommonData(dataContentWidthStr, to_user_id, -1);
 	}
 
-	public int sendCommonData(String dataContentWidthStr, String to_user_id,
-			int typeu) {
+	public int sendCommonData(String dataContentWidthStr, String to_user_id, int typeu) {
 		return sendCommonData(dataContentWidthStr, to_user_id, null, typeu);
 	}
 
@@ -152,8 +150,7 @@ public class LocalDataSender {
 		@Override
 		protected Integer doInBackground() {
 			if (p != null)
-				return LocalDataSender.getInstance().sendCommonData(p);// dataContentWidthStr,
-																		// to_user_id);
+				return LocalDataSender.getInstance().sendCommonData(p);// dataContentWidthStr, to_user_id);
 			return -1;
 		}
 
@@ -173,25 +170,16 @@ public class LocalDataSender {
 	}
 
 	public static class SendLoginDataAsync extends SwingWorker<Integer, Object> {
-		protected String loginUserId = null;
-		protected String loginToken = null;
-		protected String extra = null;
+		protected PLoginInfo loginInfo = null;
 
-		public SendLoginDataAsync(String loginUserId, String loginToken) {
-			this(loginUserId, loginToken, null);
-		}
-
-		public SendLoginDataAsync(String loginUserId, String loginToken, String extra) {
-			this.loginUserId = loginUserId;
-			this.loginToken = loginToken;
-			this.extra = extra;
-
+		public SendLoginDataAsync(PLoginInfo loginInfo) {
+			this.loginInfo = loginInfo;
 			ClientCoreSDK.getInstance().init();
 		}
 
 		@Override
 		protected Integer doInBackground() {
-			int code = LocalDataSender.getInstance().sendLogin(this.loginUserId, this.loginToken, this.extra);
+			int code = LocalDataSender.getInstance().sendLogin(this.loginInfo);
 			return code;
 		}
 

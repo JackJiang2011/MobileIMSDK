@@ -12,7 +12,7 @@
  *  
  * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
  * 
- * LocalUDPSocketProvider.java at 2020-8-21 14:57:42, code by Jack Jiang.
+ * LocalSocketProvider.java at 2020-8-21 14:56:14, code by Jack Jiang.
  */
 package net.x52im.mobileimsdk.java.core;
 
@@ -44,14 +44,14 @@ public class LocalSocketProvider {
 			closeLocalSocket();
 
 			// if(ClientCoreSDK.DEBUG)
-			// Log.d(TAG, "【IMCORE】new DatagramSocket()中...");
+			// 		Log.d(TAG, "【IMCORE】new DatagramSocket()中...");
 
 			localSocket = (ConfigEntity.localPort == 0 ? new DatagramSocket()
-					: new DatagramSocket(ConfigEntity.localPort));// _Utils.LOCAL_UDP_SEND$LISTENING_PORT);
+					: new DatagramSocket(ConfigEntity.localPort));
 			localSocket.setReuseAddress(true);
 
 			// if(ClientCoreSDK.DEBUG)
-			// Log.d(TAG, "【IMCORE】new DatagramSocket()已成功完成.");
+			// 		Log.d(TAG, "【IMCORE】new DatagramSocket()已成功完成.");
 
 			return localSocket;
 		} catch (Exception e) {
@@ -68,13 +68,11 @@ public class LocalSocketProvider {
 	public DatagramSocket getLocalSocket() {
 		if (isLocalSocketReady()) {
 			// if(ClientCoreSDK.DEBUG)
-			// Log.d(TAG,
-			// "【IMCORE】isLocalSocketReady()==true，直接返回本地socket引用哦。");
+			// 		Log.d(TAG, "【IMCORE-UDP】isLocalSocketReady()==true，直接返回本地socket引用哦。");
 			return localSocket;
 		} else {
 			// if(ClientCoreSDK.DEBUG)
-			// Log.d(TAG,
-			// "【IMCORE】isLocalSocketReady()==false，需要先resetLocalUDPSocket()...");
+			// 		Log.d(TAG, "【IMCORE-UDP】isLocalSocketReady()==false，需要先resetLocalUDPSocket()...");
 			return resetLocalSocket();
 		}
 	}
@@ -86,18 +84,18 @@ public class LocalSocketProvider {
 	public void closeLocalSocket(boolean silent) {
 		try {
 			if (ClientCoreSDK.DEBUG && !silent)
-				Log.d(TAG, "【IMCORE_UDP】正在closeLocalSocket()...");
+				Log.d(TAG, "【IMCORE-UDP】正在closeLocalSocket()...");
 
 			if (localSocket != null) {
 				localSocket.close();
 				localSocket = null;
 			} else {
 				if (!silent)
-					Log.d(TAG, "【IMCORE_UDP】Socket处于未初化状态（可能是您还未登陆），无需关闭。");
+					Log.d(TAG, "【IMCORE-UDP】Socket处于未初化状态（可能是您还未登陆），无需关闭。");
 			}
 		} catch (Exception e) {
 			if (!silent)
-				Log.w(TAG, "【IMCORE_UDP】closeLocalSocket时出错，原因是：" + e.getMessage(), e);
+				Log.w(TAG, "【IMCORE-UDP】closeLocalSocket时出错，原因是：" + e.getMessage(), e);
 		}
 	}
 }
