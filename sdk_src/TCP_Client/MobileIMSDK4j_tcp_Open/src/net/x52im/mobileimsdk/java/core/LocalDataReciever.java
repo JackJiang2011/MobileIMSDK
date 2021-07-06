@@ -26,6 +26,7 @@ import net.x52im.mobileimsdk.server.protocal.Protocal;
 import net.x52im.mobileimsdk.server.protocal.ProtocalFactory;
 import net.x52im.mobileimsdk.server.protocal.ProtocalType;
 import net.x52im.mobileimsdk.server.protocal.s.PErrorResponse;
+import net.x52im.mobileimsdk.server.protocal.s.PKickoutInfo;
 import net.x52im.mobileimsdk.server.protocal.s.PLoginInfoResponse;
 
 public class LocalDataReciever
@@ -36,10 +37,8 @@ public class LocalDataReciever
 	
 	public static LocalDataReciever getInstance()
 	{
-		if(instance == null)
-		{
+		if(instance == null){
 			instance = new LocalDataReciever();
-//			messageHandler = new MessageHandler();
 		}
 		return instance;
 	}
@@ -50,38 +49,21 @@ public class LocalDataReciever
 	
 	public void handleProtocal(final byte[] fullProtocalOfBody)
 	{
-		if(fullProtocalOfBody == null || fullProtocalOfBody.length == 0)
-		{
+		if(fullProtocalOfBody == null || fullProtocalOfBody.length == 0){
 			Log.d(TAG, "【IMCORE-TCP】无效的fullProtocalOfBody（null 或 .length == 0）！");
 			return;
 		}
 
-		try
-		{
+		try{
 			final Protocal pFromServer = ProtocalFactory.parse(fullProtocalOfBody, fullProtocalOfBody.length);
-			if(pFromServer.isQoS())
-			{
-				// # Bug FIX B20170620_001 START 【1/2】
-				// # [Bug描述]：当服务端认证接口返回非0的code时，客记端会进入自动登陆尝试死循环。
-				// # [Bug原因]：原因在于客户端收到服务端的响应包时，因服务端发过来的包需要QoS，客
-				//              户端会先发送一个ACK包，那么此ACK包到达服务端后会因客户端“未登陆”
-				//              而再次发送一“未登陆”错误信息包给客户端，客户端在收到此包后会触发
-				//              自动登陆重试，进而进入死循环。
-				// # [解决方法]：客户端判定当收到的是服务端的登陆响应包且code不等于0就不需要回ACK
-				//              包给服务端。
-				// # [此解决方法带来的服务端表现]：服务端会因客户端网络关闭而将响应包进行重传直到
-				//              超时丢弃，但并不影响什么。
+			if(pFromServer.isQoS()){
 				if(pFromServer.getType() == ProtocalType.S.FROM_SERVER_TYPE_OF_RESPONSE$LOGIN
-						&& ProtocalFactory.parsePLoginInfoResponse(pFromServer.getDataContent()).getCode() != 0)
-				{
+						&& ProtocalFactory.parsePLoginInfoResponse(pFromServer.getDataContent()).getCode() != 0){
 					if(ClientCoreSDK.DEBUG)
 						Log.d(TAG, "【IMCORE-TCP】【BugFIX】这是服务端的登陆返回响应包，" +"且服务端判定登陆失败(即code!=0)，本次无需发送ACK应答包！");
 				}
-				// # Bug FIX 20170620 END 【1/2】
-				else
-				{
-					if(QoS4ReciveDaemon.getInstance().hasRecieved(pFromServer.getFp()))
-					{
+				else{
+					if(QoS4ReciveDaemon.getInstance().hasRecieved(pFromServer.getFp())){
 						if(ClientCoreSDK.DEBUG)
 							Log.d(TAG, "【IMCORE-TCP】【QoS机制】"+pFromServer.getFp()+"已经存在于发送列表中，这是重复包，通知应用层收到该包罗！");
 
@@ -96,31 +78,29 @@ public class LocalDataReciever
 				}
 			}
 
-			switch(pFromServer.getType())
-			{
-				case ProtocalType.C.FROM_CLIENT_TYPE_OF_COMMON$DATA:
-				{
+			switch(pFromServer.getType()){
+				case ProtocalType.C.FROM_CLIENT_TYPE_OF_COMMON$DATA:{
 					onRecievedCommonData(pFromServer);
 					break;
 				}
-				case ProtocalType.S.FROM_SERVER_TYPE_OF_RESPONSE$KEEP$ALIVE:
-				{
+				case ProtocalType.S.FROM_SERVER_TYPE_OF_RESPONSE$KEEP$ALIVE:{
 					onServerResponseKeepAlive();
 					break;
 				}
-				case ProtocalType.C.FROM_CLIENT_TYPE_OF_RECIVED:
-				{
+				case ProtocalType.C.FROM_CLIENT_TYPE_OF_RECIVED:{
 					onMessageRecievedACK(pFromServer);
 					break;
 				}
-				case ProtocalType.S.FROM_SERVER_TYPE_OF_RESPONSE$LOGIN:
-				{
+				case ProtocalType.S.FROM_SERVER_TYPE_OF_RESPONSE$LOGIN:{
 					onServerResponseLogined(pFromServer);
 					break;
 				}
-				case ProtocalType.S.FROM_SERVER_TYPE_OF_RESPONSE$FOR$ERROR:
-				{
+				case ProtocalType.S.FROM_SERVER_TYPE_OF_RESPONSE$FOR$ERROR:{
 					onServerResponseError(pFromServer);
+					break;
+				}
+				case ProtocalType.S.FROM_SERVER_TYPE_OF_KICKOUT:{
+					onKickout(pFromServer);
 					break;
 				}
 				default:
@@ -128,19 +108,16 @@ public class LocalDataReciever
 					break;
 			}
 		}
-		catch (Exception e)
-		{
+		catch (Exception e){
 			Log.w(TAG, "【IMCORE-TCP】处理消息的过程中发生了错误.", e);
 		}
 	}
 	
 	protected void onRecievedCommonData(Protocal pFromServer)
 	{
-		if(ClientCoreSDK.getInstance().getChatMessageEvent() != null)
-		{
+		if(ClientCoreSDK.getInstance().getChatMessageEvent() != null){
 			ClientCoreSDK.getInstance().getChatMessageEvent().onRecieveMessage(
-					pFromServer.getFp(), pFromServer.getFrom()
-					, pFromServer.getDataContent(), pFromServer.getTypeu());
+					pFromServer.getFp(), pFromServer.getFrom(), pFromServer.getDataContent(), pFromServer.getTypeu());
 		}
 	}
 	
@@ -168,6 +145,10 @@ public class LocalDataReciever
 		PLoginInfoResponse loginInfoRes = ProtocalFactory.parsePLoginInfoResponse(pFromServer.getDataContent());
 		if(loginInfoRes.getCode() == 0)
 		{
+			if(!ClientCoreSDK.getInstance().isLoginHasInit()) {
+				ClientCoreSDK.getInstance().saveFirstLoginTime(loginInfoRes.getFirstLoginTime());
+			}
+
 			fireConnectedToServer();
 		}
 		else
@@ -201,9 +182,22 @@ public class LocalDataReciever
 		}
 
 		if(ClientCoreSDK.getInstance().getChatMessageEvent() != null)
-		{
 			ClientCoreSDK.getInstance().getChatMessageEvent().onErrorResponse(errorRes.getErrorCode(), errorRes.getErrorMsg());
-		}
+	}
+	
+	protected void onKickout(Protocal pFromServer)
+	{
+		if (ClientCoreSDK.DEBUG)
+			Log.d(TAG, "【IMCORE-TCP】收到服务端发过来的“被踢”指令.");
+
+		ClientCoreSDK.getInstance().release();
+
+		PKickoutInfo kickoutInfo = ProtocalFactory.parsePKickoutInfo(pFromServer.getDataContent());
+		if(ClientCoreSDK.getInstance().getChatBaseEvent() != null)
+			ClientCoreSDK.getInstance().getChatBaseEvent().onKickout(kickoutInfo);
+
+		if(ClientCoreSDK.getInstance().getChatBaseEvent() != null)
+			ClientCoreSDK.getInstance().getChatBaseEvent().onLinkClose(-1);
 	}
 	
 	protected void fireConnectedToServer()
@@ -235,29 +229,23 @@ public class LocalDataReciever
 		QoS4ReciveDaemon.getInstance().stop();
 //		LocalUDPSocketProvider.getInstance().closeLocalUDPSocket();
 
-		ClientCoreSDK.getInstance().getChatBaseEvent().onLinkClose(-1);
+		if(ClientCoreSDK.getInstance().getChatBaseEvent() != null)
+			ClientCoreSDK.getInstance().getChatBaseEvent().onLinkClose(-1);
 		AutoReLoginDaemon.getInstance().start(true);
 	}
 	
 	private void sendRecievedBack(final Protocal pFromServer)
 	{
-		if(pFromServer.getFp() != null)
-		{
-			new LocalDataSender.SendCommonDataAsync(
-					ProtocalFactory.createRecivedBack(pFromServer.getTo()
-							, pFromServer.getFrom(), pFromServer.getFp()
-							// since 3.0
-							, pFromServer.isBridge())){
+		if(pFromServer.getFp() != null){
+			new LocalDataSender.SendCommonDataAsync(ProtocalFactory.createRecivedBack(pFromServer.getTo(), pFromServer.getFrom(), pFromServer.getFp(), pFromServer.isBridge())){
 				@Override
-				protected void onPostExecute(Integer code)
-				{
+				protected void onPostExecute(Integer code){
 					if(ClientCoreSDK.DEBUG)
 						Log.d(TAG, "【IMCORE-TCP】【QoS】向"+pFromServer.getFrom()+"发送"+pFromServer.getFp()+"包的应答包成功,from="+pFromServer.getTo()+"！");
 				}
 			}.execute();
 		}
-		else
-		{
+		else{
 			Log.w(TAG, "【IMCORE-TCP】【QoS】收到"+pFromServer.getFrom()+"发过来需要QoS的包，但它的指纹码却为null！无法发应答包！");
 		}
 	}

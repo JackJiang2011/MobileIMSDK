@@ -19,7 +19,6 @@ package net.x52im.mobileimsdk.java.core;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
 import javax.swing.Timer;
@@ -31,6 +30,7 @@ import net.x52im.mobileimsdk.server.protocal.Protocal;
 public class QoS4SendDaemon
 {
 	private final static String TAG = QoS4SendDaemon.class.getSimpleName();
+	
 	private static QoS4SendDaemon instance = null;
 	public final static int CHECH_INTERVAL = 5000;
 	public final static int MESSAGES_JUST$NOW_TIME = 3 * 1000;
@@ -42,48 +42,38 @@ public class QoS4SendDaemon
 	private boolean _excuting = false;
 	private Timer timer = null;
 	
-	public static QoS4SendDaemon getInstance()
-	{
+	public static QoS4SendDaemon getInstance(){
 		if(instance == null)
 			instance = new QoS4SendDaemon();
 		
 		return instance;
 	}
 	
-	private QoS4SendDaemon()
-	{
+	private QoS4SendDaemon(){
 		init();
 	}
 	
-	private void init()
-	{
+	private void init(){
 		timer = new Timer(CHECH_INTERVAL, new ActionListener(){
-			public void actionPerformed(ActionEvent e)
-			{
+			public void actionPerformed(ActionEvent e){
 				run();
 			}
 		});
 	}
 	
-	public void run()
-	{
-		if(!_excuting)
-		{
+	public void run(){
+		if(!_excuting){
 			ArrayList<Protocal> lostMessages = new ArrayList<Protocal>();
 			_excuting = true;
 			
-			try
-			{
+			try{
 				if(ClientCoreSDK.DEBUG && sentMessages.size() > 0)
 					Log.d(TAG, "【IMCORE-TCP】【QoS】====== 消息发送质量保证线程运行中, 当前需要处理的列表长度为"+sentMessages.size()+"...");
 
-				for(String key : sentMessages.keySet())
-				{
+				for(String key : sentMessages.keySet()){
 					final Protocal p = sentMessages.get(key);
-					if(p != null && p.isQoS())
-					{
-						if(p.getRetryCount() >= QOS_TRY_COUNT)
-						{
+					if(p != null && p.isQoS()){
+						if(p.getRetryCount() >= QOS_TRY_COUNT){
 							if(ClientCoreSDK.DEBUG)
 								Log.d(TAG, "【IMCORE-TCP】【QoS】指纹为"+p.getFp()
 										+"的消息包重传次数已达"+p.getRetryCount()+"(最多"+QOS_TRY_COUNT+"次)上限，将判定为丢包！");
@@ -91,52 +81,39 @@ public class QoS4SendDaemon
 							lostMessages.add((Protocal)p.clone());
 							remove(p.getFp());
 						}
-						else
-						{
+						else{
 							//### 2015103 Bug Fix: 解决了无线网络延较大时，刚刚发出的消息在其应答包还在途中时被错误地进行重传
 							Long sendMessageTimestamp = sendMessagesTimestamp.get(key);
 							long delta = System.currentTimeMillis() - (sendMessageTimestamp == null?0 : sendMessageTimestamp);
-							if(delta <= MESSAGES_JUST$NOW_TIME)
-							{
+							if(delta <= MESSAGES_JUST$NOW_TIME){
 								if(ClientCoreSDK.DEBUG)
-									Log.w(TAG, "【IMCORE-TCP】【QoS】指纹为"+key+"的包距\"刚刚\"发出才"+delta
-											+"ms(<="+MESSAGES_JUST$NOW_TIME+"ms将被认定是\"刚刚\"), 本次不需要重传哦.");
+									Log.w(TAG, "【IMCORE-TCP】【QoS】指纹为"+key+"的包距\"刚刚\"发出才"+delta+"ms(<="+MESSAGES_JUST$NOW_TIME+"ms将被认定是\"刚刚\"), 本次不需要重传哦.");
 							}
 							//### 2015103 Bug Fix END
-							else
-							{
+							else{
 								new LocalDataSender.SendCommonDataAsync(p){
 									@Override
-									protected void onPostExecute(Integer code)
-									{
-										if(code == 0)
-										{
+									protected void onPostExecute(Integer code){
+										if(code == 0){
 											p.increaseRetryCount();
 
 											if(ClientCoreSDK.DEBUG)
-												Log.d(TAG, "【IMCORE-TCP】【QoS】指纹为"+p.getFp()
-														+"的消息包已成功进行重传，此次之后重传次数已达"
-														+p.getRetryCount()+"(最多"+QOS_TRY_COUNT+"次).");
+												Log.d(TAG, "【IMCORE-TCP】【QoS】指纹为"+p.getFp()+"的消息包已成功进行重传，此次之后重传次数已达"+p.getRetryCount()+"(最多"+QOS_TRY_COUNT+"次).");
 										}
-										else
-										{
-											Log.w(TAG, "【IMCORE-TCP】【QoS】指纹为"+p.getFp()
-													+"的消息包重传失败，它的重传次数之前已累计为"
-													+p.getRetryCount()+"(最多"+QOS_TRY_COUNT+"次).");
+										else{
+											Log.w(TAG, "【IMCORE-TCP】【QoS】指纹为"+p.getFp()+"的消息包重传失败，它的重传次数之前已累计为"+p.getRetryCount()+"(最多"+QOS_TRY_COUNT+"次).");
 										}
 									}
 								}.execute();
 							}
 						}
 					}
-					else
-					{
+					else{
 						remove(key);
 					}
 				}
 			}
-			catch (Exception eee)
-			{
+			catch (Exception eee){
 				Log.w(TAG, "【IMCORE-TCP】【QoS】消息发送质量保证线程运行时发生异常,"+eee.getMessage(), eee);
 			}
 
@@ -147,16 +124,13 @@ public class QoS4SendDaemon
 		}
 	}
 	
-	protected void notifyMessageLost(ArrayList<Protocal> lostMessages)
-	{
-		if(ClientCoreSDK.getInstance().getMessageQoSEvent() != null)
-		{
+	protected void notifyMessageLost(ArrayList<Protocal> lostMessages){
+		if(ClientCoreSDK.getInstance().getMessageQoSEvent() != null){
 			ClientCoreSDK.getInstance().getMessageQoSEvent().messagesLost(lostMessages);
 		}
 	}
 	
-	public void startup(boolean immediately)
-	{
+	public void startup(boolean immediately){
 		stop();
 		
 		if(immediately)
@@ -168,38 +142,31 @@ public class QoS4SendDaemon
 		running = true;
 	}
 	
-	public void stop()
-	{
+	public void stop(){
 		if(timer != null)
 			timer.stop();
 		running = false;
 	}
 	
-	public boolean isRunning()
-	{
+	public boolean isRunning(){
 		return running;
 	}
 	
-	boolean exist(String fingerPrint)
-	{
+	boolean exist(String fingerPrint){
 		return sentMessages.get(fingerPrint) != null;
 	}
 	
-	public void put(Protocal p)
-	{
-		if(p == null)
-		{
+	public void put(Protocal p){
+		if(p == null){
 			Log.w(TAG, "Invalid arg p==null.");
 			return;
 		}
-		if(p.getFp() == null)
-		{
+		if(p.getFp() == null){
 			Log.w(TAG, "Invalid arg p.getFp() == null.");
 			return;
 		}
 		
-		if(!p.isQoS())
-		{
+		if(!p.isQoS()){
 			Log.w(TAG, "This protocal is not QoS pkg, ignore it!");
 			return;
 		}
@@ -211,23 +178,19 @@ public class QoS4SendDaemon
 		sendMessagesTimestamp.put(p.getFp(), System.currentTimeMillis());
 	}
 	
-	public void remove(final String fingerPrint)
-	{
+	public void remove(final String fingerPrint){
 		sendMessagesTimestamp.remove(fingerPrint);
 		Object result = sentMessages.remove(fingerPrint);
 
-		Log.w(TAG, "【IMCORE-TCP】【QoS】指纹为"+fingerPrint+"的消息已成功从发送质量保证队列中移除(可能是收到接收方的应答也可能是达到了重传的次数上限)，重试次数="
-				+(result != null?((Protocal)result).getRetryCount():"none呵呵."));
+		Log.w(TAG, "【IMCORE-TCP】【QoS】指纹为"+fingerPrint+"的消息已成功从发送质量保证队列中移除(可能是收到接收方的应答也可能是达到了重传的次数上限)，重试次数="+(result != null?((Protocal)result).getRetryCount():"none呵呵."));
 	}
 
-	public void clear()
-	{
+	public void clear(){
 		this.sentMessages.clear();
 		this.sendMessagesTimestamp.clear();
 	}
 	
-	public int size()
-	{
+	public int size(){
 		return sentMessages.size();
 	}
 }

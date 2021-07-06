@@ -23,10 +23,11 @@ import org.jdesktop.swingworker.SwingWorker;
 import net.x52im.mobileimsdk.server.protocal.ProtocalFactory;
 import net.x52im.mobileimsdk.server.protocal.ErrorCode;
 import net.x52im.mobileimsdk.server.protocal.Protocal;
+import net.x52im.mobileimsdk.server.protocal.c.PLoginInfo;
 import net.x52im.mobileimsdk.java.ClientCoreSDK;
 import net.x52im.mobileimsdk.java.utils.Log;
 import net.x52im.mobileimsdk.java.utils.MBObserver;
-import net.x52im.mobileimsdk.java.utils.UDPUtils;
+import net.x52im.mobileimsdk.java.utils.TCPUtils;
 
 public class LocalDataSender {
 	private final static String TAG = LocalDataSender.class.getSimpleName();
@@ -42,42 +43,37 @@ public class LocalDataSender {
 	private LocalDataSender() {
 	}
 
-	int sendLogin(final String loginUserId, final String loginToken,
-			final String extra) {
+	int sendLogin(final PLoginInfo loginInfo) {
 		int codeForCheck = this.checkBeforeSend();
 		if (codeForCheck != ErrorCode.COMMON_CODE_OK)
 			return codeForCheck;
 
 		if (!LocalSocketProvider.getInstance().isLocalSocketReady()) {
-
 			if (ClientCoreSDK.DEBUG)
 				Log.d(TAG, "【IMCORE-TCP】发送登陆指令时，socket连接未就绪，首先开始尝试发起连接（登陆指令将在连接成功后的回调中自动发出）。。。。");
 
 			MBObserver connectionDoneObserver = new MBObserver() {
 				public void update(boolean sucess, Object extraObj) {
 					if (sucess)
-						sendLoginImpl(loginUserId, loginToken, extra);
+						sendLoginImpl(loginInfo);
 					else
 						Log.w(TAG, "【IMCORE-TCP】[来自Netty的连接结果回调观察者通知]socket连接失败，本次登陆信息未成功发出！");
 				}
 			};
 			LocalSocketProvider.getInstance().setConnectionDoneObserver(connectionDoneObserver);
 
-			return LocalSocketProvider.getInstance().resetLocalSocket() != null ? ErrorCode.COMMON_CODE_OK
-					: ErrorCode.ForC.BAD_CONNECT_TO_SERVER;
+			return LocalSocketProvider.getInstance().resetLocalSocket() != null ? ErrorCode.COMMON_CODE_OK : ErrorCode.ForC.BAD_CONNECT_TO_SERVER;
 		} else {
-			return this.sendLoginImpl(loginUserId, loginToken, extra);
+			return this.sendLoginImpl(loginInfo);
 		}
 	}
 
 	// 不推荐直接调用本方法实现“登陆”流程，请使用SendLoginAsync（此异步线程中包含发送登陆包之外的处理和逻辑）
-	int sendLoginImpl(String loginUserId, String loginToken, String extra) {
-		byte[] b = ProtocalFactory.createPLoginInfo(loginUserId, loginToken, extra).toBytes();
+	int sendLoginImpl(PLoginInfo loginInfo) {
+		byte[] b = ProtocalFactory.createPLoginInfo(loginInfo).toBytes();
 		int code = send(b, b.length);
 		if (code == 0) {
-			ClientCoreSDK.getInstance().setCurrentLoginUserId(loginUserId);
-			ClientCoreSDK.getInstance().setCurrentLoginToken(loginToken);
-			ClientCoreSDK.getInstance().setCurrentLoginExtra(extra);
+			ClientCoreSDK.getInstance().setCurrentLoginInfo(loginInfo);
 		}
 
 		return code;
@@ -115,8 +111,7 @@ public class LocalDataSender {
 		return sendCommonData(dataContentWidthStr, to_user_id, true, fingerPrint, typeu);
 	}
 
-	public int sendCommonData(String dataContentWidthStr, String to_user_id,
-			boolean QoS, String fingerPrint, int typeu) {
+	public int sendCommonData(String dataContentWidthStr, String to_user_id,boolean QoS, String fingerPrint, int typeu) {
 		return sendCommonData(ProtocalFactory.createCommonData(dataContentWidthStr, ClientCoreSDK.getInstance().getCurrentLoginUserId(), to_user_id, QoS, fingerPrint, typeu));
 	}
 
@@ -144,7 +139,7 @@ public class LocalDataSender {
 		Channel ds = LocalSocketProvider.getInstance().getLocalSocket();
 		if (ds != null && ds.isActive()) {// && [ClientCoreSDK
 											// sharedInstance].connectedToServer)
-			return UDPUtils.send(ds, fullProtocalBytes, dataLen) ? ErrorCode.COMMON_CODE_OK
+			return TCPUtils.send(ds, fullProtocalBytes, dataLen) ? ErrorCode.COMMON_CODE_OK
 					: ErrorCode.COMMON_DATA_SEND_FAILD;
 		} else {
 			Log.d(TAG, "【IMCORE-TCP】scocket未连接，无法发送，本条将被忽略（dataLen=" + dataLen + "）!");
@@ -187,8 +182,7 @@ public class LocalDataSender {
 		@Override
 		protected Integer doInBackground() {
 			if (p != null)
-				return LocalDataSender.getInstance().sendCommonData(p);// dataContentWidthStr,
-																		// to_user_id);
+				return LocalDataSender.getInstance().sendCommonData(p);
 			return -1;
 		}
 
@@ -208,24 +202,18 @@ public class LocalDataSender {
 	}
 
 	public static class SendLoginDataAsync extends SwingWorker<Integer, Object> {
-		protected String loginUserId = null;
-		protected String loginToken = null;
-		protected String extra = null;
+		
+		protected PLoginInfo loginInfo = null;
 
-		public SendLoginDataAsync(String loginUserId, String loginToken) {
-			this(loginUserId, loginToken, null);
-		}
-
-		public SendLoginDataAsync(String loginUserId, String loginToken, String extra) {
-			this.loginUserId = loginUserId;
-			this.loginToken = loginToken;
-			this.extra = extra;
+		public SendLoginDataAsync(PLoginInfo loginInfo)
+		{
+			this.loginInfo = loginInfo;
 			ClientCoreSDK.getInstance().init();
 		}
 
 		@Override
 		protected Integer doInBackground() {
-			int code = LocalDataSender.getInstance().sendLogin(this.loginUserId, this.loginToken, this.extra);
+			int code = LocalDataSender.getInstance().sendLogin(this.loginInfo);
 			return code;
 		}
 

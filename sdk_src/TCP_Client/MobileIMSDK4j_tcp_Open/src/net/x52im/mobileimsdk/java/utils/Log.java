@@ -29,7 +29,7 @@ import javax.swing.text.StyleConstants;
 /**
  * Swing实现的日志显示工具，方便调试代码。
  * 
- * @author Jack Jiang
+ * @author Jack Jiang(http://www.52im.net/space-uid-1.html)
  */
 public class Log
 {

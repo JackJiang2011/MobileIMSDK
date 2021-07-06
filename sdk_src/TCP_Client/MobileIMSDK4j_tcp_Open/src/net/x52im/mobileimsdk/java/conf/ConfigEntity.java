@@ -19,40 +19,39 @@ package net.x52im.mobileimsdk.java.conf;
 import net.x52im.mobileimsdk.java.core.KeepAliveDaemon;
 
 public class ConfigEntity {
-	public static String appKey = null;
-	public static String serverIP = "192.168.0.190";// "rbcore.52im.net";
+	public static String serverIP = "rbcore.52im.net";
 	public static int serverPort = 8901;
-	public static int localUDPPort = 0;// 7801;
+	public static int localPort = 0;// 7801;
 
 	public static void setSenseMode(SenseMode mode) {
 		int keepAliveInterval = 0;
 		int networkConnectionTimeout = 0;
 		switch (mode) {
-		case MODE_3S: {
-			keepAliveInterval = 3000;// 3s
-			networkConnectionTimeout = keepAliveInterval * 1 + 2000;// 5s
-			break;
-		}
-		case MODE_10S:
-			keepAliveInterval = 10000;// 10s
-			networkConnectionTimeout = keepAliveInterval * 1 + 5000;// 15s
-			break;
-		case MODE_15S:
-			keepAliveInterval = 15000;// 15s
-			networkConnectionTimeout = keepAliveInterval * 1 + 5000;// 20s
-			break;
-		case MODE_30S:
-			keepAliveInterval = 30000;// 30s
-			networkConnectionTimeout = keepAliveInterval * 1 + 5000;// 35s
-			break;
-		case MODE_60S:
-			keepAliveInterval = 60000;// 60s
-			networkConnectionTimeout = keepAliveInterval * 1 + 5000;// 65s
-			break;
-		case MODE_120S:
-			keepAliveInterval = 120000;// 120s
-			networkConnectionTimeout = keepAliveInterval * 1 + 5000;// 125s
-			break;
+			case MODE_3S: {
+				keepAliveInterval = 3000;// 3s
+				networkConnectionTimeout = keepAliveInterval * 1 + 2000;// 5s
+				break;
+			}
+			case MODE_10S:
+				keepAliveInterval = 10000;// 10s
+				networkConnectionTimeout = keepAliveInterval * 1 + 5000;// 15s
+				break;
+			case MODE_15S:
+				keepAliveInterval = 15000;// 15s
+				networkConnectionTimeout = keepAliveInterval * 1 + 5000;// 20s
+				break;
+			case MODE_30S:
+				keepAliveInterval = 30000;// 30s
+				networkConnectionTimeout = keepAliveInterval * 1 + 5000;// 35s
+				break;
+			case MODE_60S:
+				keepAliveInterval = 60000;// 60s
+				networkConnectionTimeout = keepAliveInterval * 1 + 5000;// 65s
+				break;
+			case MODE_120S:
+				keepAliveInterval = 120000;// 120s
+				networkConnectionTimeout = keepAliveInterval * 1 + 5000;// 125s
+				break;
 		}
 
 		if (keepAliveInterval > 0) {
@@ -67,21 +66,21 @@ public class ConfigEntity {
 		/**
 		 * 此模式下：<br>
 		 * * KeepAlive心跳问隔为3秒；<br>
-		 * * 5秒后未收到服务端心跳反馈即认为连接已断开（相当于连续2个心跳间隔(即算法最大6秒延迟后)后仍未收到服务端反馈）。
+    	 * * 5秒后未收到服务端心跳反馈即认为连接已断开（相当于连续1个心跳间隔+5秒链路延迟容忍时间后仍未收到服务端反馈）。
 		 */
 		MODE_3S,
 
 		/**
 		 * 此模式下：<br>
 		 * * KeepAlive心跳问隔为10秒；<br>
-		 * * 15秒后未收到服务端心跳反馈即认为连接已断开（相当于连续2个心跳间隔(即算法最大20秒延迟后)后仍未收到服务端反馈）。
+    	 * * 15秒后未收到服务端心跳反馈即认为连接已断开（相当于连续1个心跳间隔+5秒链路延迟容忍时间后仍未收到服务端反馈）。
 		 */
 		MODE_10S,
 
 		/**
 		 * 此模式下：<br>
 		 * * KeepAlive心跳问隔为15秒；<br>
-		 * * 20秒后未收到服务端心跳反馈即认为连接已断开（相当于连续2个心跳间隔(即算法最大30秒延迟后)后仍未收到服务端反馈）。
+		 * * 20秒后未收到服务端心跳反馈即认为连接已断开（相当于连续1个心跳间隔+5秒链路延迟容忍时间后仍未收到服务端反馈）。
 		 * 
 		 * @since 5.0
 		 */
@@ -90,21 +89,21 @@ public class ConfigEntity {
 		/**
 		 * 此模式下：<br>
 		 * * KeepAlive心跳问隔为30秒；<br>
-		 * * 35秒后未收到服务端心跳反馈即认为连接已断开（相当于连续2个心跳间隔(即算法最大60秒延迟后)后仍未收到服务端反馈）。
+    	 * * 35秒后未收到服务端心跳反馈即认为连接已断开（相当于连续1个心跳间隔+5秒链路延迟容忍时间后仍未收到服务端反馈）。
 		 */
 		MODE_30S,
 
 		/**
 		 * 此模式下：<br>
 		 * * KeepAlive心跳问隔为60秒；<br>
-		 * * 65秒后未收到服务端心跳反馈即认为连接已断开（相当于连续2个心跳间隔(即算法最大120秒延迟后)后仍未收到服务端反馈）。
+    	 * * 65秒后未收到服务端心跳反馈即认为连接已断开（相当于连续1个心跳间隔+5秒链路延迟容忍时间后仍未收到服务端反馈）。
 		 */
 		MODE_60S,
 
 		/**
 		 * 此模式下：<br>
 		 * * KeepAlive心跳问隔为120秒；<br>
-		 * * 125秒后未收到服务端心跳反馈即认为连接已断开（相当于连续2个心跳间隔(即算法最大240秒延迟后)后仍未收到服务端反馈）。
+    	 * * 125秒后未收到服务端心跳反馈即认为连接已断开（相当于连续1个心跳间隔+5秒链路延迟容忍时间后仍未收到服务端反馈）。
 		 */
 		MODE_120S
 	}

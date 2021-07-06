@@ -25,6 +25,7 @@ import net.x52im.mobileimsdk.java.ClientCoreSDK;
 import net.x52im.mobileimsdk.java.utils.Log;
 
 public class AutoReLoginDaemon {
+	
 	private final static String TAG = AutoReLoginDaemon.class.getSimpleName();
 	private static AutoReLoginDaemon instance = null;
 	public static int AUTO_RE$LOGIN_INTERVAL = 3000;// 2000;
@@ -54,22 +55,18 @@ public class AutoReLoginDaemon {
 	public void run() {
 		if (!_excuting) {
 			_excuting = true;
-			if (ClientCoreSDK.DEBUG)
-				Log.p(TAG, "【IMCORE】自动重新登陆线程执行中, autoReLogin?" + ClientCoreSDK.autoReLogin + "...");
+			if(ClientCoreSDK.DEBUG)
+				Log.p(TAG, "【IMCORE-TCP】自动重新登陆线程执行中, autoReLogin?"+ClientCoreSDK.autoReLogin+"...");
 			int code = -1;
 			if (ClientCoreSDK.autoReLogin) {
 				LocalSocketProvider.getInstance().closeLocalSocket();
-				code = LocalDataSender.getInstance().sendLogin(
-						ClientCoreSDK.getInstance().getCurrentLoginUserId(),
-						ClientCoreSDK.getInstance().getCurrentLoginToken(),
-						ClientCoreSDK.getInstance().getCurrentLoginExtra());
+				code = LocalDataSender.getInstance().sendLogin(ClientCoreSDK.getInstance().getCurrentLoginInfo());
 			}
 
 			if (code == 0) {
 				// LocalUDPDataReciever.getInstance().startup();
 			}
 
-			//
 			_excuting = false;
 		}
 	}

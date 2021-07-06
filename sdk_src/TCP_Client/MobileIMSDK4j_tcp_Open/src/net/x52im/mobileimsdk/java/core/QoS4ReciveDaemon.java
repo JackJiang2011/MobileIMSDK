@@ -18,7 +18,6 @@ package net.x52im.mobileimsdk.java.core;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
 
 import javax.swing.Timer;
@@ -28,7 +27,9 @@ import net.x52im.mobileimsdk.java.utils.Log;
 import net.x52im.mobileimsdk.server.protocal.Protocal;
 
 public class QoS4ReciveDaemon {
+	
 	private final static String TAG = QoS4ReciveDaemon.class.getSimpleName();
+	
 	private static QoS4ReciveDaemon instance = null;
 	public final static int CHECH_INTERVAL = 5 * 60 * 1000; // 5分钟
 	public final static int MESSAGES_VALID_TIME = 10 * 60 * 1000;// 10分钟
@@ -64,9 +65,9 @@ public class QoS4ReciveDaemon {
 			if (ClientCoreSDK.DEBUG)
 				Log.d(TAG, "【IMCORE-TCP】【QoS接收方】+++++ START 暂存处理线程正在运行中，当前长度"+ recievedMessages.size() + ".");
 
-			//
 			for (String key : recievedMessages.keySet()) {
 				Long recievedTime = recievedMessages.get(key);
+				
 				long delta = System.currentTimeMillis() - (recievedTime == null ? 0 : recievedTime);
 				if (delta >= MESSAGES_VALID_TIME) {
 					if (ClientCoreSDK.DEBUG)

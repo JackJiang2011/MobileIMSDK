@@ -38,7 +38,9 @@ import net.x52im.mobileimsdk.java.utils.Log;
 import net.x52im.mobileimsdk.java.utils.MBObserver;
 
 public class LocalSocketProvider {
+	
 	private final static String TAG = LocalSocketProvider.class.getSimpleName();
+	
 	public static int TCP_FRAME_FIXED_HEADER_LENGTH = 4; // 4 bytes
 	public static int TCP_FRAME_MAX_BODY_LENGTH = 6 * 1024; // 6K bytes
 	private static LocalSocketProvider instance = null;
@@ -115,6 +117,8 @@ public class LocalSocketProvider {
 							LocalSocketProvider.this.connectionDoneObserver = null;
 						}
 					}
+					
+					LocalSocketProvider.this.localConnectingFuture = null;
 				}
 			});
 
@@ -148,14 +152,8 @@ public class LocalSocketProvider {
 
 	public Channel getLocalSocket() {
 		if (isLocalSocketReady()) {
-			// if(ClientCoreSDK.DEBUG)
-			// Log.d(TAG,
-			// "【IMCORE-TCP】isLocalSocketReady()==true，直接返回本地socket引用哦。");
 			return localSocket;
 		} else {
-			// if(ClientCoreSDK.DEBUG)
-			// Log.d(TAG,
-			// "【IMCORE-TCP】isLocalSocketReady()==false，需要先resetLocalSocket()...");
 			return resetLocalSocket();
 		}
 	}
@@ -199,8 +197,7 @@ public class LocalSocketProvider {
 		}
 	}
 
-	private class TCPChannelInitializerHandler extends
-			ChannelInitializer<Channel> {
+	private class TCPChannelInitializerHandler extends ChannelInitializer<Channel> {
 		@Override
 		protected void initChannel(Channel ch) throws Exception {
 			ChannelPipeline pipeline = ch.pipeline();
@@ -217,7 +214,7 @@ public class LocalSocketProvider {
 		public void channelActive(ChannelHandlerContext ctx) throws Exception {
 			super.channelActive(ctx);
 			if (ClientCoreSDK.DEBUG) {
-				Log.d(TAG, "【IMCORE-netty-channelActive】连接已成功建立！(isLocalUDPSocketReady="+ isLocalSocketReady() + ")");
+				Log.d(TAG, "【IMCORE-netty-channelActive】连接已成功建立！(isLocalSocketReady="+ isLocalSocketReady() + ")");
 			}
 		}
 
@@ -225,7 +222,7 @@ public class LocalSocketProvider {
 		public void channelInactive(ChannelHandlerContext ctx) throws Exception {
 			super.channelInactive(ctx);
 			if (ClientCoreSDK.DEBUG) {
-				Log.d(TAG, "【IMCORE-netty-channelInactive】连接已断开。。。。(isLocalUDPSocketReady="
+				Log.d(TAG, "【IMCORE-netty-channelInactive】连接已断开。。。。(isLocalSocketReady="
 								+ isLocalSocketReady()+ ", ClientCoreSDK.connectedToServer="
 								+ ClientCoreSDK.getInstance().isConnectedToServer() + ")");
 			}

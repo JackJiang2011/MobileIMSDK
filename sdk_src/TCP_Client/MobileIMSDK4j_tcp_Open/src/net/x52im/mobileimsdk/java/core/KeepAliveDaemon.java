@@ -27,7 +27,9 @@ import net.x52im.mobileimsdk.java.ClientCoreSDK;
 import net.x52im.mobileimsdk.java.utils.Log;
 
 public class KeepAliveDaemon {
+	
 	private final static String TAG = KeepAliveDaemon.class.getSimpleName();
+	
 	private static KeepAliveDaemon instance = null;
 	public static int KEEP_ALIVE_INTERVAL = 15000;
 	public static int NETWORK_CONNECTION_TIME_OUT = KEEP_ALIVE_INTERVAL + 5000;

@@ -24,19 +24,19 @@ import io.netty.channel.ChannelFutureListener;
 
 import java.net.SocketAddress;
 
-public class UDPUtils{
-	private final static String TAG = UDPUtils.class.getSimpleName();
+public class TCPUtils{
+	private final static String TAG = TCPUtils.class.getSimpleName();
 	
 	public static boolean send(Channel skt, byte[] d, int dataLen){
-		return UDPUtils.send(skt, d, dataLen, null);
+		return TCPUtils.send(skt, d, dataLen, null);
 	}
 	
 	public static synchronized boolean send(Channel skt, byte[] d, final int dataLen, final MBObserver resultObserver) {
 		boolean sendSucess = false;
 		if ((skt != null) && (d != null)) {
 			Log.d(TAG, "【IMCORE-TCP】正在send()TCP数据时，[d.len="+d.length+",remoteIpAndPort="
-					+ UDPUtils.getSocketAdressInfo(skt.remoteAddress())+"]"
-					+ "，本地端口是："+UDPUtils.getSocketAdressInfo(skt.localAddress())+" ...");
+					+ TCPUtils.getSocketAdressInfo(skt.remoteAddress())+"]"
+					+ "，本地端口是："+TCPUtils.getSocketAdressInfo(skt.localAddress())+" ...");
 
 			if (skt.isActive()){
 				try {
@@ -60,17 +60,20 @@ public class UDPUtils{
 					return sendSucess;
 				}
 				catch (Exception e) {
-					Log.e(TAG, "【IMCORE】send方法中》》发送TCP数据报文时出错了，原因是：" + e.getMessage(), e);
+
+					Log.e(TAG, "【IMCORE-TCP】send方法中》》发送TCP数据报文时出错了，原因是：" + e.getMessage(), e);
+
+					// 通知观察者，数据发送失败
 					if(resultObserver != null)
 						resultObserver.update(false, null);
 				}
 			}
 			else {
-				Log.e(TAG, "【IMCORE】send方法中》》无法发送TCP数据，原因是：skt.isActive()=" + skt.isActive());
+				Log.e(TAG, "【IMCORE-TCP】send方法中》》无法发送TCP数据，原因是：skt.isActive()=" + skt.isActive());
 			}
 		}
-		else{
-			Log.w(TAG, "【IMCORE】send方法中》》无效的参数：skt==null || d == null!");
+		else {
+			Log.w(TAG, "【IMCORE-TCP】send方法中》》无效的参数：skt==null || d == null!");
 		}
 
 		if(resultObserver != null)

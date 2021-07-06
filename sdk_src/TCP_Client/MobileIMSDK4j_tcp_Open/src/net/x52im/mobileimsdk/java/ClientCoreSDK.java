@@ -12,7 +12,7 @@
  *  
  * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
  * 
- * ConfigEntity.java at 2020-8-6 14:24:51, code by Jack Jiang.
+ * ClientCoreSDK.java at 2020-8-6 14:24:51, code by Jack Jiang.
  */
 package net.x52im.mobileimsdk.java;
 
@@ -24,8 +24,10 @@ import net.x52im.mobileimsdk.java.core.QoS4SendDaemon;
 import net.x52im.mobileimsdk.java.event.ChatBaseEvent;
 import net.x52im.mobileimsdk.java.event.ChatMessageEvent;
 import net.x52im.mobileimsdk.java.event.MessageQoSEvent;
+import net.x52im.mobileimsdk.server.protocal.c.PLoginInfo;
 
 public class ClientCoreSDK {
+	
 	private final static String TAG = ClientCoreSDK.class.getSimpleName();
 
 	public static boolean DEBUG = true;
@@ -35,9 +37,7 @@ public class ClientCoreSDK {
 	private boolean _init = false;
 	private boolean connectedToServer = true;
 	private boolean loginHasInit = false;
-	private String currentLoginUserId = null;
-	private String currentLoginToken = null;
-	private String currentLoginExtra = null;
+	private PLoginInfo currentLoginInfo = null;
 
 	private ChatBaseEvent chatBaseEvent = null;
 	private ChatMessageEvent chatMessageEvent = null;
@@ -75,33 +75,42 @@ public class ClientCoreSDK {
 		this.setConnectedToServer(false);
 	}
 
-	public String getCurrentLoginUserId() {
-		return currentLoginUserId;
+	public void setCurrentLoginInfo(PLoginInfo currentLoginInfo)
+	{
+		this.currentLoginInfo = currentLoginInfo;
 	}
 
-	public ClientCoreSDK setCurrentLoginUserId(String currentLoginUserId) {
-		this.currentLoginUserId = currentLoginUserId;
-		return this;
+	public PLoginInfo getCurrentLoginInfo()
+	{
+		return this.currentLoginInfo;
 	}
 
-	public String getCurrentLoginToken() {
-		return currentLoginToken;
+	public void saveFirstLoginTime(long firstLoginTime)
+	{
+		if(this.currentLoginInfo != null)
+			this.currentLoginInfo.setFirstLoginTime(firstLoginTime);
 	}
 
-	public void setCurrentLoginToken(String currentLoginToken) {
-		this.currentLoginToken = currentLoginToken;
+	@Deprecated
+	public String getCurrentLoginUserId()
+	{
+		return this.currentLoginInfo.getLoginUserId();
 	}
 
-	public String getCurrentLoginExtra() {
-		return currentLoginExtra;
+	@Deprecated
+	public String getCurrentLoginToken()
+	{
+		return this.currentLoginInfo.getLoginToken();
 	}
 
-	public ClientCoreSDK setCurrentLoginExtra(String currentLoginExtra) {
-		this.currentLoginExtra = currentLoginExtra;
-		return this;
+	@Deprecated
+	public String getCurrentLoginExtra()
+	{
+		return this.currentLoginInfo.getExtra();
 	}
 
-	public boolean isLoginHasInit() {
+	public boolean isLoginHasInit()
+	{
 		return loginHasInit;
 	}
 
