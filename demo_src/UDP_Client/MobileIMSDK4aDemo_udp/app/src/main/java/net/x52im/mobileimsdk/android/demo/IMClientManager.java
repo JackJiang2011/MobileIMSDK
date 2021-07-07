@@ -38,9 +38,9 @@ public class IMClientManager
 	private boolean init = false;
 
 	/** 基本连接状态事件监听器 */
-	private ChatBaseEventImpl baseEventListener = null;
+	private ChatBaseEventImpl chatBaseListener = null;
 	/** 数据接收事件监听器 */
-	private ChatMessageEventImpl transDataListener = null;
+	private ChatMessageEventImpl chatMessageListener = null;
 	/** 消息送达保证事件监听器 */
 	private MessageQoSEventImpl messageQoSListener = null;
 	
@@ -83,11 +83,11 @@ public class IMClientManager
 			ClientCoreSDK.getInstance().init(this.context);
 	    
 			// 设置事件回调
-			baseEventListener = new ChatBaseEventImpl();
-			transDataListener = new ChatMessageEventImpl();
+			chatBaseListener = new ChatBaseEventImpl();
+			chatMessageListener = new ChatMessageEventImpl();
 			messageQoSListener = new MessageQoSEventImpl();
-			ClientCoreSDK.getInstance().setChatBaseEvent(baseEventListener);
-			ClientCoreSDK.getInstance().setChatMessageEvent(transDataListener);
+			ClientCoreSDK.getInstance().setChatBaseEvent(chatBaseListener);
+			ClientCoreSDK.getInstance().setChatMessageEvent(chatMessageListener);
 			ClientCoreSDK.getInstance().setMessageQoSEvent(messageQoSListener);
 			
 			init = true;
@@ -113,13 +113,13 @@ public class IMClientManager
 		init = false;
 	}
 
-	public ChatMessageEventImpl getTransDataListener()
+	public ChatMessageEventImpl getChatMessageListener()
 	{
-		return transDataListener;
+		return chatMessageListener;
 	}
-	public ChatBaseEventImpl getBaseEventListener()
+	public ChatBaseEventImpl getChatBaseListener()
 	{
-		return baseEventListener;
+		return chatBaseListener;
 	}
 	public MessageQoSEventImpl getMessageQoSListener()
 	{
