@@ -54,8 +54,6 @@ public class IMClientManager
 	{
 		if(!init)
 		{
-			// 设置AppKey
-			ConfigEntity.appKey = "5418023dfd98c579b6001741";
 		
 			// 设置服务器ip和服务器端口
 //			ConfigEntity.serverIP = "192.168.82.138";
@@ -99,7 +97,7 @@ public class IMClientManager
 		init = false;
 	}
 
-	public ChatMessageEventImpl getTransDataListener()
+	public ChatMessageEventImpl getChatMessageListener()
 	{
 		return transDataListener;
 	}
