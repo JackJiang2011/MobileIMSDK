@@ -16,7 +16,6 @@
  */
 package net.x52im.mobileimsdk.android.demo;
 
-import java.util.Observable;
 import java.util.Observer;
 
 import net.x52im.mobileimsdk.android.conf.ConfigEntity;
@@ -28,7 +27,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -37,8 +35,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
 import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.WindowManager.BadTokenException;
 import android.widget.Button;
 import android.widget.EditText;
@@ -206,7 +202,7 @@ public class LoginActivity extends AppCompatActivity
 		// * 立即显示登陆处理进度提示（并将同时启动超时检查线程）
 		onLoginProgress.showProgressing(true);
 		// * 设置好服务端反馈的登陆结果观察者（当客户端收到服务端反馈过来的登陆消息时将被通知）
-		IMClientManager.getInstance(this).getBaseEventListener()
+		IMClientManager.getInstance(this).getChatBaseListener()
 			.setLoginOkForLaunchObserver(onLoginSucessObserver);
 
 		String loginName = editLoginName.getText().toString().trim();

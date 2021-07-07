@@ -22,7 +22,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Observable;
 import java.util.Observer;
 
 import net.x52im.mobileimsdk.android.ClientCoreSDK;
@@ -40,13 +39,11 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -180,8 +177,8 @@ public class MainActivity extends AppCompatActivity
 
 		// Set MainGUI instance refrence to listeners
 		// * 说明：正式的APP项目中，建议在Application中管理IMClientManager类，确保SDK的生命周期同步于整个APP的生命周期
-		IMClientManager.getInstance(this).getTransDataListener().setMainGUI(this);
-		IMClientManager.getInstance(this).getBaseEventListener().setMainGUI(this);
+		IMClientManager.getInstance(this).getChatMessageListener().setMainGUI(this);
+		IMClientManager.getInstance(this).getChatBaseListener().setMainGUI(this);
 		IMClientManager.getInstance(this).getMessageQoSListener().setMainGUI(this);
 	}
 	

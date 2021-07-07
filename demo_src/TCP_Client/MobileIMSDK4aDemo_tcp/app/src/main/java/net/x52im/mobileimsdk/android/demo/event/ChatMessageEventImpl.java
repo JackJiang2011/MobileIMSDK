@@ -44,7 +44,7 @@ public class ChatMessageEventImpl implements ChatMessageEvent
 	 *                  是其它客户端发过来的消息）
 	 * @param dataContent 消息内容的文本表示形式
 	 * @param typeu 意义：应用层专用字段——用于应用层存放聊天、推送等场景下的消息类型。 注意：此值为-1时表示未定
-	 *                 义。MobileIMSDK_X框架中，本字段为保留字段，不参与框架的核心算法，专留用应用 层自行定义
+	 *                 义。MobileIMSDK框架中，本字段为保留字段，不参与框架的核心算法，专留用应用 层自行定义
 	 *                 和使用。 默认：-1。
 	 * @see <a href="http://docs.52im.net/extend/docs/api/mobileimsdk/server_netty/net/openmob/mobileimsdk/server/protocal/Protocal.html" target="_blank">Protocal</a>
 	 */
