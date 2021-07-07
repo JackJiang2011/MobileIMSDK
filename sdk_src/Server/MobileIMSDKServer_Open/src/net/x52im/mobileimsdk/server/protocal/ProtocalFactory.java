@@ -82,9 +82,9 @@ public class ProtocalFactory
 		return new Protocal(ProtocalType.C.FROM_CLIENT_TYPE_OF_LOGOUT, null, user_id, "0");
 	}
 	
-	public static Protocal createPLoginInfo(String userId, String token, String extra)
+	public static Protocal createPLoginInfo(PLoginInfo loginInfo)
 	{
-		return new Protocal(ProtocalType.C.FROM_CLIENT_TYPE_OF_LOGIN, create(new PLoginInfo(userId, token, extra)), userId, "0");
+		return new Protocal(ProtocalType.C.FROM_CLIENT_TYPE_OF_LOGIN, create(loginInfo), loginInfo.getLoginUserId(), "0");
 	}
 	
 	public static PLoginInfo parsePLoginInfo(String dataContentOfProtocal)
