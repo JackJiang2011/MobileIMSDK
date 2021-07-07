@@ -7,9 +7,9 @@
 	<classpathentry kind="lib" path="lib/EPC_widget.jar"/>
 	<classpathentry kind="lib" path="lib/EPC_common.jar"/>
 	<classpathentry kind="lib" path="lib/netty-all-4.1.50.Final.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.7.0_51"/>
 	<classpathentry kind="lib" path="lib/gson-2.8.6.jar"/>
 	<classpathentry kind="lib" path="lib/MobileIMSDK4j_tcp.jar"/>
 	<classpathentry kind="lib" path="lib/MobileIMSDKServer_META.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_45"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

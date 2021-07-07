@@ -137,9 +137,9 @@ public class MainGUI extends JFrame
 		sc.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		this.getContentPane().add(sc, BorderLayout.CENTER);
 		
-		this.setTitle("MobileIMSDK_TCP v5演示工程 - (当前登陆:"
+		this.setTitle("MobileIMSDK_TCP v6演示工程 - (当前登陆:"
 				+ClientCoreSDK.getInstance().getCurrentLoginUserId()
-				+", 讨论区:52im.net, QQ群:101279154)");
+				+", 讨论区:52im.net, QQ群:215477170)");
 		this.setLocationRelativeTo(null);
 		this.setSize(1000,700);
 		
@@ -226,7 +226,7 @@ public class MainGUI extends JFrame
 		}
 	}
 	
-	private void doLogout()
+	public void doLogout()
 	{
 		// 发出退出登陆请求包
 		int code = LocalDataSender.getInstance().sendLoginout();

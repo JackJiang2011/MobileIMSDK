@@ -46,6 +46,7 @@ import javax.swing.border.LineBorder;
 import net.x52im.mobileimsdk.java.conf.ConfigEntity;
 import net.x52im.mobileimsdk.java.core.LocalDataSender;
 import net.x52im.mobileimsdk.java.core.LocalSocketProvider;
+import net.x52im.mobileimsdk.server.protocal.c.PLoginInfo;
 
 import org.jb2011.lnf.beautyeye.ch3_button.BEButtonUI;
 import org.jb2011.swing9patch.toast.Toast;
@@ -114,7 +115,7 @@ public class LoginGUI extends JFrame
 		mainPanel.addTitledLineSeparator("");
 		JPanel btnAndVerPanel = new JPanel();
 		btnAndVerPanel.setLayout(new BoxLayout(btnAndVerPanel, BoxLayout.LINE_AXIS));
-		JLabel lbVer= new JLabel("v5.0b200828.1");
+		JLabel lbVer= new JLabel("v6.0b210707.1");
 		lbVer.setForeground(new Color(184,184,184));
 		btnAndVerPanel.add(lbVer);
 		btnAndVerPanel.add(Box.createHorizontalGlue());
@@ -146,7 +147,7 @@ public class LoginGUI extends JFrame
 		this.getContentPane().add(bottomPanel, BorderLayout.SOUTH);
 		
 		// 窗体设置
-		this.setTitle("MobileIMSDK_TCP v5 - Demo登陆");
+		this.setTitle("MobileIMSDK_TCP v6 - Demo登陆");
 		this.setResizable(false);
 		this.pack();
 	}
@@ -267,8 +268,9 @@ public class LoginGUI extends JFrame
 		IMClientManager.getInstance().getBaseEventListener()
 			.setLoginOkForLaunchObserver(onLoginSucessObserver);
 
+		PLoginInfo loginInfo = new PLoginInfo(editLoginName.getText(), editLoginPsw.getText());
 		// * 异步提交登陆名和密码
-		new LocalDataSender.SendLoginDataAsync(editLoginName.getText(), editLoginPsw.getText()){
+		new LocalDataSender.SendLoginDataAsync(loginInfo){
 			/**
 			 * 登陆信息发送完成后将调用本方法（注意：此处仅是登陆信息发送完成
 			 * ，真正的登陆结果要在异步回调中处理哦）。
