@@ -2,5 +2,19 @@
 为了减小github大小（下载太慢了），api文档已改为链接方式，请从以下链接访问即可。
 
 
-MobileIMSDK的API文档地址：
-http://www.52im.net/topic-docs.html#mobileimsdk
+MobileIMSDK的API文档地址如下。
+
+1）iOS端：
+UDP协议版：http://docs.52im.net/extend/docs/api/mobileimsdk/ios/
+TCP协议版：http://docs.52im.net/extend/docs/api/mobileimsdk/ios_tcp/
+
+2）Android端：
+UDP协议版：http://docs.52im.net/extend/docs/api/mobileimsdk/android/
+TCP协议版：http://docs.52im.net/extend/docs/api/mobileimsdk/android_TCP/
+
+3）Java端：
+UDP协议版：http://docs.52im.net/extend/docs/api/mobileimsdk/java/
+TCP协议版：http://docs.52im.net/extend/docs/api/mobileimsdk/java_tcp/
+
+4）Server端：
+Server(Netty版)：http://docs.52im.net/extend/docs/api/mobileimsdk/server_tcp/
