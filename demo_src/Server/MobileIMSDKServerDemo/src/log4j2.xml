@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+#######################################################################
+# 用途：本文件是Log4j2的配置文件，请按需修改日志配置                                                        #
+# 作者: Jack Jiang                                                     #
+# 日期: Spring 2021                                                    #
+# 版本: 1.0                                                            #
+# 手册：http://logging.apache.org/log4j/2.x/manual/configuration.html  #
+#######################################################################
+-->
+
+ <!-- 【日志级别及优先级排序】: OFF > FATAL > ERROR > WARN > INFO > DEBUG > TRACE > ALL                      -->
+ <!-- 【status属性                        】 ：用于log4j2自身debug信息输出，可不设置，当为trace时，会看到log4j2内部各种详细输出 -->
+ <!-- 【monitorInterval属性】：Log4j能够自动检测修改配置 文件和重新配置本身，设置间隔秒数                                                              -->
+ <configuration status="WARN" monitorInterval="30">
+     <!-- 先定义所有的appender-->
+     <appenders>
+     	 <!-- Appender：控制台输出 -->
+         <console name="Console" target="SYSTEM_OUT">
+         <!-- 输出日志的格式-->
+             <PatternLayout pattern="[%p] - [%d{HH:mm:ss.SSS}]%m | (%C{1}^%M:%L)%n"/>
+         </console>
+	     
+	     <!-- Appender：滚动文件，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档-->
+         <RollingFile name="RollingFile" fileName="${sys:user.home}/logs2/log_file.txt"
+                      filePattern="${sys:user.home}/logs2/$${date:yyyy-MM}/info-%d{yyyy-MM-dd}-%i.log">
+             <!-- 控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
+             <!-- <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>-->
+             <PatternLayout pattern="[%p] - [%d{yyyy/MM/dd HH:mm:ss.SSS}]%m | (%C{1}^%M:%L)%n"/>
+             <Policies>
+                 <TimeBasedTriggeringPolicy/>
+                 <SizeBasedTriggeringPolicy size="2 MB"/>
+             </Policies>
+             <!-- DefaultRolloverStrategy属性如不设置，则默认为最多同一文件夹下7个文件，这里设置了20 -->
+             <DefaultRolloverStrategy max="30"/>
+         </RollingFile>
+         
+     </appenders>
+     
+     <!--然后定义logger，只有定义了logger并引入的appender，appender才会生效-->
+     <loggers>
+         
+         <!--过滤掉spring和mybatis的一些无用的DEBUG信息-->
+         <logger name="org.springframework" level="INFO"></logger>
+         <logger name="org.mybatis" level="INFO"></logger>
+         
+         <!-- 当前输出的日志级别为DEBUG -->
+         <root level="DEBUG">
+             <appender-ref ref="Console"/>    <!-- 控制台输出 -->
+             <appender-ref ref="RollingFile"/><!-- 文件输出 -->
+         </root>
+     </loggers>
+     
+ </configuration>

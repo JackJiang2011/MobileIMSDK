@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2020  即时通讯网(52im.net) & Jack Jiang.
- * The MobileIMSDK v5.x Project. 
+ * Copyright (C) 2021  即时通讯网(52im.net) & Jack Jiang.
+ * The MobileIMSDK v6.x Project. 
  * All rights reserved.
  * 
  * > Github地址：https://github.com/JackJiang2011/MobileIMSDK
@@ -12,7 +12,7 @@
  *  
  * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
  * 
- * ServerLauncherImpl.java at 2020-8-22 16:00:42, code by Jack Jiang.
+ * ServerLauncherImpl.java at 2021-6-29 10:24:48, code by Jack Jiang.
  */
 package net.x52im.mobileimsdk.server.demo;
 
@@ -22,9 +22,11 @@ import net.x52im.mobileimsdk.server.ServerLauncher;
 import net.x52im.mobileimsdk.server.network.Gateway;
 import net.x52im.mobileimsdk.server.network.GatewayTCP;
 import net.x52im.mobileimsdk.server.network.GatewayUDP;
-import net.x52im.mobileimsdk.server.processor.BridgeProcessor;
+import net.x52im.mobileimsdk.server.network.GatewayWebsocket;
 import net.x52im.mobileimsdk.server.qos.QoS4ReciveDaemonC2S;
 import net.x52im.mobileimsdk.server.qos.QoS4SendDaemonS2C;
+import net.x52im.mobileimsdk.server.utils.ServerToolKits;
+import net.x52im.mobileimsdk.server.utils.ServerToolKits.SenseModeWebsocket;
 
 /**
  * IM服务的启动主类。
@@ -44,25 +46,30 @@ public class ServerLauncherImpl extends ServerLauncher
 	static
 	{
 		// 设置MobileIMSDK服务端的UDP网络监听端口
-		GatewayUDP.PORT = 7901;
+		GatewayUDP.PORT       = 7901;
 		// 设置MobileIMSDK服务端的TCP网络监听端口
-		GatewayTCP.PORT = 8901;
+		GatewayTCP.PORT       = 8901;
+		// 设置MobileIMSDK服务端的WebSocket网络监听端口
+		GatewayWebsocket.PORT = 3000;
 		
 		// 设置MobileIMSDK服务端仅支持UDP协议
-//		ServerLauncher.supportedGateways = Gateway.SUPPORT_UDP;
+//		ServerLauncher.supportedGateways = Gateway.SOCKET_TYPE_UDP;
 		// 设置MobileIMSDK服务端仅支持TCP协议
-//		ServerLauncher.supportedGateways = Gateway.SUPPORT_TCP;
-		// 设置MobileIMSDK服务端同时支持UDP、TCP两种协议
-		ServerLauncher.supportedGateways = Gateway.SUPPORT_UDP | Gateway.SUPPORT_TCP;
+//		ServerLauncher.supportedGateways = Gateway.SOCKET_TYPE_TCP;
+		// 设置MobileIMSDK服务端仅支持WebSocket协议
+//		ServerLauncher.supportedGateways = Gateway.SOCKET_TYPE_WEBSOCKET;
+		// 设置MobileIMSDK服务端同时支持UDP、TCP、WebSocket三种协议
+		ServerLauncher.supportedGateways = Gateway.SOCKET_TYPE_UDP | Gateway.SOCKET_TYPE_TCP | Gateway.SOCKET_TYPE_WEBSOCKET;
 		
 		// 开/关Demog日志的输出
 		QoS4SendDaemonS2C.getInstance().setDebugable(true);
 		QoS4ReciveDaemonC2S.getInstance().setDebugable(true);
-		ServerLauncher.debug = true;
 		
 		// 与客户端协商一致的心跳频率模式设置
 //		ServerToolKits.setSenseModeUDP(SenseModeUDP.MODE_15S);
 //		ServerToolKits.setSenseModeTCP(SenseModeTCP.MODE_15S);
+		ServerToolKits.setSenseModeWebsocket(SenseModeWebsocket.MODE_3S);
+//		ServerToolKits.setSenseModeWebsocket(SenseModeWebsocket.MODE_30S);
 
 		// 关闭与Web端的消息互通桥接器（其实SDK中默认就是false）
 		ServerLauncher.bridgeEnabled = false;
