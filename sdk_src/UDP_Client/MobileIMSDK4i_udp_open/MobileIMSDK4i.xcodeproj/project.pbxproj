@@ -588,6 +588,7 @@
 		EADDE5EF1A0A122E002FFB8E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = (
 					"-ObjC",
