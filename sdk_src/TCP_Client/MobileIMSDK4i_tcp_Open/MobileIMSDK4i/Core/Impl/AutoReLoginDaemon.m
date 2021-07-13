@@ -24,7 +24,7 @@
 #pragma mark - 静态全局类变量
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-static int AUTO_RE_LOGIN_INTERVAL = 3000;//2000;
+static int AUTO_RE_LOGIN_INTERVAL = 2000;
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -94,10 +94,7 @@ static AutoReLoginDaemon *instance = nil;
         int code = -1;
         if([ClientCoreSDK isAutoReLogin])
         {
-            NSString *curLoginUserId = [ClientCoreSDK sharedInstance].currentLoginUserId;
-            NSString *curLoginToken = [ClientCoreSDK sharedInstance].currentLoginToken;
-            NSString *curLoginExtra = [ClientCoreSDK sharedInstance].currentLoginExtra;
-            code = [[LocalDataSender sharedInstance] sendLogin:curLoginUserId withToken:curLoginToken andExtra:curLoginExtra];
+            code = [[LocalDataSender sharedInstance] sendLogin:[ClientCoreSDK sharedInstance].currentLoginInfo];
             
             // form DEBUG
             if(self.debugObserver_ != nil)

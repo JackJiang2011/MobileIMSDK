@@ -17,6 +17,8 @@
 #import "Protocal.h"
 #import "PLoginInfoResponse.h"
 #import "PErrorResponse.h"
+#import "PLoginInfo.h"
+#import "PKickoutInfo.h"
 
 @interface ProtocalFactory : NSObject
 
@@ -31,13 +33,15 @@
 + (PLoginInfoResponse *) parsePLoginInfoResponse:(NSString *)dataContentOfProtocal;
 + (PErrorResponse *) parsePErrorResponse:(NSString *) dataContentOfProtocal;
 
++ (PKickoutInfo *)parsePKickoutInfo:(NSString *)dataContentOfProtocal;
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - 协议组装相关方法
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 + (Protocal *) createPLoginoutInfo:(NSString *) user_id;
-+ (Protocal *) createPLoginInfo:(NSString *)loginUserId withToken:(NSString *)loginToken andExtra:(NSString *)extra;
++ (Protocal *) createPLoginInfo:(PLoginInfo *)loginInfo;
 + (Protocal *) createPKeepAlive:(NSString *)from_user_id;
 + (Protocal *) createCommonData:(NSString *)dataContent fromUserId:(NSString *)from_user_id toUserId:(NSString *)to_user_id;
 + (Protocal *) createCommonData:(NSString *)dataContent fromUserId:(NSString *)from_user_id toUserId:(NSString *)to_user_id withTypeu:(int)typeu;
@@ -45,6 +49,7 @@
 + (Protocal *) createRecivedBack:(NSString *)from_user_id toUserId:(NSString *)to_user_id withFingerPrint:(NSString *)recievedMessageFingerPrint;
 + (Protocal *) createRecivedBack:(NSString *)from_user_id toUserId:(NSString *)to_user_id withFingerPrint:(NSString *)recievedMessageFingerPrint andBridge:(bool)bridge;
 
++ (Protocal *) createPKickout:(nonnull NSString *)to_user_id code:(int)code reason:(nullable NSString *)reason;
 
 @end
 

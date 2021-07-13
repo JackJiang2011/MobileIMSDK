@@ -18,7 +18,7 @@
 
 static NSString *serverIp = @"rbcore.52im.net";
 static int serverPort = 8901;
-static int localSendAndListeningPort = 0;//7801;
+static int localSendAndListeningPort = -1;//7801;
 static NSString *appKey = nil;
 
 @implementation ConfigEntity

@@ -86,13 +86,8 @@ static LocalDataSender *instance = nil;
     return instance;
 }
 
-- (int) sendLogin:(NSString *)loginUserId withToken:(NSString *)loginToken
-{
-    return [self sendLogin:loginUserId withToken:loginToken andExtra:nil];
-}
+- (int) sendLogin:(PLoginInfo *)loginInfo
 
-- (int) sendLogin:(NSString *)loginUserId withToken:(NSString *)loginToken andExtra:(NSString *)extra
-{
     [[ClientCoreSDK sharedInstance] initCore];
     
     int codeForCheck = [self checkBeforeSend];
@@ -104,7 +99,7 @@ static LocalDataSender *instance = nil;
     {
         ConnectionCompletion observerBlock = ^(BOOL connectResult) {
             if(connectResult)
-                [self sendLoginImpl:loginUserId withToken:loginToken andExtra:extra];
+                [self sendLoginImpl:loginInfo];
             else
                NSLog(@"【IMCORE-TCP】[来自GCDAsyncSocket的连接结果回调通知]socket连接失败，本次登陆信息未成功发出！");
         };
@@ -119,19 +114,18 @@ static LocalDataSender *instance = nil;
     }
     else
     {
-        return [self sendLoginImpl:loginUserId withToken:loginToken andExtra:extra];
+        return [self sendLoginImpl:loginInfo];
     }
 }
 
-- (int)sendLoginImpl:(NSString *)loginUserId withToken:(NSString *)loginToken andExtra:(NSString *)extra
+- (int)sendLoginImpl:(PLoginInfo *)loginInfo
 {
-    NSData *b = [[ProtocalFactory createPLoginInfo:loginUserId withToken:loginToken andExtra:extra] toBytes];
+    NSData *b = [[ProtocalFactory createPLoginInfo:loginInfo] toBytes];
+    
     int code = [self sendImpl_:b];
     if(code == 0)
     {
-        [[ClientCoreSDK sharedInstance] setCurrentLoginUserId:loginUserId];
-        [[ClientCoreSDK sharedInstance] setCurrentLoginToken:loginToken];
-        [[ClientCoreSDK sharedInstance] setCurrentLoginExtra:extra];
+        [[ClientCoreSDK sharedInstance] setCurrentLoginInfo:loginInfo];
     }
     
     return code;

@@ -52,6 +52,8 @@ static BOOL autoReLogin = YES;
 
 static ClientCoreSDK *instance = nil;
 
+//------------------------------------------------------
+#pragma mark - 静态方法
 + (ClientCoreSDK *)sharedInstance
 {
     static dispatch_once_t onceToken;
@@ -78,6 +80,10 @@ static ClientCoreSDK *instance = nil;
 {
     autoReLogin = arl;
 }
+
+
+//------------------------------------------------------
+#pragma mark - 实例方法
 
 - (id)init
 {
@@ -110,8 +116,6 @@ static ClientCoreSDK *instance = nil;
             self.internetReachability = [MBReachability reachabilityForInternetConnection];
         }
         [self.internetReachability startNotifier];
-        // 本地网络状态初始化
-//      self.localDeviceNetworkOk = [self internetReachable];
         
         self._init = YES;
         
@@ -121,6 +125,8 @@ static ClientCoreSDK *instance = nil;
 
 - (void) releaseCore
 {
+    self.connectedToServer = NO;// 2021-07-09 add by Jack Jiang
+    
     [[AutoReLoginDaemon sharedInstance] stop]; // 2014-11-08 add by Jack Jiang
     [[QoS4SendDaemon sharedInstance] stop];
     [[KeepAliveDaemon sharedInstance] stop];
@@ -137,15 +143,24 @@ static ClientCoreSDK *instance = nil;
     
     self._init = NO;
     self.loginHasInit = NO;
-    self.connectedToServer = NO;
+ //   self.connectedToServer = NO;
 }
-
-
-#pragma mark -  公开的方法
 
 - (BOOL) isInitialed
 {
     return self._init;
+}
+
+- (void) saveFirstLoginTime:(long)firstLoginTime
+{
+    if(self.currentLoginInfo != nil)
+        self.currentLoginInfo.firstLoginTime = firstLoginTime;
+}
+
+// @deprecated 本方法已弃用。请使用 [ClientCoreSDK sharedInstance].currentLoginInfo.loginUserId 替代之！
+- (NSString *) currentLoginUserId
+{
+    return self.currentLoginInfo.loginUserId;
 }
 
 - (BOOL)internetReachable
@@ -186,7 +201,7 @@ static ClientCoreSDK *instance = nil;
         case ReachableViaWiFi: // WIFI
         {
             int wifi = (netStatus == ReachableViaWiFi);
-            statusString= [NSString stringWithFormat:NSLocalizedString(@"【IMCORE-TCP】【本地网络通知】检测本地网络已连接上了! WIFI? %d", @""), wifi?@"YES":@"NO"];
+            statusString= [NSString stringWithFormat:NSLocalizedString(@"【IMCORE-TCP】【本地网络通知】检测本地网络已连接上了! WIFI? %@", @""), wifi?@"YES":@"NO"];
             
 //          self.localDeviceNetworkOk = true;
             [[LocalSocketProvider sharedInstance] closeLocalSocket];

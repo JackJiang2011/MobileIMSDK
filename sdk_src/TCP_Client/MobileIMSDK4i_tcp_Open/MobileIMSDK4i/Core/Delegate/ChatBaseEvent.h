@@ -14,10 +14,12 @@
 //  ----------------------------------------------------------------------
 
 #import <Foundation/Foundation.h>
+#import "PKickoutInfo.h"
 
 @protocol ChatBaseEvent <NSObject>
 
 - (void) onLoginResponse:(int) errorCode;
 - (void) onLinkClose:(int)errorCode;
 
+- (void) onKickout:(PKickoutInfo *)kickoutInfo;
 @end

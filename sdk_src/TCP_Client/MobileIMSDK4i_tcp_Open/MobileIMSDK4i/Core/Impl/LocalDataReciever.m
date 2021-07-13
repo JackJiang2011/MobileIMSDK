@@ -108,6 +108,11 @@ static LocalDataReciever *instance = nil;
             [self onServerResponseError:pFromServer];
             break;
         }
+        case FROM_SERVER_TYPE_OF_KICKOUT:
+        {
+            [self onKickout:pFromServer];
+            break;
+        }
         default:
             NSLog(@"【IMCORE-TCP】收到的服务端消息类型：%d，但目前该类型客户端不支持解析和处理！", pFromServer.type);
             break;
@@ -150,6 +155,11 @@ static LocalDataReciever *instance = nil;
     PLoginInfoResponse *loginInfoRes = [ProtocalFactory parsePLoginInfoResponse:pFromServer.dataContent];
     if(loginInfoRes.code == 0)
     {
+        if(! [ClientCoreSDK sharedInstance].loginHasInit) 
+		{
+            [[ClientCoreSDK sharedInstance] saveFirstLoginTime:loginInfoRes.firstLoginTime];
+        }
+
         [self fireConnectedToServer];
     }
     else
@@ -184,6 +194,22 @@ static LocalDataReciever *instance = nil;
     }
 }
 
+- (void) onKickout:(Protocal *)pFromServer
+{
+    if([ClientCoreSDK isENABLED_DEBUG])
+        NSLog(@"【IMCORE-TCP】收到服务端发过来的“被踢”指令.");
+    
+    [[ClientCoreSDK sharedInstance] releaseCore];
+    
+    PKickoutInfo *kickoutInfo = [ProtocalFactory parsePKickoutInfo:pFromServer.dataContent];
+
+    if([ClientCoreSDK sharedInstance].chatBaseEvent != nil)
+        [[ClientCoreSDK sharedInstance].chatBaseEvent onKickout:kickoutInfo];
+    
+    if([ClientCoreSDK sharedInstance].chatBaseEvent != nil)
+        [[ClientCoreSDK sharedInstance].chatBaseEvent onLinkClose:-1];
+}
+
 - (void) fireConnectedToServer
 {
     __weak typeof(self) weakSelf = self;
@@ -207,7 +233,10 @@ static LocalDataReciever *instance = nil;
 //  [[ProtocalQoS4SendProvider sharedInstance] stop];
     [[LocalSocketProvider sharedInstance] closeLocalSocket];
     [[QoS4ReciveDaemon sharedInstance] stop];
-    [[ClientCoreSDK sharedInstance].chatBaseEvent onLinkClose:-1];
+    if([ClientCoreSDK sharedInstance].chatBaseEvent != nil)
+    {
+        [[ClientCoreSDK sharedInstance].chatBaseEvent onLinkClose:-1];
+    }
     [[AutoReLoginDaemon sharedInstance] start:NO];// 建议：此参数可由YES改为NO，防止服务端重启等情况下，客户端立即重连等
 }
 

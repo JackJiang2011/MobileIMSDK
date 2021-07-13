@@ -15,13 +15,13 @@
 
 #import <Foundation/Foundation.h>
 #import "Protocal.h"
+#import "PLoginInfo.h"
 
 @interface LocalDataSender : NSObject
 
 + (LocalDataSender *)sharedInstance;
 
-- (int) sendLogin:(NSString *)loginUserId withToken:(NSString *)loginToken;
-- (int) sendLogin:(NSString *)loginUserId withToken:(NSString *)loginToken andExtra:(NSString *)extra;
+- (int) sendLogin:(PLoginInfo *)loginInfo;
 - (int) sendLoginout;
 - (int) sendKeepAlive;
 - (int) sendCommonDataWithStr:(NSString *)dataContentWidthStr toUserId:(NSString *)to_user_id;

@@ -57,4 +57,5 @@
 /*! 由服务端发出 - 协议类型：反馈回显指令给客户端 */
 #define FROM_SERVER_TYPE_OF_RESPONSE_ECHO       53
 
-
+/*! 由服务端发出 - 协议类型：向客户端发出“被踢”指令 */
+#define FROM_SERVER_TYPE_OF_KICKOUT             54

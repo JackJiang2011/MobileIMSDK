@@ -19,6 +19,7 @@
 #import "ChatBaseEvent.h"
 #import "MessageQoSEvent.h"
 #import "CompletionDefine.h"
+#import "PLoginInfo.h"
 
 @interface ClientCoreSDK : NSObject
 
@@ -27,23 +28,29 @@
 
 @property (nonatomic, assign) BOOL connectedToServer;
 @property (nonatomic, assign) BOOL loginHasInit;
-@property (nonatomic, retain) NSString *currentLoginUserId;
-@property (nonatomic, retain) NSString *currentLoginToken;
-@property (nonatomic, retain) NSString *currentLoginExtra;
+@property (nonatomic, retain) PLoginInfo *currentLoginInfo;
 
 @property (nonatomic, retain) id<ChatMessageEvent> chatMessageEvent;
 @property (nonatomic, retain) id<ChatBaseEvent> chatBaseEvent;
 @property (nonatomic, retain) id<MessageQoSEvent> messageQoSEvent;
 
 
+//------------------------------------------------------
+#pragma mark - 静态方法
 + (ClientCoreSDK *)sharedInstance;
 + (BOOL) isENABLED_DEBUG;
 + (void) setENABLED_DEBUG:(BOOL)enabledDebug;
 + (BOOL) isAutoReLogin;
 + (void) setAutoReLogin:(BOOL)arl;
 
+
+//------------------------------------------------------
+#pragma mark - 实例方法
 - (BOOL) isInitialed;
 - (void)initCore;
 - (void) releaseCore;
 
+- (void) saveFirstLoginTime:(long)firstLoginTime;
+
+- (NSString *) currentLoginUserId;
 @end

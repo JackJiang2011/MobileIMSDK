@@ -19,4 +19,5 @@
 
 @property (nonatomic, assign) int code;
 
+@property (nonatomic, assign) long firstLoginTime;
 @end

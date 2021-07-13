@@ -21,5 +21,6 @@
 @property (nonatomic, retain) NSString* loginToken;
 @property (nonatomic, retain) NSString* extra;
 
+@property (nonatomic, assign) long firstLoginTime;
 
 @end
