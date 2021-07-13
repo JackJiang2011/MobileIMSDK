@@ -27,10 +27,17 @@
 @implementation ProtocalFactory
 
 
+#pragma mark - 以下方法为本类内部使用
+
 + (NSString *) create:(id)protocalDataContentObj
 {
     return[ToolKits toJSONString:[ToolKits toJSONBytesWithDictionary:[ToolKits toMutableDictionary:protocalDataContentObj]]];
 }
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - 协议解析相关方法（可外部调用）
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 + (id) parse:(NSData *)fullProtocalJASOnBytes
 {
@@ -48,15 +55,14 @@
              [CharsetHelper getBytesWithString:dataContentJSONOfProtocal]] withClass:clazz];
 }
 
++ (PLoginInfoResponse *) parsePLoginInfoResponse:(NSString *)dataContentOfProtocal
+{
+    return [ProtocalFactory parseObject:dataContentOfProtocal withClass:[PLoginInfoResponse class]];
+}
+
 + (PKeepAliveResponse *) parsePKeepAliveResponse:(NSString *)dataContentOfProtocal
 {
     return [ProtocalFactory parseObject:dataContentOfProtocal withClass:[PKeepAliveResponse class]];
-}
-
-+ (Protocal *) createPKeepAlive:(NSString *)from_user_id
-{
-    NSString *dataContent = [ProtocalFactory create:[[PKeepAlive alloc] init]];
-    return [Protocal initWithType:FROM_CLIENT_TYPE_OF_KEEP_ALIVE content:dataContent from:from_user_id to:@"0"];
 }
 
 + (PErrorResponse *) parsePErrorResponse:(NSString *) dataContentOfProtocal
@@ -64,26 +70,26 @@
     return [ProtocalFactory parseObject:dataContentOfProtocal withClass:[PErrorResponse class]];
 }
 
++ (PKickoutInfo *)parsePKickoutInfo:(NSString *)dataContentOfProtocal
+{
+    return [ProtocalFactory parseObject:dataContentOfProtocal withClass:[PKickoutInfo class]];
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - 协议组装相关方法（可外部调用）
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 + (Protocal *) createPLoginoutInfo:(NSString *) user_id
 {
     NSString *dataContent = nil;
     return [Protocal initWithType:FROM_CLIENT_TYPE_OF_LOGOUT content:dataContent from:user_id to:@"0"];
 }
 
-+ (Protocal *) createPLoginInfo:(NSString *)loginUserId withToken:(NSString *)loginToken andExtra:(NSString *)extra
++ (Protocal *) createPLoginInfo:(PLoginInfo *)loginInfo//(NSString *)loginUserId withToken:(NSString *)loginToken andExtra:(NSString *)extra
 {
-    PLoginInfo *li = [[PLoginInfo alloc] init];
-    li.loginUserId = loginUserId;
-    li.loginToken = loginToken;
-    li.extra = extra;
-    NSString *dataContent = [ProtocalFactory create:li];
-    return [Protocal initWithType:FROM_CLIENT_TYPE_OF_LOGIN content:dataContent
-                             from:loginUserId//@"-1"
-                               to:@"0"];
-}
-+ (PLoginInfoResponse *) parsePLoginInfoResponse:(NSString *)dataContentOfProtocal
-{
-    return [ProtocalFactory parseObject:dataContentOfProtocal withClass:[PLoginInfoResponse class]];
+    NSString *dataContent = [ProtocalFactory create:loginInfo];
+    return [Protocal initWithType:FROM_CLIENT_TYPE_OF_LOGIN content:dataContent from:loginInfo.loginUserId to:@"0"];
 }
 
 + (Protocal *) createCommonData:(NSString *)dataContent fromUserId:(NSString *)from_user_id toUserId:(NSString *)to_user_id
@@ -109,5 +115,19 @@
     return [Protocal initWithType:FROM_CLIENT_TYPE_OF_RECIVED content:recievedMessageFingerPrint from:from_user_id to:to_user_id qos:NO fp:nil bg:bridge tu:-1];
 }
 
++ (Protocal *) createPKeepAlive:(NSString *)from_user_id
+{
+    NSString *dataContent = [ProtocalFactory create:[[PKeepAlive alloc] init]];
+    return [Protocal initWithType:FROM_CLIENT_TYPE_OF_KEEP_ALIVE content:dataContent from:from_user_id to:@"0"];
+}
+
++ (Protocal *) createPKickout:(nonnull NSString *)to_user_id code:(int)code reason:(nullable NSString *)reason
+{
+    PKickoutInfo *ki = [[PKickoutInfo alloc] init];
+    ki.code = code;
+    ki.reason = reason;
+
+    return [Protocal initWithType:FROM_SERVER_TYPE_OF_KICKOUT content:[ProtocalFactory create:ki] from:@"0" to:to_user_id];
+}
 
 @end

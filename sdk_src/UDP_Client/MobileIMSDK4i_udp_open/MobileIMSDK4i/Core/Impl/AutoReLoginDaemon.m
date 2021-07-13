@@ -18,8 +18,18 @@
 #import "LocalDataSender.h"
 #import "LocalDataReciever.h"
 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - 静态全局类变量
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 static int AUTO_RE_LOGIN_INTERVAL = 2000;
 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - 私有API
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 @interface AutoReLoginDaemon ()
 
@@ -31,16 +41,20 @@ static int AUTO_RE_LOGIN_INTERVAL = 2000;
 @end
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - 本类的代码实现
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 @implementation AutoReLoginDaemon
 
 static AutoReLoginDaemon *instance = nil;
 
 + (AutoReLoginDaemon *)sharedInstance
 {
-    if (instance == nil)
-    {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
         instance = [[super allocWithZone:NULL] init];
-    }
+    });
     return instance;
 }
 
@@ -53,6 +67,8 @@ static AutoReLoginDaemon *instance = nil;
     return AUTO_RE_LOGIN_INTERVAL;
 }
 
+//-----------------------------------------------------------------------------------
+#pragma mark - 仅内部可调用的方法
 
 - (id)init
 {
@@ -78,10 +94,7 @@ static AutoReLoginDaemon *instance = nil;
 
         if([ClientCoreSDK isAutoReLogin])
         {
-            NSString *curLoginUserId = [ClientCoreSDK sharedInstance].currentLoginUserId;
-            NSString *curLoginToken = [ClientCoreSDK sharedInstance].currentLoginToken;
-            NSString *curLoginExtra = [ClientCoreSDK sharedInstance].currentLoginExtra;
-            code = [[LocalDataSender sharedInstance] sendLogin:curLoginUserId withToken:curLoginToken andExtra:curLoginExtra];
+            code = [[LocalDataSender sharedInstance] sendLogin:[ClientCoreSDK sharedInstance].currentLoginInfo];
             
             // form DEBUG
             if(self.debugObserver_ != nil)
@@ -99,6 +112,8 @@ static AutoReLoginDaemon *instance = nil;
     }
 }
 
+//-----------------------------------------------------------------------------------
+#pragma mark - 外部可调用的方法
 
 - (void) stop
 {

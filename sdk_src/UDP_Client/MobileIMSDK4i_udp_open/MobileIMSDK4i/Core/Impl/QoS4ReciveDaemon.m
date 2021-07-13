@@ -20,9 +20,17 @@
 #import "NSMutableDictionary+Ext.h"
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - 静态全局类变量
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 static int CHECK_INTERVAL = 5 * 60 * 1000;
 static int MESSAGES_VALID_TIME = 10 * 60 * 1000;
 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - 私有API
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 @interface QoS4ReciveDaemon ()
 
@@ -34,6 +42,9 @@ static int MESSAGES_VALID_TIME = 10 * 60 * 1000;
 
 @end
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - 本类的代码实现
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation QoS4ReciveDaemon
 
@@ -41,19 +52,23 @@ static QoS4ReciveDaemon *instance = nil;
 
 + (QoS4ReciveDaemon *)sharedInstance
 {
-    if (instance == nil)
-    {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
         instance = [[super allocWithZone:NULL] init];
-    }
+    });
     return instance;
 }
+
+
+//-----------------------------------------------------------------------------------
+#pragma mark - 仅内部可调用的方法
 
 - (id)init
 {
     if (![super init])
         return nil;
     
-    NSLog(@"ProtocalQoS4ReciveProvider已经init了！");
+    NSLog(@"QoS4ReciveDaemon已经init了！");
     
     self.running = NO;
     self._excuting = NO;
@@ -87,7 +102,7 @@ static QoS4ReciveDaemon *instance = nil;
     }
 
     if([ClientCoreSDK isENABLED_DEBUG])
-        NSLog(@"【IMCORE】【QoS接收方-UDP】++++++++++ END 暂存处理线程正在运行中，当前长度 %li", (unsigned long)[self.recievedMessages count]);
+        NSLog(@"【IMCORE-UDP】【QoS接收方】++++++++++ END 暂存处理线程正在运行中，当前长度 %li", (unsigned long)[self.recievedMessages count]);
     
     self._excuting = NO;
     
@@ -101,6 +116,10 @@ static QoS4ReciveDaemon *instance = nil;
     if(fingerPrintOfProtocal != nil)
         [self.recievedMessages setValue:[NSNumber numberWithLong:[ToolKits getTimeStampWithMillisecond_l]] forKey:fingerPrintOfProtocal];
 }
+
+
+//-----------------------------------------------------------------------------------
+#pragma mark - 外部可调用的方法
 
 - (void) startup:(BOOL)immediately
 {

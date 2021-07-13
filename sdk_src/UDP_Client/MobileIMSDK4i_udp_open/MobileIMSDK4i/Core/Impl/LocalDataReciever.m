@@ -33,12 +33,16 @@
 
 static LocalDataReciever *instance = nil;
 
+
+//-----------------------------------------------------------------------------------
+#pragma mark - 公开方法
+
 + (LocalDataReciever *)sharedInstance
 {
-    if (instance == nil)
-    {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
         instance = [[super allocWithZone:NULL] init];
-    }
+    });
     return instance;
 }
 
@@ -47,8 +51,7 @@ static LocalDataReciever *instance = nil;
     if(originalProtocalJSONData == nil)
         return;
     
-    Protocal *pFromServer =
-        [ProtocalFactory parse:originalProtocalJSONData];
+    Protocal *pFromServer = [ProtocalFactory parse:originalProtocalJSONData];
     if(pFromServer.QoS)
     {
         if(pFromServer.type == FROM_SERVER_TYPE_OF_RESPONSE_LOGIN
@@ -110,12 +113,17 @@ static LocalDataReciever *instance = nil;
             PLoginInfoResponse *loginInfoRes = [ProtocalFactory parsePLoginInfoResponse:pFromServer.dataContent];
             if(loginInfoRes.code == 0)
             {
+		        if(! [ClientCoreSDK sharedInstance].loginHasInit) 
+				{
+		            [[ClientCoreSDK sharedInstance] saveFirstLoginTime:loginInfoRes.firstLoginTime];
+		        }
+		
                 [ClientCoreSDK sharedInstance].loginHasInit = YES;
 
                 [[AutoReLoginDaemon sharedInstance] stop];
                 
                 ObserverCompletion observerBlock = ^(id observerble ,id data) {
-                    [[QoS4SendDaemon sharedInstance] stop];
+                    [[QoS4ReciveDaemon sharedInstance] stop];
                     [ClientCoreSDK sharedInstance].connectedToServer = NO;
                     [[ClientCoreSDK sharedInstance].chatBaseEvent onLinkClose:-1];
                     [[AutoReLoginDaemon sharedInstance] start:YES];
@@ -123,8 +131,8 @@ static LocalDataReciever *instance = nil;
 
                 [[KeepAliveDaemon sharedInstance] setNetworkConnectionLostObserver:observerBlock];
                 [[KeepAliveDaemon sharedInstance] start:NO];
-                [[QoS4ReciveDaemon sharedInstance] startup:YES];
                 [[QoS4SendDaemon sharedInstance] startup:YES];
+                [[QoS4ReciveDaemon sharedInstance] startup:YES];
                 [ClientCoreSDK sharedInstance].connectedToServer = YES;
             }
             else
@@ -159,11 +167,30 @@ static LocalDataReciever *instance = nil;
             }
             break;
         }
-            
+        case FROM_SERVER_TYPE_OF_KICKOUT:
+        {
+            [self onKickout:pFromServer];
+            break;
+        }
         default:
             NSLog(@"【IMCORE-UDP】收到的服务端消息类型：%d，但目前该类型客户端不支持解析和处理！", pFromServer.type);
             break;
     }
+}
+
+- (void) onKickout:(Protocal *)pFromServer
+{
+    if([ClientCoreSDK isENABLED_DEBUG])
+        NSLog(@"【IMCORE-TCP】收到服务端发过来的“被踢”指令.");
+    
+    [[ClientCoreSDK sharedInstance] releaseCore];
+    
+    PKickoutInfo *kickoutInfo = [ProtocalFactory parsePKickoutInfo:pFromServer.dataContent];
+    if([ClientCoreSDK sharedInstance].chatBaseEvent != nil)
+        [[ClientCoreSDK sharedInstance].chatBaseEvent onKickout:kickoutInfo];
+    
+    if([ClientCoreSDK sharedInstance].chatBaseEvent != nil)
+        [[ClientCoreSDK sharedInstance].chatBaseEvent onLinkClose:-1];
 }
 
 - (void) sendRecievedBack:(Protocal *)pFromServer

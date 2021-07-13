@@ -19,9 +19,17 @@
 #import "ClientCoreSDK.h"
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - 静态全局类变量
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 static int NETWORK_CONNECTION_TIME_OUT = 10 * 1000;
 static int KEEP_ALIVE_INTERVAL = 3000;
 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - 私有API
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 @interface KeepAliveDaemon ()
 
@@ -35,16 +43,24 @@ static int KEEP_ALIVE_INTERVAL = 3000;
 @end
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - 本类的代码实现
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 @implementation KeepAliveDaemon
 
 static KeepAliveDaemon *instance = nil;
 
+
+//-----------------------------------------------------------------------------------
+#pragma mark - 外部可调用的静态方法
+
 + (KeepAliveDaemon *)sharedInstance
 {
-    if (instance == nil)
-    {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
         instance = [[super allocWithZone:NULL] init];
-    }
+    });
     return instance;
 }
 
@@ -66,6 +82,9 @@ static KeepAliveDaemon *instance = nil;
     return NETWORK_CONNECTION_TIME_OUT;
 }
 
+
+//-----------------------------------------------------------------------------------
+#pragma mark - 仅内部可调用的方法
 
 - (id)init
 {
@@ -96,8 +115,10 @@ static KeepAliveDaemon *instance = nil;
             self.debugObserver_(nil, [NSNumber numberWithInt:2]);
         
         BOOL isInitialedForKeepAlive = (self.lastGetKeepAliveResponseFromServerTimstamp == 0);
-        if(isInitialedForKeepAlive)
+        //## Bug FIX 20190513 v4.0.1 START
+        if(self.lastGetKeepAliveResponseFromServerTimstamp == 0)
             self.lastGetKeepAliveResponseFromServerTimstamp = [ToolKits getTimeStampWithMillisecond_l];
+        //## Bug FIX 20190513 v4.0.1 END
         
         if(!isInitialedForKeepAlive)
         {

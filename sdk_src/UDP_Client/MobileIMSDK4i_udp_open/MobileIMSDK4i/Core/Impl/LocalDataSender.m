@@ -30,6 +30,8 @@
 
 static LocalDataSender *instance = nil;
 
+//-----------------------------------------------------------------------------------
+#pragma mark - 仅内部可调用的方法
 
 - (int) sendImpl_:(NSData *)fullProtocalBytes
 {
@@ -73,31 +75,28 @@ static LocalDataSender *instance = nil;
         [[QoS4SendDaemon sharedInstance] put:p];
 }
 
+
+//-----------------------------------------------------------------------------------
+#pragma mark - 外部可调用的方法
+
 + (LocalDataSender *)sharedInstance
 {
-    if (instance == nil)
-    {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
         instance = [[super allocWithZone:NULL] init];
-    }
+    });
     return instance;
 }
 
-- (int) sendLogin:(NSString *)loginUserId withToken:(NSString *)loginToken
-{
-    return [self sendLogin:loginUserId withToken:loginToken andExtra:nil];
-}
-
-- (int) sendLogin:(NSString *)loginUserId withToken:(NSString *)loginToken andExtra:(NSString *)extra
+- (int) sendLogin:(PLoginInfo *)loginInfo
 {
     [[ClientCoreSDK sharedInstance] initCore];
     
-    NSData *b = [[ProtocalFactory createPLoginInfo:loginUserId withToken:loginToken andExtra:extra] toBytes];
+    NSData *b = [[ProtocalFactory createPLoginInfo:loginInfo] toBytes];
     int code = [self sendImpl_:b];
     if(code == 0)
     {
-        [[ClientCoreSDK sharedInstance] setCurrentLoginUserId:loginUserId];
-        [[ClientCoreSDK sharedInstance] setCurrentLoginToken:loginToken];
-        [[ClientCoreSDK sharedInstance] setCurrentLoginExtra:extra];
+        [[ClientCoreSDK sharedInstance] setCurrentLoginInfo:loginInfo];
     }
     
     return code;

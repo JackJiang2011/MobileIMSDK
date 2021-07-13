@@ -22,6 +22,7 @@
     if(self = [super init])
     {
         self.code = 0;
+        self.firstLoginTime = 0;
     }
     return self;
 }

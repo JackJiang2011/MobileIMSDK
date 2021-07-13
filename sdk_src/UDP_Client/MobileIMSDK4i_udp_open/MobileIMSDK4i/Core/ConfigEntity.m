@@ -16,9 +16,9 @@
 #import "ConfigEntity.h"
 #import "KeepAliveDaemon.h"
 
-static NSString *serverIp = @"openmob.net";
+static NSString *serverIp = @"rbcore.52im.net";
 static int serverPort = 7901;
-static int localSendAndListeningPort = 0;//7801;
+static int localSendAndListeningPort = -1;//7801;
 static NSString *appKey = nil;
 
 @implementation ConfigEntity

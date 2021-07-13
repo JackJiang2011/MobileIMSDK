@@ -23,10 +23,18 @@
 #import "ToolKits.h"
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - 静态全局类变量
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 static int CHECK_INTERVAL = 5000;
 static int MESSAGES_JUST$NOW_TIME = 3 * 1000;
 static int QOS_TRY_COUNT = 2;
 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - 私有API
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 @interface QoS4SendDaemon ()
 
@@ -40,25 +48,33 @@ static int QOS_TRY_COUNT = 2;
 @end
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - 本类的代码实现
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 @implementation QoS4SendDaemon
 
 static QoS4SendDaemon *instance = nil;
 
 + (QoS4SendDaemon *)sharedInstance
 {
-    if (instance == nil)
-    {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
         instance = [[super allocWithZone:NULL] init];
-    }
+    });
     return instance;
 }
+
+
+//-----------------------------------------------------------------------------------
+#pragma mark - 仅内部可调用的方法
 
 - (id)init
 {
     if (![super init])
         return nil;
     
-    NSLog(@"ProtocalQoS4SendProvider已经init了！");
+    NSLog(@"QoS4SendDaemon已经init了！");
     
     self.running = NO;
     self._excuting = NO;
@@ -75,8 +91,8 @@ static QoS4SendDaemon *instance = nil;
         NSMutableArray *lostMessages = [[NSMutableArray alloc] init];
         self._excuting = true;
         
-        if([ClientCoreSDK isENABLED_DEBUG])
-            NSLog(@"【IMCORE-UDP】【QoS】====== 消息发送质量保证线程运行中, 当前需要处理的列表长度为 %li ...", (unsigned long)[self.sentMessages count]);
+        if([ClientCoreSDK isENABLED_DEBUG] && [self.sentMessages count] > 0)
+            NSLog(@"【IMCORE-UDP】【QoS】=========== 消息发送质量保证线程运行中, 当前需要处理的列表长度为 %li ...", (unsigned long)[self.sentMessages count]);
 
         NSArray *keyArr = [self.sentMessages allKeys];
         for (NSString *key in keyArr)
@@ -142,6 +158,10 @@ static QoS4SendDaemon *instance = nil;
         [[ClientCoreSDK sharedInstance].messageQoSEvent messagesLost:lostMsgs];
     }
 }
+
+
+//-----------------------------------------------------------------------------------
+#pragma mark - 外部可调用的方法
 
 - (void) startup:(BOOL)immediately
 {

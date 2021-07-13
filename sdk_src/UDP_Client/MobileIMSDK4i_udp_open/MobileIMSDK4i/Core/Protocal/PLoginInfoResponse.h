@@ -17,5 +17,6 @@
 
 @interface PLoginInfoResponse : NSObject
 @property (nonatomic, assign) int code;
+@property (nonatomic, assign) long firstLoginTime;
 
 @end

@@ -26,10 +26,17 @@
 #import "AutoReLoginDaemon.h"
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - 静态全局类变量
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 static BOOL ENABLED_DEBUG = NO;
 static BOOL autoReLogin = YES;
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - 私有API
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 @interface ClientCoreSDK ()
 
 @property (nonatomic) BOOL _init;
@@ -38,16 +45,22 @@ static BOOL autoReLogin = YES;
 @end
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - 本类的代码实现
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation ClientCoreSDK
 
 static ClientCoreSDK *instance = nil;
 
+//------------------------------------------------------
+#pragma mark - 静态方法
+
 + (ClientCoreSDK *)sharedInstance
 {
-    if (instance == nil)
-    {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
         instance = [[super allocWithZone:NULL] init];
-    }
+    });
     return instance;
 }
 
@@ -69,6 +82,10 @@ static ClientCoreSDK *instance = nil;
     autoReLogin = arl;
 }
 
+
+//------------------------------------------------------
+#pragma mark - 实例方法
+
 - (id)init
 {
     if (![super init])
@@ -81,7 +98,6 @@ static ClientCoreSDK *instance = nil;
 {
     if(!self._init)
     {
-//        self.localDeviceNetworkOk = NO;
         self.connectedToServer = NO;
         self.loginHasInit = NO;
         
@@ -91,7 +107,6 @@ static ClientCoreSDK *instance = nil;
             self.internetReachability = [MBReachability reachabilityForInternetConnection];
         }
         [self.internetReachability startNotifier];
-//        self.localDeviceNetworkOk = [self internetReachable];
         self._init = YES;
         
         NSLog(@"ClientCoreSDK已经完成initCore了！");
@@ -101,9 +116,9 @@ static ClientCoreSDK *instance = nil;
 - (void) releaseCore
 {
     [[AutoReLoginDaemon sharedInstance] stop]; 
-    [[QoS4ReciveDaemon sharedInstance] stop];
-    [[KeepAliveDaemon sharedInstance] stop];
     [[QoS4SendDaemon sharedInstance] stop];
+    [[KeepAliveDaemon sharedInstance] stop];
+    [[QoS4ReciveDaemon sharedInstance] stop];
     [[LocalSocketProvider sharedInstance] closeLocalSocket];
 
     [[QoS4SendDaemon sharedInstance] clear];
@@ -120,6 +135,18 @@ static ClientCoreSDK *instance = nil;
 - (BOOL) isInitialed
 {
     return self._init;
+}
+
+- (void) saveFirstLoginTime:(long)firstLoginTime
+{
+    if(self.currentLoginInfo != nil)
+        self.currentLoginInfo.firstLoginTime = firstLoginTime;
+}
+
+// @deprecated 本方法已弃用。请使用 [ClientCoreSDK sharedInstance].currentLoginInfo.loginUserId 替代之！
+- (NSString *) currentLoginUserId
+{
+    return self.currentLoginInfo.loginUserId;
 }
 
 - (BOOL)internetReachable

@@ -17,4 +17,13 @@
 
 @implementation PLoginInfo
 
+- (id)init
+{
+    if(self = [super init])
+    {
+        self.firstLoginTime = 0;
+    }
+    return self;
+}
+
 @end
