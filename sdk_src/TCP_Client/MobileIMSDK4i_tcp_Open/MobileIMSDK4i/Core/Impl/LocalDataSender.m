@@ -87,7 +87,7 @@ static LocalDataSender *instance = nil;
 }
 
 - (int) sendLogin:(PLoginInfo *)loginInfo
-
+{
     [[ClientCoreSDK sharedInstance] initCore];
     
     int codeForCheck = [self checkBeforeSend];

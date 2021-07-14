@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EAB2D3AD269DDD530085E6FC /* PKickoutInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB2D3AB269DDD530085E6FC /* PKickoutInfo.m */; };
+		EAB2D3AE269DDD530085E6FC /* PKickoutInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = EAB2D3AC269DDD530085E6FC /* PKickoutInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAB3051B24ACE1B100C78B0E /* MBGCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB3051924ACE1B100C78B0E /* MBGCDAsyncSocket.m */; };
 		EAB3051C24ACE1B100C78B0E /* MBGCDAsyncSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = EAB3051A24ACE1B100C78B0E /* MBGCDAsyncSocket.h */; };
 		EAB3052024ACE2B100C78B0E /* TCPFrameCodec.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB3051E24ACE2B100C78B0E /* TCPFrameCodec.m */; };
@@ -77,6 +79,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		EAB2D3AB269DDD530085E6FC /* PKickoutInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKickoutInfo.m; sourceTree = "<group>"; };
+		EAB2D3AC269DDD530085E6FC /* PKickoutInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKickoutInfo.h; sourceTree = "<group>"; };
 		EAB3051824ACE1B100C78B0E /* Documentation.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Documentation.html; sourceTree = "<group>"; };
 		EAB3051924ACE1B100C78B0E /* MBGCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBGCDAsyncSocket.m; sourceTree = "<group>"; };
 		EAB3051A24ACE1B100C78B0E /* MBGCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBGCDAsyncSocket.h; sourceTree = "<group>"; };
@@ -284,6 +288,8 @@
 		EADDE60F1A0A1261002FFB8E /* Protocal */ = {
 			isa = PBXGroup;
 			children = (
+				EAB2D3AC269DDD530085E6FC /* PKickoutInfo.h */,
+				EAB2D3AB269DDD530085E6FC /* PKickoutInfo.m */,
 				EADDE6101A0A1261002FFB8E /* CharsetHelper.h */,
 				EADDE6111A0A1261002FFB8E /* CharsetHelper.m */,
 				EADDE6141A0A1261002FFB8E /* ErrorCode.h */,
@@ -384,6 +390,7 @@
 				EADDE66D1A0A139C002FFB8E /* ProtocalType.h in Headers */,
 				EADDE66E1A0A139C002FFB8E /* ToolKits.h in Headers */,
 				EAB3052124ACE2B100C78B0E /* TCPFrameCodec.h in Headers */,
+				EAB2D3AE269DDD530085E6FC /* PKickoutInfo.h in Headers */,
 				EACBFFD41BA07F5400C070F1 /* NSMutableDictionary+Ext.h in Headers */,
 				EADDE66F1A0A139C002FFB8E /* TCPUtils.h in Headers */,
 			);
@@ -493,6 +500,7 @@
 				EADDE63B1A0A1261002FFB8E /* ConfigEntity.m in Sources */,
 				EADDE64F1A0A1261002FFB8E /* NSObject+RMArchivable.m in Sources */,
 				EADDE6411A0A1261002FFB8E /* QoS4ReciveDaemon.m in Sources */,
+				EAB2D3AD269DDD530085E6FC /* PKickoutInfo.m in Sources */,
 				EAB3051B24ACE1B100C78B0E /* MBGCDAsyncSocket.m in Sources */,
 				EADDE64E1A0A1261002FFB8E /* MBReachability.m in Sources */,
 				EADDE6461A0A1261002FFB8E /* PErrorResponse.m in Sources */,
@@ -551,7 +559,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -585,7 +593,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -595,7 +603,7 @@
 		EADDE5EE1A0A122E002FFB8E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -609,7 +617,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
