@@ -15,6 +15,12 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ * 错误信息DTO类。
+ *
+ * @author Jack Jiang(http://www.52im.net/thread-2792-1-1.html)
+ * @version 1.0
+ */
 @interface PErrorResponse : NSObject
 
 @property (nonatomic, assign) int errorCode;

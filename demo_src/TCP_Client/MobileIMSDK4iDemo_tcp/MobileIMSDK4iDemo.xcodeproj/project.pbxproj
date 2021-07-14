@@ -19,6 +19,7 @@
 		EA82573A19FF5E160063AC95 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA82573519FF5DB30063AC95 /* QuartzCore.framework */; };
 		EA82573B19FF5E1C0063AC95 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA82573119FF5D9B0063AC95 /* Foundation.framework */; };
 		EA874A5524F8DA2D009BDB02 /* ChatMessageEventImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = EA874A5324F8DA2C009BDB02 /* ChatMessageEventImpl.m */; };
+		EA8B2E4126974AB200637331 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8B2E3F26974AB200637331 /* Utils.m */; };
 		EA8BDD2C1BEEFB190069EF2B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8BDD2A1BEEFB190069EF2B /* LoginViewController.m */; };
 		EA8BDD2D1BEEFB190069EF2B /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA8BDD2B1BEEFB190069EF2B /* LoginViewController.xib */; };
 		EA8E539719FF5F8100F9CE5B /* Toast+UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8E539619FF5F8100F9CE5B /* Toast+UIView.m */; };
@@ -83,6 +84,9 @@
 		EA82573519FF5DB30063AC95 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		EA874A5324F8DA2C009BDB02 /* ChatMessageEventImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageEventImpl.m; sourceTree = "<group>"; };
 		EA874A5424F8DA2D009BDB02 /* ChatMessageEventImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageEventImpl.h; sourceTree = "<group>"; };
+		EA8B2DBB26973CA700637331 /* PKickoutInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PKickoutInfo.h; sourceTree = "<group>"; };
+		EA8B2E3F26974AB200637331 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Utils.m; path = MobileIMSDK4iDemo/Utils.m; sourceTree = "<group>"; };
+		EA8B2E4026974AB200637331 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utils.h; path = MobileIMSDK4iDemo/Utils.h; sourceTree = "<group>"; };
 		EA8BDD291BEEFB190069EF2B /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = MobileIMSDK4iDemo/LoginViewController.h; sourceTree = "<group>"; };
 		EA8BDD2A1BEEFB190069EF2B /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = MobileIMSDK4iDemo/LoginViewController.m; sourceTree = "<group>"; };
 		EA8BDD2B1BEEFB190069EF2B /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController.xib; path = MobileIMSDK4iDemo/LoginViewController.xib; sourceTree = "<group>"; };
@@ -166,11 +170,10 @@
 		EA33F7AE24B5B84A00E81885 /* include */ = {
 			isa = PBXGroup;
 			children = (
-				EA3C6FA02519E33700585710 /* TCPFrameCodec.h */,
-				EADF349124F6B13C00AF7862 /* ChatMessageEvent.h */,
 				EA33F7B824B5B84A00E81885 /* AutoReLoginDaemon.h */,
 				EA33F7C824B5B84A00E81885 /* CharsetHelper.h */,
 				EA33F7B724B5B84A00E81885 /* ChatBaseEvent.h */,
+				EADF349124F6B13C00AF7862 /* ChatMessageEvent.h */,
 				EA33F7B424B5B84A00E81885 /* ClientCoreSDK.h */,
 				EA33F7C424B5B84A00E81885 /* CompletionDefine.h */,
 				EA33F7C624B5B84A00E81885 /* ConfigEntity.h */,
@@ -185,12 +188,14 @@
 				EA33F7C024B5B84A00E81885 /* PKeepAlive.h */,
 				EA33F7AF24B5B84A00E81885 /* PKeepAliveResponse.h */,
 				EA33F7C124B5B84A00E81885 /* PLoginInfo.h */,
+				EA8B2DBB26973CA700637331 /* PKickoutInfo.h */,
 				EA33F7BB24B5B84A00E81885 /* PLoginInfoResponse.h */,
 				EA33F7BA24B5B84A00E81885 /* Protocal.h */,
 				EA33F7C724B5B84A00E81885 /* ProtocalFactory.h */,
 				EA33F7B624B5B84A00E81885 /* ProtocalType.h */,
 				EA33F7B524B5B84A00E81885 /* QoS4ReciveDaemon.h */,
 				EA33F7BE24B5B84A00E81885 /* QoS4SendDaemon.h */,
+				EA3C6FA02519E33700585710 /* TCPFrameCodec.h */,
 				EADD701024E26F47008FB088 /* TCPUtils.h */,
 				EA33F7BD24B5B84A00E81885 /* ToolKits.h */,
 			);
@@ -352,6 +357,8 @@
 				EAD3047719F60C2D00B75F51 /* AppDelegate.m */,
 				EA48F5441BEF8FE0007AE6A1 /* IMClientManager.h */,
 				EA48F5451BEF8FE0007AE6A1 /* IMClientManager.m */,
+				EA8B2E4026974AB200637331 /* Utils.h */,
+				EA8B2E3F26974AB200637331 /* Utils.m */,
 				EAA12B881A00C3E700E8CD07 /* Images-3.xcassets */,
 				EAD3047219F60C2D00B75F51 /* Supporting Files */,
 			);
@@ -443,6 +450,7 @@
 				EA8E53B519FF734800F9CE5B /* ChatBaseEventImpl.m in Sources */,
 				EAC6A7091A909022007BDF92 /* ChatInfoTableViewCell.m in Sources */,
 				EA8E53BE19FF818400F9CE5B /* MessageQoSEventImpl.m in Sources */,
+				EA8B2E4126974AB200637331 /* Utils.m in Sources */,
 				EA79B3311BF0993700D214F5 /* OnLoginProgress.m in Sources */,
 				EAD3047B19F60C2D00B75F51 /* MainViewController.m in Sources */,
 				EA8BDD2C1BEEFB190069EF2B /* LoginViewController.m in Sources */,
@@ -554,7 +562,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = b200828.1;
+				CURRENT_PROJECT_VERSION = b210709.2;
 				DEVELOPMENT_TEAM = A3GUV2D3KJ;
 				INFOPLIST_FILE = MobileIMSDK4iDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -567,7 +575,7 @@
 					"$(PROJECT_DIR)/MobileIMSDK4iLib",
 					"$(PROJECT_DIR)/MobileIMSDK4iLib/usr",
 				);
-				MARKETING_VERSION = 5.0;
+				MARKETING_VERSION = 6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = net.52im.MobileIMSDK4iDemoTCP;
 				PRODUCT_NAME = MobileIMSDKDemoTCP;
 				PROVISIONING_PROFILE = "";
@@ -581,7 +589,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = b200828.1;
+				CURRENT_PROJECT_VERSION = b210709.2;
 				DEVELOPMENT_TEAM = A3GUV2D3KJ;
 				INFOPLIST_FILE = MobileIMSDK4iDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -594,7 +602,7 @@
 					"$(PROJECT_DIR)/MobileIMSDK4iLib",
 					"$(PROJECT_DIR)/MobileIMSDK4iLib/usr",
 				);
-				MARKETING_VERSION = 5.0;
+				MARKETING_VERSION = 6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = net.52im.MobileIMSDK4iDemoTCP;
 				PRODUCT_NAME = MobileIMSDKDemoTCP;
 				PROVISIONING_PROFILE = "";

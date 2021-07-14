@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2020  即时通讯网(52im.net) & Jack Jiang.
- * The MobileIMSDK_X_netty (MobileIMSDK v4.x) Project. 
+ * Copyright (C) 2021  即时通讯网(52im.net) & Jack Jiang.
+ * The MobileIMSDK_TCP (MobileIMSDK v6.x TCP版) Project. 
  * All rights reserved.
  * 
  * > Github地址：https://github.com/JackJiang2011/MobileIMSDK
@@ -12,7 +12,7 @@
  *  
  * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
  * 
- * NPHelper.java at 2020-4-14 23:22:47, code by Jack Jiang.
+ * NPHelper.java at 2021-7-7 22:06:46, code by Jack Jiang.
  */
 package org.jb2011.swing9patch.utils;
 

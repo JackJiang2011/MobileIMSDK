@@ -15,8 +15,20 @@
 
 #import <Foundation/Foundation.h>
 
+/*!
+ * 一个增加了containsKey方法的NSMutableDictionary catlog实现。
+ *
+ * @author Jack Jiang(http://www.52im.net/thread-2792-1-1.html)
+ * @since 2.1
+ */
 @interface NSMutableDictionary (Ext)
 
+/*!
+ *  是否包含指定key所对应的对象。
+ *
+ *  @param key 要进行判断的key值
+ *  @return true表示是列表中忆包含此key，否则表示尚未包含
+ */
 - (BOOL) containsKey:(NSString *)key;
 
 @end

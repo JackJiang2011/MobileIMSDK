@@ -30,6 +30,7 @@
 #import "UIViewController+Ext.h"
 #import "IMClientManager.h"
 #import "AppDelegate.h"
+#import "ProtocalType.h"
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////
@@ -144,17 +145,17 @@ static const int TABLE_CELL_COLOR_GREEN = 4;
         [self E_showToastInfo:@"提示" withContent:@"请输入消息内容！" onParent:self.view];
         return;
     }
-    
+
     NSString *friendIdStr = self.friendId.text;
     if ([friendIdStr length] == 0)
     {
         [self E_showToastInfo:@"提示" withContent:@"请输入对方id！" onParent:self.view];
         return;
     }
-    
+
     //
     [self showIMInfo_black:[NSString stringWithFormat:@"我对%@说：%@", friendIdStr, dicStr]];
-    
+
     // 发送消息
     int code = [[LocalDataSender sharedInstance] sendCommonDataWithStr:dicStr toUserId:friendIdStr qos:YES fp:nil withTypeu:-1];
     if(code == COMMON_CODE_OK)
@@ -202,29 +203,33 @@ static const int TABLE_CELL_COLOR_GREEN = 4;
 }
 
 //===============================================================================  just for 信息显示 START
-#pragma mark -
 #pragma mark - 以下代码用于在Demo下方的信息内容表格里显示即时通讯相关信息
 
 - (void) showIMInfo_black:(NSString*)txt
 {
     [self showIMInfo:txt withColorType:TABLE_CELL_COLOR_BLACK];
 }
+
 - (void) showIMInfo_blue:(NSString*)txt
 {
     [self showIMInfo:txt withColorType:TABLE_CELL_COLOR_BLUE];
 }
+
 - (void) showIMInfo_brightred:(NSString*)txt
 {
     [self showIMInfo:txt withColorType:TABLE_CELL_COLOR_BRIGHT_RED];
 }
+
 - (void) showIMInfo_red:(NSString*)txt
 {
     [self showIMInfo:txt withColorType:TABLE_CELL_COLOR_RED];
 }
+
 - (void) showIMInfo_green:(NSString*)txt
 {
     [self showIMInfo:txt withColorType:TABLE_CELL_COLOR_GREEN];
 }
+
 - (void) showIMInfo:(NSString*)txt withColorType:(int)colorType
 {
     ChatInfoTableViewCellDTO *dto = [[ChatInfoTableViewCellDTO alloc] init];
@@ -244,7 +249,6 @@ static const int TABLE_CELL_COLOR_GREEN = 4;
 //===============================================================================  just for 信息显示 END
 
 //===============================================================================  just for debug START
-#pragma mark -
 #pragma mark - 以下代码用于DEBUG时显示各种状态
 
 - (void) refreshMobileIKSDKThreadStatusForDEBUG
@@ -317,7 +321,6 @@ static const int TABLE_CELL_COLOR_GREEN = 4;
 //=============================================================================== just for debug END
 
 //=============================================================================== 有关主界面表格的托管实现方法 START
-#pragma mark -
 #pragma mark - Table view delegate
 
 // 根据显示内容计算行高
@@ -379,7 +382,7 @@ static const int TABLE_CELL_COLOR_GREEN = 4;
     
     // 利表格单元对应的数据对象对ui进行设置
     cell.lbContent.text = item.content;
-    int colorType = item.colorType;
+    NSInteger colorType = item.colorType;
     UIColor *cellColor = nil;
     switch(colorType)
     {

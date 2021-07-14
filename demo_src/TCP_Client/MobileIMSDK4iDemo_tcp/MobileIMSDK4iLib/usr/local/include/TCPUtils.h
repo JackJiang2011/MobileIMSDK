@@ -16,8 +16,23 @@
 #import <Foundation/Foundation.h>
 #import "MBGCDAsyncSocket.h"
 
+/*!
+ * 一个本地TCP消息发送工具类。
+ *
+ * @author Jack Jiang(http://www.52im.net/thread-2792-1-1.html)
+ * @version 1.0
+ * @since 2.1
+ */
 @interface TCPUtils : NSObject
 
+/*!
+ * 发送一条tcp消息。
+ *
+ * @param skt GCDAsyncSocket对象引用
+ * @param d 要发送的比特数组
+ * @return true表示成功发出，否则表示发送失败
+ * @see #send(DatagramSocket, DatagramPacket)
+ */
 + (BOOL) send:(MBGCDAsyncSocket *) skt withData:(NSData *)d;
 
 @end

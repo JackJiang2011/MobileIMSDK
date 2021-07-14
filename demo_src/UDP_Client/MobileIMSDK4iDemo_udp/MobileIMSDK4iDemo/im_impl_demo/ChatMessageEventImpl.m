@@ -18,6 +18,7 @@
 #import "AppDelegate.h"
 #import "MainViewController.h"
 #import "ErrorCode.h"
+#import "AutoReLoginDaemon.h"
 
 
 /**
@@ -65,7 +66,7 @@
     // UI显示
     if(errorCode == ForS_RESPONSE_FOR_UNLOGIN)
     {
-        NSString *content = [NSString stringWithFormat:@"服务端会话已失效，自动登陆/重连将启动! (%d)", errorCode];
+        NSString *content = [NSString stringWithFormat:@"服务端会话已失效，自动登陆/重连启动! (%d)", errorCode];
         [[CurAppDelegate getMainViewController] showIMInfo_brightred:content];
     }
     else

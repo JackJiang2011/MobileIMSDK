@@ -15,7 +15,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LoginViewController : UIViewController<UIAlertViewDelegate>
+@interface LoginViewController : UIViewController
 
 /** 登陆名 */
 @property (weak, nonatomic) IBOutlet UITextField *loginName;

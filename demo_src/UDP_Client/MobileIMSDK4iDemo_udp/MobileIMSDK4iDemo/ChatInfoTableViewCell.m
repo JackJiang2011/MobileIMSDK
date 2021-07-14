@@ -18,6 +18,7 @@
 @implementation ChatInfoTableViewCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     // Initialization code
 }
 

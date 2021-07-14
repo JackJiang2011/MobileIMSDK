@@ -22,6 +22,8 @@
 #import "LocalDataSender.h"
 #import "OnLoginProgress.h"
 #import "IMClientManager.h"
+#import "PLoginInfo.h"
+#import "Utils.h"
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////
@@ -74,17 +76,19 @@
 - (void)initForLogin
 {
     // 为了在block代码中安全地使用本类“self”，请在block代码中使用safeSelf
-    __weak LoginViewController *safeSelf = self;
+    __weak typeof(self) safeSelf = self;
     // 实例化登陆进度提示封装类
     self.onLoginProgress = [[OnLoginProgress alloc] init];
     // 设置登陆超时回调（将在登陆进度提示封装类中使用）
     [self.onLoginProgress setOnLoginTimeoutObserver:^(id observerble ,id data) {
-        [[[UIAlertView alloc] initWithTitle:@"超时了"
-                                    message:@"登陆超时，可能是网络故障或服务器无法连接，是否重试？"
-                                   delegate:safeSelf
-                          cancelButtonTitle:@"取消"
-                          otherButtonTitles:@"重试！", nil]
-         show];
+        // 显示提示对话框
+        [Utils areYouSureAlert:@"超时了" content:@"登陆超时，可能是网络故障或服务器无法连接，是否重试？" okBtnTitle:@"重试！" cancelBtnTitle:@"取消" parent:safeSelf okHandler:^(UIAlertAction * _Nullable action) {
+            // 确认要重试时（再次尝试登陆哦）
+            [safeSelf doLogin];
+        } cancelHandler:^(UIAlertAction * _Nullable action) {
+            // 不需要重试则要停止“登陆中”的进度提示哦
+            [safeSelf.onLoginProgress showProgressing:NO onParent:safeSelf.view];
+        }];
     }];
     // 准备好异步登陆结果回调block（将在登陆方法中使用）
     self.onLoginSucessObserver = ^(id observerble ,id data) {
@@ -107,12 +111,11 @@
         // 登陆失败
         else
         {
-            [[[UIAlertView alloc] initWithTitle:@"友情提示"
-                                        message:[NSString stringWithFormat:@"Sorry，登陆失败，错误码=%d", code]
-                                       delegate:safeSelf
-                              cancelButtonTitle:@"知道了"
-                              otherButtonTitles:nil]
-             show];
+            // 显示提示框
+            [Utils showAlert:@"友情提示" content:[NSString stringWithFormat:@"Sorry，登陆失败，错误码=%d", code] btnTitle:@"知道了" parent:safeSelf handler:^(UIAlertAction * _Nonnull action) {
+                            // 不需要重试则要停止“登陆中”的进度提示哦
+                            [safeSelf.onLoginProgress showProgressing:NO onParent:safeSelf.view];
+            }];
         }
         
         //## try to bug FIX ! 20160810：此observer本身执行完成才设置为nil，解决之前过早被nil而导致有时怎么也无法跳过登陆界面的问题
@@ -180,8 +183,13 @@
     // * 设置好服务端反馈的登陆结果观察者（当客户端收到服务端反馈过来的登陆消息时将被通知）【2】
     [[[IMClientManager sharedInstance] getBaseEventListener] setLoginOkForLaunchObserver:self.onLoginSucessObserver];
     
+    // 将要提交的登陆信息对象
+    PLoginInfo *loginInfo = [[PLoginInfo alloc] init];
+    loginInfo.loginUserId = loginUserIdStr;
+    loginInfo.loginToken = loginTokenStr;
+    
     // * 发送登陆数据包(提交登陆名和密码)
-    int code = [[LocalDataSender sharedInstance] sendLogin:loginUserIdStr withToken:loginTokenStr];
+    int code = [[LocalDataSender sharedInstance] sendLogin:loginInfo];
     if(code == COMMON_CODE_OK)
     {
         [self E_showToastInfo:@"提示" withContent:@"登陆请求已发出。。。" onParent:self.view];
@@ -193,33 +201,6 @@
         
         // * 登陆信息没有成功发出时当然无条件取消显示登陆进度条
         [self.onLoginProgress showProgressing:NO onParent:self.view];
-    }
-}
-
-
-#pragma mark - UIAlertView delegate
-
-/* 
- * 在这里处理登陆超时时的UIAlertView提示对话框中的按钮被单击事件。
- */
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    switch (buttonIndex)
-    {
-        // 点击了取消按钮
-        case 0:
-            // 不需要重试则要停止“登陆中”的进度提示哦
-            [self.onLoginProgress showProgressing:NO onParent:self.view];
-            break;
-            
-        // 点确了确认按钮
-        case 1:
-            // 确认要重试时（再次尝试登陆哦）
-            [self doLogin];
-            break;
-            
-        default:
-            break;
     }
 }
 

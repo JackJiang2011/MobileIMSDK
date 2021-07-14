@@ -16,6 +16,8 @@
 #import "ChatBaseEventImpl.h"
 #import "AppDelegate.h"
 #import "MainViewController.h"
+#import "AutoReLoginDaemon.h"
+#import "Utils.h"
 
 
 /**
@@ -65,8 +67,7 @@
  *
  * <br>
  * 该消息只有在客户端连接服务器成功之后网络异常中断之时触发。
- * 导致与与服务端的通信断开的原因有（但不限于）：无线网络信号不稳定、WiFi与2G/3G/4G等同开情
- * 况下的网络切换、手机系统的省电策略等。
+ * 导致与与服务端的通信断开的原因有（但不限于）：无线网络信号不稳定、WiFi与2G/3G/4G等同开情况下的网络切换、手机系统的省电策略等。
  *
  * @param errorCode 本回调参数表示表示连接断开的原因，目前错误码没有太多意义，仅作保留字段，目前通常为-1
  */
@@ -76,8 +77,38 @@
     
     // UI显示
     [CurAppDelegate refreshConnecteStatus];
-    [[CurAppDelegate getMainViewController] showIMInfo_red:[NSString stringWithFormat:@"与IM服务器的连接已断开, 自动登陆/重连将启动! (%d)", errorCode]];
+    [[CurAppDelegate getMainViewController] showIMInfo_red:[NSString stringWithFormat:@"与IM服务器的连接已断开! (%d)", errorCode]];
 }
 
+/**
+ * 本的用户被服务端踢出的回调事件通知。
+ *
+ * @param kickoutInfo 被踢信息对象，{@link PKickoutInfo} 对象中的 code字段定义了被踢原因代码
+ */
+- (void) onKickout:(PKickoutInfo *)kickoutInfo
+{
+    NSLog(@"【DEBUG_UI】已收到服务端的\"被踢\"指令，kickoutInfo.code：%d", kickoutInfo.code);
+
+    NSString *alertContent = @"";
+    if(kickoutInfo.code == KICKOUT_FOR_DUPLICATE_LOGIN)
+    {
+        alertContent = @"账号已在其它地方登陆，当前会话已断开，请退出后重新登陆！";
+    }
+    else if(kickoutInfo.code == KICKOUT_FOR_ADMIN)
+    {
+        alertContent = @"已被管理员强行踢出聊天，当前会话已断开！";
+    }
+    else{
+        alertContent = [NSString stringWithFormat:@"你已被踢出聊天，当前会话已断开（kickoutReason=%@）！", kickoutInfo.reason];
+    }
+
+    // 在信息列表中显示提示
+    [[CurAppDelegate getMainViewController] showIMInfo_red:alertContent];
+    // 跳出一个Alert提示
+    [Utils showAlert:@"你被踢了" content:alertContent btnTitle:@"知道了！" parent:[CurAppDelegate getMainViewController] handler:^(UIAlertAction *action) {
+        // 退出应用
+        [[CurAppDelegate getMainViewController] signOut:nil];
+    }];
+}
 
 @end

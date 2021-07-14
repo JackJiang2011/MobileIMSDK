@@ -31,8 +31,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 /*!
- *  @Author Jack Jiang, 14-11-08 15:11:53
- *
  *  退出登陆事件处理。
  *
  *  @param sender
@@ -40,8 +38,6 @@
 - (IBAction)signOut:(id)sender;
 
 /*!
- *  @Author Jack Jiang, 14-11-08 15:11:07
- *
  *  发送消息事件处理。
  *
  *  @param sender
@@ -49,8 +45,6 @@
 - (IBAction)send:(id)sender;
 
 /*!
- *  @Author Jack Jiang, 14-11-08 15:11:26
- *
  *  刷新本地的user_id显示.
  *
  *  @param myid
@@ -62,7 +56,6 @@
 - (void) showIMInfo_brightred:(NSString*)txt;
 - (void) showIMInfo_red:(NSString*)txt;
 - (void) showIMInfo_green:(NSString*)txt;
-
 
 //----------------------------------------- for debug START
 @property (weak, nonatomic) IBOutlet UIImageView *iviewAutoRelogin;

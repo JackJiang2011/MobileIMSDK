@@ -15,9 +15,27 @@
 
 #import <Foundation/Foundation.h>
 
+/*!
+ * 本接口中定义了一些用于回调的block类型。
+ *
+ * @author Jack Jiang(http://www.52im.net/thread-2792-1-1.html)
+ * @since 2.1
+ */
 @interface CompletionDefine : NSObject
 
+/*!
+ *  通用回调，应用场景是模拟Java中的Obsrver观察者模式。
+ *
+ *  @param observerble 此参数通常为nil，字段意义可自行定义
+ *  @param arg1                通常为回调时的数据（字段意义可自行定义），可为nil
+ */
 typedef void (^ObserverCompletion)(id observerble ,id arg1);
+
+/*!
+ *  Socket连接结果回调。
+ *
+ *  @param connectRsult YES表示连接成功，NO否则表示连接失败
+ */
 typedef void (^ConnectionCompletion)(BOOL connectRsult);
 
 @end
