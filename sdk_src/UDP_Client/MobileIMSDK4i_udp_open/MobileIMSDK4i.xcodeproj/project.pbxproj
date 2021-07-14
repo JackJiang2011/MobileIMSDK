@@ -10,6 +10,8 @@
 		EA874A4624F79FB2009BDB02 /* LocalSocketProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EA874A4424F79FB2009BDB02 /* LocalSocketProvider.m */; };
 		EA874A4724F79FB2009BDB02 /* LocalSocketProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EA874A4524F79FB2009BDB02 /* LocalSocketProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA874A4924F8097C009BDB02 /* ChatMessageEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = EA874A4824F8097C009BDB02 /* ChatMessageEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EAB2D3B5269DDD920085E6FC /* PKickoutInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB2D3B3269DDD920085E6FC /* PKickoutInfo.m */; };
+		EAB2D3B6269DDD920085E6FC /* PKickoutInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = EAB2D3B4269DDD920085E6FC /* PKickoutInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EACBFFD41BA07F5400C070F1 /* NSMutableDictionary+Ext.h in Headers */ = {isa = PBXBuildFile; fileRef = EADDE60D1A0A1261002FFB8E /* NSMutableDictionary+Ext.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EADDE63A1A0A1261002FFB8E /* ClientCoreSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE5F51A0A1261002FFB8E /* ClientCoreSDK.m */; };
 		EADDE63B1A0A1261002FFB8E /* ConfigEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDE5F71A0A1261002FFB8E /* ConfigEntity.m */; };
@@ -77,6 +79,8 @@
 		EA874A4424F79FB2009BDB02 /* LocalSocketProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalSocketProvider.m; sourceTree = "<group>"; };
 		EA874A4524F79FB2009BDB02 /* LocalSocketProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalSocketProvider.h; sourceTree = "<group>"; };
 		EA874A4824F8097C009BDB02 /* ChatMessageEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageEvent.h; sourceTree = "<group>"; };
+		EAB2D3B3269DDD920085E6FC /* PKickoutInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKickoutInfo.m; sourceTree = "<group>"; };
+		EAB2D3B4269DDD920085E6FC /* PKickoutInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKickoutInfo.h; sourceTree = "<group>"; };
 		EADDE5DC1A0A122E002FFB8E /* libMobileIMSDK4i.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMobileIMSDK4i.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EADDE5E71A0A122E002FFB8E /* MobileIMSDK4iTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobileIMSDK4iTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EADDE5EA1A0A122E002FFB8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -258,6 +262,8 @@
 		EADDE60F1A0A1261002FFB8E /* Protocal */ = {
 			isa = PBXGroup;
 			children = (
+				EAB2D3B4269DDD920085E6FC /* PKickoutInfo.h */,
+				EAB2D3B3269DDD920085E6FC /* PKickoutInfo.m */,
 				EADDE6101A0A1261002FFB8E /* CharsetHelper.h */,
 				EADDE6111A0A1261002FFB8E /* CharsetHelper.m */,
 				EADDE6121A0A1261002FFB8E /* ProtocalFactory.h */,
@@ -365,6 +371,7 @@
 				EADF349424F7977400AF7862 /* LocalDataReciever.h in Headers */,
 				EA874A4924F8097C009BDB02 /* ChatMessageEvent.h in Headers */,
 				EADDE66E1A0A139C002FFB8E /* ToolKits.h in Headers */,
+				EAB2D3B6269DDD920085E6FC /* PKickoutInfo.h in Headers */,
 				EACBFFD41BA07F5400C070F1 /* NSMutableDictionary+Ext.h in Headers */,
 				EADDE66F1A0A139C002FFB8E /* UDPUtils.h in Headers */,
 			);
@@ -470,6 +477,7 @@
 				EADDE6471A0A1261002FFB8E /* PKeepAlive.m in Sources */,
 				EADDE6511A0A1261002FFB8E /* NSUserDefaults+RMSaveCustomObject.m in Sources */,
 				EADDE63B1A0A1261002FFB8E /* ConfigEntity.m in Sources */,
+				EAB2D3B5269DDD920085E6FC /* PKickoutInfo.m in Sources */,
 				EADF349524F7977400AF7862 /* LocalDataReciever.m in Sources */,
 				EADDE64F1A0A1261002FFB8E /* NSObject+RMArchivable.m in Sources */,
 				EADDE6411A0A1261002FFB8E /* QoS4ReciveDaemon.m in Sources */,
