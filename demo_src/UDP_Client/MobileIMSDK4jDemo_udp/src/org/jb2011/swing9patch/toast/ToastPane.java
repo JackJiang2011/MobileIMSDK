@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2020  即时通讯网(52im.net) & Jack Jiang.
- * The MobileIMSDK4j_udp (MobileIMSDK4j v5.x UDP版) Project. 
+ * Copyright (C) 2021  即时通讯网(52im.net) & Jack Jiang.
+ * The MobileIMSDK_UDP (MobileIMSDK v6.x UDP版) Project. 
  * All rights reserved.
  * 
  * > Github地址：https://github.com/JackJiang2011/MobileIMSDK
@@ -12,7 +12,7 @@
  *  
  * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
  * 
- * ToastPane.java at 2020-8-21 14:56:28, code by Jack Jiang.
+ * ToastPane.java at 2021-7-7 22:07:09, code by Jack Jiang.
  */
 package org.jb2011.swing9patch.toast;
 
