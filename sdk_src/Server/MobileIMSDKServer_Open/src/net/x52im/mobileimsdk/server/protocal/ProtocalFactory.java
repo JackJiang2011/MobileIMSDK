@@ -94,12 +94,7 @@ public class ProtocalFactory
 	
 	public static Protocal createPLoginInfoResponse(int code, long firstLoginTime, String user_id)
 	{
-		return new Protocal(ProtocalType.S.FROM_SERVER_TYPE_OF_RESPONSE$LOGIN
-				, create(new PLoginInfoResponse(code, firstLoginTime))
-				, "0"
-				, user_id // changed -1 to user_id: modified by Jack Jiang 20150911 -> 目的是让登陆响应包能正常支持QoS机制
-				, true, Protocal.genFingerPrint()// add QoS support by Jack Jiang 20150911
-				); // 此包由服务端发出，默认已支持QoS
+		return new Protocal(ProtocalType.S.FROM_SERVER_TYPE_OF_RESPONSE$LOGIN, create(new PLoginInfoResponse(code, firstLoginTime)), "0", user_id, false, null); 
 	}
 	
 	public static PLoginInfoResponse parsePLoginInfoResponse(String dataContentOfProtocal)

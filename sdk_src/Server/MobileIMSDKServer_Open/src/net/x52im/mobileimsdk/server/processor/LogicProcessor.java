@@ -110,10 +110,6 @@ public class LogicProcessor
 		
 		if(serverCoreHandler.getServerEventListener() != null)
 		{
-			final long firstLoginTimeFromClient = loginInfo.getFirstLoginTime();
-			final boolean firstLogin = PLoginInfo.isFirstLogin(firstLoginTimeFromClient);//(firstLoginTimeFromClient <= 0);
-			final long firstLoginTimeToClient = (firstLogin? System.currentTimeMillis() : firstLoginTimeFromClient);
-			
 			boolean alreadyLogined = OnlineProcessor.isLogined(session);//(_try_user_id != -1);
 			if(alreadyLogined)
 			{

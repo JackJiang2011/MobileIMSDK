@@ -191,7 +191,8 @@ public class LocalSendHelper
 			@Override
 			public void update(boolean sendOK, Object extraObj){
 				logger.warn("[IMCORE-{}]>> 客户端{}的被踢指令发送成功？{}（会话即将关闭）", Gateway.$(sessionBeKick), ServerToolKits.clientInfoToString(sessionBeKick), sendOK);
-				sessionBeKick.close();
+				if(!GatewayUDP.isUDPChannel(sessionBeKick))
+					sessionBeKick.close();
 			}
 		};
 		LocalSendHelper.sendData(sessionBeKick, ProtocalFactory.createPKickout(to_user_id, code, reason), sendResultObserver);
