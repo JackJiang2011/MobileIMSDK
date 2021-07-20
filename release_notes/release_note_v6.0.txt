@@ -1,16 +1,24 @@
 
------------------------------------ v5.0发布于：开发中...
+----------------------------------- v6.0发布于：20210716
 MobileIMSDK v6.0版更新说明：
 
 【重要说明】
-MobileIMSDK v6 为全新版本，新增了对WebSocket协议的优雅支持等！
+MobileIMSDK v6 为全新版本，新增了对WebSocket协议的优雅支持、多端互踢支持等！
 
 【新增重要特性】
-1. [服务端][新增]新增WebSocket协议支持，一套API优雅支持TCP、UDP、WebSocket 3种协议；
-2. [服务端][新增]支持多端互踢功能（可应对复杂的移动端网络变动逻辑对多端互踢算法的影响）；
+1. [服务端]新增WebSocket协议支持，一套API优雅支持TCP、UDP、WebSocket 3种协议；
+2. [Andriod/iOS/服务端]支持多端互踢功能（可应对复杂的移动端网络变动逻辑对多端互踢算法的影响）；
 
 【解决的Bug】
-1. [Andriod端][bug]解决了断线后，fireDisconnectedToServer()方法中的一处空指针隐患；
+1. [Andriod]解决了断线后，fireDisconnectedToServer()方法中的一处空指针隐患；
+2. [iOS]    修复了TCP版代码中，调用[ClientCoreSDK releaseCore]方法会触发自动登陆逻辑的bug；
+3. [服务端]  解决了UDP协议下，重连情况下的被踢者已被服务端注销会话后，客户端才发回登陆响应ACK应答，导致服务端错误地向未被踢者发出已登陆者重复登陆响应的问题：
 
 【其它优化和提升】
-1. [服务端][优化]将Log4j日志框架升级为最新的Log4j2，提升日志性能；
+1. [Andriod]废弃了SDK、Demo代码中的所有AsyncTask的使用；
+2. [Andriod]将所有可使用Lambda表达式的代码全部用Lambda进行了简化。
+3. [iOS]    解决了XCode12上编译SDK的.a包，打包成胖子.a时报“have the same architectures (arm64) and can't be in the same fat output file”的问题；
+4. [iOS]    Demo中所有使用过时的UIAlertView改为UIAlertController实现；
+5. [iOS]    解决了iOS端SDK工程中两处因类名重构导致的在XCode12.5.1上编译出错。
+6. [服务端]  将服务端Demo中的Log4j日志框架升级为最新的Log4j2；
+7. [服务端]  服务端可控制是否为每条消息生成发送时间戳（可辅助用于客户端的消息排序逻辑等）；
