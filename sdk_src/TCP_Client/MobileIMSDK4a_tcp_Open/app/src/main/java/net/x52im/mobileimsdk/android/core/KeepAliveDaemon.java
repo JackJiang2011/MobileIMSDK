@@ -1,18 +1,18 @@
 /*
  * Copyright (C) 2021  即时通讯网(52im.net) & Jack Jiang.
- * The MobileIMSDK_TCP (MobileIMSDK v6.x TCP版) Project. 
+ * The MobileIMSDK_TCP (MobileIMSDK v6.x TCP版) Project.
  * All rights reserved.
- * 
+ *
  * > Github地址：https://github.com/JackJiang2011/MobileIMSDK
  * > 文档地址：  http://www.52im.net/forum-89-1.html
  * > 技术社区：  http://www.52im.net/
  * > 技术交流群：215477170 (http://www.52im.net/topic-qqgroup.html)
  * > 作者公众号：“即时通讯技术圈】”，欢迎关注！
  * > 联系作者：  http://www.52im.net/thread-2792-1-1.html
- *  
+ *
  * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
- * 
- * KeepAliveDaemon.java at 2021-7-1 15:08:17, code by Jack Jiang.
+ *
+ * KeepAliveDaemon.java at 2021-7-2 15:58:06, code by Jack Jiang.
  */
 package net.x52im.mobileimsdk.android.core;
 
@@ -20,32 +20,40 @@ import java.util.Observer;
 import java.util.concurrent.atomic.AtomicLong;
 
 import net.x52im.mobileimsdk.android.ClientCoreSDK;
+import net.x52im.mobileimsdk.android.utils.MBSimpleTimer;
 import net.x52im.mobileimsdk.android.utils.MBThreadPoolExecutor;
 
 import android.os.Handler;
 import android.util.Log;
 
 public class KeepAliveDaemon {
+
     private final static String TAG = KeepAliveDaemon.class.getSimpleName();
+
     private static KeepAliveDaemon instance = null;
+
     public static int KEEP_ALIVE_INTERVAL = 15000;//3000;//1000;
     public static int NETWORK_CONNECTION_TIME_OUT = KEEP_ALIVE_INTERVAL + 5000;//20 * 1000;//10 * 1000;
+    public static int NETWORK_CONNECTION_TIME_OUT_CHECK_INTERVAL = 2 * 1000;
 
     private boolean keepAliveRunning = false;
-    private AtomicLong lastGetKeepAliveResponseFromServerTimstamp = new AtomicLong(0);
+    private final AtomicLong lastGetKeepAliveResponseFromServerTimstamp = new AtomicLong(0);
     private Observer networkConnectionLostObserver = null;
 
-    private Handler handler = null;
-    private Runnable runnable = null;
-    private boolean _excuting = false;
-    private boolean _willStop = false;
+    private Handler keepAliveHandler = null;
+    private Runnable keepAliveRunnable = null;
+    private boolean keepAliveTaskExcuting = false;
+    private boolean keepAliveWillStop = false;
+
+    private MBSimpleTimer keepAliveTimeoutTimer = null;
+
     private boolean init = false;
 
     /** !本属性仅作DEBUG之用：DEBUG事件观察者 */
     private Observer debugObserver;
 
     public static KeepAliveDaemon getInstance() {
-        if (instance == null)
+        if(instance == null)
             instance = new KeepAliveDaemon();
         return instance;
     }
@@ -55,13 +63,12 @@ public class KeepAliveDaemon {
     }
 
     private void init() {
-        if (init)
+        if(init)
             return;
 
-        handler = new Handler();
-        runnable = () -> {
-            if (!_excuting) {
-                _willStop = false;
+        keepAliveHandler = new Handler();
+        keepAliveRunnable = () -> {
+            if(!keepAliveTaskExcuting) {
                 MBThreadPoolExecutor.runInBackground(() -> {
                     final int code = doKeepAlive();
                     MBThreadPoolExecutor.runOnMainThread(() -> onKeepAlive(code));
@@ -69,13 +76,24 @@ public class KeepAliveDaemon {
             }
         };
 
+        keepAliveTimeoutTimer = new MBSimpleTimer(NETWORK_CONNECTION_TIME_OUT_CHECK_INTERVAL){
+            @Override
+            protected void doAction(){
+                if(ClientCoreSDK.DEBUG)
+                    Log.i(TAG, "【IMCORE-TCP】心跳[超时检查]线程执行中...");
+
+                doTimeoutCheck();
+            }
+        };
+        keepAliveTimeoutTimer.init();
+
         init = true;
     }
 
     private int doKeepAlive() {
-        _excuting = true;
-        if (ClientCoreSDK.DEBUG)
-            Log.d(TAG, "【IMCORE】心跳线程执行中...");
+        keepAliveTaskExcuting = true;
+        if(ClientCoreSDK.DEBUG)
+            Log.i(TAG, "【IMCORE-TCP】心跳包[发送]线程执行中...");
         int code = LocalDataSender.getInstance().sendKeepAlive();
 
         return code;
@@ -86,36 +104,53 @@ public class KeepAliveDaemon {
         if(this.debugObserver != null)
             this.debugObserver.update(null, 2);
 
-        boolean isInitialedForKeepAlive = (lastGetKeepAliveResponseFromServerTimstamp.longValue() == 0);
-        if (isInitialedForKeepAlive)
+        boolean isInitialedForKeepAlive = isInitialedForKeepAlive();//(lastGetKeepAliveResponseFromServerTimstamp.longValue() == 0);
+        //## Bug FIX 20190513 v4.0.1 START
+        if(isInitialedForKeepAlive)
             lastGetKeepAliveResponseFromServerTimstamp.set(System.currentTimeMillis());
+        //## Bug FIX 20190513 v4.0.1 END
 
-        if (!isInitialedForKeepAlive) {
+        keepAliveTaskExcuting = false;
+        if(!keepAliveWillStop)
+            keepAliveHandler.postDelayed(keepAliveRunnable, KEEP_ALIVE_INTERVAL);
+    }
+
+    private void doTimeoutCheck() {
+        boolean isInitialedForKeepAlive = isInitialedForKeepAlive();
+        if(!isInitialedForKeepAlive) {
             long now = System.currentTimeMillis();
-            if (now - lastGetKeepAliveResponseFromServerTimstamp.longValue() >= NETWORK_CONNECTION_TIME_OUT) {
-                if (ClientCoreSDK.DEBUG)
-                    Log.d(TAG, "【IMCORE-TCP】心跳机制已判定网络断开，将进入断网通知和重连处理逻辑 ...");
+
+            // TODO: just for debug
+//            if(ClientCoreSDK.DEBUG)
+//                Log.i(TAG, ">>>> t1="+now+", t2="+lastGetKeepAliveResponseFromServerTimstamp+" -> 差："
+//                        +(now - lastGetKeepAliveResponseFromServerTimstamp.longValue()));
+
+            if(now - lastGetKeepAliveResponseFromServerTimstamp.longValue() >= NETWORK_CONNECTION_TIME_OUT) {
+                if(ClientCoreSDK.DEBUG)
+                    Log.w(TAG, "【IMCORE-TCP】心跳机制已判定网络断开，将进入断网通知和重连处理逻辑 ...");
 
                 notifyConnectionLost();
-                _willStop = true;
+                keepAliveWillStop = true;
             }
         }
+    }
 
-        _excuting = false;
-        if (!_willStop)
-            // 开始下一个心跳循环
-            handler.postDelayed(runnable, KEEP_ALIVE_INTERVAL);
+    private boolean isInitialedForKeepAlive() {
+        return (lastGetKeepAliveResponseFromServerTimstamp.longValue() == 0);
     }
 
     public void notifyConnectionLost() {
         stop();
-        if (networkConnectionLostObserver != null)
+        if(networkConnectionLostObserver != null)
             networkConnectionLostObserver.update(null, null);
     }
 
     public void stop() {
-        handler.removeCallbacks(runnable);
+        keepAliveTimeoutTimer.stop();
+
+        keepAliveHandler.removeCallbacks(keepAliveRunnable);
         keepAliveRunning = false;
+        keepAliveWillStop = false;
         lastGetKeepAliveResponseFromServerTimstamp.set(0);
 
         // for DEBUG
@@ -125,8 +160,11 @@ public class KeepAliveDaemon {
 
     public void start(boolean immediately) {
         stop();
-        handler.postDelayed(runnable, immediately ? 0 : KEEP_ALIVE_INTERVAL);
+        keepAliveHandler.postDelayed(keepAliveRunnable, immediately ? 0 : KEEP_ALIVE_INTERVAL);
         keepAliveRunning = true;
+        keepAliveWillStop = false;
+
+        keepAliveTimeoutTimer.start(immediately);
 
         // for DEBUG
         if(this.debugObserver != null)

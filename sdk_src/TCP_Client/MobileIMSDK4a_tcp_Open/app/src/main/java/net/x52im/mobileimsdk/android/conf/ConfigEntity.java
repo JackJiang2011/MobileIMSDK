@@ -33,6 +33,11 @@ public class ConfigEntity {
                 networkConnectionTimeout = keepAliveInterval * 1 + 2000;// 5s
                 break;
             }
+            case MODE_5S: {
+                keepAliveInterval = 5000;// 3s
+                networkConnectionTimeout = keepAliveInterval * 1 + 3000;// 8s
+                break;
+            }
             case MODE_10S:
                 keepAliveInterval = 10000;// 10s
                 networkConnectionTimeout = keepAliveInterval * 1 + 5000;// 15s
@@ -83,6 +88,13 @@ public class ConfigEntity {
          * * 5秒后未收到服务端心跳反馈即认为连接已断开（相当于连续2个心跳间隔(即算法最大6秒延迟后)后仍未收到服务端反馈）。
          */
         MODE_3S,
+
+        /**
+         * 此模式下：<br>
+         * * KeepAlive心跳问隔为5秒；<br>
+         * * 8秒后未收到服务端心跳反馈即认为连接已断开（相当于连续1个心跳间隔+3秒链路延迟容忍时间后仍未收到服务端反馈）。
+         */
+        MODE_5S,
 
         /**
          * 此模式下：<br>
