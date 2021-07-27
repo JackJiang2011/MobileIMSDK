@@ -31,15 +31,20 @@ public class KeepAliveDaemon {
 
 	private static KeepAliveDaemon instance = null;
 
-	public static int NETWORK_CONNECTION_TIME_OUT = 10 * 1000;
 	public static int KEEP_ALIVE_INTERVAL = 3000;// 1000;
+	public static int NETWORK_CONNECTION_TIME_OUT = 10 * 1000;
+	public static int NETWORK_CONNECTION_TIME_OUT_CHECK_INTERVAL = 2 * 1000;
 
 	private boolean keepAliveRunning = false;
 	private AtomicLong lastGetKeepAliveResponseFromServerTimstamp = new AtomicLong(0);
 	private Observer networkConnectionLostObserver = null;
+	
 	private boolean _excuting = false;
-	private Timer timer = null;
+	private boolean keepAliveWillStop = false;
+	private Timer keepAliveTimer = null;
 
+	private Timer keepAliveTimeoutTimer = null;
+	
 	public static KeepAliveDaemon getInstance() {
 		if (instance == null)
 			instance = new KeepAliveDaemon();
@@ -51,48 +56,82 @@ public class KeepAliveDaemon {
 	}
 
 	private void init() {
-		timer = new Timer(KEEP_ALIVE_INTERVAL, new ActionListener() {
+		keepAliveTimer = new Timer(KEEP_ALIVE_INTERVAL, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				run();
+				doKeepAlive();
+			}
+		});
+		
+		keepAliveTimeoutTimer = new Timer(NETWORK_CONNECTION_TIME_OUT_CHECK_INTERVAL, new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				if(ClientCoreSDK.DEBUG)
+					Log.i(TAG, "【IMCORE-UDP】心跳[超时检查]线程执行中...");
+
+				doTimeoutCheck();
 			}
 		});
 	}
 
-	public void run() {
+	private void doKeepAlive() {
 		if (!_excuting) {
-			boolean willStop = false;
+//			boolean willStop = false;
 			_excuting = true;
 			if (ClientCoreSDK.DEBUG)
 				Log.i(TAG, "【IMCORE-UDP】心跳线程执行中...");
 			int code = LocalDataSender.getInstance().sendKeepAlive();
 
-			boolean isInitialedForKeepAlive = (lastGetKeepAliveResponseFromServerTimstamp.longValue() == 0);
-			if (isInitialedForKeepAlive)
+			boolean isInitialedForKeepAlive = isInitialedForKeepAlive();
+			if(isInitialedForKeepAlive)
 				lastGetKeepAliveResponseFromServerTimstamp.set(System.currentTimeMillis());
 
-			if (!isInitialedForKeepAlive) {
-				long now = System.currentTimeMillis();
-				if (now - lastGetKeepAliveResponseFromServerTimstamp.longValue() >= NETWORK_CONNECTION_TIME_OUT) {
-					stop();
-					if (networkConnectionLostObserver != null)
-						networkConnectionLostObserver.update(null, null);
-					willStop = true;
-				}
-			}
 
 			_excuting = false;
-			if (!willStop) {
+			if (!keepAliveWillStop) {
 				; // do nothing
 			} else {
-				timer.stop();
+				keepAliveTimer.stop();
 			}
 		}
 	}
 
+	private void doTimeoutCheck()
+	{
+		boolean isInitialedForKeepAlive = isInitialedForKeepAlive();
+		if(!isInitialedForKeepAlive)
+		{
+			long now = System.currentTimeMillis();
+
+			// TODO: just for debug
+//			if(ClientCoreSDK.DEBUG)
+//				Log.i(TAG, ">>>> t1="+now+", t2="+lastGetKeepAliveResponseFromServerTimstamp+" -> 差："+(now - lastGetKeepAliveResponseFromServerTimstamp.longValue()));
+
+			if(now - lastGetKeepAliveResponseFromServerTimstamp.longValue() >= NETWORK_CONNECTION_TIME_OUT)
+			{
+				notifyConnectionLost();
+				keepAliveWillStop = true;
+			}
+		}		
+	}
+	
+	private boolean isInitialedForKeepAlive()
+	{
+		return (lastGetKeepAliveResponseFromServerTimstamp.longValue() == 0);
+	}
+	
+	public void notifyConnectionLost()
+	{
+		stop();
+		if(networkConnectionLostObserver != null)
+			networkConnectionLostObserver.update(null, null);
+	}
+
 	public void stop() {
-		if (timer != null)
-			timer.stop();
+		if(keepAliveTimeoutTimer != null)
+			keepAliveTimeoutTimer.stop();
+		if (keepAliveTimer != null)
+			keepAliveTimer.stop();
 		keepAliveRunning = false;
+		keepAliveWillStop = false;
 		lastGetKeepAliveResponseFromServerTimstamp.set(0);
 	}
 
@@ -100,12 +139,19 @@ public class KeepAliveDaemon {
 		stop();
 
 		if (immediately)
-			timer.setInitialDelay(0);
+			keepAliveTimer.setInitialDelay(0);
 		else
-			timer.setInitialDelay(KEEP_ALIVE_INTERVAL);
-		timer.start();
-
+			keepAliveTimer.setInitialDelay(KEEP_ALIVE_INTERVAL);
+		keepAliveTimer.start();
+		
+		if(immediately)
+			keepAliveTimeoutTimer.setInitialDelay(0);
+		else
+			keepAliveTimeoutTimer.setInitialDelay(NETWORK_CONNECTION_TIME_OUT_CHECK_INTERVAL);
+		keepAliveTimeoutTimer.start();
+		
 		keepAliveRunning = true;
+		keepAliveWillStop = false;
 	}
 
 	public boolean isKeepAliveRunning() {
