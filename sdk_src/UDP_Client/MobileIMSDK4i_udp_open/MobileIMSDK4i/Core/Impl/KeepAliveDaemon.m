@@ -23,8 +23,9 @@
 #pragma mark - 静态全局类变量
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-static int NETWORK_CONNECTION_TIME_OUT = 10 * 1000;
 static int KEEP_ALIVE_INTERVAL = 3000;
+static int NETWORK_CONNECTION_TIME_OUT = 10 * 1000;
+static int NETWORK_CONNECTION_TIME_OUT_CHECK_INTERVAL = 2 * 1000;
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -35,11 +36,14 @@ static int KEEP_ALIVE_INTERVAL = 3000;
 
 @property (nonatomic, assign) BOOL keepAliveRunning;
 @property (nonatomic, assign) long lastGetKeepAliveResponseFromServerTimstamp;
+
 @property (nonatomic, copy) ObserverCompletion networkConnectionLostObserver_;
 @property (nonatomic, copy) ObserverCompletion debugObserver_;
-@property (nonatomic, assign) BOOL _excuting;
-@property (nonatomic, retain) NSTimer *timer;
 
+@property (nonatomic, assign) BOOL keepAliveTaskExcuting;
+@property (nonatomic, retain) NSTimer *keepAliveTimer;
+
+@property (nonatomic, retain) NSTimer *keepAliveTimeoutTimer;
 @end
 
 
@@ -95,64 +99,84 @@ static KeepAliveDaemon *instance = nil;
     
     self.keepAliveRunning = NO;
     self.lastGetKeepAliveResponseFromServerTimstamp = 0;
-    self._excuting = NO;
+    self.keepAliveTaskExcuting = NO;
     
     return self;
 }
 
-- (void) run
+- (void) doKeepAlive
 {
-    if(!self._excuting)
+    if(!self.keepAliveTaskExcuting)
     {
-        BOOL willStop = NO;
-        self._excuting = true;
+        self.keepAliveTaskExcuting = true;
         if([ClientCoreSDK isENABLED_DEBUG])
-            NSLog(@"【IMCORE-UDP】心跳线程执行中...");
-        int code = [[LocalDataSender sharedInstance] sendKeepAlive];
+            NSLog(@"【IMCORE-UDP】心跳包[发送]线程执行中...");
+        
+        [[LocalDataSender sharedInstance] sendKeepAlive];
         
         // form DEBUG
         if(self.debugObserver_ != nil)
             self.debugObserver_(nil, [NSNumber numberWithInt:2]);
         
-        BOOL isInitialedForKeepAlive = (self.lastGetKeepAliveResponseFromServerTimstamp == 0);
+        BOOL isInitialedForKeepAlive = [self isInitialedForKeepAlive];
         //## Bug FIX 20190513 v4.0.1 START
-        if(self.lastGetKeepAliveResponseFromServerTimstamp == 0)
+        if(isInitialedForKeepAlive)
             self.lastGetKeepAliveResponseFromServerTimstamp = [ToolKits getTimeStampWithMillisecond_l];
         //## Bug FIX 20190513 v4.0.1 END
         
-        if(!isInitialedForKeepAlive)
-        {
-            long now = [ToolKits getTimeStampWithMillisecond_l];
-            if(now - self.lastGetKeepAliveResponseFromServerTimstamp >= NETWORK_CONNECTION_TIME_OUT)
-            {
-                [self stop];
-                if(self.networkConnectionLostObserver_ != nil)
-                    self.networkConnectionLostObserver_(nil, nil);
-                
-                willStop = YES;
-            }
-        }
+        self.keepAliveTaskExcuting = NO;
         
-        self._excuting = NO;
-        if(!willStop)
+    }
+}
+
+- (void) doTimeoutCheck
+{
+    if([ClientCoreSDK isENABLED_DEBUG])
+        NSLog(@"【IMCORE-TCP】心跳[超时检查]线程执行中...");
+    
+    BOOL isInitialedForKeepAlive = [self isInitialedForKeepAlive];
+    if(!isInitialedForKeepAlive)
+    {
+        long now = [ToolKits getTimeStampWithMillisecond_l];
+        if(now - self.lastGetKeepAliveResponseFromServerTimstamp >= NETWORK_CONNECTION_TIME_OUT)
         {
-            ;
-        }
-        else
-        {
-            [self stop];
+            [self notifyConnectionLost];
         }
     }
 }
 
+- (BOOL) isInitialedForKeepAlive
+{
+    return (self.lastGetKeepAliveResponseFromServerTimstamp == 0);
+}
+
+- (void)notifyConnectionLost
+{
+    [self stop];
+    if(self.networkConnectionLostObserver_ != nil)
+        self.networkConnectionLostObserver_(nil, nil);
+}
+
+
+//-----------------------------------------------------------------------------------
+#pragma mark - 外部可调用的类方法
+
 - (void) stop
 {
-    if(self.timer != nil)
+    if(self.keepAliveTimeoutTimer != nil)
     {
-        if([self.timer isValid])
-            [self.timer invalidate];
+        if([self.keepAliveTimeoutTimer isValid])
+            [self.keepAliveTimeoutTimer invalidate];
         
-        self.timer = nil;
+        self.keepAliveTimeoutTimer = nil;
+    }
+    
+    if(self.keepAliveTimer != nil)
+    {
+        if([self.keepAliveTimer isValid])
+            [self.keepAliveTimer invalidate];
+        
+        self.keepAliveTimer = nil;
     }
     self.keepAliveRunning = NO;
     self.lastGetKeepAliveResponseFromServerTimstamp = 0;
@@ -166,9 +190,14 @@ static KeepAliveDaemon *instance = nil;
 {
     [self stop];
     
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:KEEP_ALIVE_INTERVAL / 1000 target:self selector:@selector(run) userInfo:nil repeats:YES];
+    self.keepAliveTimer = [NSTimer scheduledTimerWithTimeInterval:KEEP_ALIVE_INTERVAL / 1000 target:self selector:@selector(doKeepAlive) userInfo:nil repeats:YES];
     if(immediately)
-       [self.timer fire];
+       [self.keepAliveTimer fire];
+    
+    self.keepAliveTimeoutTimer = [NSTimer scheduledTimerWithTimeInterval:NETWORK_CONNECTION_TIME_OUT_CHECK_INTERVAL / 1000 target:self selector:@selector(doTimeoutCheck) userInfo:nil repeats:YES];
+    if(immediately)
+       [self.keepAliveTimeoutTimer fire];
+
     self.keepAliveRunning = YES;
     
     // form DEBUG
