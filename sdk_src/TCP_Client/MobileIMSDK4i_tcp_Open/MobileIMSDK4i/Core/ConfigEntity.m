@@ -66,6 +66,10 @@ static NSString *appKey = nil;
             keepAliveInterval = 3000;// 3s
             networkConnectionTimeout = keepAliveInterval * 1 + 2000;// 5s
             break;
+        case SenseMode5S:
+            keepAliveInterval = 5000;// 5s
+            networkConnectionTimeout = keepAliveInterval * 1 + 3000;// 8s
+            break;
         case SenseMode10S:
             keepAliveInterval = 10000;// 10s
             networkConnectionTimeout = keepAliveInterval * 1 + 5000;// 15s
