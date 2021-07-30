@@ -74,7 +74,7 @@ public class IMClientManager
 //			ConfigEntity.serverPort = 8901;
 	    
 			// MobileIMSDK核心IM框架的敏感度模式设置
-//			ConfigEntity.setSenseMode(SenseMode.MODE_15S);
+			ConfigEntity.setSenseMode(ConfigEntity.SenseMode.MODE_5S);
 
 			// 设置最大TCP帧内容长度（不设置则默认最大是 6 * 1024字节）
 //			LocalSocketProvider.TCP_FRAME_MAX_BODY_LENGTH = 60 * 1024;

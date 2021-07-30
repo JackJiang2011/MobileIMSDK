@@ -37,6 +37,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/gray"
                 android:layout_marginRight="5dp"
+                android:layout_marginTop="1px"
                 />
 
             <TextView
@@ -46,7 +47,8 @@
                 android:text="未连接"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/common_light_red"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:textStyle="bold"/>
 
         </LinearLayout>
 
@@ -197,6 +199,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/gray"
+            android:layout_marginTop="1px"
             />
         <TextView
             android:layout_width="wrap_content"
@@ -212,6 +215,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/gray"
             android:layout_marginLeft="7dp"
+            android:layout_marginTop="1px"
             />
         <TextView
             android:layout_width="wrap_content"
@@ -227,6 +231,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/gray"
             android:layout_marginLeft="7dp"
+            android:layout_marginTop="1px"
             />
         <TextView
             android:layout_width="wrap_content"
@@ -242,6 +247,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/gray"
             android:layout_marginLeft="7dp"
+            android:layout_marginTop="1px"
             />
         <TextView
             android:layout_width="wrap_content"
