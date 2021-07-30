@@ -163,11 +163,11 @@
         return;
     }
     NSString *loginTokenStr = self.loginPsw.text;
-    if ([loginTokenStr length] == 0)
-    {
-        [self E_showToastInfo:@"提示" withContent:@"请输入登密码！" onParent:self.view];
-        return;
-    }
+//    if ([loginTokenStr length] == 0)
+//    {
+//        [self E_showToastInfo:@"提示" withContent:@"请输入登密码！" onParent:self.view];
+//        return;
+//    }
     
     //** 向服务端发送登陆信息
     [self doLoginImpl:loginUserIdStr withToken:loginTokenStr];

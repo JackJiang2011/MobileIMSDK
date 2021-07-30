@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment version="2304" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController">
             <connections>
                 <outlet property="connectStatus" destination="78P-71-v8g" id="0a3-L6-JOt"/>
+                <outlet property="connectStatusIcon" destination="FTU-7P-STu" id="l3I-Sv-jvN"/>
                 <outlet property="friendId" destination="rah-zU-Y6q" id="ZNT-Nj-Ey3"/>
                 <outlet property="iviewAutoRelogin" destination="yXc-AW-IEJ" id="yjp-Mp-QCL"/>
                 <outlet property="iviewKeepAlive" destination="Ux2-r2-OTw" id="gUk-q3-spm"/>
@@ -38,12 +39,16 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="连接断开" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="78P-71-v8g" userLabel="lb-状态标识">
-                            <rect key="frame" x="61" y="2" width="54" height="16"/>
+                            <rect key="frame" x="80" y="2" width="54" height="16"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <color key="textColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gray.png" translatesAutoresizingMaskIntoConstraints="NO" id="FTU-7P-STu" userLabel="iv-状态图标">
+                            <rect key="frame" x="65" y="4" width="12" height="12"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="当前账号：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4sS-F8-aHg" userLabel="lb-当前账号：">
                             <rect key="frame" x="0.0" y="18" width="66" height="19"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -58,7 +63,7 @@
                             <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NgB-WR-itT" userLabel="按钮-退出登陆">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NgB-WR-itT" userLabel="按钮-退出登陆">
                             <rect key="frame" x="258" y="4" width="104" height="30"/>
                             <color key="backgroundColor" red="0.99215686274509807" green="0.58039215686274503" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
@@ -117,7 +122,7 @@
                                 <action selector="E_textFieldDidEndOnExit:" destination="-1" eventType="editingDidEndOnExit" id="C7g-w7-Qjr"/>
                             </connections>
                         </textField>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="11" userLabel="按钮-发送消息">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="11" userLabel="按钮-发送消息">
                             <rect key="frame" x="0.0" y="38" width="362" height="35"/>
                             <color key="backgroundColor" red="0.0" green="0.47843137254901957" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
@@ -221,7 +226,8 @@
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </tableView>
             </subviews>
-            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <viewLayoutGuide key="safeArea" id="ngK-ZK-RF7"/>
+            <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
             <constraints>
                 <constraint firstItem="guP-mS-gsz" firstAttribute="top" secondItem="S1P-do-RPH" secondAttribute="bottom" constant="6" id="2wg-JF-VIX"/>
                 <constraint firstItem="S1P-do-RPH" firstAttribute="leading" secondItem="6" secondAttribute="leading" id="6q7-wK-t7k"/>
@@ -243,7 +249,6 @@
                 <constraint firstAttribute="trailing" secondItem="emD-kk-O1n" secondAttribute="trailing" constant="7" id="tbD-sS-SbW"/>
                 <constraint firstItem="F65-cV-K4l" firstAttribute="leading" secondItem="6" secondAttribute="leading" id="vVX-k6-NBq"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="ngK-ZK-RF7"/>
             <connections>
                 <action selector="E_clickBgToHideKeyboard:" destination="-1" eventType="touchDown" id="Ws6-8s-ASb"/>
             </connections>
@@ -253,5 +258,8 @@
     <resources>
         <image name="dashed_line.png" width="568" height="1"/>
         <image name="gray.png" width="12" height="12"/>
+        <systemColor name="groupTableViewBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

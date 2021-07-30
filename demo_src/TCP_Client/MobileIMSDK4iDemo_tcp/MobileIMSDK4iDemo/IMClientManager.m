@@ -79,14 +79,14 @@ static IMClientManager *instance = nil;
         [ConfigEntity registerWithAppKey:@"5418023dfd98c579b6001741"];
         
         // 设置服务器ip和服务器端口
-//      [ConfigEntity setServerIp:@"rbcore.openmob.net"];
+//      [ConfigEntity setServerIp:@"rbcore.52im.net"];
 //      [ConfigEntity setServerPort:7901];
         
         // 使用以下代码表示不绑定固定port（由系统自动分配），否则使用默认的7801端口
 //      [ConfigEntity setLocalSendAndListeningPort:-1];
         
-        // RainbowCore核心IM框架的敏感度模式设置
-//      [ConfigEntity setSenseMode:SenseMode10S];
+        // MobileIMSDK核心IM框架的敏感度模式设置
+        [ConfigEntity setSenseMode:SenseMode5S];
         
         // 设置最大TCP帧内容长度（不设置则默认最大是 6 * 1024字节）
 //      [TCPFrameCodec setTCP_FRAME_MAX_BODY_LENGTH:60 * 1024];
