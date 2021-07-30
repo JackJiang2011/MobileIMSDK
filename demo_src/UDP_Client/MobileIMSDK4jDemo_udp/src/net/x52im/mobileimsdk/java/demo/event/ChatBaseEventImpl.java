@@ -57,7 +57,7 @@ public class ChatBaseEventImpl implements ChatBaseEvent
 			if(this.mainGUI != null)
 			{
 				this.mainGUI.refreshMyid();
-				this.mainGUI.showIMInfo_green("IM服务器登录/连接成功,dwErrorCode="+errorCode);
+				this.mainGUI.showIMInfo_green("IM服务器登录/连接成功,errorCode="+errorCode);
 			}
 		}
 		else 
