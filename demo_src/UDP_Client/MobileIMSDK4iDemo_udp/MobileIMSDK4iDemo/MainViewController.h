@@ -18,6 +18,8 @@
 
 @interface MainViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 
+/** 通信状态图标 */
+@property (weak, nonatomic) IBOutlet UIImageView *connectStatusIcon;
 /** 通信状态显示 */
 @property (weak, nonatomic) IBOutlet UILabel *connectStatus;
 /** 我的登陆账号 */

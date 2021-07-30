@@ -23,7 +23,6 @@
 
 @interface ClientCoreSDK : NSObject
 
-//@property (nonatomic, assign) BOOL localDeviceNetworkOk;
 @property (nonatomic, assign) BOOL connectedToServer;
 @property (nonatomic, assign) BOOL loginHasInit;
 @property (nonatomic, retain) PLoginInfo *currentLoginInfo;

@@ -39,6 +39,7 @@
 		EAD3047819F60C2D00B75F51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD3047719F60C2D00B75F51 /* AppDelegate.m */; };
 		EAD3047B19F60C2D00B75F51 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD3047A19F60C2D00B75F51 /* MainViewController.m */; };
 		EAD304A819F6118000B75F51 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD304A719F6118000B75F51 /* MainViewController.xib */; };
+		EADC1CD326B04FF7000B48AA /* red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EADC1CD226B04FF7000B48AA /* red@2x.png */; };
 		EADDE6C71A0A2AB4002FFB8E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EADDE6C61A0A2AB4002FFB8E /* SystemConfiguration.framework */; };
 		EAF526F61BF447E2006E31CB /* logo_img@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF526F41BF447E2006E31CB /* logo_img@2x.png */; };
 /* End PBXBuildFile section */
@@ -101,6 +102,7 @@
 		EAD3047919F60C2D00B75F51 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = MobileIMSDK4iDemo/MainViewController.h; sourceTree = "<group>"; };
 		EAD3047A19F60C2D00B75F51 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = MobileIMSDK4iDemo/MainViewController.m; sourceTree = "<group>"; };
 		EAD304A719F6118000B75F51 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainViewController.xib; path = MobileIMSDK4iDemo/MainViewController.xib; sourceTree = "<group>"; };
+		EADC1CD226B04FF7000B48AA /* red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red@2x.png"; sourceTree = "<group>"; };
 		EADDE6C61A0A2AB4002FFB8E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		EADDE6CB1A0A309E002FFB8E /* AutoReLoginDaemon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoReLoginDaemon.h; sourceTree = "<group>"; };
 		EADDE6CC1A0A309E002FFB8E /* CharsetHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharsetHelper.h; sourceTree = "<group>"; };
@@ -200,14 +202,15 @@
 		EA7B6EE119FF4CDE0007867A /* images */ = {
 			isa = PBXGroup;
 			children = (
-				EAF526F41BF447E2006E31CB /* logo_img@2x.png */,
-				EAD014431BF34C1700D4A052 /* srart_bg.jpg */,
-				EA3969C71A0DEFA40099FBF9 /* green_light@2x.png */,
+				EADC1CD226B04FF7000B48AA /* red@2x.png */,
+				EA94F40019FF97E00030D5AE /* dashed_line.png */,
 				EA98E4B71A0CFC1D005A7299 /* gray@2x.png */,
+				EA3969C71A0DEFA40099FBF9 /* green_light@2x.png */,
 				EA98E4B81A0CFC1D005A7299 /* green@2x.png */,
 				EA761DA219FFE9BB00CBABA1 /* info@2x.png */,
-				EA94F40019FF97E00030D5AE /* dashed_line.png */,
+				EAF526F41BF447E2006E31CB /* logo_img@2x.png */,
 				EA7B6EE319FF4CEF0007867A /* qzone_mark_img_myvoice@2x.png */,
+				EAD014431BF34C1700D4A052 /* srart_bg.jpg */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 				EA7B6EE519FF4CEF0007867A /* qzone_mark_img_myvoice@2x.png in Resources */,
 				EA98E4BA1A0CFC1D005A7299 /* green@2x.png in Resources */,
 				EA94F40119FF97E00030D5AE /* dashed_line.png in Resources */,
+				EADC1CD326B04FF7000B48AA /* red@2x.png in Resources */,
 				EAF526F61BF447E2006E31CB /* logo_img@2x.png in Resources */,
 				EA8BDD2D1BEEFB190069EF2B /* LoginViewController.xib in Resources */,
 				EAD014411BF34B5000D4A052 /* LaunchScreen.xib in Resources */,
@@ -560,7 +564,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = b210713.1;
+				CURRENT_PROJECT_VERSION = b210727.1;
 				DEVELOPMENT_TEAM = A3GUV2D3KJ;
 				INFOPLIST_FILE = MobileIMSDK4iDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -573,7 +577,7 @@
 					"$(PROJECT_DIR)/MobileIMSDK4iLib",
 					"$(PROJECT_DIR)/MobileIMSDK4iLib/usr",
 				);
-				MARKETING_VERSION = 6.0;
+				MARKETING_VERSION = 6.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.52im.MobileIMSDK4iDemo-udp";
 				PRODUCT_NAME = MobileIMSDKDemo_UDP;
 				PROVISIONING_PROFILE = "";
@@ -587,7 +591,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = b210713.1;
+				CURRENT_PROJECT_VERSION = b210727.1;
 				DEVELOPMENT_TEAM = A3GUV2D3KJ;
 				INFOPLIST_FILE = MobileIMSDK4iDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -600,7 +604,7 @@
 					"$(PROJECT_DIR)/MobileIMSDK4iLib",
 					"$(PROJECT_DIR)/MobileIMSDK4iLib/usr",
 				);
-				MARKETING_VERSION = 6.0;
+				MARKETING_VERSION = 6.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.52im.MobileIMSDK4iDemo-udp";
 				PRODUCT_NAME = MobileIMSDKDemo_UDP;
 				PROVISIONING_PROFILE = "";
