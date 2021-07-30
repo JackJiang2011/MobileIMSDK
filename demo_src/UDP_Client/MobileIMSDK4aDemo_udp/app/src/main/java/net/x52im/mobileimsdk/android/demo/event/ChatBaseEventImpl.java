@@ -98,7 +98,7 @@ public class ChatBaseEventImpl implements ChatBaseEvent
 		if(this.mainGUI != null)
 		{
 			this.mainGUI.refreshMyid();
-			this.mainGUI.showIMInfo_red("与IM服务器的连接已断开! ("+errorCode+")");
+//			this.mainGUI.showIMInfo_red("与IM服务器的连接已断开! ("+errorCode+")");
 		}
 	}
 

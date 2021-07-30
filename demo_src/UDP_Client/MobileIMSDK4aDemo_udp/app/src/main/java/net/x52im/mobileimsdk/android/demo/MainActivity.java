@@ -193,7 +193,7 @@ public class MainActivity extends AppCompatActivity
 		else{
 			this.viewStatus.setText("连接断开");
 			this.viewStatus.setTextColor(getResources().getColor(R.color.common_light_red));
-			this.imgStatus.setImageResource(R.drawable.gray);
+			this.imgStatus.setImageResource(R.drawable.red);
 		}
 	}
 	
