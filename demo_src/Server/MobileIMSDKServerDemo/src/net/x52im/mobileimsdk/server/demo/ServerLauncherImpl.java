@@ -26,6 +26,7 @@ import net.x52im.mobileimsdk.server.network.GatewayWebsocket;
 import net.x52im.mobileimsdk.server.qos.QoS4ReciveDaemonC2S;
 import net.x52im.mobileimsdk.server.qos.QoS4SendDaemonS2C;
 import net.x52im.mobileimsdk.server.utils.ServerToolKits;
+import net.x52im.mobileimsdk.server.utils.ServerToolKits.SenseModeTCP;
 import net.x52im.mobileimsdk.server.utils.ServerToolKits.SenseModeWebsocket;
 
 /**
@@ -67,7 +68,7 @@ public class ServerLauncherImpl extends ServerLauncher
 		
 		// 与客户端协商一致的心跳频率模式设置
 //		ServerToolKits.setSenseModeUDP(SenseModeUDP.MODE_15S);
-//		ServerToolKits.setSenseModeTCP(SenseModeTCP.MODE_15S);
+		ServerToolKits.setSenseModeTCP(SenseModeTCP.MODE_5S);
 		ServerToolKits.setSenseModeWebsocket(SenseModeWebsocket.MODE_3S);
 //		ServerToolKits.setSenseModeWebsocket(SenseModeWebsocket.MODE_30S);
 
