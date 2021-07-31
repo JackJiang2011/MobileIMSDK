@@ -57,12 +57,12 @@
 * 历经8年、久经考验；
 * 超轻量级、高度提炼，lib包50KB以内；
 * 精心封装，一套API优雅支持UDP、TCP、WebSocket 三种协议（可能是全网唯一开源的）；
-* 客户端支持iOS、Android、标准Java、H5、小程序(开发中..)、Uniap(开发中..)；
+* 客户端支持iOS、Android、标准Java、H5(暂未开源)、小程序(开发中..)、Uniap(开发中..)；
 * 服务端基于Netty，性能卓越、易于扩展；:point_left:
 * 可与姊妹工程 [MobileIMSDK-Web](http://www.52im.net/thread-959-1-1.html) 无缝互通实现网页端聊天或推送等；:point_left:
 * 可应用于跨设备、跨网络的聊天APP、企业OA、消息推送等各种场景。
 
-> MobileIMSDK工程始于2013年10月（当前最新版是v6.0(开发中...)，[版本更新日志点此查看](http://www.52im.net/thread-1270-1-1.html) ），起初用作某自用产品的即时通讯底层，完全从零开发。<br>
+> MobileIMSDK工程始于2013年10月（当前最新版是v6.1，[版本更新日志点此查看](http://www.52im.net/thread-1270-1-1.html) ），起初用作某自用产品的即时通讯底层，完全从零开发。<br>
 MobileIMSDK现已完全开源，希望对需要的人有所启发和帮助。
 
 :point_right: 您可能需要：[查看更多关于MobileIMSDK的疑问及解答](http://www.52im.net/thread-60-1-1.html)。
