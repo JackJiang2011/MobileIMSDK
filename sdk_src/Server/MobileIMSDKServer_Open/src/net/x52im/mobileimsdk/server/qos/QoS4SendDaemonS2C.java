@@ -16,16 +16,19 @@
  */
 package net.x52im.mobileimsdk.server.qos;
 
-import java.util.ArrayList;
-
 public class QoS4SendDaemonS2C extends QoS4SendDaemonRoot
 {
 	private static QoS4SendDaemonS2C instance = null;
 	
 	public static QoS4SendDaemonS2C getInstance()
 	{
-		if(instance == null)
-			instance = new QoS4SendDaemonS2C();
+		if (instance == null) {
+			synchronized (QoS4SendDaemonS2C.class) {
+				if (instance == null) {
+					instance = new QoS4SendDaemonS2C();
+				}
+			}
+		}
 		return instance;
 	}
 	

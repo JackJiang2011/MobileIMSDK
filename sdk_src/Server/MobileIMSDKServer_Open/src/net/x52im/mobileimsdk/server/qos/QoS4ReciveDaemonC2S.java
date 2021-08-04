@@ -22,8 +22,13 @@ public class QoS4ReciveDaemonC2S extends QoS4ReciveDaemonRoot
 	
 	public static QoS4ReciveDaemonC2S getInstance()
 	{
-		if(instance == null)
-			instance = new QoS4ReciveDaemonC2S();
+		if (instance == null) {
+			synchronized (QoS4ReciveDaemonC2S.class) {
+				if (instance == null) {
+					instance = new QoS4ReciveDaemonC2S();
+				}
+			}
+		}
 		return instance;
 	}
 	

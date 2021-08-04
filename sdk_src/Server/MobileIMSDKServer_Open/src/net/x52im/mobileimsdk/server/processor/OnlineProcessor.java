@@ -45,8 +45,13 @@ public class OnlineProcessor
 	
 	public static OnlineProcessor getInstance()
 	{
-		if(instance == null)
-			instance = new OnlineProcessor();
+		if (instance == null) {
+			synchronized (OnlineProcessor.class) {
+				if (instance == null) {
+					instance = new OnlineProcessor();
+				}
+			}
+		}
 		return instance;
 	}
 	
