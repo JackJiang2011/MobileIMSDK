@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2021  即时通讯网(52im.net) & Jack Jiang.
- * The MobileIMSDK4j_udp (MobileIMSDK4j v6.x UDP版) Project. 
+ * The MobileIMSDK4j_udp (MobileIMSDK4j v6.1 UDP版) Project. 
  * All rights reserved.
  * 
  * > Github地址：https://github.com/JackJiang2011/MobileIMSDK
@@ -12,7 +12,7 @@
  *  
  * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
  * 
- * UDPUtils.java at 2021-7-6 15:54:42, code by Jack Jiang.
+ * UDPUtils.java at 2021-8-4 21:37:03, code by Jack Jiang.
  */
 package net.x52im.mobileimsdk.java.utils;
 
