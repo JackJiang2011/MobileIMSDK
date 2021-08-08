@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2021  即时通讯网(52im.net) & Jack Jiang.
- * The MobileIMSDK_TCP (MobileIMSDK v6.x TCP版) Project. 
+ * The MobileIMSDK_TCP (MobileIMSDK v6.1 TCP版) Project. 
  * All rights reserved.
  * 
  * > Github地址：https://github.com/JackJiang2011/MobileIMSDK
@@ -12,7 +12,7 @@
  *  
  * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
  * 
- * MessageQoSEvent.java at 2021-7-6 15:43:17, code by Jack Jiang.
+ * MessageQoSEvent.java at 2021-8-4 21:36:39, code by Jack Jiang.
  */
 package net.x52im.mobileimsdk.java.event;
 
