@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2021  即时通讯网(52im.net) & Jack Jiang.
- * The MobileIMSDK v6.x Project. 
+ * The MobileIMSDK v6.1 Project. 
  * All rights reserved.
  * 
  * > Github地址：https://github.com/JackJiang2011/MobileIMSDK
@@ -12,7 +12,7 @@
  *  
  * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
  * 
- * QoS4ReciveDaemonC2S.java at 2021-6-29 10:15:35, code by Jack Jiang.
+ * QoS4ReciveDaemonC2S.java at 2021-8-4 21:24:15, code by Jack Jiang.
  */
 package net.x52im.mobileimsdk.server.qos;
 
