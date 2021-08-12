@@ -69,7 +69,7 @@ public class ServerLauncherImpl extends ServerLauncher
 		// 与客户端协商一致的心跳频率模式设置
 //		ServerToolKits.setSenseModeUDP(SenseModeUDP.MODE_15S);
 		ServerToolKits.setSenseModeTCP(SenseModeTCP.MODE_5S);
-		ServerToolKits.setSenseModeWebsocket(SenseModeWebsocket.MODE_3S);
+		ServerToolKits.setSenseModeWebsocket(SenseModeWebsocket.MODE_5S);
 //		ServerToolKits.setSenseModeWebsocket(SenseModeWebsocket.MODE_30S);
 
 		// 关闭与Web端的消息互通桥接器（其实SDK中默认就是false）
