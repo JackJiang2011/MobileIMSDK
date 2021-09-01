@@ -19,7 +19,7 @@
 * [客户端Demo安装和使用帮助(Android)](http://www.52im.net/thread-55-1-1.html)
 * [客户端Demo安装和使用帮助(iOS)](http://www.52im.net/thread-54-1-1.html)
 * [客户端Demo安装和使用帮助(Java)](http://www.52im.net/thread-56-1-1.html)
-* [客户端Demo安装和使用帮助(H5)](已开发完成，敬请期待！)
+* [客户端Demo演示和说明(H5)](http://www.52im.net/thread-3682-1-1.html)
 * [服务端Demo安装和使用帮助](http://www.52im.net/thread-1272-1-1.html) :new:
 
 > #### 1.5、开发指南
