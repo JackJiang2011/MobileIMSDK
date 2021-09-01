@@ -26,14 +26,14 @@
 * [客户端开发指南(Android)](http://www.52im.net/thread-61-1-1.html)
 * [客户端开发指南(iOS)](http://www.52im.net/thread-62-1-1.html)
 * [客户端开发指南(Java)](http://www.52im.net/thread-59-1-1.html)
-* [客户端开发指南(H5)](已开发完成，敬请期待！)
+* [客户端开发指南(H5)](http://www.52im.net/thread-3686-1-1.html)
 * [服务端开发指南](http://www.52im.net/thread-63-1-1.html)
 
 > #### 1.6、API文档
 * 客户端SDK API文档(Android)：[TCP版](http://docs.52im.net/extend/docs/api/mobileimsdk/android_tcp/)、[UDP版](http://docs.52im.net/extend/docs/api/mobileimsdk/android/)
 * 客户端SDK API文档(iOS)：[TCP版](http://docs.52im.net/extend/docs/api/mobileimsdk/ios_tcp/)、[UDP版](http://docs.52im.net/extend/docs/api/mobileimsdk/ios/)
 * 客户端SDK API文档(Java)：[TCP版](http://docs.52im.net/extend/docs/api/mobileimsdk/java_tcp/)、[UDP版](http://docs.52im.net/extend/docs/api/mobileimsdk/java/)
-* 客户端SDK API文档(H5)：已开发完成，敬请期待！
+* 客户端SDK API文档(H5)：[点此进入](http://www.52im.net/thread-3682-1-1.html)
 * [服务端SDK API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/server/)
 
 > #### 1.7、打包下载
@@ -87,14 +87,18 @@ MobileIMSDK版本更新日志：[点此查看](http://www.52im.net/thread-1270-1
 让开发者专注于应用逻辑的开发，底层<code>复杂的即时通讯算法交由SDK开发人员</code>，从而<code>解偶即时通讯应用开发的复杂性</code>。
 
 # 五、框架组成
-<b>整套MobileIMSDK框架由以下4部分组成：</b>
+<b>整套MobileIMSDK框架由以下6部分组成：</b>
 
 1. <b>Android客户端SDK：</b>用于Android版即时通讯客户端，支持Android 2\.3及以上，[查看API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/android_tcp/)；
 2. <b>iOS客户端SDK：</b>用于开发iOS版即时通讯客户端，支持iOS 8\.0及以上，[查看API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/ios_tcp/)；
 3. <b>Java客户端SDK：</b>用于开发跨平台的PC端即时通讯客户端，支持Java 1\.6及以上，[查看API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/java_tcp/)；
-4. <b>H5客户端SDK：</b>暂未开源，敬请关注；
+4. <b>H5客户端SDK：</b>暂无开源版，[查看精编注释版](http://www.52im.net/thread-3682-1-1.html)；
 5. <b>小程序端SDK：</b>持续开发中，敬请关注；
 6. <b>服务端SDK：</b>用于开发即时通讯服务端，支持Java 1\.7及以上版本，[查看API文档](http://docs.52im.net/extend/docs/api/mobileimsdk/server/)。
+
+<b>整套MobileIMSDK框架的架构组成：</b>
+
+![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/mibileimsdk_framework.png)
 
 :point_right: <b>另外：</b>MobileIMSDK可与姊妹工程 [MobileIMSDK-Web](http://www.52im.net/thread-959-1-1.html) 无缝互通，从而实现Web网页端聊天或推送等。
 
@@ -135,7 +139,8 @@ MobileIMSDK版本更新日志：[点此查看](http://www.52im.net/thread-1270-1
 1. <b>Android客户端 Demo：</b>[点此安装和使用](http://www.52im.net/thread-55-1-1.html)；
 2. <b>iOS客户端 Demo：</b>[点此安装和使用](http://www.52im.net/thread-54-1-1.html)；
 3. <b>Java客户端 Demo：</b>[点此安装和使用](http://www.52im.net/thread-56-1-1.html)；
-3. <b>服务端 Demo：</b>[点此安装和使用](http://www.52im.net/thread-1272-1-1.html)  :new:。
+4. <b>H5客户端 Demo：</b>[点此查看介绍](http://www.52im.net/thread-3682-1-1.html)；
+5. <b>服务端 Demo：</b>[点此安装和使用](http://www.52im.net/thread-1272-1-1.html)  :new:。
 
 # 九、应用案例
 #### ① 基于MobileIMSDK的产品级聊天APP：
