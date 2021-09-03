@@ -22,6 +22,9 @@
 7）/TCP_Client/MobileIMSDK4i_tcp_open：
 为TCP协议的iOS版客户端核心库源码的XCode工程（另：精编注释版见下方说明）；
 
+8）/WebSocket_Client：
+为WebSocket协议的客户端核心库。
+
 --------------------------------------
 
 【精编注释版源码（含详细文档级代码注释、算法原理图、CHM版API文档）】：

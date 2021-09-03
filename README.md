@@ -177,7 +177,8 @@ MobileIMSDK版本更新日志：[点此查看](http://www.52im.net/thread-1270-1
 1. <b>Android客户端开发指南：</b>[点此查看](http://www.52im.net/thread-61-1-1.html)；
 2. <b>iOS客户端开发指南：</b>[点此查看](http://www.52im.net/thread-62-1-1.html)；
 3. <b>Java客户端开发指南：</b>[点此查看](http://www.52im.net/thread-59-1-1.html)；
-4. <b>Server端开发指南：</b>[点此查看](http://www.52im.net/thread-63-1-1.html)。
+4. <b>H5客户端开发指南：</b>[点此查看](http://www.52im.net/thread-3686-1-1.html)；
+5. <b>Server端开发指南：</b>[点此查看](http://www.52im.net/thread-63-1-1.html)。
 
 # 十三、授权方式
 你可永久免费且自由地使用MobileIMSDK，如：用于研究、学习、甚至商业用途，
