@@ -94,6 +94,9 @@ public class ServerToolKits
     		case MODE_3S:
     			expire = 3 * 2 + 1;
     			break;
+    		case MODE_5S:
+    			expire = 5 * 2 + 1;
+    			break;
     		case MODE_10S:
     			expire = 10 * 1 + 5;
         		break;
@@ -277,6 +280,8 @@ public class ServerToolKits
     	 * 此模式为当前所有预设模式中体验最好，但客户端可能会大幅提升耗电量和心跳包的总流量。 
     	 */
     	MODE_3S,
+
+    	MODE_5S,
     	
     	/** 
     	 * 对应于客户端的10秒心跳模式：此模式的用户非正常掉线超时时长为“10 * 1 + 5”秒

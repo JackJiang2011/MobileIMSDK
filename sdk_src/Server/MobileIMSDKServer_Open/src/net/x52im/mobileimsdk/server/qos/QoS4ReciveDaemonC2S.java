@@ -18,7 +18,7 @@ package net.x52im.mobileimsdk.server.qos;
 
 public class QoS4ReciveDaemonC2S extends QoS4ReciveDaemonRoot
 {
-	private static QoS4ReciveDaemonC2S instance = null;
+	private static volatile QoS4ReciveDaemonC2S instance = null;
 	
 	public static QoS4ReciveDaemonC2S getInstance()
 	{

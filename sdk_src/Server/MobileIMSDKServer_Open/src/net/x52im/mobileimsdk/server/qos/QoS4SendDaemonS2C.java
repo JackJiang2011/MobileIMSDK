@@ -18,7 +18,7 @@ package net.x52im.mobileimsdk.server.qos;
 
 public class QoS4SendDaemonS2C extends QoS4SendDaemonRoot
 {
-	private static QoS4SendDaemonS2C instance = null;
+	private static volatile QoS4SendDaemonS2C instance = null;
 	
 	public static QoS4SendDaemonS2C getInstance()
 	{

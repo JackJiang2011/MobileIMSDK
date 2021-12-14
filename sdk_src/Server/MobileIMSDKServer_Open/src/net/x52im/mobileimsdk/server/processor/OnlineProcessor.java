@@ -39,7 +39,7 @@ public class OnlineProcessor
 	
 	public static boolean DEBUG = false;
 	private static Logger logger = LoggerFactory.getLogger(OnlineProcessor.class); 
-	private static OnlineProcessor instance = null;
+	private static volatile OnlineProcessor instance = null;
 	
 	private ConcurrentMap<String, Channel> onlineSessions = new ConcurrentHashMap<String, Channel>();
 	
