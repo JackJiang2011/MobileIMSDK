@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     defaultConfig {
         applicationId "net.x52im.mobileimsdk.android.demo_tcp"
         minSdkVersion 14
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 104
-        versionName "v6.1b210724.2"
+        versionName "v6.1.2b211214.1"
     }
     buildTypes {
         release {
@@ -27,11 +27,12 @@ dependencies {
     //implementation 'com.android.support:appcompat-v7:28.0.0'
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.0'
+    implementation 'com.google.android.material:material:1.3.0'
 
     // MobileIMSDK的依赖库
     implementation 'com.google.code.gson:gson:2.8.6'
-    implementation files('libs/netty-all-4.1.50.Final.jar')
+//    implementation files('libs/netty-all-4.1.50.Final.jar')
+    implementation group: 'io.netty', name: 'netty-all', version: '4.1.50.Final'
 
     // MobileIMSDK的SDK库
     implementation files('libs/MobileIMSDKServer_META.jar')
