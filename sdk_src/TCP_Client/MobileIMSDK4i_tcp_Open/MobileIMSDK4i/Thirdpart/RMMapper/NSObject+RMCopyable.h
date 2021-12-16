@@ -1,13 +1,13 @@
+////
+////  NSObject+TDCopy.h
+////  Roomorama
+////
+////  Created by Roomorama on 27/12/12.
+////  Copyright (c) 2012 Roomorama. All rights reserved.
+////
 //
-//  NSObject+TDCopy.h
-//  Roomorama
+//#import <Foundation/Foundation.h>
 //
-//  Created by Roomorama on 27/12/12.
-//  Copyright (c) 2012 Roomorama. All rights reserved.
+//@interface NSObject (RMCopyable) <NSCopying>
 //
-
-#import <Foundation/Foundation.h>
-
-@interface NSObject (RMCopyable) <NSCopying>
-
-@end
+//@end

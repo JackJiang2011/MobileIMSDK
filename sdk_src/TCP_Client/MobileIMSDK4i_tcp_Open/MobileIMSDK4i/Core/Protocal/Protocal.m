@@ -78,6 +78,7 @@
         self.QoS = NO;
         self.bridge = NO;
         self.typeu = -1;
+        self.sm = -1;
         
         self.retryCount = 0;
     }

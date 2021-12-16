@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     defaultConfig {
         applicationId "net.x52im.mobileimsdk.android"
         minSdkVersion 14
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 1
-        versionName "6.0"
+        versionName "6.1.2"
     }
     buildTypes {
         release {
@@ -32,7 +32,8 @@ android {
 dependencies {
     // MobileIMSDK的依赖库
     implementation 'com.google.code.gson:gson:2.8.6'
-    implementation files('libs/netty-all-4.1.50.Final.jar')
+//    implementation files('libs/netty-all-4.1.50.Final.jar')
+    implementation group: 'io.netty', name: 'netty-all', version: '4.1.50.Final'
 
     // MobileIMSDK与服务端共用的DTO类等（就是普通的JavaBean，源码见：
     // https://github.com/JackJiang2011/MobileIMSDK/tree/master/src_all/libs_src/MobileIMSDKServerX_netty_Open/src/net/openmob/mobileimsdk/server/protocal）
