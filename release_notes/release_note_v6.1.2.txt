@@ -1,0 +1,21 @@
+
+----------------------------------- v6.1.2发布于：20211216
+MobileIMSDK v6.1.2版更新说明：
+
+【重要说明】
+MobileIMSDK v6.1.2 为次要更新版本，主要是Bug修复和若干优化。
+
+【新增重要特性】
+无
+
+【解决的Bug】
+1. [Andior/iOS]解决了当网络断线后，重传队列中的包不增加重次数从而一直重传的问题；
+2. [iOS]       解决了RMMapper库中，因重写父类copyWithZone方法而导致某些工程里的动画效果不生效的问题！
+
+【其它优化和提升】
+1. [Andiord]Andriod端Demo中补全了完整的proguard混淆配置，否则真有人对Demo进行“realease”时，会运行报错哦；
+2. [iOS]    上一个版本中的Protocal类中忘记补上“sm”字段，现在补上了；
+3. [服务端]  服务端Demo同步为最新工程，之前提交的版本未正确合并最新lib等；
+4. [服务端]  升级log4j2至2.15.0，解决Log4j2远程代码执行高危漏洞；
+5. [Andiord]Andriod端SDK和Demo工程的targetSdkVersion提升为30；
+6. [Andriod]Andriod端TCP版协议Netty库加载方式改为gradle加载；
