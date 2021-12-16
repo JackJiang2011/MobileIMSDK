@@ -107,9 +107,8 @@ public class QoS4SendDaemon {
                             new LocalDataSender.SendCommonDataAsync(p) {
                                 @Override
                                 protected void onPostExecute(Integer code) {
+                                    p.increaseRetryCount();
                                     if (code == 0) {
-                                        // 重传次数+1
-                                        p.increaseRetryCount();
                                         if (ClientCoreSDK.DEBUG)
                                             Log.d(TAG, "【IMCORE-UDP】【QoS】指纹为" + p.getFp() + "的消息包已成功进行重传，此次之后重传次数已达" + p.getRetryCount() + "(最多" + QOS_TRY_COUNT + "次).");
                                     } else {

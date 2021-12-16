@@ -77,6 +77,7 @@
         self.bridge = NO;
         self.typeu = -1;
         self.retryCount = 0;
+        self.sm = -1;
     }
     return self;
 }

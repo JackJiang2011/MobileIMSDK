@@ -25,6 +25,7 @@
 @property (nonatomic, retain)  NSString *fp;
 @property (nonatomic, assign)  bool QoS;
 @property (nonatomic, assign)  int typeu;
+@property (nonatomic, assign)  long sm;
 
 - (int) getRetryCount;
 - (void) increaseRetryCount;
