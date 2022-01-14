@@ -185,14 +185,16 @@ public class LocalSendHelper
 		}
 	}
 	
-	public static void sendKickout(final Channel sessionBeKick, String to_user_id, int code, String reason) throws Exception
+	public static void sendKickout(final Channel sessionBeKick, String to_user_id, final int code, String reason) throws Exception
 	{
 		MBObserver sendResultObserver = new MBObserver(){
 			@Override
 			public void update(boolean sendOK, Object extraObj){
 				logger.warn("[IMCORE-{}]>> 客户端{}的被踢指令发送成功？{}（会话即将关闭）", Gateway.$(sessionBeKick), ServerToolKits.clientInfoToString(sessionBeKick), sendOK);
-				if(!GatewayUDP.isUDPChannel(sessionBeKick))
+				if(!GatewayUDP.isUDPChannel(sessionBeKick)){
+					OnlineProcessor.setBeKickoutCodeForChannel(sessionBeKick, code);
 					sessionBeKick.close();
+				}
 			}
 		};
 		LocalSendHelper.sendData(sessionBeKick, ProtocalFactory.createPKickout(to_user_id, code, reason), sendResultObserver);

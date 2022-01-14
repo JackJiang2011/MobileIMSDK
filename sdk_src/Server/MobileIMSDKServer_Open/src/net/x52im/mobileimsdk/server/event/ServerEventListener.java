@@ -23,7 +23,7 @@ public interface ServerEventListener
 {
 	int onUserLoginVerify(String userId, String token, String extra, Channel session);
 	void onUserLoginSucess(String userId, String extra, Channel session);
-	void onUserLogout(String userId, Object obj, Channel session);
+	void onUserLogout(String userId, Channel session, int beKickoutCode);
 	boolean onTransferMessage4C2S(Protocal p, Channel session);
 	void onTransferMessage4C2C(Protocal p);
 	boolean onTransferMessage_RealTimeSendFaild(Protocal p);

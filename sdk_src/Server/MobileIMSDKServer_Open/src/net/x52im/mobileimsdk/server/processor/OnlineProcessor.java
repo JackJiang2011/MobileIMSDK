@@ -31,11 +31,9 @@ import org.slf4j.LoggerFactory;
 
 public class OnlineProcessor
 {
-	public final static String USER_ID_ATTRIBUTE = "__user_id__";
-	public final static String FIRST_LOGIN_TIME_ATTRIBUTE = "__first_login_time__";
-
-	public static final AttributeKey<String> USER_ID_ATTRIBUTE_ATTR = AttributeKey.newInstance(USER_ID_ATTRIBUTE);
-	public static final AttributeKey<Long> FIRST_LOGIN_TIME_ATTRIBUTE_ATTR = AttributeKey.newInstance(FIRST_LOGIN_TIME_ATTRIBUTE);
+	public static final AttributeKey<String> ATTRIBUTE_KEY_USER_ID = AttributeKey.newInstance("__user_id__");
+	public static final AttributeKey<Long> ATTRIBUTE_KEY_FIRST_LOGIN_TIME = AttributeKey.newInstance("__first_login_time__");
+	public static final AttributeKey<Integer> ATTRIBUTE_KEY_BE_KICKOUT_CODE = AttributeKey.newInstance("__be_keickout_code__");
 	
 	public static boolean DEBUG = false;
 	private static Logger logger = LoggerFactory.getLogger(OnlineProcessor.class); 
@@ -179,22 +177,37 @@ private void sendKickoutDuplicateLogin(final Channel sessionBeKick, String to_us
 	
 	public static void setUserIdForChannel(Channel session, String userId)
 	{
-		session.attr(OnlineProcessor.USER_ID_ATTRIBUTE_ATTR).set(userId);
+		session.attr(OnlineProcessor.ATTRIBUTE_KEY_USER_ID).set(userId);
 	}
 	
 	public static void setFirstLoginTimeForChannel(Channel session, long firstLoginTime)
 	{
-		session.attr(OnlineProcessor.FIRST_LOGIN_TIME_ATTRIBUTE_ATTR).set(firstLoginTime);
+		session.attr(OnlineProcessor.ATTRIBUTE_KEY_FIRST_LOGIN_TIME).set(firstLoginTime);
 	}
+	
+	public static void setBeKickoutCodeForChannel(Channel session, int beKickoutCode)
+	{
+		session.attr(OnlineProcessor.ATTRIBUTE_KEY_BE_KICKOUT_CODE).set(beKickoutCode);
+	}
+	
 	public static String getUserIdFromChannel(Channel session)
 	{
-		return (session != null ? session.attr(USER_ID_ATTRIBUTE_ATTR).get() : null);
+		return (session != null ? session.attr(ATTRIBUTE_KEY_USER_ID).get() : null);
 	}
 	
 	public static long getFirstLoginTimeFromChannel(Channel session)
 	{
 		if(session != null){
-			Long attr = session.attr(FIRST_LOGIN_TIME_ATTRIBUTE_ATTR).get();
+			Long attr = session.attr(ATTRIBUTE_KEY_FIRST_LOGIN_TIME).get();
+			return attr != null ? attr : -1;
+		}
+		return -1;
+	}
+	
+	public static int getBeKickoutCodeFromChannel(Channel session)
+	{
+		if(session != null){
+			Integer attr = session.attr(ATTRIBUTE_KEY_BE_KICKOUT_CODE).get();
 			return attr != null ? attr : -1;
 		}
 		return -1;
@@ -202,7 +215,8 @@ private void sendKickoutDuplicateLogin(final Channel sessionBeKick, String to_us
 	
 	public static void removeAttributesForChannel(Channel session)
 	{
-		session.attr(OnlineProcessor.USER_ID_ATTRIBUTE_ATTR).set(null);
-		session.attr(OnlineProcessor.FIRST_LOGIN_TIME_ATTRIBUTE_ATTR).set(null);
+		session.attr(OnlineProcessor.ATTRIBUTE_KEY_USER_ID).set(null);
+		session.attr(OnlineProcessor.ATTRIBUTE_KEY_FIRST_LOGIN_TIME).set(null);
+		session.attr(OnlineProcessor.ATTRIBUTE_KEY_BE_KICKOUT_CODE).set(null);
 	}
 }

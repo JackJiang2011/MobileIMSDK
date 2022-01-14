@@ -191,11 +191,13 @@ public class ServerCoreHandler
     		if(sessionInOnlinelist != null && session != null && session == sessionInOnlinelist)
     		//## Bug FIX: 20171211 END
     		{
-				OnlineProcessor.removeAttributesForChannel(session);
+    			int beKickoutCode = OnlineProcessor.getBeKickoutCodeFromChannel(session);
+				
+    			OnlineProcessor.removeAttributesForChannel(session);
     			OnlineProcessor.getInstance().removeUser(user_id);
 
     			if(serverEventListener != null)
-    				serverEventListener.onUserLogout(user_id, null, session);
+    				serverEventListener.onUserLogout(user_id, session, beKickoutCode);
     			else
     				logger.debug("[IMCORE-{}]>> 会话{}被系统close了，但回调对象是null，没有进行回调通知."
     						, Gateway.$(session), ServerToolKits.clientInfoToString(session));
