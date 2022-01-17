@@ -18,7 +18,9 @@ package net.x52im.mobileimsdk.server.demo;
 
 import io.netty.channel.Channel;
 import net.x52im.mobileimsdk.server.event.ServerEventListener;
+import net.x52im.mobileimsdk.server.processor.OnlineProcessor;
 import net.x52im.mobileimsdk.server.protocal.Protocal;
+import net.x52im.mobileimsdk.server.protocal.s.PKickoutInfo;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -73,7 +75,7 @@ public class ServerEventListenerImpl implements ServerEventListener
 	@Override
 	public void onUserLoginSucess(String userId, String extra, Channel session)
 	{
-		logger.debug("【IM_回调通知OnUserLoginAction_CallBack】用户："+userId+" 上线了！");
+		logger.debug("【IM_回调通知onUserLoginSucess】用户："+userId+" 上线了！");
 	}
 
 	/**
@@ -82,13 +84,14 @@ public class ServerEventListenerImpl implements ServerEventListener
 	 * 服务端的应用层通常可在本方法中实现用户下线通知等。
 	 * 
 	 * @param userId 下线的用户user_id
-	 * @param obj
 	 * @param session 此客户端连接对应的 netty “会话”
+	 * @param beKickoutCode 被踢原因编码，本参数当为-1时表示本次logout事件不是源自“被踢”，否则被踢原因编码请见 {@link PKickoutInfo}类中的常量定义
+	 * @see {@link OnlineProcessor#setBeKickoutCodeForChannel(Channel, int)}
 	 */
 	@Override
-	public void onUserLogout(String userId, Object obj, Channel session)
+	public void onUserLogout(String userId, Channel session, int beKickoutCode)
 	{
-		logger.debug("【DEBUG_回调通知OnUserLogoutAction_CallBack】用户："+userId+" 离线了！");
+		logger.debug("【DEBUG_回调通知onUserLogout】用户："+userId+" 离线了（beKickoutCode="+beKickoutCode+"）！");
 	}
 
 	/**
