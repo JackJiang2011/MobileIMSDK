@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
     defaultConfig {
         applicationId "net.x52im.mobileimsdk.android.demo_tcp"
         minSdkVersion 14
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 104
-        versionName "v6.1.2b211214.1"
+        versionName "v6.2b220318.1"
     }
     buildTypes {
         release {
