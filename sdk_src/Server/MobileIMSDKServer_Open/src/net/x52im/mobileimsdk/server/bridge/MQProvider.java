@@ -279,9 +279,7 @@ public class MQProvider
 		
 		try
 		{
-			_pubChannel.basicPublish(exchangeName, routingKey
-					, MessageProperties.PERSISTENT_TEXT_PLAIN
-					, message.getBytes(this.encodeCharset));
+			_pubChannel.basicPublish(exchangeName, routingKey, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes(this.encodeCharset));
 			logger.info("["+TAG+"-↑] - [startPublisher()中] publish()成功了 ！(数据:"
 					+exchangeName+","+routingKey+","+message+")");
 			ok = true;
@@ -307,31 +305,32 @@ public class MQProvider
 
 		try
 		{
-		if(conn != null)
-		{
+			if(conn != null)
+			{
 				final Channel resumeChannel = conn.createChannel();
 				
 				String queueName = this.consumFromQueue;//queue name 
 				
 				DefaultConsumer dc = new DefaultConsumer(resumeChannel) {
 					@Override
-					public void handleDelivery(String consumerTag,Envelope envelope,
-							AMQP.BasicProperties properties,byte[] body)throws IOException{
-						String routingKey = envelope.getRoutingKey();
-						String contentType = properties.getContentType();
-
-						long deliveryTag = envelope.getDeliveryTag();
-						
-						logger.info("["+TAG+"-↓] - [startWorker()中] 收到一条新消息(routingKey="
-								+routingKey+",contentType="+contentType+",consumerTag="+consumerTag
-								+",deliveryTag="+deliveryTag+")，马上开始处理。。。。");
-
-						boolean workOK = work(body);
-						if(workOK){
-							resumeChannel.basicAck(deliveryTag, false);
-						}
-						else{
-							resumeChannel.basicReject(deliveryTag, true);
+					public void handleDelivery(String consumerTag,Envelope envelope,AMQP.BasicProperties properties,byte[] body)throws IOException{
+						try{
+							String routingKey = envelope.getRoutingKey();
+							String contentType = properties.getContentType();
+							long deliveryTag = envelope.getDeliveryTag();
+							logger.info("["+TAG+"-↓] - [startWorker()中的handleDelivery] 收到一条新消息(routingKey="
+									+routingKey+",contentType="+contentType+",consumerTag="+consumerTag
+									+",deliveryTag="+deliveryTag+")，马上开始处理。。。。");
+	
+							boolean workOK = work(body);
+							if(workOK){
+								resumeChannel.basicAck(deliveryTag, false);
+							}
+							else{
+								resumeChannel.basicReject(deliveryTag, true);
+							}
+						} catch (Exception ee){
+							logger.info("["+TAG+"-↓] - [startWorker()中handleDelivery时] 出现错误，错误将被记录："+ee.getMessage(), ee);
 						}
 					}
 				};
@@ -340,12 +339,11 @@ public class MQProvider
 				resumeChannel.basicConsume(queueName, autoAck,dc);
 				
 				logger.info("["+TAG+"-↓] - [startWorker()中] Worker已经成功开启并运行中...【OK】");
-			
-		}
-		else
-		{
-			throw new Exception("["+TAG+"-↓] - 【严重】connction还没有准备好，conn.createChannel()失败！(原因：connction==null)");
-		}
+			}
+			else
+			{
+				throw new Exception("["+TAG+"-↓] - 【严重】connction还没有准备好，conn.createChannel()失败！(原因：connction==null)");
+			}
 		}
 		catch (Exception e)
 		{
@@ -370,12 +368,12 @@ public class MQProvider
 		{
 			String msg = new String(contentBody, this.decodeCharset);
 			// just log for debug
-			logger.info("["+TAG+"-↓] - [startWorker()中] Got msg："+msg);
+			logger.info("["+TAG+"-↓] - [startWorker()中work时] Got msg："+msg);
 			return true;
 		}
 		catch (Exception e)
 		{
-			logger.warn("["+TAG+"-↓] - [startWorker()中] work()出现错误，错误将被记录："+e.getMessage(), e);
+			logger.warn("["+TAG+"-↓] - [startWorker()中work时] 出现错误，错误将被记录："+e.getMessage(), e);
 //			return false;
 			return true;
 		}
