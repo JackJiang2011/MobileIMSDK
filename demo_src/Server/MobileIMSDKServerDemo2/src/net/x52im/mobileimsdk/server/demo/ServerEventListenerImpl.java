@@ -93,6 +93,44 @@ public class ServerEventListenerImpl implements ServerEventListener
 	{
 		logger.debug("【DEBUG_回调通知onUserLogout】用户："+userId+" 离线了（beKickoutCode="+beKickoutCode+"）！");
 	}
+	
+	/**
+	 * 收到客户端发送给“服务端”的数据回调通知（即：消息路径为“C2S”的消息）前的处理逻辑。
+	 * <p>
+	 * <b>本方法的默认实现</b>：<font color="green">当开发者不需要本方法进行额外逻辑处理时，请直接返回true即可！</font>
+	 * <p>
+	 * <b>本方法的典型用途</b>：开发者可在本方法中实现如：用户聊天内容的鉴黄、过滤、篡改等等，把内容审读权限交给开发者，就看怎么用了。
+	 * 
+	 * @param p 消息/指令的完整协议包对象
+	 * @param session 消息发送者的“会话”引用（也就是客户端的网络连接对象）
+	 * @return true表示经过本方法后将正常进入 {@link #onTransferMessage4C2S(Protocal, Channel)}继续正常逻辑  ，false表示该条指令将不会继续处理（直接被丢弃）
+	 * @see #onTransferMessage4C2S(Protocal, Channel)
+	 * @since 6.2
+	 */
+	@Override
+	public boolean onTransferMessage4C2CBefore(Protocal p, Channel session)
+	{
+		return true;
+	}
+	
+	/**
+	 * 收到客户端发送给“其它客户端”的数据回调通知（即：消息路径为“C2C”的消息）前的处理逻辑。
+	 * <p>
+	 * <b>本方法的默认实现</b>：<font color="green">当开发者不需要本方法进行额外逻辑处理时，请直接返回true即可！</font>
+	 * <p>
+	 * <b>本方法的典型用途</b>：开发者可在本方法中实现如：用户聊天内容的鉴黄、过滤、篡改等等，把内容审读权限交给开发者，就看怎么用了。
+	 * 
+	 * @param p 消息/指令的完整协议包对象
+	 * @param session 消息发送者的“会话”引用（也就是客户端的网络连接对象）
+	 * @return true表示经过本方法后将正常进入 {@link #onTransferMessage4C2C(Protocal)}继续正常逻辑  ，false表示该条指令将不会继续处理（直接被丢弃）
+	 * @see #onTransferMessage4C2C(Protocal)
+	 * @since 6.2
+	 */
+	@Override
+	public boolean onTransferMessage4C2SBefore(Protocal p, Channel session)
+	{
+		return true;
+	}
 
 	/**
 	 * 收到客户端发送给“服务端”的数据回调通知（即：消息路径为“C2S”的消息）.
@@ -236,5 +274,18 @@ public class ServerEventListenerImpl implements ServerEventListener
 		logger.debug("【DEBUG_回调通知】[typeu="+typeu+"]客户端"+from_user_id+"发给客户端"+userId+"的消息：str="+dataContent
 				+"，因实时发送没有成功，需要上层应用作离线处理哦，否则此消息将被丢弃.");
 		return false;
+	}
+
+
+	/**
+	 * <b>注意：</b><font color="red">本回调仅用于与Web的互通模式下，默认情况下本方法可什么也不做，无任何影响。如你对此回调有疑问可跟Jack Jiang进行技术讨论！</font>
+	 * {@inheritDoc}
+	 * 
+	 * @since 6.2
+	 */
+	@Override
+	public void onTransferMessage4C2C_AfterBridge(Protocal p)
+	{	
+		// 默认本方法可
 	}
 }
