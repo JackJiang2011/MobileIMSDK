@@ -24,7 +24,6 @@ import net.x52im.mobileimsdk.server.network.MBObserver;
 import net.x52im.mobileimsdk.server.processor.BridgeProcessor;
 import net.x52im.mobileimsdk.server.processor.OnlineProcessor;
 import net.x52im.mobileimsdk.server.protocal.Protocal;
-import net.x52im.mobileimsdk.server.protocal.ProtocalFactory;
 import net.x52im.mobileimsdk.server.qos.QoS4ReciveDaemonC2S;
 
 import org.slf4j.Logger;
@@ -84,6 +83,8 @@ public class GlobalSendHelper
 								, Gateway.$(session), remoteAddress);
 					}
 				}
+				
+				serverCoreHandler.getServerEventListener().onTransferMessage4C2C_AfterBridge(pFromClient);
 			}
 
 			if(needDelegateACK)
@@ -174,20 +175,20 @@ public class GlobalSendHelper
 			logger.debug("[IMCORE<S2C>-桥接↑]>> 客户端{}不在线，数据[from:{},fp:{},to:{},content:{}] 将通过MQ直发Web服务端（彼时在线则通过web实时发送、否则通过Web端进行离线存储）【第一阶段APP+WEB跨机通信算法】！"
 					,pFromClient.getTo(), pFromClient.getFrom(), pFromClient.getFp(), pFromClient.getTo(), pFromClient.getDataContent());
 
-				boolean toMQ = bridgeProcessor.publish(pFromClient.toGsonString());
-				if(toMQ)
-				{
-					logger.debug("[IMCORE<S2C>-桥接↑]>> 服务端的数据已跨机器送出成功【OK】。(数据[from:{},fp:{},to:{},content:{}]【第一阶段APP+WEB跨机通信算法】)"
-							, pFromClient.getFrom(), pFromClient.getFp(), pFromClient.getTo(), pFromClient.getDataContent());
-					sucess = true;
-				}
-				else
-				{
-					logger.error("[IMCORE<S2C>-桥接↑]>> 服务端的数据已跨机器送出失败，请通知管理员检查MQ中间件是否正常工作【NO】。(数据[from:"+pFromClient.getFrom()
-							+",fp:{},to:{},content:{}]【第一阶段APP+WEB跨机通信算法】)"
-							, pFromClient.getFp(), pFromClient.getTo(), pFromClient.getDataContent());
+			boolean toMQ = bridgeProcessor.publish(pFromClient.toGsonString());
+			if(toMQ)
+			{
+				logger.debug("[IMCORE<S2C>-桥接↑]>> 服务端的数据已跨机器送出成功【OK】。(数据[from:{},fp:{},to:{},content:{}]【第一阶段APP+WEB跨机通信算法】)"
+						, pFromClient.getFrom(), pFromClient.getFp(), pFromClient.getTo(), pFromClient.getDataContent());
+				sucess = true;
+			}
+			else
+			{
+				logger.error("[IMCORE<S2C>-桥接↑]>> 服务端的数据已跨机器送出失败，请通知管理员检查MQ中间件是否正常工作【NO】。(数据[from:"+pFromClient.getFrom()
+						+",fp:{},to:{},content:{}]【第一阶段APP+WEB跨机通信算法】)"
+						, pFromClient.getFp(), pFromClient.getTo(), pFromClient.getDataContent());
 
-				}
+			}
 		}
 		else
 		{

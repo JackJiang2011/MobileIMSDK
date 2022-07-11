@@ -113,11 +113,16 @@ public class ServerCoreHandler
 	    				LocalSendHelper.replyDataForUnlogined(session, pFromClient, null);
 	    				return;
 	    			}
-	
-	    			if("0".equals(pFromClient.getTo()))
-	    				logicProcessor.processC2SMessage(session, pFromClient, remoteAddress);
-	    			else
-	    				logicProcessor.processC2CMessage(bridgeProcessor, session, pFromClient, remoteAddress);
+	    			
+	    			if("0".equals(pFromClient.getTo())){
+	    				if(serverEventListener.onTransferMessage4C2SBefore(pFromClient, session)){
+	    					logicProcessor.processC2SMessage(session, pFromClient, remoteAddress);
+	    				}
+	    			} else{
+	    				if(serverEventListener.onTransferMessage4C2CBefore(pFromClient, session)){
+	    					logicProcessor.processC2CMessage(bridgeProcessor, session, pFromClient, remoteAddress);
+	    				}
+	    			}
 	    		}
 	    		else
 	    		{

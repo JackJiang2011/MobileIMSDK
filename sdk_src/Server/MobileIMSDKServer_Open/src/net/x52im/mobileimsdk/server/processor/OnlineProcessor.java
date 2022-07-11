@@ -118,6 +118,7 @@ private void sendKickoutDuplicateLogin(final Channel sessionBeKick, String to_us
 	{
 		try{
 			LocalSendHelper.sendKickout(sessionBeKick, to_user_id, PKickoutInfo.KICKOUT_FOR_DUPLICATE_LOGIN, null);
+			logger.debug("[IMCORE-{}]【提示】服务端正在向用户id={}发送被踢指令！", Gateway.$(sessionBeKick), to_user_id);
 		}
 		catch (Exception e){
 			logger.warn("[IMCORE-"+Gateway.$(sessionBeKick)+"] sendKickoutDuplicate的过程中发生了异常：", e);
