@@ -1,6 +1,6 @@
 @echo off
 
-@echo 欢迎使用 MobileIMSDK v6.2beta 服务端 (build220114)
+@echo 欢迎使用 MobileIMSDK v6.2 服务端 (build22711)
 @echo.
 @echo 基于MobileIMSDK的IM服务器正在运行中 ...
 @echo.
