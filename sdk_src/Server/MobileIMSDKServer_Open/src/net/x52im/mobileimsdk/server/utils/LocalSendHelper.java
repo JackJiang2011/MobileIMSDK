@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021  即时通讯网(52im.net) & Jack Jiang.
+ * Copyright (C) 2022  即时通讯网(52im.net) & Jack Jiang.
  * The MobileIMSDK v6.1 Project. 
  * All rights reserved.
  * 
@@ -12,7 +12,7 @@
  *  
  * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
  * 
- * LocalSendHelper.java at 2021-8-4 21:24:14, code by Jack Jiang.
+ * LocalSendHelper.java at 2022-7-12 16:35:57, code by Jack Jiang.
  */
 package net.x52im.mobileimsdk.server.utils;
 
