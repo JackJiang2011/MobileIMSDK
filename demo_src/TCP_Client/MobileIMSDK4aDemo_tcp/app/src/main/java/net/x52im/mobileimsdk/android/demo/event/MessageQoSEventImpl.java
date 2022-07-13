@@ -30,28 +30,24 @@ import android.util.Log;
  * @author Jack Jiang(http://www.52im.net/thread-2792-1-1.html)
  * @version 1.1
  */
-public class MessageQoSEventImpl implements MessageQoSEvent
-{
+public class MessageQoSEventImpl implements MessageQoSEvent {
 	private final static String TAG = MessageQoSEventImpl.class.getSimpleName();
-	
+
 	private MainActivity mainGUI = null;
 
 	/**
 	 * 消息未送达的回调事件通知.
 	 *
 	 * @param lostMessages 由MobileIMSDK QoS算法判定出来的未送达消息列表（此列表中的Protocal对象是原对象的
-	 *                        clone（即原对象的深拷贝），请放心使用哦），应用层可通过指纹特征码找到原消息并可
-	 *                        以UI上将其标记为”发送失败“以便即时告之用户
+	 *                     clone（即原对象的深拷贝），请放心使用哦），应用层可通过指纹特征码找到原消息并可
+	 *                     以UI上将其标记为”发送失败“以便即时告之用户
 	 * @see net.x52im.mobileimsdk.server.protocal.Protocal
 	 */
 	@Override
-	public void messagesLost(ArrayList<Protocal> lostMessages)
-	{
-		Log.d(TAG, "【DEBUG_UI】收到系统的未实时送达事件通知，当前共有"+lostMessages.size()+"个包QoS保证机制结束，判定为【无法实时送达】！");
-	
-		if(this.mainGUI != null)
-		{
-			this.mainGUI.showIMInfo_brightred("[消息未成功送达]共"+lostMessages.size()+"条!(网络状况不佳或对方id不存在)");
+	public void messagesLost(ArrayList<Protocal> lostMessages) {
+		Log.d(TAG, "【DEBUG_UI】收到系统的未实时送达事件通知，当前共有" + lostMessages.size() + "个包QoS保证机制结束，判定为【无法实时送达】！");
+		if (this.mainGUI != null) {
+			this.mainGUI.showIMInfo_brightred("[消息未成功送达]共" + lostMessages.size() + "条!(网络状况不佳或对方id不存在)");
 		}
 	}
 
@@ -66,24 +62,20 @@ public class MessageQoSEventImpl implements MessageQoSEvent
 	 * </ul>
 	 *
 	 * @param theFingerPrint 已被收到的消息的指纹特征码（唯一ID），应用层可据此ID来找到原先已发生的消息并可在
-	 *                          UI是将其标记为”已送达“或”已读“以便提升用户体验
+	 *                       UI是将其标记为”已送达“或”已读“以便提升用户体验
 	 * @see net.x52im.mobileimsdk.server.protocal.Protocal
 	 */
 	@Override
-	public void messagesBeReceived(String theFingerPrint)
-	{
-		if(theFingerPrint != null)
-		{
-			Log.d(TAG, "【DEBUG_UI】收到对方已收到消息事件的通知，fp="+theFingerPrint);
-			if(this.mainGUI != null)
-			{
-				this.mainGUI.showIMInfo_blue("[收到对方消息应答]fp="+theFingerPrint);
+	public void messagesBeReceived(String theFingerPrint) {
+		if (theFingerPrint != null) {
+			Log.d(TAG, "【DEBUG_UI】收到对方已收到消息事件的通知，fp=" + theFingerPrint);
+			if (this.mainGUI != null) {
+				this.mainGUI.showIMInfo_blue("[收到对方消息应答]fp=" + theFingerPrint);
 			}
 		}
 	}
-	
-	public MessageQoSEventImpl setMainGUI(MainActivity mainGUI)
-	{
+
+	public MessageQoSEventImpl setMainGUI(MainActivity mainGUI) {
 		this.mainGUI = mainGUI;
 		return this;
 	}

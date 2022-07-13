@@ -34,11 +34,9 @@ import android.view.animation.Animation.AnimationListener;
  * @author liux, Jack Jiang
  * @version 1.0
  */
-public class SplashScreenActivity extends Activity
-{
+public class SplashScreenActivity extends Activity {
 	@Override
-	public void onCreate(Bundle savedInstanceState)
-	{
+	public void onCreate(Bundle savedInstanceState) {
 		// FIX: 以下代码是为了解决Android自level 1以来的[安装完成点击“Open”后导致的应用被重复启动]的Bug
 		// @see https://code.google.com/p/android/issues/detail?id=52247
 		// @see https://code.google.com/p/android/issues/detail?id=2373
@@ -69,22 +67,18 @@ public class SplashScreenActivity extends Activity
 		AlphaAnimation aa = new AlphaAnimation(0.3f, 1.0f);
 		aa.setDuration(2000);
 		view.startAnimation(aa);
-		aa.setAnimationListener(new AnimationListener()
-		{
+		aa.setAnimationListener(new AnimationListener() {
 			@Override
-			public void onAnimationEnd(Animation arg0)
-			{
+			public void onAnimationEnd(Animation arg0) {
 				redirectTo();
 			}
 
 			@Override
-			public void onAnimationRepeat(Animation animation)
-			{
+			public void onAnimationRepeat(Animation animation) {
 			}
 
 			@Override
-			public void onAnimationStart(Animation animation)
-			{
+			public void onAnimationStart(Animation animation) {
 			}
 		});
 	}
@@ -92,8 +86,7 @@ public class SplashScreenActivity extends Activity
 	/**
 	 * 跳转到...
 	 */
-	private void redirectTo()
-	{
+	private void redirectTo() {
 		Intent intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
 		startActivity(intent);
 		finish();
@@ -109,12 +102,9 @@ public class SplashScreenActivity extends Activity
 	 * @param translucent true 实现承浸式界面效果
 	 */
 	@TargetApi(Build.VERSION_CODES.KITKAT)
-	public static void setStatusBarTranslucent(Activity ac, boolean translucent)
-	{
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
-		{
-			ac.getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
-					, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+	public static void setStatusBarTranslucent(Activity ac, boolean translucent) {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+			ac.getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 		}
 	}
 }

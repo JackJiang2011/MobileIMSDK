@@ -3,11 +3,12 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 31
     defaultConfig {
+        multiDexEnabled true
         applicationId "net.x52im.mobileimsdk.android.demo_tcp"
         minSdkVersion 14
         targetSdkVersion 31
         versionCode 104
-        versionName "v6.2b220318.1"
+        versionName "v6.2b220713.1"
     }
     buildTypes {
         release {
@@ -26,15 +27,19 @@ dependencies {
     //implementation fileTree(dir: 'libs', include: ['*.jar'])
     //implementation 'com.android.support:appcompat-v7:28.0.0'
 
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.3.0'
+    implementation 'androidx.appcompat:appcompat:1.3.0'
+    implementation 'com.google.android.material:material:1.4.0'
 
     // MobileIMSDK的依赖库
-    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.google.code.gson:gson:2.9.0'
 //    implementation files('libs/netty-all-4.1.50.Final.jar')
     implementation group: 'io.netty', name: 'netty-all', version: '4.1.50.Final'
 
     // MobileIMSDK的SDK库
     implementation files('libs/MobileIMSDKServer_META.jar')
     implementation files('libs/MobileIMSDK4a_tcp.jar')
+
+    // 导入MultiDex解决Android版本低于5.0机器上的方法数不能>65535的问题
+    implementation 'androidx.multidex:multidex:2.0.1'
+
 }

@@ -32,14 +32,12 @@ import java.util.Observer;
  * @author Jack Jiang(http://www.52im.net/thread-2792-1-1.html)
  * @version 1.1
  */
-public class ChatBaseEventImpl implements ChatBaseEvent
-{
+public class ChatBaseEventImpl implements ChatBaseEvent {
 	private final static String TAG = ChatBaseEventImpl.class.getSimpleName();
-	
+
 	private MainActivity mainGUI = null;
-	
-	// 本Observer目前仅用于登陆时（因为登陆与收到服务端的登陆验证结果
-	// 是异步的，所以有此观察者来完成收到验证后的处理）
+
+	// 本Observer目前仅用于登陆时（因为登陆与收到服务端的登陆验证结果是异步的，所以有此观察者来完成收到验证后的处理）
 	private Observer loginOkForLaunchObserver = null;
 
 	/**
@@ -48,34 +46,27 @@ public class ChatBaseEventImpl implements ChatBaseEvent
 	 * @param errorCode 服务端反馈的登录结果：0 表示登陆成功，否则为服务端自定义的出错代码（按照约定通常为>=1025的数）
 	 */
 	@Override
-	public void onLoginResponse(int errorCode)
-	{
-		if (errorCode == 0)
-		{
+	public void onLoginResponse(int errorCode) {
+		if (errorCode == 0) {
 			Log.i(TAG, "【DEBUG_UI】IM服务器登录/重连成功！");
-			
+
 			// TODO 以下代码仅用于DEMO哦
-			if(this.mainGUI != null)
-			{
+			if (this.mainGUI != null) {
 				this.mainGUI.refreshMyid();
 //				this.mainGUI.showIMInfo_green("IM服务器登录/重连成功,errorCode="+errorCode);
 			}
-		}
-		else 
-		{
+		} else {
 			Log.e(TAG, "【DEBUG_UI】IM服务器登录/连接失败，错误代码：" + errorCode);
 
 			// TODO 以下代码仅用于DEMO哦
-			if(this.mainGUI != null)
-			{
+			if (this.mainGUI != null) {
 				this.mainGUI.refreshMyid();
-				this.mainGUI.showIMInfo_red("IM服务器登录/连接失败,code="+errorCode);
+				this.mainGUI.showIMInfo_red("IM服务器登录/连接失败,code=" + errorCode);
 			}
 		}
-		
+
 		// 此观察者只有开启程序首次使用登陆界面时有用
-		if(loginOkForLaunchObserver != null)
-		{
+		if (loginOkForLaunchObserver != null) {
 			loginOkForLaunchObserver.update(null, errorCode);
 			loginOkForLaunchObserver = null;
 		}
@@ -90,13 +81,11 @@ public class ChatBaseEventImpl implements ChatBaseEvent
 	 * @param errorCode 本回调参数表示表示连接断开的原因，目前错误码没有太多意义，仅作保留字段，目前通常为-1
 	 */
 	@Override
-	public void onLinkClose(int errorCode)
-	{
+	public void onLinkClose(int errorCode) {
 		Log.e(TAG, "【DEBUG_UI】与IM服务器的网络连接出错关闭了，error：" + errorCode);
-		
+
 		// TODO 以下代码仅用于DEMO哦
-		if(this.mainGUI != null)
-		{
+		if (this.mainGUI != null) {
 			this.mainGUI.refreshMyid();
 //			this.mainGUI.showIMInfo_red("与IM服务器的连接已断开! ("+errorCode+")");
 		}
@@ -108,48 +97,40 @@ public class ChatBaseEventImpl implements ChatBaseEvent
 	 * @param kickoutInfo 被踢信息对象，{@link PKickoutInfo} 对象中的 code字段定义了被踢原因代码
 	 */
 	@Override
-	public void onKickout(PKickoutInfo kickoutInfo)
-	{
+	public void onKickout(PKickoutInfo kickoutInfo) {
 		Log.e(TAG, "【DEBUG_UI】已收到服务端的\"被踢\"指令，kickoutInfo.code：" + kickoutInfo.getCode());
 
 		String alertContent = "";
-		if(kickoutInfo.getCode() == PKickoutInfo.KICKOUT_FOR_DUPLICATE_LOGIN){
+		if (kickoutInfo.getCode() == PKickoutInfo.KICKOUT_FOR_DUPLICATE_LOGIN) {
 			alertContent = "账号已在其它地方登陆，当前会话已断开，请退出后重新登陆！";
-		}
-		else if(kickoutInfo.getCode() == PKickoutInfo.KICKOUT_FOR_ADMIN){
+		} else if (kickoutInfo.getCode() == PKickoutInfo.KICKOUT_FOR_ADMIN) {
 			alertContent = "已被管理员强行踢出聊天，当前会话已断开！";
-		}
-		else{
-			alertContent = "你已被踢出聊天，当前会话已断开（kickoutReason="+kickoutInfo.getReason()+"）！";
+		} else {
+			alertContent = "你已被踢出聊天，当前会话已断开（kickoutReason=" + kickoutInfo.getReason() + "）！";
 		}
 
-		if(this.mainGUI != null)
+		if (this.mainGUI != null)
 			this.mainGUI.showIMInfo_red(alertContent);
 
-		if(mainGUI != null) {
+		if (mainGUI != null) {
 			new AlertDialog.Builder(mainGUI)
 					.setTitle("你被踢了")
 					.setMessage(alertContent)
-					.setPositiveButton("知道了！", new DialogInterface.OnClickListener() {
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							// 退出登陆
-							mainGUI.doLogout();
-							// 退出程序
-							mainGUI.doExit();
-						}
+					.setPositiveButton("知道了！", (dialog, which) -> {
+						// 退出登陆
+						mainGUI.doLogout();
+						// 退出程序
+						mainGUI.doExit();
 					})
 					.show();
 		}
 	}
 
-	public void setLoginOkForLaunchObserver(Observer loginOkForLaunchObserver)
-	{
+	public void setLoginOkForLaunchObserver(Observer loginOkForLaunchObserver) {
 		this.loginOkForLaunchObserver = loginOkForLaunchObserver;
 	}
-	
-	public ChatBaseEventImpl setMainGUI(MainActivity mainGUI)
-	{
+
+	public ChatBaseEventImpl setMainGUI(MainActivity mainGUI) {
 		this.mainGUI = mainGUI;
 		return this;
 	}

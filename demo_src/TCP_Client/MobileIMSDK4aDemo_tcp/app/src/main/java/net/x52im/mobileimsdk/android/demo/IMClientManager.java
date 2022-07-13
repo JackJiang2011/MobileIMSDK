@@ -30,8 +30,7 @@ import android.content.Context;
  *
  * @author Jack Jiang(http://www.52im.net/thread-2792-1-1.html)
  */
-public class IMClientManager
-{
+public class IMClientManager {
 	private static IMClientManager instance = null;
 	
 	/** MobileIMSDK是否已被初始化. true表示已初化完成，否则未初始化. */
@@ -46,15 +45,13 @@ public class IMClientManager
 	
 	private Context context = null;
 
-	public static IMClientManager getInstance(Context context)
-	{
-		if(instance == null)
+	public static IMClientManager getInstance(Context context) {
+		if (instance == null)
 			instance = new IMClientManager(context);
 		return instance;
 	}
-	
-	private IMClientManager(Context context)
-	{
+
+	private IMClientManager(Context context) {
 		this.context = context;
 		initMobileIMSDK();
 	}
@@ -62,17 +59,12 @@ public class IMClientManager
 	/**
 	 * MobileIMSDK的初始化方法。正式的APP项目中，建议本方法在Application的子类中调用。
 	 */
-	public void initMobileIMSDK()
-	{
-		if(!init)
-		{
-			// 设置AppKey
-			ConfigEntity.appKey = "5418023dfd98c579b6001741";
-			
+	public void initMobileIMSDK() {
+		if (!init) {
 			// 设置服务器ip和服务器端口
 //			ConfigEntity.serverIP = "192.168.82.138";
 //			ConfigEntity.serverPort = 8901;
-	    
+
 			// MobileIMSDK核心IM框架的敏感度模式设置
 			ConfigEntity.setSenseMode(ConfigEntity.SenseMode.MODE_5S);
 
@@ -81,10 +73,10 @@ public class IMClientManager
 
 			// 开启/关闭DEBUG信息输出
 //	    	ClientCoreSDK.DEBUG = false;
-			
+
 			// 【特别注意】请确保首先进行核心库的初始化（这是不同于iOS和Java端的地方)
 			ClientCoreSDK.getInstance().init(this.context);
-	    
+
 			// 设置事件回调
 			chatBaseListener = new ChatBaseEventImpl();
 			chatMessageListener = new ChatMessageEventImpl();
@@ -92,13 +84,12 @@ public class IMClientManager
 			ClientCoreSDK.getInstance().setChatBaseEvent(chatBaseListener);
 			ClientCoreSDK.getInstance().setChatMessageEvent(chatMessageListener);
 			ClientCoreSDK.getInstance().setMessageQoSEvent(messageQoSListener);
-			
+
 			init = true;
 		}
 	}
-	
-	public void release()
-	{
+
+	public void release() {
 		ClientCoreSDK.getInstance().release();
 		resetInitFlag();
 	}
@@ -109,23 +100,20 @@ public class IMClientManager
 	 * <b>重要说明：</b>不退出APP的情况下，重新登陆时记得调用一下本方法，不然再
 	 * 次调用 {@link #initMobileIMSDK()} 时也不会重新初始化MobileIMSDK（
 	 * 详见 {@link #initMobileIMSDK()}代码）而报 code=203错误！
-	 * 
 	 */
-	public void resetInitFlag()
-	{
+	public void resetInitFlag() {
 		init = false;
 	}
 
-	public ChatMessageEventImpl getChatMessageListener()
-	{
+	public ChatMessageEventImpl getChatMessageListener() {
 		return chatMessageListener;
 	}
-	public ChatBaseEventImpl getChatBaseListener()
-	{
+
+	public ChatBaseEventImpl getChatBaseListener() {
 		return chatBaseListener;
 	}
-	public MessageQoSEventImpl getMessageQoSListener()
-	{
+
+	public MessageQoSEventImpl getMessageQoSListener() {
 		return messageQoSListener;
 	}
 }
