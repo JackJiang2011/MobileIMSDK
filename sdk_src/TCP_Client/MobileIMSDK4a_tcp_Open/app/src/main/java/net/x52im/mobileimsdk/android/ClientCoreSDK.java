@@ -42,23 +42,10 @@ public class ClientCoreSDK {
 
     public static boolean DEBUG = true;
     public static boolean autoReLogin = true;
-    private static ClientCoreSDK instance = null;
 
+    private static ClientCoreSDK instance = null;
     private boolean _init = false;
 
-    //## 20200817备注：localDeviceNetworkOk字段的更新依赖于APP收到的系统的网络事件，而此事件在某些极端情况下
-    //##              无法正常收到，进而当网络本身已恢复而此字段并未正确更新的情况下，会导致LocalDataSender中的send
-    //##              数据方法在前置检查时，抛出 "ErrorCode.ForC.LOCAL_NETWORK_NOT_WORKING"错误而不会继续数据发送，
-    //##              进而无法实现重连指令的发出，从而无法实现重连成功。有鉴于此，停用这个字段是更好的选择！
-//	/**
-//	 * 网络是否可用, true表示可用，否则表示不可用.
-//	 * <p>
-//	 * 本字段将在网络事件通知处理中被设置.
-//	 * <p>
-//	 * 注意：本类中的网络状态变更事件，尤其在网络由断变好之后，受Android系统广播机制的影响事件收到延迟在1~2秒，目
-//	 * 前没有找到其它更优的替代方案，但从算法逻辑上讲不影响本核心类库的工作（仅影响核心库算法的构造难易度而已）！
-//	 */
-//	private boolean localDeviceNetworkOk = true;
     private boolean connectedToServer = true;
     private boolean loginHasInit = false;
     private PLoginInfo currentLoginInfo = null;

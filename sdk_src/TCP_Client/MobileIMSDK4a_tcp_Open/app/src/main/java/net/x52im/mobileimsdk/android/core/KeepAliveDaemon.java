@@ -104,7 +104,7 @@ public class KeepAliveDaemon {
         if(this.debugObserver != null)
             this.debugObserver.update(null, 2);
 
-        boolean isInitialedForKeepAlive = isInitialedForKeepAlive();//(lastGetKeepAliveResponseFromServerTimstamp.longValue() == 0);
+        boolean isInitialedForKeepAlive = isInitialedForKeepAlive();
         //## Bug FIX 20190513 v4.0.1 START
         if(isInitialedForKeepAlive)
             lastGetKeepAliveResponseFromServerTimstamp.set(System.currentTimeMillis());
@@ -119,12 +119,6 @@ public class KeepAliveDaemon {
         boolean isInitialedForKeepAlive = isInitialedForKeepAlive();
         if(!isInitialedForKeepAlive) {
             long now = System.currentTimeMillis();
-
-            // TODO: just for debug
-//            if(ClientCoreSDK.DEBUG)
-//                Log.i(TAG, ">>>> t1="+now+", t2="+lastGetKeepAliveResponseFromServerTimstamp+" -> 差："
-//                        +(now - lastGetKeepAliveResponseFromServerTimstamp.longValue()));
-
             if(now - lastGetKeepAliveResponseFromServerTimstamp.longValue() >= NETWORK_CONNECTION_TIME_OUT) {
                 if(ClientCoreSDK.DEBUG)
                     Log.w(TAG, "【IMCORE-TCP】心跳机制已判定网络断开，将进入断网通知和重连处理逻辑 ...");

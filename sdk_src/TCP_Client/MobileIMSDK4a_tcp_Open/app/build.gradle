@@ -31,7 +31,7 @@ android {
 
 dependencies {
     // MobileIMSDK的依赖库
-    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.google.code.gson:gson:2.9.0'
 //    implementation files('libs/netty-all-4.1.50.Final.jar')
     implementation group: 'io.netty', name: 'netty-all', version: '4.1.50.Final'
 

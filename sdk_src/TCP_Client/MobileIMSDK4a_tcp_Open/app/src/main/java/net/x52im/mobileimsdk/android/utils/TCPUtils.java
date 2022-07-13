@@ -54,8 +54,7 @@ public class TCPUtils {
                     cf.addListener((ChannelFutureListener) future -> {
                         if (future.isSuccess()) {
                             Log.i(TAG, "[IMCORE-netty-send异步回调] >> 数据已成功发出[dataLen=" + dataLen + "].");
-                        }
-                        else {
+                        } else {
                             Log.w(TAG, "[IMCORE-netty-send异步回调] >> 数据发送失败！[dataLen=" + dataLen + "].");
                         }
 

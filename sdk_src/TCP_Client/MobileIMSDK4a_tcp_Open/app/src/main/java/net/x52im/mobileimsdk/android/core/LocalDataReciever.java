@@ -33,6 +33,7 @@ import android.util.Log;
 import net.x52im.mobileimsdk.android.utils.MBThreadPoolExecutor;
 
 public class LocalDataReciever {
+
     private final static String TAG = LocalDataReciever.class.getSimpleName();
     private static LocalDataReciever instance = null;
 
@@ -225,12 +226,7 @@ public class LocalDataReciever {
 
     private void sendRecievedBack(final Protocal pFromServer) {
         if (pFromServer.getFp() != null) {
-            new LocalDataSender.SendCommonDataAsync(
-                    ProtocalFactory.createRecivedBack(
-                            pFromServer.getTo()
-                            , pFromServer.getFrom()
-                            , pFromServer.getFp()
-                            , pFromServer.isBridge())) {
+            new LocalDataSender.SendCommonDataAsync(ProtocalFactory.createRecivedBack(pFromServer.getTo(), pFromServer.getFrom(), pFromServer.getFp(), pFromServer.isBridge())) {
                 @Override
                 protected void onPostExecute(Integer code) {
                     if (ClientCoreSDK.DEBUG)
