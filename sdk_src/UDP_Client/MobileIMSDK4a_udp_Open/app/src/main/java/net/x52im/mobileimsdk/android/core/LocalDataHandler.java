@@ -107,8 +107,7 @@ class LocalDataHandler extends Handler {
 
     private void onRecievedCommonData(Protocal pFromServer) {
         if (ClientCoreSDK.getInstance().getChatMessageEvent() != null) {
-            ClientCoreSDK.getInstance().getChatMessageEvent().onRecieveMessage(
-                    pFromServer.getFp(), pFromServer.getFrom(), pFromServer.getDataContent(), pFromServer.getTypeu());
+            ClientCoreSDK.getInstance().getChatMessageEvent().onRecieveMessage(pFromServer.getFp(), pFromServer.getFrom(), pFromServer.getDataContent(), pFromServer.getTypeu());
         }
     }
 
@@ -183,9 +182,7 @@ class LocalDataHandler extends Handler {
     private void fireConnectedToServer() {
         ClientCoreSDK.getInstance().setLoginHasInit(true);
         AutoReLoginDaemon.getInstance().stop();
-        KeepAliveDaemon.getInstance().setNetworkConnectionLostObserver((observable, data) -> {
-            fireDisconnectedToServer();
-        });
+        KeepAliveDaemon.getInstance().setNetworkConnectionLostObserver((observable, data) -> fireDisconnectedToServer());
         KeepAliveDaemon.getInstance().start(false);
 
         QoS4SendDaemon.getInstance().startup(true);
@@ -210,12 +207,7 @@ class LocalDataHandler extends Handler {
 
     private void sendRecievedBack(final Protocal pFromServer) {
         if (pFromServer.getFp() != null) {
-            new LocalDataSender.SendCommonDataAsync(
-                    ProtocalFactory.createRecivedBack(
-                            pFromServer.getTo()
-                            , pFromServer.getFrom()
-                            , pFromServer.getFp()
-                            , pFromServer.isBridge())) {
+            new LocalDataSender.SendCommonDataAsync(ProtocalFactory.createRecivedBack(pFromServer.getTo(), pFromServer.getFrom(), pFromServer.getFp(), pFromServer.isBridge())) {
                 @Override
                 protected void onPostExecute(Integer code) {
                     if (ClientCoreSDK.DEBUG)

@@ -88,8 +88,7 @@ public class QoS4SendDaemon {
                 if (p != null && p.isQoS()) {
                     if (p.getRetryCount() >= QOS_TRY_COUNT) {
                         if (ClientCoreSDK.DEBUG)
-                            Log.d(TAG, "【IMCORE-UDP】【QoS】指纹为" + p.getFp()
-                                    + "的消息包重传次数已达" + p.getRetryCount() + "(最多" + QOS_TRY_COUNT + "次)上限，将判定为丢包！");
+                            Log.d(TAG, "【IMCORE-UDP】【QoS】指纹为" + p.getFp() + "的消息包重传次数已达" + p.getRetryCount() + "(最多" + QOS_TRY_COUNT + "次)上限，将判定为丢包！");
 
                         lostMessages.add((Protocal) p.clone());
                         remove(p.getFp());
@@ -99,8 +98,7 @@ public class QoS4SendDaemon {
                         long delta = System.currentTimeMillis() - (sendMessageTimestamp == null ? 0 : sendMessageTimestamp);
                         if (delta <= MESSAGES_JUST$NOW_TIME) {
                             if (ClientCoreSDK.DEBUG)
-                                Log.w(TAG, "【IMCORE-UDP】【QoS】指纹为" + key + "的包距\"刚刚\"发出才" + delta
-                                        + "ms(<=" + MESSAGES_JUST$NOW_TIME + "ms将被认定是\"刚刚\"), 本次不需要重传哦.");
+                                Log.w(TAG, "【IMCORE-UDP】【QoS】指纹为" + key + "的包距\"刚刚\"发出才" + delta + "ms(<=" + MESSAGES_JUST$NOW_TIME + "ms将被认定是\"刚刚\"), 本次不需要重传哦.");
                         }
                         //### 2015103 Bug Fix END
                         else {
@@ -202,8 +200,7 @@ public class QoS4SendDaemon {
     public void remove(final String fingerPrint) {
         sendMessagesTimestamp.remove(fingerPrint);
         Object removedObj = sentMessages.remove(fingerPrint);
-        Log.w(TAG, "【IMCORE-UDP】【QoS】指纹为" + fingerPrint + "的消息已成功从发送质量保证队列中移除(可能是收到接收方的应答也可能是达到了重传的次数上限)，重试次数="
-                + (removedObj != null ? ((Protocal) removedObj).getRetryCount() : "none呵呵."));
+        Log.w(TAG, "【IMCORE-UDP】【QoS】指纹为" + fingerPrint + "的消息已成功从发送质量保证队列中移除(可能是收到接收方的应答也可能是达到了重传的次数上限)，重试次数=" + (removedObj != null ? ((Protocal) removedObj).getRetryCount() : "none呵呵."));
     }
 
     public void clear() {

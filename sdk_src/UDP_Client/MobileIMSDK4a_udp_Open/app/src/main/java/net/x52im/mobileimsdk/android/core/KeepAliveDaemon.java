@@ -26,8 +26,7 @@ import net.x52im.mobileimsdk.android.utils.MBThreadPoolExecutor;
 import android.os.Handler;
 import android.util.Log;
 
-public class KeepAliveDaemon
-{
+public class KeepAliveDaemon {
     private final static String TAG = KeepAliveDaemon.class.getSimpleName();
 
     private static KeepAliveDaemon instance = null;
@@ -51,8 +50,7 @@ public class KeepAliveDaemon
 
     private Observer debugObserver;
 
-    public static KeepAliveDaemon getInstance()
-    {
+    public static KeepAliveDaemon getInstance() {
         if(instance == null)
             instance = new KeepAliveDaemon();
         return instance;
@@ -63,8 +61,7 @@ public class KeepAliveDaemon
         init();
     }
 
-    private void init()
-    {
+    private void init() {
         if(init)
             return;
 
@@ -92,8 +89,7 @@ public class KeepAliveDaemon
         init = true;
     }
 
-    private int doKeepAlive()
-    {
+    private int doKeepAlive() {
         keepAliveTaskExcuting = true;
         if(ClientCoreSDK.DEBUG)
             Log.i(TAG, "【IMCORE-UDP】心跳包[发送]线程执行中...");
@@ -101,8 +97,7 @@ public class KeepAliveDaemon
         return code;
     }
 
-    private void onKeepAlive(int code)
-    {
+    private void onKeepAlive(int code) {
         // for DEBUG
         if(this.debugObserver != null)
             this.debugObserver.update(null, 2);
@@ -119,20 +114,17 @@ public class KeepAliveDaemon
             keepAliveHandler.postDelayed(keepAliveRunnable, KEEP_ALIVE_INTERVAL);
     }
 
-    private void doTimeoutCheck()
-    {
+    private void doTimeoutCheck() {
         boolean isInitialedForKeepAlive = isInitialedForKeepAlive();
         if(!isInitialedForKeepAlive)
         {
             long now = System.currentTimeMillis();
 
             // TODO: just for debug
-//            if(ClientCoreSDK.DEBUG)
-//                Log.i(TAG, ">>>> t1="+now+", t2="+lastGetKeepAliveResponseFromServerTimstamp+" -> 差："
-//                        +(now - lastGetKeepAliveResponseFromServerTimstamp.longValue()));
+//          if(ClientCoreSDK.DEBUG)
+//                Log.i(TAG, ">>>> t1="+now+", t2="+lastGetKeepAliveResponseFromServerTimstamp+" -> 差："+(now - lastGetKeepAliveResponseFromServerTimstamp.longValue()));
 
-            if(now - lastGetKeepAliveResponseFromServerTimstamp.longValue() >= NETWORK_CONNECTION_TIME_OUT)
-            {
+            if(now - lastGetKeepAliveResponseFromServerTimstamp.longValue() >= NETWORK_CONNECTION_TIME_OUT) {
                 if(ClientCoreSDK.DEBUG)
                     Log.w(TAG, "【IMCORE-TCP】心跳机制已判定网络断开，将进入断网通知和重连处理逻辑 ...");
 
@@ -142,20 +134,17 @@ public class KeepAliveDaemon
         }
     }
 
-    private boolean isInitialedForKeepAlive()
-    {
+    private boolean isInitialedForKeepAlive() {
         return (lastGetKeepAliveResponseFromServerTimstamp.longValue() == 0);
     }
 
-    public void notifyConnectionLost()
-    {
+    public void notifyConnectionLost() {
         stop();
         if(networkConnectionLostObserver != null)
             networkConnectionLostObserver.update(null, null);
     }
 
-    public void stop()
-    {
+    public void stop() {
         keepAliveTimeoutTimer.stop();
 
         keepAliveHandler.removeCallbacks(keepAliveRunnable);
@@ -168,8 +157,7 @@ public class KeepAliveDaemon
             this.debugObserver.update(null, 0);
     }
 
-    public void start(boolean immediately)
-    {
+    public void start(boolean immediately) {
         stop();
         keepAliveHandler.postDelayed(keepAliveRunnable, immediately ? 0 : KEEP_ALIVE_INTERVAL);
         keepAliveRunning = true;
@@ -182,23 +170,19 @@ public class KeepAliveDaemon
             this.debugObserver.update(null, 1);
     }
 
-    public boolean isKeepAliveRunning()
-    {
+    public boolean isKeepAliveRunning() {
         return keepAliveRunning;
     }
 
-    public boolean isInit()
-    {
+    public boolean isInit() {
         return init;
     }
 
-    public void updateGetKeepAliveResponseFromServerTimstamp()
-    {
+    public void updateGetKeepAliveResponseFromServerTimstamp() {
         lastGetKeepAliveResponseFromServerTimstamp.set(System.currentTimeMillis());
     }
 
-    public void setNetworkConnectionLostObserver(Observer networkConnectionLostObserver)
-    {
+    public void setNetworkConnectionLostObserver(Observer networkConnectionLostObserver) {
         this.networkConnectionLostObserver = networkConnectionLostObserver;
     }
 

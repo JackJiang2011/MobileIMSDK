@@ -4,6 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/MobileIMSDK4a_udp_Open.iml" filepath="$PROJECT_DIR$/.idea/modules/MobileIMSDK4a_udp_Open.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MobileIMSDK4a_udp_Open.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MobileIMSDK4a_udp_Open.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MobileIMSDK4a_udp_Open.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MobileIMSDK4a_udp_Open.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MobileIMSDK4a_udp_Open.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MobileIMSDK4a_udp_Open.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MobileIMSDK4a_udp_Open.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MobileIMSDK4a_udp_Open.app.unitTest.iml" />
     </modules>
   </component>
 </project>

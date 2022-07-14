@@ -47,7 +47,6 @@ task makeJar(type: Jar) {
     // from file('build/intermediates/classes/release')    // AS 3.6之前
     from file('build/intermediates/javac/release/classes') // AS 3.6之后(含)
     // 打包完成的jar包名
-    //archiveName = 'MobileIMSDK4a.jar'
     archiveFileName = 'MobileIMSDK4a_udp.jar'
     // 打包完成后的jar包位置
     //destinationDir = file('build/dist')

@@ -19,7 +19,6 @@ package net.x52im.mobileimsdk.android.conf;
 import net.x52im.mobileimsdk.android.core.KeepAliveDaemon;
 
 public class ConfigEntity {
-    public static String appKey = null;
     public static String serverIP = "rbcore.52im.net";
     public static int serverPort = 7901;
     public static int localPort = 0;//7801;
