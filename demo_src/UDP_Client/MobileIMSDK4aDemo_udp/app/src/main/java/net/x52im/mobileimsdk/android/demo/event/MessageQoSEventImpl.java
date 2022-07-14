@@ -30,8 +30,7 @@ import android.util.Log;
  * @author Jack Jiang(http://www.52im.net/thread-2792-1-1.html)
  * @version 1.1
  */
-public class MessageQoSEventImpl implements MessageQoSEvent
-{
+public class MessageQoSEventImpl implements MessageQoSEvent {
 	private final static String TAG = MessageQoSEventImpl.class.getSimpleName();
 	
 	private MainActivity mainGUI = null;
@@ -45,12 +44,10 @@ public class MessageQoSEventImpl implements MessageQoSEvent
 	 * @see net.x52im.mobileimsdk.server.protocal.Protocal
 	 */
 	@Override
-	public void messagesLost(ArrayList<Protocal> lostMessages)
-	{
+	public void messagesLost(ArrayList<Protocal> lostMessages) {
 		Log.d(TAG, "【DEBUG_UI】收到系统的未实时送达事件通知，当前共有"+lostMessages.size()+"个包QoS保证机制结束，判定为【无法实时送达】！");
 	
-		if(this.mainGUI != null)
-		{
+		if(this.mainGUI != null) {
 			this.mainGUI.showIMInfo_brightred("[消息未成功送达]共"+lostMessages.size()+"条!(网络状况不佳或对方id不存在)");
 		}
 	}
@@ -70,20 +67,16 @@ public class MessageQoSEventImpl implements MessageQoSEvent
 	 * @see net.x52im.mobileimsdk.server.protocal.Protocal
 	 */
 	@Override
-	public void messagesBeReceived(String theFingerPrint)
-	{
-		if(theFingerPrint != null)
-		{
+	public void messagesBeReceived(String theFingerPrint) {
+		if(theFingerPrint != null) {
 			Log.d(TAG, "【DEBUG_UI】收到对方已收到消息事件的通知，fp="+theFingerPrint);
-			if(this.mainGUI != null)
-			{
+			if(this.mainGUI != null) {
 				this.mainGUI.showIMInfo_blue("[收到对方消息应答]fp="+theFingerPrint);
 			}
 		}
 	}
 	
-	public MessageQoSEventImpl setMainGUI(MainActivity mainGUI)
-	{
+	public MessageQoSEventImpl setMainGUI(MainActivity mainGUI) {
 		this.mainGUI = mainGUI;
 		return this;
 	}

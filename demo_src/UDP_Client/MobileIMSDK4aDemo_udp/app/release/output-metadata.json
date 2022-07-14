@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "net.x52im.mobileimsdk.android.demo_udp",
+  "variantName": "release",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 104,
+      "versionName": "v6.2b220714.1",
+      "outputFile": "app-release.apk"
+    }
+  ],
+  "elementType": "File"
+}

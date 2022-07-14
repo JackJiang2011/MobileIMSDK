@@ -44,8 +44,7 @@ import androidx.core.app.NotificationCompat;
  * @author Jack Jiang(http://www.52im.net/space-uid-1.html)
  * @version 1.0
  */
-public class GeniusService extends Service
-{
+public class GeniusService extends Service {
 	final static String TAG = GeniusService.class.getSimpleName();
 
 	private NotificationManager mNM;
@@ -54,8 +53,7 @@ public class GeniusService extends Service
 	 * Class for clients to access. Because we know this service always runs in
 	 * the same process as its clients, we don't need to deal with IPC.
 	 */
-	public class LocalBinder extends Binder
-	{
+	public class LocalBinder extends Binder {
 		public GeniusService getService()
 		{
 			return GeniusService.this;
@@ -63,8 +61,7 @@ public class GeniusService extends Service
 	}
 
 	@Override
-	public void onCreate()
-	{
+	public void onCreate() {
 		mNM = getNotificationManager(this);
 
 		// Display a notification about us starting. We put an icon in the status bar.
@@ -72,8 +69,7 @@ public class GeniusService extends Service
 	}
 
 	@Override
-	public void onDestroy()
-	{
+	public void onDestroy() {
 		//将service从前台移除，并允许随时被系统回收
 		this.stopForeground(true);
 		// Tell the user we stopped.
@@ -81,8 +77,7 @@ public class GeniusService extends Service
 	}
 
 	@Override
-	public IBinder onBind(Intent intent)
-	{
+	public IBinder onBind(Intent intent) {
 		return mBinder;
 	}
 	
@@ -92,8 +87,7 @@ public class GeniusService extends Service
 	/**
 	 * Show a notification while this service is running.
 	 */
-	private void showNotification()
-	{
+	private void showNotification() {
 		Application app = (Application)this.getApplicationContext();
 
         Intent intent = new Intent(Intent.ACTION_MAIN);
@@ -106,21 +100,18 @@ public class GeniusService extends Service
         String appName = this.getResources().getString(R.string.app_name);
 
         // 创建一个Notification
-        Notification notification = createNotification(app , contentIntent, appName+" 正在运行中 ..."
-				, "点击回到 "+appName+" 的Demo", R.drawable.icon);
+        Notification notification = createNotification(app , contentIntent, appName+" 正在运行中 ...", "点击回到 "+appName+" 的Demo", R.drawable.icon);
 
 		// 让service在前台执行
 		this.startForeground(999, notification);
 	}
 
-	public static NotificationManager getNotificationManager(Context context)
-	{
+	public static NotificationManager getNotificationManager(Context context) {
 		NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
 		// 以下代码，解决在Android 8及以上代码中，无法正常显示Notification或报"Bad notification for startForeground"等问题
 		NotificationChannel notificationChannel = null;
-		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O)
-		{
+		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
 			notificationChannel = new NotificationChannel("default_1", "Default Channel", NotificationManager.IMPORTANCE_HIGH);
 			notificationChannel.enableLights(true);
 
@@ -144,8 +135,7 @@ public class GeniusService extends Service
 	 * @param iconId
 	 * @return
 	 */
-	public static Notification createNotification(Context context, PendingIntent pendingIntent, String title, String text, int iconId)
-	{
+	public static Notification createNotification(Context context, PendingIntent pendingIntent, String title, String text, int iconId) {
 		// 创建一个Notification Builder，使用NotificationCompat可以更好的兼容Android各系统版本，
 		// 有关Android Notitication的兼容性、详细设置等，参见：https://www.cnblogs.com/travellife/p/Android-Notification-xiang-jie.html
 		NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "default_1")

@@ -29,8 +29,7 @@ import android.widget.Toast;
  * @author Jack Jiang(http://www.52im.net/thread-2792-1-1.html)
  * @version 1.1
  */
-public class ChatMessageEventImpl implements ChatMessageEvent
-{
+public class ChatMessageEventImpl implements ChatMessageEvent {
 	private final static String TAG = ChatMessageEventImpl.class.getSimpleName();
 	
 	private MainActivity mainGUI = null;
@@ -49,12 +48,10 @@ public class ChatMessageEventImpl implements ChatMessageEvent
 	 * @see <a href="http://docs.52im.net/extend/docs/api/mobileimsdk/server_netty/net/openmob/mobileimsdk/server/protocal/Protocal.html" target="_blank">Protocal</a>
 	 */
 	@Override
-	public void onRecieveMessage(String fingerPrintOfProtocal, String userid, String dataContent, int typeu)
-	{
+	public void onRecieveMessage(String fingerPrintOfProtocal, String userid, String dataContent, int typeu) {
 		Log.d(TAG, "【DEBUG_UI】[typeu="+typeu+"]收到来自用户"+userid+"的消息:"+dataContent);
 		
-		if(mainGUI != null)
-		{
+		if(mainGUI != null) {
 			Toast.makeText(mainGUI, userid+"说："+dataContent, Toast.LENGTH_SHORT).show();
 			this.mainGUI.showIMInfo_black(userid+"说："+dataContent);
 		}
@@ -68,8 +65,7 @@ public class ChatMessageEventImpl implements ChatMessageEvent
 	 * @see <a href="http://docs.52im.net/extend/docs/api/mobileimsdk/server/net/openmob/mobileimsdk/server/protocal/ErrorCode.ForS.html">ErrorCode.ForS类</a>
 	 */
 	@Override
-	public void onErrorResponse(int errorCode, String errorMsg)
-	{
+	public void onErrorResponse(int errorCode, String errorMsg) {
 		Log.d(TAG, "【DEBUG_UI】收到服务端错误消息，errorCode="+errorCode+", errorMsg="+errorMsg);
 		
 		if(errorCode ==  ErrorCode.ForS.RESPONSE_FOR_UNLOGIN)
@@ -78,8 +74,7 @@ public class ChatMessageEventImpl implements ChatMessageEvent
 			this.mainGUI.showIMInfo_red("Server反馈错误码："+errorCode+",errorMsg="+errorMsg);
 	}
 
-	public ChatMessageEventImpl setMainGUI(MainActivity mainGUI)
-	{
+	public ChatMessageEventImpl setMainGUI(MainActivity mainGUI) {
 		this.mainGUI = mainGUI;
 		return this;
 	}

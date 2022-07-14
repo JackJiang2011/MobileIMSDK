@@ -20,9 +20,7 @@ public abstract class MBAsyncTask {
     public void execute(final Object... params) {
         MBThreadPoolExecutor.runInBackground(() -> {
             final int code = doInBackground(params);
-            MBThreadPoolExecutor.runOnMainThread(() -> {
-                onPostExecute(code);
-            });
+            MBThreadPoolExecutor.runOnMainThread(() -> onPostExecute(code));
         });
     }
 

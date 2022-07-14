@@ -90,6 +90,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_weight="1"
+                android:layout_marginLeft="5dp"
                 android:background="@drawable/edittext_bg"
                 android:inputType="textPassword"
                 android:ems="10"

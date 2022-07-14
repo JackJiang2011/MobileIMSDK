@@ -30,8 +30,7 @@ import android.content.Context;
  *
  * @author Jack Jiang(http://www.52im.net/thread-2792-1-1.html)
  */
-public class IMClientManager
-{
+public class IMClientManager {
 	private static IMClientManager instance = null;
 	
 	/** MobileIMSDK是否已被初始化. true表示已初化完成，否则未初始化. */
@@ -46,15 +45,13 @@ public class IMClientManager
 	
 	private Context context = null;
 
-	public static IMClientManager getInstance(Context context)
-	{
+	public static IMClientManager getInstance(Context context) {
 		if(instance == null)
 			instance = new IMClientManager(context);
 		return instance;
 	}
 	
-	private IMClientManager(Context context)
-	{
+	private IMClientManager(Context context) {
 		this.context = context;
 		initMobileIMSDK();
 	}
@@ -62,13 +59,8 @@ public class IMClientManager
 	/**
 	 * MobileIMSDK的初始化方法。正式的APP项目中，建议本方法在Application的子类中调用。
 	 */
-	public void initMobileIMSDK()
-	{
-		if(!init)
-		{
-			// 设置AppKey
-			ConfigEntity.appKey = "5418023dfd98c579b6001741";
-			
+	public void initMobileIMSDK() {
+		if(!init) {
 			// 设置服务器ip和服务器端口
 //			ConfigEntity.serverIP = "192.168.82.138";
 //			ConfigEntity.serverPort = 7901;
@@ -94,8 +86,7 @@ public class IMClientManager
 		}
 	}
 	
-	public void release()
-	{
+	public void release() {
 		ClientCoreSDK.getInstance().release();
 		resetInitFlag();
 	}
@@ -108,21 +99,19 @@ public class IMClientManager
 	 * 详见 {@link #initMobileIMSDK()}代码）而报 code=203错误！
 	 * 
 	 */
-	public void resetInitFlag()
-	{
+	public void resetInitFlag() {
 		init = false;
 	}
 
-	public ChatMessageEventImpl getChatMessageListener()
-	{
+	public ChatMessageEventImpl getChatMessageListener() {
 		return chatMessageListener;
 	}
-	public ChatBaseEventImpl getChatBaseListener()
-	{
+
+	public ChatBaseEventImpl getChatBaseListener() {
 		return chatBaseListener;
 	}
-	public MessageQoSEventImpl getMessageQoSListener()
-	{
+
+	public MessageQoSEventImpl getMessageQoSListener() {
 		return messageQoSListener;
 	}
 }
