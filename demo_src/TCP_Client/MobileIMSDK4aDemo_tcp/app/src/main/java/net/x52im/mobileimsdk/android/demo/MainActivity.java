@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
 		chatInfoListAdapter = new MyAdapter(this);
 		chatInfoListView.setAdapter(chatInfoListAdapter);
 
-		this.viewMyid.setText(ClientCoreSDK.getInstance().getInstance().getCurrentLoginUserId());
+		this.viewMyid.setText(ClientCoreSDK.getInstance().getCurrentLoginInfo().getLoginUserId());
 		
 		this.setTitle("MobileIMSDK TCP v6 Demo");
 

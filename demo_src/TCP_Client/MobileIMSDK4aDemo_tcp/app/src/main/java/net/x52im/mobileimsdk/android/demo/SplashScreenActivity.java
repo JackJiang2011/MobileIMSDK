@@ -45,12 +45,10 @@ public class SplashScreenActivity extends Activity {
 		// @see http://stackoverflow.com/questions/4341600/how-to-prevent-multiple-instances-of-an-activity-when-it-is-launched-with-differ/
 		// @see http://stackoverflow.com/questions/12111943/duplicate-activities-on-the-back-stack-after-initial-installation-of-apk
 		// 加了以下代码还得确保Manifast里加上权限申请：“android.permission.GET_TASKS”
-		if (!isTaskRoot()) 
-		{// FIX START: by Jack Jiang 2013-11-07
+		if (!isTaskRoot()) {
 		    final Intent intent = getIntent();
 		    final String intentAction = intent.getAction();
-		    if (intent.hasCategory(Intent.CATEGORY_LAUNCHER) &&
-		            intentAction != null && intentAction.equals(Intent.ACTION_MAIN)) {
+		    if (intent.hasCategory(Intent.CATEGORY_LAUNCHER) && intentAction != null && intentAction.equals(Intent.ACTION_MAIN)) {
 		        finish();
 		    }
 		}// FIX END
