@@ -109,7 +109,7 @@ static int RETRY_DELAY = 6000;
             HUD = [[MBProgressHUD alloc] initWithView:view];
             [view addSubview:HUD];
             
-            HUD.labelText = @"登陆中 ...";
+            HUD.labelText = @"登录中 ...";
         }
         
         [HUD show:YES];

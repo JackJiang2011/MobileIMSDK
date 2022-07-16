@@ -89,6 +89,9 @@ public class IMClientManager {
 		}
 	}
 
+	/**
+	 * MobileIMSDK的资源释放方法（退出SDK时使用）。
+	 */
 	public void release() {
 		ClientCoreSDK.getInstance().release();
 		resetInitFlag();

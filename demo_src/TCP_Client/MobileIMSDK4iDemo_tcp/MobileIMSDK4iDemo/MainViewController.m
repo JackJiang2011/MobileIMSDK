@@ -37,11 +37,11 @@
 #pragma mark - 静态常量
 ////////////////////////////////////////////////////////////////////////////////////////////
 
-static const int TABLE_CELL_COLOR_BLACK = 0;
-static const int TABLE_CELL_COLOR_BLUE = 1;
+static const int TABLE_CELL_COLOR_BLACK      = 0;
+static const int TABLE_CELL_COLOR_BLUE       = 1;
 static const int TABLE_CELL_COLOR_BRIGHT_RED = 2;
-static const int TABLE_CELL_COLOR_RED = 3;
-static const int TABLE_CELL_COLOR_GREEN = 4;
+static const int TABLE_CELL_COLOR_RED        = 3;
+static const int TABLE_CELL_COLOR_GREEN      = 4;
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////

@@ -19,7 +19,6 @@
 #import "AutoReLoginDaemon.h"
 #import "Utils.h"
 
-
 /**
  * 与IM服务器的连接事件在此ChatBaseEvent子类中实现即可。
  *
@@ -98,7 +97,8 @@
     {
         alertContent = @"已被管理员强行踢出聊天，当前会话已断开！";
     }
-    else{
+    else
+    {
         alertContent = [NSString stringWithFormat:@"你已被踢出聊天，当前会话已断开（kickoutReason=%@）！", kickoutInfo.reason];
     }
 

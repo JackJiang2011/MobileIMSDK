@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment version="2304" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -53,7 +53,7 @@
                                 <action selector="E_textFieldDidEndOnExit:" destination="-1" eventType="editingDidEndOnExit" id="5FW-jg-Eft"/>
                             </connections>
                         </textField>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="登陆用户名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xNV-q3-QSA" userLabel="文本框-登陆用户名">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="登录用户名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xNV-q3-QSA" userLabel="文本框-登陆用户名">
                             <rect key="frame" x="0.0" y="58" width="136" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -62,7 +62,7 @@
                                 <action selector="E_textFieldDidEndOnExit:" destination="-1" eventType="editingDidEndOnExit" id="Rlx-nC-eCl"/>
                             </connections>
                         </textField>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="登陆密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EIl-0P-bp1" userLabel="文本框-登陆密码">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="登录密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EIl-0P-bp1" userLabel="文本框-登陆密码">
                             <rect key="frame" x="144" y="58" width="136" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -84,11 +84,11 @@
                             <color key="shadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <size key="shadowOffset" width="0.0" height="1"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F2i-VI-sbK" userLabel="按钮-登陆">
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F2i-VI-sbK" userLabel="按钮-登陆">
                             <rect key="frame" x="144" y="113" width="136" height="36"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <state key="normal" title="登 陆">
+                            <state key="normal" title="登 录">
                                 <color key="titleColor" red="0.96862745100000003" green="0.97254901959999995" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="titleShadowColor" red="0.16857638955116272" green="0.16857638955116272" blue="0.16857638955116272" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
@@ -111,6 +111,7 @@
                     <rect key="frame" x="69.5" y="519" width="181.5" height="34"/>
                 </imageView>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="1x1-xU-Yu1"/>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="1x1-xU-Yu1" firstAttribute="bottom" secondItem="g6y-O3-PAI" secondAttribute="bottom" constant="15" id="Fh1-NZ-Xbf"/>
@@ -118,7 +119,6 @@
                 <constraint firstItem="DsX-DK-Qk7" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="mUw-bq-I8d"/>
                 <constraint firstItem="g6y-O3-PAI" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="qPD-jU-r3Z"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="1x1-xU-Yu1"/>
             <connections>
                 <action selector="E_clickBgToHideKeyboard:" destination="-1" eventType="touchDown" id="MO4-Z4-HbO"/>
             </connections>

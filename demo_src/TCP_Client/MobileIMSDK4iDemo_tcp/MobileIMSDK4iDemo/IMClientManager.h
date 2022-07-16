@@ -29,18 +29,21 @@
  */
 + (IMClientManager *)sharedInstance;
 
+/*!
+ * MobileIMSDK的初始化方法。
+ */
 - (void)initMobileIMSDK;
 
+/*!
+ * MobileIMSDK的资源释放方法（退出SDK时使用）。
+ */
 - (void)releaseMobileIMSDK;
 
 
 /**
  * 重置init标识。
  * <p>
- * <b>重要说明：</b>不退出APP的情况下，重新登陆时记得调用一下本方法，不然再
- * 次调用 {@link #initMobileIMSDK()} 时也不会重新初始化MobileIMSDK（
- * 详见 {@link #initMobileIMSDK()}代码）而报 code=203错误！
- *
+ * <b>重要说明：</b>不退出APP的情况下，重新登陆时记得调用一下本方法，不然再次调用 {@link #initMobileIMSDK()} 时也不会重新初始化MobileIMSDK（详见 {@link #initMobileIMSDK()}代码）而报 code=203错误！
  */
 - (void)resetInitFlag;
 
