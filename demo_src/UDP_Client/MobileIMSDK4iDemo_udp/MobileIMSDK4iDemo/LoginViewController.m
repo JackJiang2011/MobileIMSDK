@@ -64,7 +64,7 @@
 {
     // 设置顶部导航标题栏为不透明，否则在ios7以上系统会挡住下方的页面内容
     self.navigationController.navigationBar.translucent = NO;
-    self.title = @"MobileIMSDK_UDP Demo登陆";
+    self.title = @"MobileIMSDK_UDP Demo登录";
     
     // 显示Demo程序的版本号
     NSBundle *mainBundle = [NSBundle mainBundle];
@@ -82,7 +82,7 @@
     // 设置登陆超时回调（将在登陆进度提示封装类中使用）
     [self.onLoginProgress setOnLoginTimeoutObserver:^(id observerble ,id data) {
         // 显示提示对话框
-        [Utils areYouSureAlert:@"超时了" content:@"登陆超时，可能是网络故障或服务器无法连接，是否重试？" okBtnTitle:@"重试！" cancelBtnTitle:@"取消" parent:safeSelf okHandler:^(UIAlertAction * _Nullable action) {
+        [Utils areYouSureAlert:@"超时了" content:@"登录超时，可能是网络故障或服务器无法连接，是否重试？" okBtnTitle:@"重试！" cancelBtnTitle:@"取消" parent:safeSelf okHandler:^(UIAlertAction * _Nullable action) {
             // 确认要重试时（再次尝试登陆哦）
             [safeSelf doLogin];
         } cancelHandler:^(UIAlertAction * _Nullable action) {
@@ -99,11 +99,7 @@
         // 登陆成功
         if(code == 0)
         {
-            // TODO 提示：登陆MobileIMSDK服务器成功后的事情在此实现即可
-            // TODO 提示：登陆MobileIMSDK服务器成功后的事情在此实现即可
-            // TODO 提示：登陆MobileIMSDK服务器成功后的事情在此实现即可
-            // TODO 提示：登陆MobileIMSDK服务器成功后的事情在此实现即可
-            // TODO 提示：登陆MobileIMSDK服务器成功后的事情在此实现即可
+            // TODO: -> 提示：登陆MobileIMSDK服务器成功后的事情在此实现即可！
             
             // 进入主界面
             [CurAppDelegate switchToMainViewController];
@@ -112,9 +108,9 @@
         else
         {
             // 显示提示框
-            [Utils showAlert:@"友情提示" content:[NSString stringWithFormat:@"Sorry，登陆失败，错误码=%d", code] btnTitle:@"知道了" parent:safeSelf handler:^(UIAlertAction * _Nonnull action) {
-                            // 不需要重试则要停止“登陆中”的进度提示哦
-                            [safeSelf.onLoginProgress showProgressing:NO onParent:safeSelf.view];
+            [Utils showAlert:@"友情提示" content:[NSString stringWithFormat:@"Sorry，登录失败，错误码=%d", code] btnTitle:@"知道了" parent:safeSelf handler:^(UIAlertAction * _Nonnull action) {
+                // 不需要重试则要停止“登陆中”的进度提示哦
+                [safeSelf.onLoginProgress showProgressing:NO onParent:safeSelf.view];
             }];
         }
         
@@ -159,15 +155,15 @@
     NSString *loginUserIdStr = self.loginName.text;
     if ([loginUserIdStr length] == 0)
     {
-        [self E_showToastInfo:@"提示" withContent:@"请输入登陆名！" onParent:self.view];
+        [self E_showToastInfo:@"提示" withContent:@"请输入登录名！" onParent:self.view];
         return;
     }
     NSString *loginTokenStr = self.loginPsw.text;
-//    if ([loginTokenStr length] == 0)
-//    {
-//        [self E_showToastInfo:@"提示" withContent:@"请输入登密码！" onParent:self.view];
-//        return;
-//    }
+//  if ([loginTokenStr length] == 0)
+//  {
+//      [self E_showToastInfo:@"提示" withContent:@"请输入登密码！" onParent:self.view];
+//      return;
+//  }
     
     //** 向服务端发送登陆信息
     [self doLoginImpl:loginUserIdStr withToken:loginTokenStr];
@@ -192,11 +188,11 @@
     int code = [[LocalDataSender sharedInstance] sendLogin:loginInfo];
     if(code == COMMON_CODE_OK)
     {
-        [self E_showToastInfo:@"提示" withContent:@"登陆请求已发出。。。" onParent:self.view];
+        [self E_showToastInfo:@"提示" withContent:@"登录请求已发出。。。" onParent:self.view];
     }
     else
     {
-        NSString *msg = [NSString stringWithFormat:@"登陆请求发送失败，错误码：%d", code];
+        NSString *msg = [NSString stringWithFormat:@"登录请求发送失败，错误码：%d", code];
         [self E_showToastInfo:@"错误" withContent:msg onParent:self.view];
         
         // * 登陆信息没有成功发出时当然无条件取消显示登陆进度条

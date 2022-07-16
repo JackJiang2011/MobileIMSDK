@@ -31,7 +31,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *versionView;
 
 /*!
- *  @Author Jack Jiang, 14-11-08 15:11:43
+ *  @Author Jack Jiang
  *
  *  登陆事件处理。
  *

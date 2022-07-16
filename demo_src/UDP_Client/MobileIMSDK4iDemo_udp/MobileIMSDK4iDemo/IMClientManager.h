@@ -29,8 +29,14 @@
  */
 + (IMClientManager *)sharedInstance;
 
+/*!
+ * MobileIMSDK的初始化方法。
+ */
 - (void)initMobileIMSDK;
 
+/*!
+ * MobileIMSDK的资源释放方法（退出SDK时使用）。
+ */
 - (void)releaseMobileIMSDK;
 
 
