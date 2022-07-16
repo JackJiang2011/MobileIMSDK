@@ -171,7 +171,7 @@ static ClientCoreSDK *instance = nil;
             statusString = NSLocalizedString(@"【IMCORE-UDP】【本地网络通知】检测本地网络连接断开了!", @"Text field text for access is not available");
             connectionRequired = NO;
             
-//            self.localDeviceNetworkOk = false;
+//          self.localDeviceNetworkOk = false;
             [[LocalSocketProvider sharedInstance] closeLocalSocket];
             
             break;
@@ -183,7 +183,7 @@ static ClientCoreSDK *instance = nil;
             int wifi = (netStatus == ReachableViaWiFi);
             statusString= [NSString stringWithFormat:NSLocalizedString(@"【IMCORE-UDP】【本地网络通知】检测本地网络已连接上了! WIFI? %d", @""), wifi?@"YES":@"NO"];
             
-//            self.localDeviceNetworkOk = true;
+//          self.localDeviceNetworkOk = true;
             [[LocalSocketProvider sharedInstance] closeLocalSocket];
             
             break;

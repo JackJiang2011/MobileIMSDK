@@ -86,7 +86,7 @@
     return [Protocal initWithType:FROM_CLIENT_TYPE_OF_LOGOUT content:dataContent from:user_id to:@"0"];
 }
 
-+ (Protocal *) createPLoginInfo:(PLoginInfo *)loginInfo//(NSString *)loginUserId withToken:(NSString *)loginToken andExtra:(NSString *)extra
++ (Protocal *) createPLoginInfo:(PLoginInfo *)loginInfo
 {
     NSString *dataContent = [ProtocalFactory create:loginInfo];
     return [Protocal initWithType:FROM_CLIENT_TYPE_OF_LOGIN content:dataContent from:loginInfo.loginUserId to:@"0"];
