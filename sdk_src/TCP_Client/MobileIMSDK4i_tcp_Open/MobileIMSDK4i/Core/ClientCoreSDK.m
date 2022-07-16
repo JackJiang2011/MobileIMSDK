@@ -130,7 +130,7 @@ static ClientCoreSDK *instance = nil;
     [[AutoReLoginDaemon sharedInstance] stop]; // 2014-11-08 add by Jack Jiang
     [[QoS4SendDaemon sharedInstance] stop];
     [[KeepAliveDaemon sharedInstance] stop];
-//    [[LocalUDPDataReciever sharedInstance] stop];
+//  [[LocalUDPDataReciever sharedInstance] stop];
     [[QoS4ReciveDaemon sharedInstance] stop];
     [[LocalSocketProvider sharedInstance] closeLocalSocket];
 
@@ -143,7 +143,7 @@ static ClientCoreSDK *instance = nil;
     
     self._init = NO;
     self.loginHasInit = NO;
- //   self.connectedToServer = NO;
+ // self.connectedToServer = NO;
 }
 
 - (BOOL) isInitialed
@@ -186,9 +186,7 @@ static ClientCoreSDK *instance = nil;
         case NotReachable:
         {
             statusString = NSLocalizedString(@"【IMCORE-TCP】【本地网络通知】检测本地网络连接断开了!", @"Text field text for access is not available");
-            /*
-             Minor interface detail- connectionRequired may return YES even when the host is unreachable. We cover that up here...
-             */
+            /* Minor interface detail- connectionRequired may return YES even when the host is unreachable. We cover that up here... */
             connectionRequired = NO;
             
 //          self.localDeviceNetworkOk = false;
