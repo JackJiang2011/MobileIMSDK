@@ -75,8 +75,7 @@ public class QoS4SendDaemon
 					if(p != null && p.isQoS()){
 						if(p.getRetryCount() >= QOS_TRY_COUNT){
 							if(ClientCoreSDK.DEBUG)
-								Log.d(TAG, "【IMCORE-TCP】【QoS】指纹为"+p.getFp()
-										+"的消息包重传次数已达"+p.getRetryCount()+"(最多"+QOS_TRY_COUNT+"次)上限，将判定为丢包！");
+								Log.d(TAG, "【IMCORE-TCP】【QoS】指纹为"+p.getFp()+"的消息包重传次数已达"+p.getRetryCount()+"(最多"+QOS_TRY_COUNT+"次)上限，将判定为丢包！");
 
 							lostMessages.add((Protocal)p.clone());
 							remove(p.getFp());

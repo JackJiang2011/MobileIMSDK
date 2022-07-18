@@ -57,8 +57,7 @@ public class LocalDataReciever
 		try{
 			final Protocal pFromServer = ProtocalFactory.parse(fullProtocalOfBody, fullProtocalOfBody.length);
 			if(pFromServer.isQoS()){
-				if(pFromServer.getType() == ProtocalType.S.FROM_SERVER_TYPE_OF_RESPONSE$LOGIN
-						&& ProtocalFactory.parsePLoginInfoResponse(pFromServer.getDataContent()).getCode() != 0){
+				if(pFromServer.getType() == ProtocalType.S.FROM_SERVER_TYPE_OF_RESPONSE$LOGIN && ProtocalFactory.parsePLoginInfoResponse(pFromServer.getDataContent()).getCode() != 0){
 					if(ClientCoreSDK.DEBUG)
 						Log.d(TAG, "【IMCORE-TCP】【BugFIX】这是服务端的登陆返回响应包，" +"且服务端判定登陆失败(即code!=0)，本次无需发送ACK应答包！");
 				}

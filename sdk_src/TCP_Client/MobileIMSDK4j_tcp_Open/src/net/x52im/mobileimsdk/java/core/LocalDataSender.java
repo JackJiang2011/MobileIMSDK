@@ -139,8 +139,7 @@ public class LocalDataSender {
 		Channel ds = LocalSocketProvider.getInstance().getLocalSocket();
 		if (ds != null && ds.isActive()) {// && [ClientCoreSDK
 											// sharedInstance].connectedToServer)
-			return TCPUtils.send(ds, fullProtocalBytes, dataLen) ? ErrorCode.COMMON_CODE_OK
-					: ErrorCode.COMMON_DATA_SEND_FAILD;
+			return TCPUtils.send(ds, fullProtocalBytes, dataLen) ? ErrorCode.COMMON_CODE_OK: ErrorCode.COMMON_DATA_SEND_FAILD;
 		} else {
 			Log.d(TAG, "【IMCORE-TCP】scocket未连接，无法发送，本条将被忽略（dataLen=" + dataLen + "）!");
 			return ErrorCode.COMMON_CODE_OK;
