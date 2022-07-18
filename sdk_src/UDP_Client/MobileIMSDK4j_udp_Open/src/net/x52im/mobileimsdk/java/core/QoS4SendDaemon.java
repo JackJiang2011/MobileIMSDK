@@ -222,8 +222,7 @@ public class QoS4SendDaemon
 					Log.w(TAG, e.getMessage());
 				}
 				
-				Log.w(TAG, "【IMCORE-UDP】【QoS】指纹为"+fingerPrint+"的消息已成功从发送质量保证队列中移除(可能是收到接收方的应答也可能是达到了重传的次数上限)，重试次数="
-						+(result != null?((Protocal)result).getRetryCount():"none呵呵."));
+				Log.w(TAG, "【IMCORE-UDP】【QoS】指纹为"+fingerPrint+"的消息已成功从发送质量保证队列中移除(可能是收到接收方的应答也可能是达到了重传的次数上限)，重试次数="+(result != null?((Protocal)result).getRetryCount():"none呵呵."));
 		    }
 		}.execute();
 	}

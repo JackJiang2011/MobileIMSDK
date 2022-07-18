@@ -29,8 +29,7 @@ public class UDPUtils {
 			}
 			catch (Exception e)
 			{
-				Log.e(TAG, "【IMCORE-UDP】send方法中》》发送UDP数据报文时出错了：remoteIp="+skt.getInetAddress()
-						+", remotePort="+skt.getPort()+".原因是："+e.getMessage(), e);
+				Log.e(TAG, "【IMCORE-UDP】send方法中》》发送UDP数据报文时出错了：remoteIp="+skt.getInetAddress()+", remotePort="+skt.getPort()+".原因是："+e.getMessage(), e);
 				return false;
 			}
 		}

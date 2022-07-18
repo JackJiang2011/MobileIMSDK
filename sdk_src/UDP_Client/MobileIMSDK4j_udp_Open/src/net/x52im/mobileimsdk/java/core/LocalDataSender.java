@@ -57,7 +57,7 @@ public class LocalDataSender {
 	public int sendLoginout() {
 		int code = ErrorCode.COMMON_CODE_OK;
 		if (ClientCoreSDK.getInstance().isLoginHasInit()) {
-			byte[] b = ProtocalFactory.createPLoginoutInfo(ClientCoreSDK.getInstance().getCurrentLoginUserId()).toBytes();
+			byte[] b = ProtocalFactory.createPLoginoutInfo(ClientCoreSDK.getInstance().getCurrentLoginInfo().getLoginUserId()).toBytes();
 			code = send(b, b.length);
 			if (code == 0) {
 				// do nothing
@@ -68,7 +68,7 @@ public class LocalDataSender {
 	}
 
 	int sendKeepAlive() {
-		byte[] b = ProtocalFactory.createPKeepAlive(ClientCoreSDK.getInstance().getCurrentLoginUserId()).toBytes();
+		byte[] b = ProtocalFactory.createPKeepAlive(ClientCoreSDK.getInstance().getCurrentLoginInfo().getLoginUserId()).toBytes();
 		return send(b, b.length);
 	}
 
@@ -86,7 +86,7 @@ public class LocalDataSender {
 
 	public int sendCommonData(String dataContentWidthStr, String to_user_id, boolean QoS, String fingerPrint, int typeu) {
 		return sendCommonData(ProtocalFactory.createCommonData(
-				dataContentWidthStr, ClientCoreSDK.getInstance().getCurrentLoginUserId(), to_user_id, QoS, fingerPrint,typeu));
+				dataContentWidthStr, ClientCoreSDK.getInstance().getCurrentLoginInfo().getLoginUserId(), to_user_id, QoS, fingerPrint,typeu));
 	}
 
 	public int sendCommonData(Protocal p) {
@@ -136,7 +136,7 @@ public class LocalDataSender {
 		}
 
 		public SendCommonDataAsync(String dataContentWidthStr, String to_user_id, String fingerPrint, int typeu) {
-			this(ProtocalFactory.createCommonData(dataContentWidthStr, ClientCoreSDK.getInstance().getCurrentLoginUserId(), to_user_id, true, fingerPrint, typeu));
+			this(ProtocalFactory.createCommonData(dataContentWidthStr, ClientCoreSDK.getInstance().getCurrentLoginInfo().getLoginUserId(), to_user_id, true, fingerPrint, typeu));
 		}
 
 		public SendCommonDataAsync(Protocal p) {
@@ -150,7 +150,7 @@ public class LocalDataSender {
 		@Override
 		protected Integer doInBackground() {
 			if (p != null)
-				return LocalDataSender.getInstance().sendCommonData(p);// dataContentWidthStr, to_user_id);
+				return LocalDataSender.getInstance().sendCommonData(p);
 			return -1;
 		}
 

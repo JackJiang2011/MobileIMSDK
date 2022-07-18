@@ -138,14 +138,13 @@ public class MainGUI extends JFrame
 		this.getContentPane().add(sc, BorderLayout.CENTER);
 		
 		this.setTitle("MobileIMSDK_UDP版  v6演示工程 - (当前登陆:"
-				+ClientCoreSDK.getInstance().getCurrentLoginUserId()
-				+", 讨论区:52im.net, QQ群:215477170)");
+				+ClientCoreSDK.getInstance().getCurrentLoginInfo().getLoginUserId()
+				+", 讨论区:52im.net, QQ群:185926912)");
 		this.setLocationRelativeTo(null);
 		this.setSize(1000,700);
 		
 		// 显示当前账号信息
-		MainGUI.this.showIMInfo_green("当前账号："
-				+ClientCoreSDK.getInstance().getCurrentLoginUserId());
+		MainGUI.this.showIMInfo_green("当前账号："+ClientCoreSDK.getInstance().getCurrentLoginInfo().getLoginUserId());
 	}
 	
 	private void initListeners()

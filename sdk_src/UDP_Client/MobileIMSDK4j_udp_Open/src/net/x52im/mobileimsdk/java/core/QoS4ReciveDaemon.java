@@ -122,8 +122,7 @@ public class QoS4ReciveDaemon {
 		}
 
 		if (recievedMessages.containsKey(fingerPrintOfProtocal))
-			Log.w(TAG, "【IMCORE-UDP】【QoS接收方】指纹为" + fingerPrintOfProtocal
-					+ "的消息已经存在于接收列表中，该消息重复了（原理可能是对方因未收到应答包而错误重传导致），更新收到时间戳哦.");
+			Log.w(TAG, "【IMCORE-UDP】【QoS接收方】指纹为" + fingerPrintOfProtocal+ "的消息已经存在于接收列表中，该消息重复了（原理可能是对方因未收到应答包而错误重传导致），更新收到时间戳哦.");
 
 		putImpl(fingerPrintOfProtocal);
 	}

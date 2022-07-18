@@ -115,7 +115,7 @@ public class LoginGUI extends JFrame
 		mainPanel.addTitledLineSeparator("");
 		JPanel btnAndVerPanel = new JPanel();
 		btnAndVerPanel.setLayout(new BoxLayout(btnAndVerPanel, BoxLayout.LINE_AXIS));
-		JLabel lbVer= new JLabel("v6.1b210727.1");
+		JLabel lbVer= new JLabel("v6.2b220716.1");
 		lbVer.setForeground(new Color(184,184,184));
 		btnAndVerPanel.add(lbVer);
 		btnAndVerPanel.add(Box.createHorizontalGlue());
@@ -206,8 +206,7 @@ public class LoginGUI extends JFrame
 				}
 				// 登陆失败
 				else
-					JOptionPane.showMessageDialog(LoginGUI.this, "Sorry，登陆失败，错误码="+code
-							, "友情提示",JOptionPane.ERROR_MESSAGE);  
+					JOptionPane.showMessageDialog(LoginGUI.this, "Sorry，登陆失败，错误码="+code, "友情提示",JOptionPane.ERROR_MESSAGE);  
 			}
 		};
 	}
@@ -220,8 +219,7 @@ public class LoginGUI extends JFrame
 		//** 设置服务器地址和端口号
 		String serverIP = editServerIp.getText();
 		String serverPort = editServerPort.getText();
-		if(!CommonUtils.isStringEmpty(serverIP, true)
-			&& !CommonUtils.isStringEmpty(serverPort, true))
+		if(!CommonUtils.isStringEmpty(serverIP, true)&& !CommonUtils.isStringEmpty(serverPort, true))
 		{
 			// 无条件重置socket，防止首次登陆时用了错误的ip或域名，下次登陆时sendData中仍然使用老的ip
 			// 说明：本行代码建议仅用于Demo时，生产环境下是没有意义的，因为你的APP里不可能连IP都搞错了
@@ -265,8 +263,7 @@ public class LoginGUI extends JFrame
 		// * 立即显示登陆处理进度提示（并将同时启动超时检查线程）
 		onLoginProgress.showProgressing(true);
 		// * 设置好服务端反馈的登陆结果观察者（当客户端收到服务端反馈过来的登陆消息时将被通知）
-		IMClientManager.getInstance().getBaseEventListener()
-			.setLoginOkForLaunchObserver(onLoginSucessObserver);
+		IMClientManager.getInstance().getBaseEventListener().setLoginOkForLaunchObserver(onLoginSucessObserver);
 
 		PLoginInfo loginInfo = new PLoginInfo(editLoginName.getText(), editLoginPsw.getText());
 		// * 异步提交登陆名和密码
@@ -294,8 +291,7 @@ public class LoginGUI extends JFrame
 	
 	public void showToast(String text)
 	{
-		Toast.showTost(3000, text, new Point((int)(this.getLocationOnScreen().getX()),
-				(int)(this.getLocationOnScreen().getY())));
+		Toast.showTost(3000, text, new Point((int)(this.getLocationOnScreen().getX()),(int)(this.getLocationOnScreen().getY())));
 	}
 	
 	//-------------------------------------------------------------------------- inner classes

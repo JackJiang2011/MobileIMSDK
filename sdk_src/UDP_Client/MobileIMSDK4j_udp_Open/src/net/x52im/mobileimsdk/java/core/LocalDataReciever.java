@@ -133,8 +133,7 @@ public class LocalDataReciever
 							&& ProtocalFactory.parsePLoginInfoResponse(pFromServer.getDataContent()).getCode() != 0)
 					{
 						if(ClientCoreSDK.DEBUG)
-							Log.d(TAG, "【IMCORE-UDP】【BugFIX】这是服务端的登陆返回响应包，" +
-									"且服务端判定登陆失败(即code!=0)，本次无需发送ACK应答包！");
+							Log.d(TAG, "【IMCORE-UDP】【BugFIX】这是服务端的登陆返回响应包，且服务端判定登陆失败(即code!=0)，本次无需发送ACK应答包！");
 					}
 					else
 					{
@@ -159,9 +158,7 @@ public class LocalDataReciever
 					{
 						if(ClientCoreSDK.getInstance().getChatMessageEvent() != null)
 						{
-							ClientCoreSDK.getInstance().getChatMessageEvent().onRecieveMessage(
-									pFromServer.getFp(), pFromServer.getFrom()
-									, pFromServer.getDataContent(), pFromServer.getTypeu());
+							ClientCoreSDK.getInstance().getChatMessageEvent().onRecieveMessage(pFromServer.getFp(), pFromServer.getFrom(), pFromServer.getDataContent(), pFromServer.getTypeu());
 						}
 						break;
 					}
@@ -275,13 +272,7 @@ public class LocalDataReciever
 		{
 			if(pFromServer.getFp() != null)
 			{
-				new LocalDataSender.SendCommonDataAsync(
-						ProtocalFactory.createRecivedBack(
-								pFromServer.getTo()
-								, pFromServer.getFrom()
-								, pFromServer.getFp()
-								// since 3.0
-								, pFromServer.isBridge())){
+				new LocalDataSender.SendCommonDataAsync(ProtocalFactory.createRecivedBack(pFromServer.getTo(), pFromServer.getFrom(), pFromServer.getFp(), pFromServer.isBridge())){
 					@Override
 					protected void onPostExecute(Integer code)
 					{
