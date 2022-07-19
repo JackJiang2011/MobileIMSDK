@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021  即时通讯网(52im.net) & Jack Jiang.
+ * Copyright (C) 2022  即时通讯网(52im.net) & Jack Jiang.
  * The MobileIMSDK_TCP (MobileIMSDK v6.1 TCP版) Project. 
  * All rights reserved.
  * 
@@ -12,7 +12,7 @@
  *  
  * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
  * 
- * LocalDataSender.java at 2021-8-4 21:36:39, code by Jack Jiang.
+ * LocalDataSender.java at 2022-7-16 17:22:43, code by Jack Jiang.
  */
 package net.x52im.mobileimsdk.java.core;
 
@@ -82,7 +82,7 @@ public class LocalDataSender {
 	public int sendLoginout() {
 		int code = ErrorCode.COMMON_CODE_OK;
 		if (ClientCoreSDK.getInstance().isLoginHasInit()) {
-			byte[] b = ProtocalFactory.createPLoginoutInfo(ClientCoreSDK.getInstance().getCurrentLoginUserId()).toBytes();
+			byte[] b = ProtocalFactory.createPLoginoutInfo(ClientCoreSDK.getInstance().getCurrentLoginInfo().getLoginUserId()).toBytes();
 			code = send(b, b.length);
 			if (code == 0) {
 				// do nothing
@@ -95,7 +95,7 @@ public class LocalDataSender {
 	}
 
 	int sendKeepAlive() {
-		byte[] b = ProtocalFactory.createPKeepAlive(ClientCoreSDK.getInstance().getCurrentLoginUserId()).toBytes();
+		byte[] b = ProtocalFactory.createPKeepAlive(ClientCoreSDK.getInstance().getCurrentLoginInfo().getLoginUserId()).toBytes();
 		return send(b, b.length);
 	}
 
@@ -112,7 +112,7 @@ public class LocalDataSender {
 	}
 
 	public int sendCommonData(String dataContentWidthStr, String to_user_id,boolean QoS, String fingerPrint, int typeu) {
-		return sendCommonData(ProtocalFactory.createCommonData(dataContentWidthStr, ClientCoreSDK.getInstance().getCurrentLoginUserId(), to_user_id, QoS, fingerPrint, typeu));
+		return sendCommonData(ProtocalFactory.createCommonData(dataContentWidthStr, ClientCoreSDK.getInstance().getCurrentLoginInfo().getLoginUserId(), to_user_id, QoS, fingerPrint, typeu));
 	}
 
 	public int sendCommonData(Protocal p) {
@@ -137,8 +137,7 @@ public class LocalDataSender {
 		// return ErrorCode.ForC.CLIENT_SDK_NO_INITIALED;
 
 		Channel ds = LocalSocketProvider.getInstance().getLocalSocket();
-		if (ds != null && ds.isActive()) {// && [ClientCoreSDK
-											// sharedInstance].connectedToServer)
+		if (ds != null && ds.isActive()) {
 			return TCPUtils.send(ds, fullProtocalBytes, dataLen) ? ErrorCode.COMMON_CODE_OK: ErrorCode.COMMON_DATA_SEND_FAILD;
 		} else {
 			Log.d(TAG, "【IMCORE-TCP】scocket未连接，无法发送，本条将被忽略（dataLen=" + dataLen + "）!");
@@ -167,7 +166,7 @@ public class LocalDataSender {
 		}
 
 		public SendCommonDataAsync(String dataContentWidthStr, String to_user_id, String fingerPrint, int typeu) {
-			this(ProtocalFactory.createCommonData(dataContentWidthStr, ClientCoreSDK.getInstance().getCurrentLoginUserId(), to_user_id, true, fingerPrint, typeu));
+			this(ProtocalFactory.createCommonData(dataContentWidthStr, ClientCoreSDK.getInstance().getCurrentLoginInfo().getLoginUserId(), to_user_id, true, fingerPrint, typeu));
 		}
 
 		public SendCommonDataAsync(Protocal p) {
