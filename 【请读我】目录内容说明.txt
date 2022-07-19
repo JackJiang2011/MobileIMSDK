@@ -5,7 +5,7 @@
 内含 MobileIMSDK v6.x 版的Demo演示源码。
 
 /sdk_binary 目录：
-内含编译好的 MobileIMSDK v6.x S核心库lib，开发者可直接引用到自已的工程中，不需要把sdk源码拷到你的工程里去用。
+内含编译好的 MobileIMSDK v6.x 版的核心库lib，开发者可直接引用到自已的工程中，不需要把sdk源码拷到你的工程里去用。
 
 /sdk_src 目录：
 内含 MobileIMSDK v6.x 版的核心库源码。
