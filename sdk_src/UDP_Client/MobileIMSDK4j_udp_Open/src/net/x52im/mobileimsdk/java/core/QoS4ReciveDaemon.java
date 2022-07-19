@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021  即时通讯网(52im.net) & Jack Jiang.
+ * Copyright (C) 2022  即时通讯网(52im.net) & Jack Jiang.
  * The MobileIMSDK4j_udp (MobileIMSDK4j v6.1 UDP版) Project. 
  * All rights reserved.
  * 
@@ -12,7 +12,7 @@
  *  
  * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
  * 
- * QoS4ReciveDaemon.java at 2021-8-4 21:37:03, code by Jack Jiang.
+ * QoS4ReciveDaemon.java at 2022-7-16 17:40:46, code by Jack Jiang.
  */
 package net.x52im.mobileimsdk.java.core;
 
