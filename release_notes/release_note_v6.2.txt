@@ -1,0 +1,21 @@
+
+----------------------------------- v6.2发布于：20220718
+MobileIMSDK v6.2版更新说明：
+
+【重要说明】
+MobileIMSDK v6.2 为次要版本更新，进行了若干优化！
+
+【新增重要特性】
+1. [服务端]新增两个聊天消息前置处理回调，方便开发者进行内容鉴黄、过滤、修改等运营管理；
+2. [服务端]新增新增了一个与Web互通情况下的C2C模式回调，用于开发者在互通模式下实现离线消息Push逻辑；
+
+【解决的Bug】
+无
+
+【其它优化和提升】
+1. [Andriod]支持最新的Andriod 12，解决了Demo工程中的Andriod12兼容问题； 
+2. [Andriod]解决了Demo工程在最新Android Studio编译时报方法数超过65535的经典问题；
+3. [服务端]  升级log4j2至2.17.0，解决Log4j2远程代码执行高危漏洞；
+4. [服务端]  为ServerEventListener类中的onUserLogout回调增加beKickoutCode参数；
+5. [服务端] [优化]尝试解决与Web互通情况下，MQProvider中的work方法会因异步消息导致的AlreadCloseException问题；
+
