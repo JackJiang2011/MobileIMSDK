@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021  即时通讯网(52im.net) & Jack Jiang.
+ * Copyright (C) 2022  即时通讯网(52im.net) & Jack Jiang.
  * The MobileIMSDK_TCP (MobileIMSDK v6.x TCP版) Project. 
  * All rights reserved.
  * 
@@ -12,7 +12,7 @@
  *  
  * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
  * 
- * IMClientManager.java at 2021-7-7 22:06:47, code by Jack Jiang.
+ * IMClientManager.java at 2022-7-16 16:53:48, code by Jack Jiang.
  */
 package net.x52im.mobileimsdk.java.demo;
 
@@ -23,6 +23,11 @@ import net.x52im.mobileimsdk.java.demo.event.ChatBaseEventImpl;
 import net.x52im.mobileimsdk.java.demo.event.ChatMessageEventImpl;
 import net.x52im.mobileimsdk.java.demo.event.MessageQoSEventImpl;
 
+/**
+ * MobileIMSDK的管理类。
+ *
+ * @author Jack Jiang(http://www.52im.net/thread-2792-1-1.html)
+ */
 public class IMClientManager
 {
 	private static String TAG = IMClientManager.class.getSimpleName();
@@ -32,11 +37,11 @@ public class IMClientManager
 	/** MobileIMSDK是否已被初始化. true表示已初化完成，否则未初始化. */
 	private boolean init = false;
 	
-	// 
+	/** 基本连接状态事件监听器 */
 	private ChatBaseEventImpl baseEventListener = null;
-	//
+	/** 数据接收事件监听器 */
 	private ChatMessageEventImpl transDataListener = null;
-	//
+	/** 消息送达保证事件监听器 */
 	private MessageQoSEventImpl messageQoSListener = null;
 
 	public static IMClientManager getInstance()
@@ -51,6 +56,9 @@ public class IMClientManager
 		initMobileIMSDK();
 	}
 
+	/**
+	 * MobileIMSDK的初始化方法。
+	 */
 	public void initMobileIMSDK()
 	{
 		if(!init)
@@ -82,6 +90,9 @@ public class IMClientManager
 		}
 	}
 
+	/**
+	 * MobileIMSDK的资源释放方法（退出SDK时使用）。
+	 */
 	public void release()
 	{
 		ClientCoreSDK.getInstance().release();

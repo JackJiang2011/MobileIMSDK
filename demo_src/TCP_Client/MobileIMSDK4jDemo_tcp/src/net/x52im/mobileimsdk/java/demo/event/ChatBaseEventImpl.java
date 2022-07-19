@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021  即时通讯网(52im.net) & Jack Jiang.
+ * Copyright (C) 2022  即时通讯网(52im.net) & Jack Jiang.
  * The MobileIMSDK_TCP (MobileIMSDK v6.x TCP版) Project. 
  * All rights reserved.
  * 
@@ -12,7 +12,7 @@
  *  
  * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
  * 
- * ChatBaseEventImpl.java at 2021-7-7 22:06:46, code by Jack Jiang.
+ * ChatBaseEventImpl.java at 2022-7-16 16:53:48, code by Jack Jiang.
  */
 package net.x52im.mobileimsdk.java.demo.event;
 
