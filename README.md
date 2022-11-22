@@ -210,9 +210,9 @@ MobileIMSDK版本更新日志：[点此查看](http://www.52im.net/thread-1270-1
 ### :triangular_flag_on_post: MobileIMSDK Demo在Android和iOS 运行效果：
 > <code>安装和使用：</code>[进入Android版Demo帮助页](http://www.52im.net/thread-55-1-1.html)、[进入iOS版Demo帮助页](http://www.52im.net/thread-54-1-1.html)。
 
-![](http://jackimgs.52im.net/images/mobileimsdk/preview/andriod_demo_main.png)
+![](http://jackimgs.52im.net/images/mobileimsdk/preview/andriod_demo_main.png?v=221122)
 
-![](http://jackimgs.52im.net/images/mobileimsdk/preview/ios_demo_main.png)
+![](http://jackimgs.52im.net/images/mobileimsdk/preview/ios_demo_main.png?v=221122)
 
 ![](http://jackimgs.52im.net/images/mobileimsdk/preview/more_screenshots/others/ios_android_real_run2.jpg)
 
