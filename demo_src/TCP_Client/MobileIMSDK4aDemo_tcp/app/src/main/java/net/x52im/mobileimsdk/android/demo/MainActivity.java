@@ -197,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
 				@Override
 				protected void onPostExecute(Integer code) {
 					if(code == 0)
-						Log.d(MainActivity.class.getSimpleName(), "2数据已成功发出！");
+						Log.d(TAG, "2数据已成功发出！");
 					else
 						Toast.makeText(getApplicationContext(), "数据发送失败。错误码是："+code+"！", Toast.LENGTH_SHORT).show();
 				}
@@ -205,7 +205,7 @@ public class MainActivity extends AppCompatActivity {
 		}
 		else {
 			showIMInfo_red("接收者id或发送内容为空，发送没有继续!");
-			Log.e(MainActivity.class.getSimpleName(), "msg.len="+msg.length()+",friendId.len="+friendId.length());
+			Log.e(TAG, "msg.len="+msg.length()+",friendId.len="+friendId.length());
 		}
 	}
 	
@@ -233,7 +233,7 @@ public class MainActivity extends AppCompatActivity {
 			protected void onPostExecute(Integer code) {
 				refreshMyid();
 				if(code == 0)
-					Log.d(MainActivity.class.getSimpleName(), "注销登陆请求已完成！");
+					Log.d(TAG, "注销登陆请求已完成！");
 				else
 					Toast.makeText(getApplicationContext(), "注销登陆请求发送失败。错误码是："+code+"！", Toast.LENGTH_SHORT).show();
 			}

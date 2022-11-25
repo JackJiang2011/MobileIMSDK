@@ -15,6 +15,17 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-
+    <style name="edit_text2_style">
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:background">@drawable/shape_edittext_bg</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:textColorHint">@color/bg_gray</item>
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ems">10</item>
+    </style>
 
 </resources>

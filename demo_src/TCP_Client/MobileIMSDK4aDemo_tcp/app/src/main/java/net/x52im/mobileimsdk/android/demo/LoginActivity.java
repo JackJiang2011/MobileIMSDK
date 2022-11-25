@@ -108,7 +108,7 @@ public class LoginActivity extends AppCompatActivity {
 		viewVersion = this.findViewById(R.id.demo_version);
 		
 		// Demo程序的版本号
-		viewVersion.setText(getProgrammVersion());
+		viewVersion.setText("版本："+getProgrammVersion());
 		
 		this.setTitle("MobileIMSDK_TCP v6 Demo登陆");
 	}
@@ -179,7 +179,7 @@ public class LoginActivity extends AppCompatActivity {
 		if (editLoginName.getText().toString().trim().length() > 0) {
 			doLoginImpl();
 		} else
-			Log.e(MainActivity.class.getSimpleName(), "txt.len=" + (editLoginName.getText().toString().trim().length()));
+			Log.e(TAG, "txt.len="+(editLoginName.getText().toString().trim().length()));
 	}
 
 	/**
@@ -206,7 +206,7 @@ public class LoginActivity extends AppCompatActivity {
 			protected void fireAfterSendLogin(int code) {
 				if (code == 0) {
 					Toast.makeText(getApplicationContext(), "数据发送成功！", Toast.LENGTH_SHORT).show();
-					Log.d(MainActivity.class.getSimpleName(), "登陆/连接信息已成功发出！");
+					Log.d(TAG, "登陆/连接信息已成功发出！");
 				} else {
 					Toast.makeText(getApplicationContext(), "数据发送失败。错误码是：" + code + "！", Toast.LENGTH_SHORT).show();
 
@@ -242,7 +242,7 @@ public class LoginActivity extends AppCompatActivity {
 			builder.setIcon(android.R.drawable.ic_dialog_alert);
 			builder.setTitle("Network not avaliable");//
 			builder.setMessage("Current network is not avaliable, set it?");
-			//直接进入手机中的wifi网络设置界面
+			// 点确认按钮直接进入手机中的wifi网络设置界面
 			builder.setPositiveButton("Setting", (dialog, which) -> startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS)));
 			builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
 			builder.create();

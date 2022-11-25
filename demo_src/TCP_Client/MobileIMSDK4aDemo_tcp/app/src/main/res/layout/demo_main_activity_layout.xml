@@ -9,75 +9,72 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="10dp" >
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="15dp" >
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-        <LinearLayout
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="通信状态："
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#666666"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:id="@+id/status_iconView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/gray"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="1px"
+                    />
+
+                <TextView
+                    android:id="@+id/status_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="未连接"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/common_light_red"
+                    android:textSize="14sp"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="通信状态："
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="#666666"
-                android:textSize="14sp" />
+            android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/status_iconView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/gray"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="1px"
-                />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="当前账号："
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/colorGray"
+                    android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/status_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="未连接"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/common_light_red"
-                android:textSize="14sp"
-                android:textStyle="bold"/>
-
+                <TextView
+                    android:id="@+id/myid_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/colorBlue"
+                    android:textSize="14sp" />
+            </LinearLayout>
         </LinearLayout>
-
-        <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="当前账号："
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/colorGray"
-                android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/myid_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="-"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/colorBlue"
-            android:textSize="14sp" />
-    </LinearLayout>
-        </LinearLayout>
-
-
-
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -90,7 +87,7 @@
                 android:id="@+id/logout_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
-                android:background="@drawable/main_search_button_orange_bg"
+                android:background="@drawable/btn_lightred_bg"
                 android:text="退出APP"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
@@ -105,16 +102,16 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="15dp"
         android:scaleType="fitXY"
         android:src="@drawable/dashed_line" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:orientation="vertical" >
 
         <LinearLayout
@@ -123,18 +120,10 @@
 
             <EditText
                 android:id="@+id/id_editText"
-                android:layout_width="wrap_content"
+                android:layout_width="107dp"
                 android:layout_height="40dp"
-                android:layout_weight="1"
-                android:background="@drawable/edittext_bg"
-                android:ems="10"
-                android:hint="对方ID号"
-                android:singleLine="true"
-                android:paddingLeft="6dp"
-                android:paddingRight="6dp"
-                android:textColor="@color/colorText"
-                android:textColorHint="@color/colorTextHint"
-                android:textSize="14sp" >
+                style="@style/edit_text2_style"
+                android:hint="接收方的id" >
             </EditText>
 
             <EditText
@@ -142,15 +131,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_weight="1"
-                android:background="@drawable/edittext_bg"
-                android:ems="10"
-                android:hint="发送内容"
-                android:paddingLeft="6dp"
-                android:paddingRight="6dp"
-                android:singleLine="true"
-                android:textColor="@color/colorText"
-                android:textColorHint="@color/colorTextHint"
-                android:textSize="14sp" />
+                android:layout_marginLeft="10dp"
+                style="@style/edit_text2_style"
+                android:hint="输入要发送的消息" />
         </LinearLayout>
 
         <LinearLayout
@@ -164,7 +147,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_weight="1"
-                android:background="@drawable/main_search_button_green_bg"
+                android:background="@drawable/btn_lightgreen_bg"
                 android:text="发送消息"
                 android:textSize="17sp" />
         </LinearLayout>
@@ -173,7 +156,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="15dp"
         android:layout_marginTop="15dp"
         android:scaleType="fitXY"
         android:src="@drawable/dashed_line" />
@@ -184,15 +167,15 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:paddingLeft="5dp"
-        android:layout_marginBottom="5dp">
+        android:paddingLeft="20dp"
+        android:layout_marginBottom="10dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="线程动态："
-            android:textColor="#007AFF"
-            android:textSize="12sp" />
+            android:textColor="#0A84FF"
+            android:textSize="11sp" />
 
         <ImageView
             android:id="@+id/demo_main_activity_layout_autoLoginFlagIV"
@@ -207,14 +190,14 @@
             android:text="重连线程"
             android:textColor="#AAAAAA"
             android:layout_marginLeft="2dp"
-            android:textSize="12sp" />
+            android:textSize="11sp" />
 
         <ImageView
             android:id="@+id/demo_main_activity_layout_keepAliveFlagIV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/gray"
-            android:layout_marginLeft="7dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="1px"
             />
         <TextView
@@ -223,14 +206,14 @@
             android:text="心跳线程"
             android:textColor="#AAAAAA"
             android:layout_marginLeft="2dp"
-            android:textSize="12sp" />
+            android:textSize="11sp" />
 
         <ImageView
             android:id="@+id/demo_main_activity_layout_qosSendFlagIV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/gray"
-            android:layout_marginLeft="7dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="1px"
             />
         <TextView
@@ -239,14 +222,14 @@
             android:text="送达保证(发)"
             android:textColor="#AAAAAA"
             android:layout_marginLeft="2dp"
-            android:textSize="12sp" />
+            android:textSize="11sp" />
 
         <ImageView
             android:id="@+id/demo_main_activity_layout_qosReceiveFlagIV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/gray"
-            android:layout_marginLeft="7dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="1px"
             />
         <TextView
@@ -255,7 +238,7 @@
             android:text="送达保证(收)"
             android:textColor="#AAAAAA"
             android:layout_marginLeft="2dp"
-            android:textSize="12sp" />
+            android:textSize="11sp" />
     </LinearLayout>
 
     <ListView
