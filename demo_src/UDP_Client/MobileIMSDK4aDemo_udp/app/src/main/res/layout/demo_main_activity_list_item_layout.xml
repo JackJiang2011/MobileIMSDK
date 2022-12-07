@@ -11,8 +11,8 @@
         android:layout_marginBottom="1dp"
         android:layout_marginTop="1dp"
         android:gravity="center_vertical"
-        android:paddingLeft="3dp"
-        android:paddingRight="3dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:text="[20:10]收到一条消息！"
         android:textSize="12sp" />
 

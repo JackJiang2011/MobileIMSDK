@@ -54,8 +54,7 @@ public class GeniusService extends Service {
 	 * the same process as its clients, we don't need to deal with IPC.
 	 */
 	public class LocalBinder extends Binder {
-		public GeniusService getService()
-		{
+		public GeniusService getService() {
 			return GeniusService.this;
 		}
 	}

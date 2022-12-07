@@ -6,8 +6,8 @@ android {
         applicationId "net.x52im.mobileimsdk.android.demo_udp"
         minSdkVersion 14
         targetSdkVersion 31
-        versionCode 104
-        versionName "v6.2b220714.1"
+        versionCode 105
+        versionName "v6.3b221119.1"
     }
     buildTypes {
         release {

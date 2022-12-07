@@ -73,6 +73,8 @@ public class LoginActivity extends AppCompatActivity {
 		
 		// 界面UI基本设置
 		initViews();
+
+		// ui控件事件监听
 		initListeners();
 		
 		// 确保MobileIMSDK被初始化哦（整个APP生生命周期中只需调用一次哦）
@@ -96,16 +98,16 @@ public class LoginActivity extends AppCompatActivity {
 	}
 	
 	private void initViews() {
-		editServerIp = (EditText)this.findViewById(R.id.serverIP_editText);
-		editServerPort = (EditText)this.findViewById(R.id.serverPort_editText);
+		editServerIp = this.findViewById(R.id.serverIP_editText);
+		editServerPort = this.findViewById(R.id.serverPort_editText);
 		
-		btnLogin = (Button)this.findViewById(R.id.login_btn);
-		editLoginName = (EditText)this.findViewById(R.id.loginName_editText);
-		editLoginPsw = (EditText)this.findViewById(R.id.loginPsw_editText);
-		viewVersion = (TextView)this.findViewById(R.id.demo_version);
+		btnLogin = this.findViewById(R.id.login_btn);
+		editLoginName = this.findViewById(R.id.loginName_editText);
+		editLoginPsw = this.findViewById(R.id.loginPsw_editText);
+		viewVersion = this.findViewById(R.id.demo_version);
 		
 		// Demo程序的版本号
-		viewVersion.setText(getProgrammVersion());
+		viewVersion.setText("版本："+getProgrammVersion());
 		
 		this.setTitle("MobileIMSDK_UDP v6 Demo登陆");
 	}
@@ -149,7 +151,7 @@ public class LoginActivity extends AppCompatActivity {
 	 * @see #doLoginImpl()
 	 */
 	private void doLogin() {
-		if(!CheckNetworkState())
+		if (!checkNetworkState())
 			return;
 		
 		// 设置服务器地址和端口号
@@ -227,7 +229,7 @@ public class LoginActivity extends AppCompatActivity {
 		}
 	}
 
-	private boolean CheckNetworkState() {
+	private boolean checkNetworkState() {
 		boolean flag = false;
 		ConnectivityManager manager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
 		if(manager.getActiveNetworkInfo() != null) {

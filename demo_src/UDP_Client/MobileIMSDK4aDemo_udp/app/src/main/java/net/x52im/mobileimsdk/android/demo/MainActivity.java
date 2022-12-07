@@ -96,9 +96,8 @@ public class MainActivity extends AppCompatActivity {
 	protected void onResume() {
 		super.onResume();
 
-		// just for debug START
-		// Refresh MobileIMSDK background status to show
-		this.refreshMobileIKSDKThreadStatusForDEBUG();
+		// just for debug START：Refresh MobileIMSDK background status to show
+    	this.refreshMobileIKSDKThreadStatusForDEBUG();
 		// just for debug END
 	}
 
@@ -121,7 +120,8 @@ public class MainActivity extends AppCompatActivity {
 		// 释放IM占用资源
 		IMClientManager.getInstance(this).release();
 
-		// 解绑前台服务（注意：该服务仅用于提升Demo的运行优先级，确保在高版本Andriod系统上进程保活和网络保活，此服务与SDK本身无关，也不是必须的）
+		// 解绑前台服务（注意：该服务仅用于提升Demo的运行优先级，确保在高版本
+		// Andriod系统上进程保活和网络保活，此服务与SDK本身无关，也不是必须的）
 		doUnbindService();
 
 		super.onDestroy();
@@ -130,14 +130,14 @@ public class MainActivity extends AppCompatActivity {
 	private void initViews() {
 		btnLogout = (Button)this.findViewById(R.id.logout_btn);
 		
-		btnSend = (Button)this.findViewById(R.id.send_btn);
-		editId = (EditText)this.findViewById(R.id.id_editText);
-		editContent = (EditText)this.findViewById(R.id.content_editText);
-		viewStatus = (TextView)this.findViewById(R.id.status_view);
-		imgStatus = (ImageView)this.findViewById(R.id.status_iconView);
-		viewMyid = (TextView)this.findViewById(R.id.myid_view);
+		btnSend = this.findViewById(R.id.send_btn);
+		editId = this.findViewById(R.id.id_editText);
+		editContent = this.findViewById(R.id.content_editText);
+		viewStatus = this.findViewById(R.id.status_view);
+		imgStatus = this.findViewById(R.id.status_iconView);
+		viewMyid = this.findViewById(R.id.myid_view);
 		
-		chatInfoListView = (ListView)this.findViewById(R.id.demo_main_activity_layout_listView);
+		chatInfoListView = this.findViewById(R.id.demo_main_activity_layout_listView);
 		chatInfoListAdapter = new MyAdapter(this);
 		chatInfoListView.setAdapter(chatInfoListAdapter);
 
@@ -366,8 +366,7 @@ public class MainActivity extends AppCompatActivity {
 			boundService = ((GeniusService.LocalBinder)service).getService();
 		}
 
-		public void onServiceDisconnected(ComponentName className)
-		{
+		public void onServiceDisconnected(ComponentName className) {
 			boundService = null;
 		}
 	};

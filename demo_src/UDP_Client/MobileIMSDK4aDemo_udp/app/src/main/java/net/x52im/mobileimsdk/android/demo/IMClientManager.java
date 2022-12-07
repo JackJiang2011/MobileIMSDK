@@ -85,7 +85,10 @@ public class IMClientManager {
 			init = true;
 		}
 	}
-	
+
+	/**
+	 * MobileIMSDK的资源释放方法（退出SDK时使用）。
+	 */
 	public void release() {
 		ClientCoreSDK.getInstance().release();
 		resetInitFlag();
@@ -97,7 +100,6 @@ public class IMClientManager {
 	 * <b>重要说明：</b>不退出APP的情况下，重新登陆时记得调用一下本方法，不然再
 	 * 次调用 {@link #initMobileIMSDK()} 时也不会重新初始化MobileIMSDK（
 	 * 详见 {@link #initMobileIMSDK()}代码）而报 code=203错误！
-	 * 
 	 */
 	public void resetInitFlag() {
 		init = false;

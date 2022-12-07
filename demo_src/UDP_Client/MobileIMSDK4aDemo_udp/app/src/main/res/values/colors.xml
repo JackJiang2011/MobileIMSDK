@@ -6,7 +6,7 @@
 
     <color name="colorWhite">#ffffff</color>
     <color name="colorBlack">#000000</color>
-    <color name="colorBlue">#ff007aff</color>
+    <color name="colorBlue">#ff0A84FF</color>
     <color name="colorGray">#aaaaaa</color>
 
     <color name="colorText">#353535</color>
@@ -14,5 +14,7 @@
 
     <color name="common_light_green">#42c958</color>
     <color name="common_light_red">#FF00FF</color>
+
+    <color name="bg_gray">#A5A7AB</color>
 
 </resources>
