@@ -29,6 +29,7 @@
 #import "ConfigEntity.h"
 #import "LoginViewController.h"
 #import "IMClientManager.h"
+#import "NavigationController.h"
 
 @interface AppDelegate ()
 
@@ -45,7 +46,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     LoginViewController *loginViewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController"  bundle:nil];
-    UINavigationController* nav = [[UINavigationController alloc] initWithRootViewController:loginViewController];
+    NavigationController* nav = [[NavigationController alloc] initWithRootViewController:loginViewController];
     self.window.rootViewController = nav;
     
     [self.window makeKeyAndVisible];
@@ -58,7 +59,7 @@
     if (self.viewController == nil)
         self.viewController	= [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
     
-    UINavigationController  *navRoot = [[UINavigationController alloc] initWithRootViewController:self.viewController];
+    NavigationController  *navRoot = [[NavigationController alloc] initWithRootViewController:self.viewController];
     self.window.rootViewController = navRoot;
 }
 

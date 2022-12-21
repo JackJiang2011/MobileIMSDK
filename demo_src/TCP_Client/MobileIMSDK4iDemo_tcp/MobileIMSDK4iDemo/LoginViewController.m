@@ -68,7 +68,7 @@
     
     // 显示Demo程序的版本号
     NSBundle *mainBundle = [NSBundle mainBundle];
-    self.versionView.text = [NSString stringWithFormat:@"%@%@"
+    self.versionView.text = [NSString stringWithFormat:@"版本：%@%@"
             , [[mainBundle infoDictionary] objectForKey:@"CFBundleShortVersionString"]
             , [[mainBundle infoDictionary] objectForKey:@"CFBundleVersion"]];
 }

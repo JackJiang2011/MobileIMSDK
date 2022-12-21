@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA1772612924E97600866354 /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1772602924E97600866354 /* NavigationController.m */; };
 		EA3969C81A0DEFA40099FBF9 /* green_light@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA3969C71A0DEFA40099FBF9 /* green_light@2x.png */; };
 		EA48F5421BEF816C007AE6A1 /* UIViewController+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = EA48F5411BEF816C007AE6A1 /* UIViewController+Ext.m */; };
 		EA48F5461BEF8FE0007AE6A1 /* IMClientManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA48F5451BEF8FE0007AE6A1 /* IMClientManager.m */; };
@@ -45,6 +46,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EA17725F2924E97600866354 /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NavigationController.h; path = MobileIMSDK4iDemo/NavigationController.h; sourceTree = "<group>"; };
+		EA1772602924E97600866354 /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NavigationController.m; path = MobileIMSDK4iDemo/NavigationController.m; sourceTree = "<group>"; };
 		EA2746AA1BC40BAA004157D4 /* libMobileIMSDK4i_common.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMobileIMSDK4i_common.a; path = MobileIMSDK4iLib/libMobileIMSDK4i_common.a; sourceTree = "<group>"; };
 		EA33F7AF24B5B84A00E81885 /* PKeepAliveResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKeepAliveResponse.h; sourceTree = "<group>"; };
 		EA33F7B024B5B84A00E81885 /* NSMutableDictionary+Ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+Ext.h"; sourceTree = "<group>"; };
@@ -207,6 +210,8 @@
 		EA48F5431BEF8F3F007AE6A1 /* demo_gui */ = {
 			isa = PBXGroup;
 			children = (
+				EA17725F2924E97600866354 /* NavigationController.h */,
+				EA1772602924E97600866354 /* NavigationController.m */,
 				EAD0143F1BF34B5000D4A052 /* LaunchScreen.xib */,
 				EA48F5401BEF816C007AE6A1 /* UIViewController+Ext.h */,
 				EA48F5411BEF816C007AE6A1 /* UIViewController+Ext.m */,
@@ -456,6 +461,7 @@
 				EA8E53BE19FF818400F9CE5B /* MessageQoSEventImpl.m in Sources */,
 				EA8B2E4126974AB200637331 /* Utils.m in Sources */,
 				EA79B3311BF0993700D214F5 /* OnLoginProgress.m in Sources */,
+				EA1772612924E97600866354 /* NavigationController.m in Sources */,
 				EAD3047B19F60C2D00B75F51 /* MainViewController.m in Sources */,
 				EA8BDD2C1BEEFB190069EF2B /* LoginViewController.m in Sources */,
 				EAD3047819F60C2D00B75F51 /* AppDelegate.m in Sources */,
@@ -566,7 +572,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = b220716.1;
+				CURRENT_PROJECT_VERSION = b221117.1;
 				DEVELOPMENT_TEAM = A3GUV2D3KJ;
 				INFOPLIST_FILE = MobileIMSDK4iDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -579,7 +585,7 @@
 					"$(PROJECT_DIR)/MobileIMSDK4iLib",
 					"$(PROJECT_DIR)/MobileIMSDK4iLib/usr",
 				);
-				MARKETING_VERSION = 6.2;
+				MARKETING_VERSION = 6.3;
 				PRODUCT_BUNDLE_IDENTIFIER = net.52im.MobileIMSDK4iDemoTCP;
 				PRODUCT_NAME = MobileIMSDKDemoTCP;
 				PROVISIONING_PROFILE = "";
@@ -593,7 +599,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = b220716.1;
+				CURRENT_PROJECT_VERSION = b221117.1;
 				DEVELOPMENT_TEAM = A3GUV2D3KJ;
 				INFOPLIST_FILE = MobileIMSDK4iDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -606,7 +612,7 @@
 					"$(PROJECT_DIR)/MobileIMSDK4iLib",
 					"$(PROJECT_DIR)/MobileIMSDK4iLib/usr",
 				);
-				MARKETING_VERSION = 6.2;
+				MARKETING_VERSION = 6.3;
 				PRODUCT_BUNDLE_IDENTIFIER = net.52im.MobileIMSDK4iDemoTCP;
 				PRODUCT_NAME = MobileIMSDKDemoTCP;
 				PROVISIONING_PROFILE = "";

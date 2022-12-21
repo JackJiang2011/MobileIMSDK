@@ -136,7 +136,7 @@ static const int TABLE_CELL_COLOR_GREEN      = 4;
     BOOL connectedToServer = [ClientCoreSDK sharedInstance].connectedToServer;
     if(connectedToServer) {
         self.connectStatus.text = @"通信正常";
-        self.connectStatus.textColor = [UIColor colorWithRed:66/255.0f green:201/255.0f blue:88/255.0f alpha:1];
+        self.connectStatus.textColor = [UIColor colorWithRed:91/255.0f green:198/255.0f blue:72/255.0f alpha:1];
         [self.connectStatusIcon setImage:[UIImage imageNamed:@"green"]];
     }
     else{
