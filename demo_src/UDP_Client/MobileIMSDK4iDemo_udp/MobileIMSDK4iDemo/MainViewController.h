@@ -33,8 +33,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 /*!
- *  @Author Jack Jiang, 14-11-08 15:11:53
- *
  *  退出登陆事件处理。
  *
  *  @param sender

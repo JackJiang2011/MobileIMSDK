@@ -68,7 +68,7 @@
     
     // 显示Demo程序的版本号
     NSBundle *mainBundle = [NSBundle mainBundle];
-    self.versionView.text = [NSString stringWithFormat:@"%@%@"
+    self.versionView.text = [NSString stringWithFormat:@"版本：%@%@"
             , [[mainBundle infoDictionary] objectForKey:@"CFBundleShortVersionString"]
             , [[mainBundle infoDictionary] objectForKey:@"CFBundleVersion"]];
 }
@@ -135,9 +135,7 @@
     //** 设置服务器地址和端口号
     NSString *serverIP = [self.addrField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSString *serverPort = self.portField.text;
-    //	int serverPort = [self.portField.text intValue];;
-    if(!([serverIP length] <= 0)
-       && !([serverPort length] <= 0))
+    if(!([serverIP length] <= 0) && !([serverPort length] <= 0))
     {
         // 设置好服务端的连接地址
         [ConfigEntity setServerIp:serverIP];
@@ -147,7 +145,7 @@
     else
     {
         [self E_showToastInfo:@"提示" withContent:@"请确保服务端地址和端口号都不为空！" onParent:self.view];
-        //        [self showIMInfo_red: @"请确保服务端地址和端口号都不为空！"];
+//      [self showIMInfo_red: @"请确保服务端地址和端口号都不为空！"];
         return;
     }
     

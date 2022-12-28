@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" variant="6xAndEarlier" propertyAccessControl="none" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" variant="6xAndEarlier" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment version="2048" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,22 +13,27 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="16"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="15.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="16"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dgS-ce-tF9" userLabel="lb-conent">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="16"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgS-ce-tF9" userLabel="lb-conent">
+                        <rect key="frame" x="15" y="0.0" width="290" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="dgS-ce-tF9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="0HQ-EY-pnV"/>
+                    <constraint firstItem="dgS-ce-tF9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Czl-mW-hFR"/>
+                    <constraint firstAttribute="trailing" secondItem="dgS-ce-tF9" secondAttribute="trailing" constant="15" id="EVg-ON-VnL"/>
+                    <constraint firstAttribute="bottom" secondItem="dgS-ce-tF9" secondAttribute="bottom" id="z1j-yH-CJz"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="lbContent" destination="dgS-ce-tF9" id="dSq-ql-eXH"/>
             </connections>
-            <point key="canvasLocation" x="10" y="-1"/>
+            <point key="canvasLocation" x="15.384615384615383" y="-0.7109004739336493"/>
         </tableViewCell>
     </objects>
 </document>

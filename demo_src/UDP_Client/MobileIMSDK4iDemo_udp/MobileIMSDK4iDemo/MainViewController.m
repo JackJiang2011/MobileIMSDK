@@ -136,7 +136,7 @@ static const int TABLE_CELL_COLOR_GREEN      = 4;
     BOOL connectedToServer = [ClientCoreSDK sharedInstance].connectedToServer;
     if(connectedToServer) {
         self.connectStatus.text = @"通信正常";
-        self.connectStatus.textColor = [UIColor colorWithRed:66/255.0f green:201/255.0f blue:88/255.0f alpha:1];
+        self.connectStatus.textColor = [UIColor colorWithRed:91/255.0f green:198/255.0f blue:72/255.0f alpha:1];
         [self.connectStatusIcon setImage:[UIImage imageNamed:@"green"]];
     }
     else{
@@ -184,12 +184,12 @@ static const int TABLE_CELL_COLOR_GREEN      = 4;
     int code = [[LocalDataSender sharedInstance] sendLoginout];
     if(code == COMMON_CODE_OK)
     {
-        [self E_showToastInfo:@"提示" withContent:@"注销登录请求已完成。。。" onParent:self.view];
+        [self E_showToastInfo:@"提示" withContent:@"注销登陆请求已完成。。。" onParent:self.view];
         [self refreshConnecteStatus];
     }
     else
     {
-        NSString *msg = [NSString stringWithFormat:@"注销登录请求发送失败，错误码：%d", code];
+        NSString *msg = [NSString stringWithFormat:@"注销登陆请求发送失败，错误码：%d", code];
         [self E_showToastInfo:@"错误" withContent:msg onParent:self.view];
     }
 
