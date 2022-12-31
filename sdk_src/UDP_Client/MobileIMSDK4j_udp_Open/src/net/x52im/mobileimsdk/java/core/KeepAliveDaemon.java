@@ -46,8 +46,13 @@ public class KeepAliveDaemon {
 	private Timer keepAliveTimeoutTimer = null;
 	
 	public static KeepAliveDaemon getInstance() {
-		if (instance == null)
-			instance = new KeepAliveDaemon();
+		if (instance == null) {
+			synchronized (KeepAliveDaemon.class) {
+				if (instance == null) {
+					instance = new KeepAliveDaemon();
+				}
+			}
+		}
 		return instance;
 	}
 

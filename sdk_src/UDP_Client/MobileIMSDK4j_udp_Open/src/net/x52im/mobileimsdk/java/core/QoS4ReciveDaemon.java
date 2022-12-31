@@ -40,9 +40,13 @@ public class QoS4ReciveDaemon {
 	private Timer timer = null;
 
 	public static QoS4ReciveDaemon getInstance() {
-		if (instance == null)
-			instance = new QoS4ReciveDaemon();
-
+		if (instance == null) {
+			synchronized (QoS4ReciveDaemon.class) {
+				if (instance == null) {
+					instance = new QoS4ReciveDaemon();
+				}
+			}
+		}
 		return instance;
 	}
 

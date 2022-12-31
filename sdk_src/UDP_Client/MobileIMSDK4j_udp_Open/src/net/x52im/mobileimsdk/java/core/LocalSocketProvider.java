@@ -30,8 +30,13 @@ public class LocalSocketProvider {
 	private DatagramSocket localSocket = null;
 
 	public static LocalSocketProvider getInstance() {
-		if (instance == null)
-			instance = new LocalSocketProvider();
+		if (instance == null) {
+			synchronized (LocalSocketProvider.class) {
+				if (instance == null) {
+					instance = new LocalSocketProvider();
+				}
+			}
+		}
 		return instance;
 	}
 

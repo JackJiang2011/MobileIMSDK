@@ -36,8 +36,13 @@ public class LocalDataSender {
 	private static LocalDataSender instance = null;
 
 	public static LocalDataSender getInstance() {
-		if (instance == null)
-			instance = new LocalDataSender();
+		if (instance == null) {
+			synchronized (LocalDataSender.class) {
+				if (instance == null) {
+					instance = new LocalDataSender();
+				}
+			}
+		}
 		return instance;
 	}
 
