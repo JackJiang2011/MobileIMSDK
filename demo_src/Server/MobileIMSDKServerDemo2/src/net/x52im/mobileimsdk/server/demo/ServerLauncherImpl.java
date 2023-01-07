@@ -16,7 +16,12 @@
  */
 package net.x52im.mobileimsdk.server.demo;
 
+import io.netty.handler.ssl.ClientAuth;
+import io.netty.handler.ssl.SslContext;
+import io.netty.handler.ssl.SslContextBuilder;
+
 import java.io.IOException;
+import java.io.InputStream;
 
 import net.x52im.mobileimsdk.server.ServerLauncher;
 import net.x52im.mobileimsdk.server.network.Gateway;
@@ -28,6 +33,9 @@ import net.x52im.mobileimsdk.server.qos.QoS4SendDaemonS2C;
 import net.x52im.mobileimsdk.server.utils.ServerToolKits;
 import net.x52im.mobileimsdk.server.utils.ServerToolKits.SenseModeTCP;
 import net.x52im.mobileimsdk.server.utils.ServerToolKits.SenseModeWebsocket;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * IM服务的启动主类。
@@ -41,6 +49,8 @@ import net.x52im.mobileimsdk.server.utils.ServerToolKits.SenseModeWebsocket;
  */
 public class ServerLauncherImpl extends ServerLauncher
 {
+	private static Logger logger = LoggerFactory.getLogger(ServerLauncherImpl.class);  
+	
 	/**
 	 * 静态类方法：进行一些全局配置设置。
 	 */
@@ -79,6 +89,12 @@ public class ServerLauncherImpl extends ServerLauncher
 		
 		// 设置最大TCP帧内容长度（不设置则默认最大是 6 * 1024字节）
 //		GatewayTCP.TCP_FRAME_MAX_BODY_LENGTH = 60 * 1024;
+		
+		SslContext sslContext = createSslContext();
+		// 开启TCP协议的SSL/TLS加密传输（请确保客户端也已开发SSL）
+//		GatewayTCP.sslContext = sslContext;
+		// 开启WebSocket协议的SSL/TLS加密传输（请确保SSL证书是正规CA签发，否则浏览器是不允许的）
+//		GatewayWebsocket.sslContext = sslContext;
 	}
 	
 	/**
@@ -102,6 +118,53 @@ public class ServerLauncherImpl extends ServerLauncher
 		this.setServerMessageQoSEventListener(new MessageQoSEventS2CListnerImpl());
     }
 	
+	/**
+	 * 创建SslContext对象，用于开启SSL/TLS加密传输。
+	 * 
+	 * @return 如果成功创建则返回SslContext对象，否则返回null
+	 */
+	private static SslContext createSslContext()
+	{		
+		try {
+			/** 示例 1：使用证书（证书位于绝对路径）*/
+//			// 证书文件
+//			File certChainFile = new File("c:/certs/netty-cert2.crt");
+//			// 证书文件
+//			File keyFile = new File("c:/certs/netty-key2.pk8");
+//			// 私钥密码（注意：Netty只支持.pk8格式，如何生成，见JackJiang文章：）
+//			String keyPassword = "123456";
+//			// 生成SslContext对象（为了方便理解，此处使用的是单向认证）
+//			SslContext sslCtx = SslContextBuilder.forServer(certChainFile, keyFile, keyPassword).clientAuth(ClientAuth.NONE).build();
+				
+			/** 示例 2：使用证书（证书位于相对路径）*/
+			// TODO: 注意：请使用自已的证书，Demo中带的证书为自签名证书且已绑定域名，不安全！！！
+			// 证书文件
+			InputStream certChainFile = ServerLauncherImpl.class.getResourceAsStream("certs/netty-cert2.crt");
+			// 私钥文件（注意：Netty只支持.pk8格式，如何生成，见JackJiang文章：）
+			InputStream keyFile = ServerLauncherImpl.class.getResourceAsStream("certs/netty-key2.pk8");
+			// 私钥密码（注意：Netty只支持.pk8格式，如何生成，见JackJiang文章：）
+			String keyPassword = "123456";
+			// 生成SslContext对象（为了方便理解，此处使用的是单向认证）
+			SslContext sslCtx = SslContextBuilder.forServer(certChainFile, keyFile, keyPassword).clientAuth(ClientAuth.NONE).build();
+				
+			/** 示例 3：使用Netty自带的自签名证书（建议该证书仅用于测试使用）*/
+//			SelfSignedCertificate ssc = new SelfSignedCertificate();
+//			SslContext sslCtx = SslContextBuilder.forServer(ssc.certificate(), ssc.privateKey()).build();
+				
+			return sslCtx;
+		} catch (Exception e) {
+		 	logger.warn("createSslContext()时出错了，原因："+e.getMessage(), e);
+		}
+		
+		return null;
+	}
+	
+	/**
+	 * Demo程序主入口函数。
+	 * 
+	 * @param args
+	 * @throws Exception
+	 */
     public static void main(String[] args) throws Exception 
     {
     	// 实例化后记得startup哦，单独startup()的目的是让调用者可以延迟决定何时真正启动IM服务
