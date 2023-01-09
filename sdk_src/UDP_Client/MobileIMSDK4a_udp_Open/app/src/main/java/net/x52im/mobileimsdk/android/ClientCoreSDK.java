@@ -57,8 +57,13 @@ public class ClientCoreSDK {
     private Context context = null;
 
     public static ClientCoreSDK getInstance() {
-        if (instance == null)
-            instance = new ClientCoreSDK();
+        if (instance == null) {
+            synchronized (ClientCoreSDK.class) {
+                if (instance == null) {
+                    instance = new ClientCoreSDK();
+                }
+            }
+        }
         return instance;
     }
 

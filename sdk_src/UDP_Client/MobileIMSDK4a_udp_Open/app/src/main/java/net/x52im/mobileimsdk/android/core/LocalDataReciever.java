@@ -34,8 +34,13 @@ public class LocalDataReciever {
     private boolean init = false;
 
     public static LocalDataReciever getInstance() {
-        if (instance == null)
-            instance = new LocalDataReciever();
+        if (instance == null) {
+            synchronized (LocalDataReciever.class) {
+                if (instance == null) {
+                    instance = new LocalDataReciever();
+                }
+            }
+        }
         return instance;
     }
 
