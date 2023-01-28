@@ -43,9 +43,13 @@ public class QoS4SendDaemon
 	private Timer timer = null;
 	
 	public static QoS4SendDaemon getInstance(){
-		if(instance == null)
-			instance = new QoS4SendDaemon();
-		
+		if (instance == null) {
+			synchronized (QoS4SendDaemon.class) {
+				if (instance == null) {
+					instance = new QoS4SendDaemon();
+				}
+			}
+		}
 		return instance;
 	}
 	

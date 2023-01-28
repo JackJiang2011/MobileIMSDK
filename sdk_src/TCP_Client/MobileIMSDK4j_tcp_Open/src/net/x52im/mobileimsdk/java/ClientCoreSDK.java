@@ -44,8 +44,13 @@ public class ClientCoreSDK {
 	private MessageQoSEvent messageQoSEvent = null;
 
 	public static ClientCoreSDK getInstance() {
-		if (instance == null)
-			instance = new ClientCoreSDK();
+		if (instance == null) {
+			synchronized (ClientCoreSDK.class) {
+				if (instance == null) {
+					instance = new ClientCoreSDK();
+				}
+			}
+		}
 		return instance;
 	}
 
