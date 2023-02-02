@@ -43,8 +43,13 @@ public class QoS4ReciveDaemon {
     private Observer debugObserver;
 
     public static QoS4ReciveDaemon getInstance() {
-        if (instance == null)
-            instance = new QoS4ReciveDaemon();
+        if (instance == null) {
+            synchronized (QoS4ReciveDaemon.class) {
+                if (instance == null) {
+                    instance = new QoS4ReciveDaemon();
+                }
+            }
+        }
         return instance;
     }
 

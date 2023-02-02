@@ -38,14 +38,16 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import io.netty.handler.codec.LengthFieldPrepender;
+import io.netty.handler.ssl.SslContext;
 import io.netty.util.CharsetUtil;
 
 public class LocalSocketProvider {
     private final static String TAG = LocalSocketProvider.class.getSimpleName();
 
-    public static int TCP_FRAME_FIXED_HEADER_LENGTH = 4;     // 4 bytes
+    public static int TCP_FRAME_FIXED_HEADER_LENGTH = 4;    // 4 bytes
     public static int TCP_FRAME_MAX_BODY_LENGTH = 6 * 1024; // 6K bytes
 
+    public static SslContext sslContext = null;
     private static LocalSocketProvider instance = null;
 
     private Bootstrap bootstrap = null;
@@ -54,8 +56,13 @@ public class LocalSocketProvider {
     private MBObserver connectionDoneObserver;
 
     public static LocalSocketProvider getInstance() {
-        if (instance == null)
-            instance = new LocalSocketProvider();
+        if (instance == null) {
+            synchronized (LocalSocketProvider.class) {
+                if (instance == null) {
+                    instance = new LocalSocketProvider();
+                }
+            }
+        }
         return instance;
     }
 
@@ -195,10 +202,19 @@ public class LocalSocketProvider {
         }
     }
 
+    public static boolean isSsl() {
+        return sslContext != null;
+    }
+
     private class TCPChannelInitializerHandler extends ChannelInitializer<Channel> {
         @Override
         protected void initChannel(Channel ch) throws Exception {
             ChannelPipeline pipeline = ch.pipeline();
+
+            if(sslContext != null) {
+                pipeline.addFirst("ssl", sslContext.newHandler(ch.alloc()));
+            }
+
             pipeline.addLast("frameDecoder", new LengthFieldBasedFrameDecoder(
                     TCP_FRAME_FIXED_HEADER_LENGTH + TCP_FRAME_MAX_BODY_LENGTH
                     , 0, TCP_FRAME_FIXED_HEADER_LENGTH, 0, TCP_FRAME_FIXED_HEADER_LENGTH));

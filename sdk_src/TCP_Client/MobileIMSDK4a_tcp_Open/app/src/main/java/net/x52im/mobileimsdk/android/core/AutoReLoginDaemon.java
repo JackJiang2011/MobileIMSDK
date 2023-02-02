@@ -40,8 +40,13 @@ public class AutoReLoginDaemon {
     private Observer debugObserver;
 
     public static AutoReLoginDaemon getInstance() {
-        if (instance == null)
-            instance = new AutoReLoginDaemon();
+        if (instance == null) {
+            synchronized (AutoReLoginDaemon.class) {
+                if (instance == null) {
+                    instance = new AutoReLoginDaemon();
+                }
+            }
+        }
         return instance;
     }
 
