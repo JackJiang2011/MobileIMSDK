@@ -18,11 +18,17 @@ package net.x52im.mobileimsdk.android.demo;
 
 import net.x52im.mobileimsdk.android.ClientCoreSDK;
 import net.x52im.mobileimsdk.android.conf.ConfigEntity;
+import net.x52im.mobileimsdk.android.core.LocalSocketProvider;
 import net.x52im.mobileimsdk.android.demo.event.ChatBaseEventImpl;
 import net.x52im.mobileimsdk.android.demo.event.ChatMessageEventImpl;
 import net.x52im.mobileimsdk.android.demo.event.MessageQoSEventImpl;
 
 import android.content.Context;
+import android.util.Log;
+
+import io.netty.handler.ssl.SslContext;
+import io.netty.handler.ssl.SslContextBuilder;
+import io.netty.handler.ssl.util.InsecureTrustManagerFactory;
 
 /**
  * MobileIMSDK的管理类。
@@ -31,6 +37,8 @@ import android.content.Context;
  * @author Jack Jiang(http://www.52im.net/thread-2792-1-1.html)
  */
 public class IMClientManager {
+	private final static String TAG = IMClientManager.class.getSimpleName();
+
 	private static IMClientManager instance = null;
 	
 	/** MobileIMSDK是否已被初始化. true表示已初化完成，否则未初始化. */
@@ -74,6 +82,9 @@ public class IMClientManager {
 			// 开启/关闭DEBUG信息输出
 //	    	ClientCoreSDK.DEBUG = false;
 
+			// 开启SSL/TLS加密传输（请确保服务端也已开启SSL）
+//			LocalSocketProvider.sslContext = createSslContext();
+
 			// 【特别注意】请确保首先进行核心库的初始化（这是不同于iOS和Java端的地方)
 			ClientCoreSDK.getInstance().init(this.context);
 
@@ -87,6 +98,23 @@ public class IMClientManager {
 
 			init = true;
 		}
+	}
+
+	/**
+	 * 创建SslContext对象，用于开启SSL/TLS加密传输。
+	 *
+	 * @return 如果成功创建则返回SslContext对象，否则返回null
+	 */
+	public SslContext createSslContext() {
+		SslContext sslContext = null;
+		try {
+			sslContext = SslContextBuilder.forClient().trustManager(InsecureTrustManagerFactory.INSTANCE).build();
+			Log.d(TAG, "【IMCORE-TCP】已开启SSL/TLS加密(单向认证)，且sslContext创建成功。");
+		} catch (Exception e) {
+			Log.w(TAG, "【IMCORE-TCP】创建sslContext时出错，原因是：" + e.getMessage(), e);
+		}
+
+		return sslContext;
 	}
 
 	/**
