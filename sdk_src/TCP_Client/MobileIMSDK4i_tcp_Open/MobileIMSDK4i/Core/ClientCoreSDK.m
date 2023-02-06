@@ -33,6 +33,8 @@
 static BOOL ENABLED_DEBUG = NO;
 static BOOL autoReLogin = YES;
 
+static BOOL SSL = NO;
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - 私有API
@@ -79,6 +81,15 @@ static ClientCoreSDK *instance = nil;
 + (void) setAutoReLogin:(BOOL)arl
 {
     autoReLogin = arl;
+}
+
++ (void) setSSL:(BOOL)ssl
+{
+    SSL = ssl;
+}
++ (int) isSSL
+{
+    return SSL;
 }
 
 

@@ -43,6 +43,9 @@
 + (BOOL) isAutoReLogin;
 + (void) setAutoReLogin:(BOOL)arl;
 
++ (void) setSSL:(BOOL)ssl;
++ (int) isSSL;
+
 
 //------------------------------------------------------
 #pragma mark - 实例方法
@@ -51,6 +54,5 @@
 - (void) releaseCore;
 
 - (void) saveFirstLoginTime:(long)firstLoginTime;
-
 - (NSString *) currentLoginUserId;
 @end

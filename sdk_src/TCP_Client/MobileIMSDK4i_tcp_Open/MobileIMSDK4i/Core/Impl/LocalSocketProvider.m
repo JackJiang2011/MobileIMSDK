@@ -144,6 +144,15 @@ static LocalSocketProvider *instance = nil;
     self.connectionCompletionOnce_ = connObserver;
 }
 
+- (void) whenDidConnect:(MBGCDAsyncSocket *)socket
+{
+    if(self.connectionCompletionOnce_ != nil)
+        self.connectionCompletionOnce_(YES);
+    
+    [socket readDataToLength:[TCPFrameCodec getTCP_FRAME_FIXED_HEADER_LENGTH] withTimeout:-1 tag:TCP_TAG_FIXED_LENGTH_HEADER];
+}
+
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - GCDAsyncSocketDelegate代码实现
@@ -197,12 +206,15 @@ static LocalSocketProvider *instance = nil;
 - (void)socket:(MBGCDAsyncSocket *)socket didConnectToHost:(NSString *)host port:(uint16_t)port
 {
     if([ClientCoreSDK isENABLED_DEBUG])
-        NSLog(@"【IMCORE-TCP-SOCKET】成收到的了TCP的connect反馈, isConnected?%d", [socket isConnected]);
-
-    if(self.connectionCompletionOnce_ != nil)
-        self.connectionCompletionOnce_(YES);
+        NSLog(@"【IMCORE-TCP-SOCKET】成收到的了TCP的connect反馈, isConnected? %d、已开启ssl加密? %d", [socket isConnected], [ClientCoreSDK isSSL]);
     
-    [socket readDataToLength:[TCPFrameCodec getTCP_FRAME_FIXED_HEADER_LENGTH] withTimeout:-1 tag:TCP_TAG_FIXED_LENGTH_HEADER];
+    if(![ClientCoreSDK isSSL]) {
+        [self whenDidConnect:socket];
+    } else {
+        NSMutableDictionary *settings = [NSMutableDictionary dictionaryWithCapacity:3];
+        [settings setObject:@YES forKey:GCDAsyncSocketManuallyEvaluateTrust];
+        [socket startTLS:settings];
+    }
 }
 
 - (void)socketDidDisconnect:(MBGCDAsyncSocket *)sock withError:(nullable NSError *)err
@@ -220,5 +232,22 @@ static LocalSocketProvider *instance = nil;
         [[KeepAliveDaemon sharedInstance] notifyConnectionLost];
     }
 }
+
+- (void)socketDidSecure:(MBGCDAsyncSocket *)socket
+{
+    [self whenDidConnect:socket];
+}
+
+- (void)socket:(MBGCDAsyncSocket *)sock didReceiveTrust:(SecTrustRef)trust completionHandler:(void (^)(BOOL shouldTrustPeer))completionHandler
+{
+    NSLog(@"【IMCORE-TCP-SOCKET】didReceiveTrust...");
+    
+    // 以下没有做更复杂的ssl证书验证逻辑，如您需要实现更强大的双向认证等逻辑，可以参考这里：
+    // https://github.com/FuangCao/cavan/blob/338ca8c09d6c78c5b38b95c6ffe994241afcc96e/xcode/TestSSL/TestSSL/ViewController.m
+    if(completionHandler) {
+        completionHandler(YES);
+    }
+}
+
 
 @end
