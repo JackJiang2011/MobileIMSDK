@@ -61,21 +61,36 @@ public abstract class ServerLauncher
     {
     	if(Gateway.isSupportUDP(supportedGateways))
     	{
-	    	udp = new GatewayUDP();
+	    	udp = createGatewayUDP();
 	    	udp.init(this.serverCoreHandler);
     	}
     	
     	if(Gateway.isSupportTCP(supportedGateways))
     	{
-	    	tcp = new GatewayTCP();
+	    	tcp = createGatewayTCP();
 	    	tcp.init(this.serverCoreHandler);
     	}
     	
     	if(Gateway.isSupportWebSocket(supportedGateways))
     	{
-    		ws = new GatewayWebsocket();
+    		ws = createGatewayWebsocket();
     		ws.init(this.serverCoreHandler);
     	}
+    }
+    
+    protected GatewayUDP createGatewayUDP()
+    {
+    	return new GatewayUDP();
+    }
+
+    protected GatewayTCP createGatewayTCP()
+    {
+    	return new GatewayTCP();
+    }
+
+    protected GatewayWebsocket createGatewayWebsocket()
+    {
+    	return new GatewayWebsocket();
     }
     
     public void startup() throws Exception
@@ -89,10 +104,7 @@ public abstract class ServerLauncher
     		QoS4SendDaemonS2C.getInstance().startup(true).setServerLauncher(this);
 
     		if(ServerLauncher.bridgeEnabled){
-//    			QoS4ReciveDaemonC2B.getInstance().startup();
-//    			QoS4SendDaemonB2C.getInstance().startup(true).setServerLauncher(this);
     			serverCoreHandler.lazyStartupBridgeProcessor();
-
     			logger.info("[IMCORE] 配置项：已开启与MobileIMSDK Web的互通.");
     		}
     		else{
