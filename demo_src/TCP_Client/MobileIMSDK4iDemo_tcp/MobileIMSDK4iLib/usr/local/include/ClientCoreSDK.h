@@ -23,6 +23,9 @@
 
 @interface ClientCoreSDK : NSObject
 
+//## 受制于iOS没有精确的网络事件通知机制，本字段的维护在当前的方案下，会不精确（比如模拟器下，电脑断开和连接时，模拟器小概率能收到断开事件，但无法收到已连接事件），所以干脆去掉这个鸡肋字段了
+//@property (nonatomic, assign) BOOL localDeviceNetworkOk;
+
 @property (nonatomic, assign) BOOL connectedToServer;
 @property (nonatomic, assign) BOOL loginHasInit;
 @property (nonatomic, retain) PLoginInfo *currentLoginInfo;
@@ -40,6 +43,9 @@
 + (BOOL) isAutoReLogin;
 + (void) setAutoReLogin:(BOOL)arl;
 
++ (void) setSSL:(BOOL)ssl;
++ (int) isSSL;
+
 
 //------------------------------------------------------
 #pragma mark - 实例方法
@@ -48,6 +54,5 @@
 - (void) releaseCore;
 
 - (void) saveFirstLoginTime:(long)firstLoginTime;
-
 - (NSString *) currentLoginUserId;
 @end
