@@ -1,1 +1,3 @@
-MobileIMSDK-微信小程序端工程目前还在开发计划中，暂未发布！
+MobileIMSDK-微信小程序端工程目前没有开源版，但您可通过捐助作者的方式获取精编注释版，非常抱歉给您带来不便。
+
+MobileIMSDK-微信小程序端的详细说明请见：http://www.52im.net/thread-4169-1-1.html
