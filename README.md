@@ -1,6 +1,6 @@
 :warning: <b>特别提示：</b>如Github下载慢，请往：[https://gitee.com/jackjiang/MobileIMSDK](https://gitee.com/jackjiang/MobileIMSDK)，代码完全同步，请放心下载 :warning:
 
-:heart: <b>最新动态：</b>MobileIMSDK的微信小程序端已发布（[详见微信小程序端介绍](http://www.52im.net/thread-4169-1-1.html)）:warning:
+:heart: <b>最新动态：</b>MobileIMSDK的微信小程序端已发布（[详见微信小程序端介绍](http://www.52im.net/thread-4169-1-1.html)）:heart:
 
 # 一、快捷目录
 
