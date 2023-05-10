@@ -1,5 +1,5 @@
-【工程名称】：MobileIMSDK v6.3, 一个原创IM通信层框架，轻量级、高度提炼，历经8年、久经考验。可能是市面上唯一同时支持UDP+TCP两种协议的同类框架，支持iOS、Android、Java，服务端基于Netty。
-【新版动态】: MobileIMSDK最新微信小程序端，发布于2023年03月31日。
+【工程名称】：MobileIMSDK v6.3, 一个原创IM通信层框架，轻量级、高度提炼，历经8年、久经考验。可能是市面上唯一同时支持UDP+TCP两种协议的同类框架，支持iOS、Android、Java、H5、微信小程序、Uniapp，服务端基于Netty。
+【新版动态】: MobileIMSDK最新Uniapp端，发布于2023年05月10日。
 【作者】: Jack Jiang
 【QQ】: 413980957
 【微信】: hellojackjiang

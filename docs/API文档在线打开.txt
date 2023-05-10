@@ -16,5 +16,15 @@ TCP协议版：http://docs.52im.net/extend/docs/api/mobileimsdk/android_TCP/
 UDP协议版：http://docs.52im.net/extend/docs/api/mobileimsdk/java/
 TCP协议版：http://docs.52im.net/extend/docs/api/mobileimsdk/java_tcp/
 
-4）Server端：
+4）H5端：
+http://www.52im.net/thread-3686-1-1.html
+
+5）微信小程序端：
+http://www.52im.net/thread-4168-1-1.html
+
+6）Uniapp端：
+http://www.52im.net/thread-4226-1-1.html
+
+7）Server端：
 Server(Netty版)：http://docs.52im.net/extend/docs/api/mobileimsdk/server_tcp/
+
