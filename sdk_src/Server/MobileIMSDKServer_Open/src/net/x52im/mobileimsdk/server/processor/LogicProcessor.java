@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2022  即时通讯网(52im.net) & Jack Jiang.
- * The MobileIMSDK v6.1 Project. 
+ * Copyright (C) 2023  即时通讯网(52im.net) & Jack Jiang.
+ * The MobileIMSDK v6.4 Project. 
  * All rights reserved.
  * 
  * > Github地址：https://github.com/JackJiang2011/MobileIMSDK
@@ -12,7 +12,7 @@
  *  
  * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
  * 
- * LogicProcessor.java at 2022-7-12 16:35:57, code by Jack Jiang.
+ * LogicProcessor.java at 2023-9-21 15:24:55, code by Jack Jiang.
  */
 package net.x52im.mobileimsdk.server.processor;
 
@@ -94,19 +94,20 @@ public class LogicProcessor
 	public void processLogin(final Channel session, final Protocal pFromClient, final String remoteAddress) throws Exception
 	{
 		final PLoginInfo loginInfo = ProtocalFactory.parsePLoginInfo(pFromClient.getDataContent());
-		logger.info("[IMCORE-{}]>> 客户端"+remoteAddress+"发过来的登陆信息内容是：uid={}、token={}、firstLoginTime={}"
-				, Gateway.$(session), loginInfo.getLoginUserId(), loginInfo.getLoginToken(), loginInfo.getFirstLoginTime());
 		
 		if(loginInfo == null || loginInfo.getLoginUserId() == null)
 		{
 			logger.warn("[IMCORE-{}]>> 收到客户端{}登陆信息，但loginInfo或loginInfo.getLoginUserId()是null，登陆无法继续[uid={}、token={}、firstLoginTime={}]！"
-					, Gateway.$(session), remoteAddress, loginInfo, loginInfo.getLoginUserId(), loginInfo.getFirstLoginTime());
+					, Gateway.$(session), remoteAddress, loginInfo, loginInfo != null ?loginInfo.getLoginUserId():null, loginInfo != null ?loginInfo.getFirstLoginTime():null);
 			
 			if(!GatewayUDP.isUDPChannel(session))
 				session.close();
 			
 			return;
 		}
+		
+		logger.info("[IMCORE-{}]>> 客户端"+remoteAddress+"发过来的登陆信息内容是：uid={}、token={}、firstLoginTime={}"
+				, Gateway.$(session), loginInfo.getLoginUserId(), loginInfo.getLoginToken(), loginInfo.getFirstLoginTime());
 		
 		if(serverCoreHandler.getServerEventListener() != null)
 		{

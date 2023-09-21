@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2022  即时通讯网(52im.net) & Jack Jiang.
- * The MobileIMSDK v6.1 Project. 
+ * Copyright (C) 2023  即时通讯网(52im.net) & Jack Jiang.
+ * The MobileIMSDK v6.4 Project. 
  * All rights reserved.
  * 
  * > Github地址：https://github.com/JackJiang2011/MobileIMSDK
@@ -12,7 +12,7 @@
  *  
  * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
  * 
- * MQProvider.java at 2022-7-12 16:35:58, code by Jack Jiang.
+ * MQProvider.java at 2023-9-21 15:24:55, code by Jack Jiang.
  */
 package net.x52im.mobileimsdk.server.bridge;
 
@@ -46,7 +46,9 @@ public class MQProvider
 
 	protected ConnectionFactory _factory = null;
 	protected Connection _connection = null;
+	
 	protected Channel _pubChannel = null;
+	protected Channel _workerChannel = null;
 	
 	protected final Timer timerForStartAgain = new Timer();
 	protected boolean startRunning = false;
@@ -88,8 +90,7 @@ public class MQProvider
 			throw new IllegalArgumentException("["+TAG+"]无效的参数mqURI ！");
 		
 		if(this.publishToQueue == null && this.consumFromQueue == null)
-			throw new IllegalArgumentException("["+TAG+"]无效的参数，publishToQueue和" +
-					"consumFromQueue至少应设置其一！");
+			throw new IllegalArgumentException("["+TAG+"]无效的参数，publishToQueue(生产者队列名)和consumFromQueue(消费者队列名)至少应设置其一！");
 		
 		if(this.encodeCharset == null || this.encodeCharset.trim().length() == 0)
 			this.encodeCharset = DEFAULT_ENCODE_CHARSET;
@@ -104,7 +105,6 @@ public class MQProvider
 		String uri = this.mqURI;
 		_factory = new ConnectionFactory();
 
-		// 设置连接 uri
 		try
 		{
 			_factory.setUri(uri);
@@ -118,7 +118,6 @@ public class MQProvider
 		_factory.setAutomaticRecoveryEnabled(true);
 		_factory.setTopologyRecoveryEnabled(false);
 		_factory.setNetworkRecoveryInterval(5000);
-
 		_factory.setRequestedHeartbeat(30);
 		_factory.setConnectionTimeout(30 * 1000);
 		
@@ -134,18 +133,26 @@ public class MQProvider
 				_connection = _factory.newConnection();
 				_connection.addShutdownListener(new ShutdownListener() {
 					public void shutdownCompleted(ShutdownSignalException cause)
-					{
-						logger.warn("["+TAG+"] - 连接已经关闭了。。。。【NO】");
+					{						
+						logger.warn("["+TAG+"] - 连接已经关闭了(原因："+(cause.isHardError() ? "connection异常" : "channel异常")+")。。。。【NO】");
 					}
 				});
 
 				((Recoverable)_connection).addRecoveryListener(new RecoveryListener(){
 					@Override
-					public void handleRecovery(Recoverable arg0)
-					{
+					public void handleRecovery(Recoverable recoverable){
 						logger.info("["+TAG+"] - 连接已成功自动恢复了！【OK】");
-						
 						start();
+					}
+
+					@Override
+					public void handleRecoveryStarted(Recoverable recoverable){
+						logger.info("["+TAG+"] - 连接马上开始自动恢复。。。"+("(c="+recoverable.getClass().getSimpleName()+")"));
+					}
+
+					@Override
+					public void handleTopologyRecoveryStarted(Recoverable recoverable){
+						logger.info("["+TAG+"] - 拓扑连接马上开始自动恢复。。。"+("(c="+recoverable.getClass().getSimpleName()+")"));
 					}
 				});
 			}
@@ -183,7 +190,7 @@ public class MQProvider
 						public void run() {
 							start();
 						}
-					}, 5 * 1000);// 暂停5秒后重试
+					}, 5 * 1000);
 				}
 			}
 			else
@@ -213,7 +220,7 @@ public class MQProvider
 					_pubChannel.close();
 				}
 				catch (Exception e){
-					logger.warn("["+TAG+"-↑] - [startPublisher()中]pubChannel.close()时发生错误。", e);
+					logger.warn("["+TAG+"-↑] - [生产者startPublisher()中]pubChannel.close()时发生错误。", e);
 				}
 			}
 
@@ -221,18 +228,17 @@ public class MQProvider
 			{
 				_pubChannel = conn.createChannel();
 
-				logger.info("["+TAG+"-↑] - [startPublisher()中] 的channel成功创建了，" +
-						"马上开始循环publish消息，当前数组队列长度：N/A！【OK】");//"+offlinePubQueue.size()+"！【OK】");
+				logger.info("["+TAG+"-↑] - [生产者startPublisher()中] 的channel成功创建了，马上开始循环publish消息，当前数组队列长度：N/A！【OK】");
 
-				String queue = this.publishToQueue;     //queue name 
-				boolean durable = true;     //durable - RabbitMQ will never lose the queue if a crash occurs
-				boolean exclusive = false;  //exclusive - if queue only will be used by one connection
-				boolean autoDelete = false; //autodelete - queue is deleted when last consumer unsubscribes
+				String queue = this.publishToQueue;
+				boolean durable = true;     
+				boolean exclusive = false; 
+				boolean autoDelete = false;
 
 				AMQP.Queue.DeclareOk qOK = _pubChannel.queueDeclare(queue, durable, exclusive, autoDelete, null);
 
-				logger.info("["+TAG+"-↑] - [startPublisher中] Queue[当前队列消息数："+qOK.getMessageCount()
-						+",消费者："+qOK.getConsumerCount()+"]已成功建立，Publisher初始化成功，"
+				logger.info("["+TAG+"-↑] - [生产者startPublisher中] Queue[当前队列消息数："+qOK.getMessageCount()
+						+",消费者："+qOK.getConsumerCount()+"]已成功建立，Publisher(生产者)初始化成功，"
 						+"消息将可publish过去且不怕丢失了。【OK】(当前暂存数组长度:N/A)");//"+offlinePubQueue.size()+")");
 
 				if(publishTrayAgainEnable)
@@ -242,13 +248,13 @@ public class MQProvider
 						String[] m = publishTrayAgainCache.poll();
 						if(m != null && m.length > 0)
 						{
-							logger.debug("["+TAG+"-↑] - [startPublisher()中] [...]在channel成功创建后，正在publish之前失败暂存的消息 m[0]="+m[0]
+							logger.debug("["+TAG+"-↑] - [生产者startPublisher()中] [...]在channel成功创建后，正在publish之前失败暂存的消息 m[0]="+m[0]
 									+"、m[1]="+m[1]+",、m[2]="+m[2]+"，[当前数组队列长度："+publishTrayAgainCache.size()+"]！【OK】");
 							publish(m[0], m[1], m[2]);
 						}
 						else
 						{
-							logger.debug("["+TAG+"-↑] - [startPublisher()中] [___]在channel成功创建后，" +
+							logger.debug("["+TAG+"-↑] - [生产者startPublisher()中] [___]在channel成功创建后，" +
 									"当前之前失败暂存的数据队列已为空，publish没有继续！[当前数组队列长度："+publishTrayAgainCache.size()+"]！【OK】");
 							break;
 						}
@@ -257,13 +263,13 @@ public class MQProvider
 			}
 			catch (Exception e)
 			{
-				logger.error("["+TAG+"-↑] - [startPublisher()中] conn.createChannel()或pubChannel.queueDeclare()" +
+				logger.error("["+TAG+"-↑] - [生产者startPublisher()中] conn.createChannel()或pubChannel.queueDeclare()" +
 						"出错了，本次startPublisher没有继续！", e);
 			}
 		}
 		else
 		{
-			logger.error("["+TAG+"-↑] - [startPublisher()中]【严重】connction还没有准备好" +
+			logger.error("["+TAG+"-↑] - [生产者startPublisher()中]【严重】connction还没有准备好" +
 					"，conn.createChannel()失败！(原因：connction==null)");
 		}
 	}
@@ -280,8 +286,7 @@ public class MQProvider
 		try
 		{
 			_pubChannel.basicPublish(exchangeName, routingKey, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes(this.encodeCharset));
-			logger.info("["+TAG+"-↑] - [startPublisher()中] publish()成功了 ！(数据:"
-					+exchangeName+","+routingKey+","+message+")");
+			logger.info("["+TAG+"-↑] - [生产者publish()中] publish()成功了 ！(数据:"+exchangeName+","+routingKey+","+message+")");
 			ok = true;
 		}
 		catch (Exception e)
@@ -291,9 +296,8 @@ public class MQProvider
 				publishTrayAgainCache.add(new String[]{exchangeName, routingKey, message});
 			}
 			
-			logger.error("["+TAG+"-↑] - [startPublisher()中] publish()时Exception了，" +
-					"原因："+e.getMessage()+"【数据["+exchangeName+","+routingKey+","+message+"]已重新放回数组首位"+
-		            "，当前数组长度：N/A】", e);//"+offlinePubQueue.size()+"】", e);
+			logger.error("["+TAG+"-↑] - [生产者publish()中] publish()时Exception了，" +
+					"原因："+e.getMessage()+"【数据["+exchangeName+","+routingKey+","+message+"]已重新放回数组首位"+"，当前数组长度：N/A】", e);//"+offlinePubQueue.size()+"】", e);
 		}
 		return ok;
 	}
@@ -307,38 +311,47 @@ public class MQProvider
 		{
 			if(conn != null)
 			{
-				final Channel resumeChannel = conn.createChannel();
+				if(_workerChannel != null && _workerChannel.isOpen())
+				{
+					try{
+						_workerChannel.close();
+					}
+					catch (Exception e){
+						logger.warn("["+TAG+"-↑] - [消费者startWorker()中]workerChannel.close()时发生错误。", e);
+					}
+				}
 				
-				String queueName = this.consumFromQueue;//queue name 
+				_workerChannel = conn.createChannel();
 				
-				DefaultConsumer dc = new DefaultConsumer(resumeChannel) {
+				String queueName = this.consumFromQueue;
+				DefaultConsumer dc = new DefaultConsumer(_workerChannel) {
 					@Override
 					public void handleDelivery(String consumerTag,Envelope envelope,AMQP.BasicProperties properties,byte[] body)throws IOException{
 						try{
 							String routingKey = envelope.getRoutingKey();
 							String contentType = properties.getContentType();
 							long deliveryTag = envelope.getDeliveryTag();
-							logger.info("["+TAG+"-↓] - [startWorker()中的handleDelivery] 收到一条新消息(routingKey="
+							logger.info("["+TAG+"-↓] - [消费者startWorker()中的handleDelivery] 收到一条新消息(routingKey="
 									+routingKey+",contentType="+contentType+",consumerTag="+consumerTag
 									+",deliveryTag="+deliveryTag+")，马上开始处理。。。。");
 	
 							boolean workOK = work(body);
 							if(workOK){
-								resumeChannel.basicAck(deliveryTag, false);
+								_workerChannel.basicAck(deliveryTag, false);
 							}
 							else{
-								resumeChannel.basicReject(deliveryTag, true);
+								_workerChannel.basicReject(deliveryTag, true);
 							}
 						} catch (Exception ee){
-							logger.info("["+TAG+"-↓] - [startWorker()中handleDelivery时] 出现错误，错误将被记录："+ee.getMessage(), ee);
+							logger.info("["+TAG+"-↓] - [消费者startWorker()中handleDelivery时] 出现错误，错误将被记录："+ee.getMessage(), ee);
 						}
 					}
 				};
 				
 				boolean autoAck = false;
-				resumeChannel.basicConsume(queueName, autoAck,dc);
+				_workerChannel.basicConsume(queueName, autoAck,dc);
 				
-				logger.info("["+TAG+"-↓] - [startWorker()中] Worker已经成功开启并运行中...【OK】");
+				logger.info("["+TAG+"-↓] - [消费者startWorker()中] Worker(消费者)已经成功开启并运行中...【OK】");
 			}
 			else
 			{
@@ -347,14 +360,13 @@ public class MQProvider
 		}
 		catch (Exception e)
 		{
-			logger.error("["+TAG+"-↓] - [startWorker()中] conn.createChannel()或Consumer操作时" +
-					"出错了，本次startWorker没有继续【暂停5秒后重试startWorker()】！", e);
+			logger.error("["+TAG+"-↓] - [消费者startWorker()中] conn.createChannel()或Consumer操作时" +"出错了，本次startWorker没有继续【暂停5秒后重试startWorker()】！", e);
 			
 			this.timerForRetryWorker.schedule(new TimerTask() {
 				public void run() {
-					startWorker(MQProvider.this._connection);
+					startWorker(_connection);
 				}
-			}, 5 * 1000);// 暂停5秒后重试
+			}, 5 * 1000);
 		}
 		finally
 		{
@@ -367,14 +379,12 @@ public class MQProvider
 		try
 		{
 			String msg = new String(contentBody, this.decodeCharset);
-			// just log for debug
-			logger.info("["+TAG+"-↓] - [startWorker()中work时] Got msg："+msg);
+			logger.info("["+TAG+"-↓] - [消费者startWorker()中work时] Got msg："+msg);
 			return true;
 		}
 		catch (Exception e)
 		{
-			logger.warn("["+TAG+"-↓] - [startWorker()中work时] 出现错误，错误将被记录："+e.getMessage(), e);
-//			return false;
+			logger.warn("["+TAG+"-↓] - [消费者startWorker()中work时] 出现错误，错误将被记录："+e.getMessage(), e);
 			return true;
 		}
 	}
