@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2022  即时通讯网(52im.net) & Jack Jiang.
- * The MobileIMSDK v6.x Project. 
+ * Copyright (C) 2023  即时通讯网(52im.net) & Jack Jiang.
+ * The MobileIMSDK v6.4 Project. 
  * All rights reserved.
  * 
  * > Github地址：https://github.com/JackJiang2011/MobileIMSDK
@@ -12,7 +12,7 @@
  *  
  * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
  * 
- * ServerEventListenerImpl.java at 2022-7-12 16:35:42, code by Jack Jiang.
+ * ServerEventListenerImpl.java at 2023-9-22 11:44:58, code by Jack Jiang.
  */
 package net.x52im.mobileimsdk.server.demo;
 
