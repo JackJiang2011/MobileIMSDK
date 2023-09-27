@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 31
+    compileSdk 33
     defaultConfig {
         applicationId "net.x52im.mobileimsdk.android"
         minSdkVersion 14
-        targetSdkVersion 31
+        targetSdkVersion 33
         versionCode 1
-        versionName "6.3"
+        versionName "6.4"
     }
     buildTypes {
         release {
@@ -26,6 +26,7 @@ android {
     lintOptions {
         abortOnError false
     }
+    namespace 'net.x52im.mobileimsdk.android'
 }
 
 
