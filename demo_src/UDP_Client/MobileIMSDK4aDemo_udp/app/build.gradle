@@ -1,16 +1,22 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 31
+    compileSdk 33
     defaultConfig {
         applicationId "net.x52im.mobileimsdk.android.demo_udp"
         minSdkVersion 14
-        targetSdkVersion 31
+        targetSdkVersion 33
         versionCode 105
-        versionName "v6.3b230205.1"
+        versionName "v6.4b230922.1"
     }
     buildTypes {
         release {
+            // true表示release时开启代码混淆，false表示不混淆
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            // true表示Debug时开启代码混淆，false表示不混淆
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -20,6 +26,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    namespace 'net.x52im.mobileimsdk.android.demo'
 }
 
 dependencies {
