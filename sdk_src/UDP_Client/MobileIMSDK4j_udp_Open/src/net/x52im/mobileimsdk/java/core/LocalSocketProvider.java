@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2022  即时通讯网(52im.net) & Jack Jiang.
- * The MobileIMSDK4j_udp (MobileIMSDK4j v6.1 UDP版) Project. 
+ * Copyright (C) 2023  即时通讯网(52im.net) & Jack Jiang.
+ * The MobileIMSDK4j_udp (MobileIMSDK4j v6.4 UDP版) Project. 
  * All rights reserved.
  * 
  * > Github地址：https://github.com/JackJiang2011/MobileIMSDK
@@ -12,7 +12,7 @@
  *  
  * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
  * 
- * LocalSocketProvider.java at 2022-7-16 17:40:46, code by Jack Jiang.
+ * LocalSocketProvider.java at 2023-9-21 15:30:48, code by Jack Jiang.
  */
 package net.x52im.mobileimsdk.java.core;
 
