@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2022  即时通讯网(52im.net) & Jack Jiang.
- * The MobileIMSDK_TCP (MobileIMSDK v6.1 TCP版) Project. 
+ * Copyright (C) 2023  即时通讯网(52im.net) & Jack Jiang.
+ * The MobileIMSDK_TCP (MobileIMSDK v6.4 TCP版) Project. 
  * All rights reserved.
  * 
  * > Github地址：https://github.com/JackJiang2011/MobileIMSDK
@@ -12,7 +12,7 @@
  *  
  * "即时通讯网(52im.net) - 即时通讯开发者社区!" 推荐开源工程。
  * 
- * ClientCoreSDK.java at 2022-7-16 17:22:43, code by Jack Jiang.
+ * ClientCoreSDK.java at 2023-9-21 15:32:53, code by Jack Jiang.
  */
 package net.x52im.mobileimsdk.java;
 
