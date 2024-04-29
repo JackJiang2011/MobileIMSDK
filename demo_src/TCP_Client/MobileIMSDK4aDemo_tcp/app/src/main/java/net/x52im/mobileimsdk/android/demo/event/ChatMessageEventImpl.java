@@ -16,12 +16,15 @@
  */
 package net.x52im.mobileimsdk.android.demo.event;
 
-import net.x52im.mobileimsdk.android.demo.MainActivity;
-import net.x52im.mobileimsdk.server.protocal.ErrorCode;
-import net.x52im.mobileimsdk.android.event.ChatMessageEvent;
-
+import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
+
+import net.x52im.mobileimsdk.android.demo.MainActivity;
+import net.x52im.mobileimsdk.android.demo.R;
+import net.x52im.mobileimsdk.android.demo.utils.ToolKits;
+import net.x52im.mobileimsdk.android.event.ChatMessageEvent;
+import net.x52im.mobileimsdk.server.protocal.ErrorCode;
 
 /**
  * 与IM服务器的数据交互事件在此ChatTransDataEvent子类中实现即可。
@@ -51,7 +54,12 @@ public class ChatMessageEventImpl implements ChatMessageEvent {
 	public void onRecieveMessage(String fingerPrintOfProtocal, String userid, String dataContent, int typeu) {
 		Log.d(TAG, "【DEBUG_UI】[typeu=" + typeu + "]收到来自用户" + userid + "的消息:" + dataContent);
 		if (mainGUI != null) {
-			Toast.makeText(mainGUI, userid + "说：" + dataContent, Toast.LENGTH_SHORT).show();
+			if(this.mainGUI.isFronted()) {
+				Toast.makeText(mainGUI, userid + "说：" + dataContent, Toast.LENGTH_SHORT).show();
+			} else {
+				// 当界面处于后台时，就在手机通知栏显示聊天消息通知
+				showRecievedMessageNotification(userid, dataContent);
+			}
 			this.mainGUI.showIMInfo_black(userid + "说：" + dataContent);
 		}
 	}
@@ -75,5 +83,18 @@ public class ChatMessageEventImpl implements ChatMessageEvent {
 	public ChatMessageEventImpl setMainGUI(MainActivity mainGUI) {
 		this.mainGUI = mainGUI;
 		return this;
+	}
+
+	private void showRecievedMessageNotification(String uid, String msg) {
+		ToolKits.addNotificaction(998
+				, this.mainGUI
+				, new Intent(this.mainGUI.getApplicationContext(), MainActivity.class)
+				, R.drawable.icon
+				, uid + " 说: " + msg
+				, uid + " 说:"
+				, msg
+				, true
+				, true
+				, false);
 	}
 }

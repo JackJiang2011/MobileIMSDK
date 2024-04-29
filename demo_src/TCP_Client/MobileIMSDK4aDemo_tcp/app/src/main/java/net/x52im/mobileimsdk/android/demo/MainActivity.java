@@ -74,6 +74,9 @@ public class MainActivity extends AppCompatActivity {
 	
 	private ListView chatInfoListView;
 	private MyAdapter chatInfoListAdapter;
+
+	/** true表示当前Activity处于前台，否则退到了后台。此标识目前仅用于收到消息时判断是否该显示通知栏的消息通知 */
+	private boolean fronted = false;
 	
 	/** Called when the activity is first created. */
 	@Override
@@ -100,6 +103,16 @@ public class MainActivity extends AppCompatActivity {
 		// just for debug START：Refresh MobileIMSDK background status to show
     	this.refreshMobileIKSDKThreadStatusForDEBUG();
 		// just for debug END
+
+		this.fronted = true;
+	}
+
+	/**
+	 * Activity每次到后台时调用本方法。
+	 */
+	protected void onPause() {
+		super.onPause();
+		this.fronted = false;
 	}
 	
 	/** 
@@ -244,6 +257,10 @@ public class MainActivity extends AppCompatActivity {
 		finish();
 		System.exit(0);
 	}
+
+	public boolean isFronted() {
+		return this.fronted;
+	}
 	
 	//--------------------------------------------------------------- 各种信息输出方法 START
 	public void showIMInfo_black(String txt) {
@@ -377,6 +394,8 @@ public class MainActivity extends AppCompatActivity {
 	 * 将本activity与后台服务绑定起来.
 	 */
 	protected void doBindService() {
+		// 注意：Android 14及以上系统强制要求需动态申请通知权限（即android.permission.POST_NOTIFICATIONS
+		//	    权限），如果不申请通知权限，则以下为了网络和进程保活而绑定的前台服务将不会在通知栏显示一个常驻通知
 		this.getApplicationContext().bindService(new Intent(this.getApplicationContext(), GeniusService.class), serviceConnection, Context.BIND_AUTO_CREATE);
 	}
 

@@ -2,4 +2,69 @@
 
     <string name="app_name">MobileIMSDK_TCP</string>
 
+
+    <!-- ########################### 动态权限相关 START ################################# -->
+    <string name="rb_permission_setting_btn_go">去设置</string>
+    <string name="rb_permission_setting_content">在 \"设置-应用-{0}-权限\" 中开启 \"{1}\" 权限，以正常使用相关功能。</string>
+    <string name="rb_permission_fail_to_exite">请先在 \"设置-应用-{0}-权限\" 中开启 \"{1}\" 权限，以正常使用本应用。</string>
+    <string name="rb_permission_fail_to_cancel">无法正常获取 \"{0}\" 权限，已取消该功能的继续执行。</string>
+    <string name="rb_message_notification_rationale">在 \"设置-应用-{0}-权限\" 中开启 \"通知\" 权限，以正常使用系统通知功能。</string>
+    <string name="rb_message_notification_fail">通知权限获取失败，您将无法使用系统通知功能！</string>
+
+    <string name="common_permission_description_title">权限说明</string>
+    <string name="common_permission_granted">授予</string>
+    <string name="common_permission_denied">取消</string>
+
+    <string name="common_permission_alert">授权提醒</string>
+    <string name="common_permission_fail_hint">授权失败，请正确授予权限</string>
+    <string name="common_permission_fail_assign_hint">授权失败，请正确授予%s</string>
+    <string name="common_permission_manual_fail_hint">获取权限失败，请手动授予权限</string>
+    <string name="common_permission_manual_assign_fail_hint">获取权限失败，请手动授予%s</string>
+    <string name="common_permission_manual_assign_fail_background_location_hint">获取后台定位权限失败，请在定位权限中选择%s</string>
+    <string name="common_permission_manual_assign_fail_background_sensors_hint">获取后台传感器权限失败，请在传感器权限中选择%s</string>
+    <string name="common_permission_background_location_fail_hint">获取后台定位权限失败，\n请选择%s选项</string>
+    <string name="common_permission_background_sensors_fail_hint">获取后台传感器权限失败，\n请选择%s选项</string>
+    <string name="common_permission_background_default_option_label">始终允许</string>
+    <string name="common_permission_media_location_hint_fail">获取媒体位置权限失败\n请清除应用数据后重试</string>
+    <string name="common_permission_goto_setting_page">前往授权</string>
+
+    <string name="common_permission_unknown">权限</string>
+    <string name="common_permission_comma">、</string>
+    <string name="common_permission_colon">：</string>
+
+    <string name="common_permission_calendar">日历权限</string>
+    <string name="common_permission_camera">相机权限</string>
+    <string name="common_permission_contacts">通讯录权限</string>
+    <string name="common_permission_location">定位权限</string>
+    <string name="common_permission_location_background">后台定位权限</string>
+    <string name="common_permission_nearby_devices">附近设备权限</string>
+    <string name="common_permission_microphone">麦克风权限</string>
+    <string name="common_permission_phone">电话权限</string>
+    <string name="common_permission_call_logs">通话记录权限</string>
+    <string name="common_permission_body_sensors">身体传感器权限</string>
+    <string name="common_permission_body_sensors_background">后台身体传感器权限</string>
+    <string name="common_permission_activity_recognition_api29">健身运动权限</string>
+    <string name="common_permission_activity_recognition_api30">身体活动权限</string>
+    <string name="common_permission_access_media_location">读取媒体文件位置权限</string>
+    <string name="common_permission_sms">短信权限</string>
+    <string name="common_permission_storage">存储权限</string>
+    <string name="common_permission_post_notifications">发送通知权限</string>
+    <string name="common_permission_image_and_video">照片和视频权限</string>
+    <string name="common_permission_music_and_audio">音乐和音频权限</string>
+    <string name="common_permission_get_installed_apps">读取应用列表权限</string>
+
+    <string name="common_permission_all_file_access">所有文件访问权限</string>
+    <string name="common_permission_install_unknown_apps">安装应用权限</string>
+    <string name="common_permission_display_over_other_apps">悬浮窗权限</string>
+    <string name="common_permission_modify_system_settings">修改系统设置权限</string>
+    <string name="common_permission_allow_notifications">通知权限</string>
+    <string name="common_permission_allow_notifications_access">通知栏监听权限</string>
+    <string name="common_permission_apps_with_usage_access">查看使用情况权限</string>
+    <string name="common_permission_alarms_reminders">查看闹钟提醒权限</string>
+    <string name="common_permission_do_not_disturb_access">勿扰权限</string>
+    <string name="common_permission_ignore_battery_optimize">忽略电池优化权限</string>
+    <string name="common_permission_picture_in_picture">画中画权限</string>
+    <string name="common_permission_vpn">\tVPN\t权限</string>
+    <!-- ########################### 动态权限库XXPermixxions相关 END ################################# -->
+
 </resources>
