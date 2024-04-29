@@ -270,6 +270,7 @@ MobileIMSDK一直在持续开发和升级中，[Uniapp客户端](http://www.52im
 ![](http://jackimgs.52im.net/images/mobileimsdk/preview/more_products/rainbowchat_2.jpg?v=10)
 ![](http://jackimgs.52im.net/images/mobileimsdk/preview/more_products/rainbowchat_3.jpg?v=10)
 ![](http://jackimgs.52im.net/images/mobileimsdk/preview/more_products/rainbowchat_4.jpg?v=10)
+![](http://jackimgs.52im.net/images/mobileimsdk/preview/more_products/rainbowchat_5.jpg?v=10)
 
 > <code>更多清晰运行截图请见：</code>[RainbowCha产品的全部功能截图](http://www.52im.net/thread-20-1-1.html)。
 
