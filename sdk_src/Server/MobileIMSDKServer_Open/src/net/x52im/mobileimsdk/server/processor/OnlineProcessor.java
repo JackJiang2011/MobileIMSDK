@@ -83,11 +83,17 @@ public class OnlineProcessor
 				else
 				{
 					long firstLoginTimeForOld = OnlineProcessor.getFirstLoginTimeFromChannel(oldSession);
-					if(firstLoginTime >= firstLoginTimeForOld)
+					if(firstLoginTime > firstLoginTimeForOld)
 					{
 						logger.debug("[IMCORE-{}]【提示】用户id={}提交过来的firstLoginTime为{}、firstLoginTimeForOld为{}，新的“首次登陆时间”【晚于】列表中的“老的”、正常踢出老的即可！"
 								, Gateway.$(newSession), user_id, firstLoginTime, firstLoginTimeForOld);
 						sendKickoutDuplicateLogin(oldSession, user_id);		
+						onlineSessions.put(user_id, newSession);
+					}
+					else if(firstLoginTime == firstLoginTimeForOld)
+					{
+						logger.error("[IMCORE-{}]【注意】用户id={}提交过来的firstLoginTime为{}、firstLoginTimeForOld为{}，新的“首次登陆时间”【等于】列表中的“老的”、此时不能踢出老的！【Bug Fix 20240426, since v6.5】"
+								, Gateway.$(newSession), user_id, firstLoginTime, firstLoginTimeForOld);
 						onlineSessions.put(user_id, newSession);
 					}
 					else

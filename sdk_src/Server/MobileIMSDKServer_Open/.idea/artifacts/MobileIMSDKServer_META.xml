@@ -1,0 +1,21 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="MobileIMSDKServer_META">
+    <output-path>$PROJECT_DIR$/out</output-path>
+    <root id="archive" name="MobileIMSDKServer_META.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="directory" name="net">
+        <element id="directory" name="x52im">
+          <element id="directory" name="mobileimsdk">
+            <element id="directory" name="server">
+              <element id="directory" name="protocal">
+                <element id="dir-copy" path="$PROJECT_DIR$/bin/net/x52im/mobileimsdk/server/protocal" />
+              </element>
+            </element>
+          </element>
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

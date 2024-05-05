@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="MobileIMSDKServer">
+    <output-path>$PROJECT_DIR$/out</output-path>
+    <root id="archive" name="MobileIMSDKServer.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="MobileIMSDKServer_Open" />
+    </root>
+  </artifact>
+</component>
