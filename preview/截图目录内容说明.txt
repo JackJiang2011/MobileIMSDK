@@ -1,6 +1,6 @@
 【截图说明】：
 more_products：
-本目录下为部分基于MobileIMSDK的真实产品的截图，仅供参考。
+本目录下为部分基于MobileIMSDK的真实IM相关产品的截图，仅供参考。
 
 more_screenshots：
 为Demo早期版本的一些截图等。
