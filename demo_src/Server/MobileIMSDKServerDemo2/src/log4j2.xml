@@ -18,8 +18,9 @@
      <appenders>
      	 <!-- Appender：控制台输出 -->
          <console name="Console" target="SYSTEM_OUT">
-         <!-- 输出日志的格式-->
-             <PatternLayout pattern="[%p] - [%d{HH:mm:ss.SSS}]%m | (%C{1}^%M:%L)%n"/>
+             <!-- 输出日志的格式-->
+             <!--<PatternLayout pattern="[%p] - [%d{HH:mm:ss.SSS}]%m | (%C{1}^%M:%L)%n"/>-->
+             <PatternLayout pattern="%highlight{%-5level} - [%d{HH:mm:ss.SSS}]%highlight{%m} | (%C{1}^%M:%L)%n"/>
          </console>
 	     
 	     <!-- Appender：滚动文件，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档-->

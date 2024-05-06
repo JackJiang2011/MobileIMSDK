@@ -1,0 +1,25 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="MobileIMSDKServerDemo_deploy">
+    <output-path>$PROJECT_DIR$/out</output-path>
+    <root id="archive" name="MobileIMSDKServerDemo_deploy.zip">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="directory" name="classes">
+        <element id="module-output" name="MobileIMSDKServerDemo2" />
+      </element>
+      <element id="directory" name="lib">
+        <element id="library" level="module" name="amqp-client-5.20.0.jar" module-name="MobileIMSDKServerDemo2" />
+        <element id="library" level="module" name="gson-2.8.9.jar" module-name="MobileIMSDKServerDemo2" />
+        <element id="library" level="module" name="log4j-core-2.23.1.jar" module-name="MobileIMSDKServerDemo2" />
+        <element id="library" level="module" name="log4j-slf4j-impl-2.23.1.jar" module-name="MobileIMSDKServerDemo2" />
+        <element id="library" level="module" name="MobileIMSDKServer.jar" module-name="MobileIMSDKServerDemo2" />
+        <element id="library" level="module" name="netty-all-4.1.50.Final.jar" module-name="MobileIMSDKServerDemo2" />
+        <element id="library" level="module" name="slf4j-api-1.7.36.jar" module-name="MobileIMSDKServerDemo2" />
+        <element id="library" level="module" name="log4j-api-2.23.1.jar" module-name="MobileIMSDKServerDemo2" />
+      </element>
+      <element id="file-copy" path="$PROJECT_DIR$/script/run.bat" />
+      <element id="file-copy" path="$PROJECT_DIR$/script/run.sh" />
+    </root>
+  </artifact>
+</component>
