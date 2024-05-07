@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="EclipseModuleManager">
+    <libelement value="jar://$MODULE_DIR$/lib/swing-worker-1.2(1.6-).jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/gson-2.8.6.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/MobileIMSDKServer_META.jar!/" />
+    <src_description expected_position="0">
+      <src_folder value="file://$MODULE_DIR$/src" expected_position="0" />
+    </src_description>
+  </component>
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/bin" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+    </content>
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library name="swing-worker-1.2(1.6-).jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/swing-worker-1.2(1.6-).jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="gson-2.8.6.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/gson-2.8.6.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="MobileIMSDKServer_META.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/MobileIMSDKServer_META.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
+  </component>
+</module>

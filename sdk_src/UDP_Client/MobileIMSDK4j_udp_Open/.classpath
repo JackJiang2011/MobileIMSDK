@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="lib/swing-worker-1.2(1.6-).jar"/>
-	<classpathentry kind="lib" path="lib/gson-2.8.6.jar"/>
-	<classpathentry kind="lib" path="lib/MobileIMSDKServer_META.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_45"/>
-	<classpathentry kind="output" path="bin"/>
-</classpath>
