@@ -115,7 +115,7 @@ public class LoginGUI extends JFrame
 		mainPanel.addTitledLineSeparator("");
 		JPanel btnAndVerPanel = new JPanel();
 		btnAndVerPanel.setLayout(new BoxLayout(btnAndVerPanel, BoxLayout.LINE_AXIS));
-		JLabel lbVer= new JLabel("v6.4b230922.1");
+		JLabel lbVer= new JLabel("v6.5b240427");
 		lbVer.setForeground(new Color(184,184,184));
 		btnAndVerPanel.add(lbVer);
 		btnAndVerPanel.add(Box.createHorizontalGlue());
@@ -247,14 +247,15 @@ public class LoginGUI extends JFrame
 		
 		// 开始发送登陆信息
 		if(editLoginName.getText().toString().trim().length() > 0
-			&& editLoginPsw.getText().toString().trim().length() > 0)
+//			&& editLoginPsw.getText().toString().trim().length() > 0
+		)
 		{
 			doLoginImpl();
 		}
 		else
 		{
 			JOptionPane.showMessageDialog(LoginGUI.this
-					, "帅哥，登陆用户名和密码不能为空，Demo运行时请随便输入^_^!", "友情提示", JOptionPane.WARNING_MESSAGE);  
+					, "帅哥，登陆用户名不能为空，Demo运行时请随便输入^_^!", "友情提示", JOptionPane.WARNING_MESSAGE);
 		}
 	}
 	/**
