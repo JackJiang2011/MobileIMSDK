@@ -3,6 +3,7 @@
 //  RMMapper
 //
 //  Created by Roomorama on 28/6/13.
+//  Revision by Jack Jiang on 30/4/24.
 //  Copyright (c) 2013 Roomorama. All rights reserved.
 //
 
@@ -21,6 +22,6 @@
 
 /** Load to NSUserDefaults
  */
--(id) rm_customObjectForKey:(NSString*)key;
+-(id) rm_customObjectForKey:(NSString*)key withClass:(Class)clazz;
 
 @end

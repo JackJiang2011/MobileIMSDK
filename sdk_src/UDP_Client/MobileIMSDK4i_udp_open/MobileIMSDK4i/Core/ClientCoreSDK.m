@@ -181,7 +181,7 @@ static ClientCoreSDK *instance = nil;
         case ReachableViaWiFi: // WIFI
         {
             int wifi = (netStatus == ReachableViaWiFi);
-            statusString= [NSString stringWithFormat:NSLocalizedString(@"【IMCORE-UDP】【本地网络通知】检测本地网络已连接上了! WIFI? %d", @""), wifi?@"YES":@"NO"];
+            statusString= [NSString stringWithFormat:NSLocalizedString(@"【IMCORE-UDP】【本地网络通知】检测本地网络已连接上了! WIFI? %@", @""), wifi?@"YES":@"NO"];
             
 //          self.localDeviceNetworkOk = true;
             [[LocalSocketProvider sharedInstance] closeLocalSocket];
