@@ -4,8 +4,12 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <!-- Android 9.0中需要此权限的添加，不然崩溃 -->
+    <!-- Android 9.0中需要此权限，不然崩溃 -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <!-- android14前台常住服务需要以下权限，不然崩溃-->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_REMOTE_MESSAGING" />
+    <!-- android14显示系统通知需要以下权限，不然手机不允许显示通知（包括前台服务绑定的通知栏也不会显示） -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
         android:allowBackup="true"
@@ -38,13 +42,14 @@
             android:name="net.x52im.mobileimsdk.android.demo.MainActivity"
             android:configChanges="screenSize|keyboardHidden|orientation"
             android:screenOrientation="portrait"
+            android:launchMode="singleTask"
+            tools:ignore="LockedOrientationActivity"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden"
-            tools:ignore="LockedOrientationActivity">
+            android:windowSoftInputMode="adjustUnspecified|stateHidden">
         </activity>
 
         <!-- 一个为了Demo能更好保活的前台服务 -->
-        <service android:name=".service.GeniusService" />
+        <service android:name=".service.GeniusService" android:foregroundServiceType="remoteMessaging" />
 
     </application>
 </manifest>

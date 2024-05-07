@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdk 33
+    compileSdk 34
     defaultConfig {
         applicationId "net.x52im.mobileimsdk.android.demo_udp"
         minSdkVersion 14
-        targetSdkVersion 33
+        targetSdkVersion 34
         versionCode 105
-        versionName "v6.4b230922.1"
+        versionName "v6.5b240429"
     }
     buildTypes {
         release {
@@ -33,8 +33,8 @@ dependencies {
     //implementation fileTree(dir: 'libs', include: ['*.jar'])
 //    implementation 'com.android.support:appcompat-v7:28.0.0'
 
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.10.0'
 
     // MobileIMSDK的依赖库
     implementation 'com.google.code.gson:gson:2.9.0'
@@ -42,4 +42,8 @@ dependencies {
     // MobileIMSDK的SDK库
     implementation files('libs/MobileIMSDKServer_META.jar')
     implementation files('libs/MobileIMSDK4a_udp.jar')
+    
+    // 仅用于Demo中在申请通知权限（Android 14及以上系统中强制要求通知权限必须向用户申请）
+    //** 一个支持Andriod14及以下版本的动态权限管理库，来源：https://github.com/getActivity/XXPermissions
+    implementation 'com.github.getActivity:XXPermissions:18.62'
 }

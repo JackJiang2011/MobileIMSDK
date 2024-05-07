@@ -28,7 +28,12 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 
-import net.x52im.mobileimsdk.android.demo.R;
+import net.x52im.mobileimsdk.android.demo.permission2.PermissionManager;
+import net.x52im.mobileimsdk.android.demo.utils.ToolKits;
+
+import java.util.List;
+
+import androidx.appcompat.app.AlertDialog;
 
 /**
  * 应用程序启动类：显示闪屏界面并跳转到主界面.
@@ -70,7 +75,23 @@ public class SplashScreenActivity extends Activity {
 		aa.setAnimationListener(new AnimationListener() {
 			@Override
 			public void onAnimationEnd(Animation arg0) {
-				redirectTo();
+				//** Android 14及以上系统强制要求需动态申请通知权限（以下体验就像微信一样，app闪屏启动完成后，就申请必要的权限）
+				//**          ，如果不申请通知权限，则本Demo中为了网络和进程保活而绑定的前台服务将不会在通知栏显示一个常驻通知
+				//（动态权限申请主要用于targetSDKVersion>=23，即Android6.0及以上系统时）
+				PermissionManager.requestPermission_POST_NOTIFICATIONS(SplashScreenActivity.this
+						// 权限获取成功或已经取得此权限时（走正常的代码逻辑）
+						, (o, permissionNamesObj) -> redirectTo()
+						// 用户拒绝或权限获取失败时
+						, (o, permissionNamesObj) -> {
+							final List<String> permissionNames = (List<String>)permissionNamesObj;
+							String message = ToolKits.i18n(SplashScreenActivity.this, R.string.rb_permission_fail_to_exite, ToolKits.getAppName(SplashScreenActivity.this), permissionNames);
+							new AlertDialog.Builder(SplashScreenActivity.this).setCancelable(false)
+									.setTitle(R.string.common_permission_alert)
+									.setMessage(message)
+									// 直接退出，不让用户用此APP了（就像微信的逻辑一样！）
+									.setPositiveButton("知道了", (dialog, which) -> finish())
+									.show();
+						});
 			}
 
 			@Override

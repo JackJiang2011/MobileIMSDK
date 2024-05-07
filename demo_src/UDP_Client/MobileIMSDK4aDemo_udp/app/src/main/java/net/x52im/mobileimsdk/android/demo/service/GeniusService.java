@@ -31,6 +31,7 @@ import android.util.Log;
 
 import net.x52im.mobileimsdk.android.demo.R;
 import net.x52im.mobileimsdk.android.demo.SplashScreenActivity;
+import net.x52im.mobileimsdk.android.demo.utils.ToolKits;
 
 import androidx.core.app.NotificationCompat;
 
@@ -61,7 +62,7 @@ public class GeniusService extends Service {
 
 	@Override
 	public void onCreate() {
-		mNM = getNotificationManager(this);
+		mNM = ToolKits.getNotificationManager(this);
 
 		// Display a notification about us starting. We put an icon in the status bar.
 		showNotification();
@@ -98,61 +99,10 @@ public class GeniusService extends Service {
 
         String appName = this.getResources().getString(R.string.app_name);
 
-        // 创建一个Notification
-        Notification notification = createNotification(app , contentIntent, appName+" 正在运行中 ...", "点击回到 "+appName+" 的Demo", R.drawable.icon);
+		// 创建一个Notification
+		Notification notification = ToolKits.createNotification(app, contentIntent, appName + " 正在运行中 ...", "点击回到 " + appName + " 的Demo", R.drawable.icon);
 
 		// 让service在前台执行
 		this.startForeground(999, notification);
-	}
-
-	public static NotificationManager getNotificationManager(Context context) {
-		NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-
-		// 以下代码，解决在Android 8及以上代码中，无法正常显示Notification或报"Bad notification for startForeground"等问题
-		NotificationChannel notificationChannel = null;
-		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-			notificationChannel = new NotificationChannel("default_1", "Default Channel", NotificationManager.IMPORTANCE_HIGH);
-			notificationChannel.enableLights(true);
-
-			notificationChannel.setLightColor(Color.RED);
-			notificationChannel.setShowBadge(true);
-			notificationChannel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
-
-			manager.createNotificationChannel(notificationChannel);
-		}
-
-		return manager;
-	}
-
-	/**
-	 * 兼容地方法创建Notification方法。
-	 *
-	 * @param context
-	 * @param pendingIntent
-	 * @param title
-	 * @param text
-	 * @param iconId
-	 * @return
-	 */
-	public static Notification createNotification(Context context, PendingIntent pendingIntent, String title, String text, int iconId) {
-		// 创建一个Notification Builder，使用NotificationCompat可以更好的兼容Android各系统版本，
-		// 有关Android Notitication的兼容性、详细设置等，参见：https://www.cnblogs.com/travellife/p/Android-Notification-xiang-jie.html
-		NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "default_1")
-				.setContentTitle(title)
-				.setContentText(text)
-				.setContentIntent(pendingIntent)
-				// 设置显示在手机最上边的状态栏的图标
-				.setSmallIcon(iconId);
-
-		// 通知的显示等级（Android5.0开始，通知可以显示在锁屏上）：
-		// - VISIBILITY_PRIVATE : 显示基本信息，如通知的图标，但隐藏通知的全部内容
-		// - VISIBILITY_PUBLIC : 显示通知的全部内容
-		// - VISIBILITY_SECRET : 不显示任何内容，包括图标
-		builder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC);
-
-		// 创建一个Notification
-		Notification notification = builder.build();
-
-		return notification;
 	}
 }
