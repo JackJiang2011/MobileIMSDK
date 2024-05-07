@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="MobileIMSDK4jDemo_udp:jar">
+    <output-path>$PROJECT_DIR$/out</output-path>
+    <root id="archive" name="MobileIMSDK4jDemo_udp.jar">
+      <element id="module-output" name="MobileIMSDK4jDemo_udp" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/EPC_common.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/ninepatch4j.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/swing-worker-1.2(1.6-).jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/gson-2.8.6.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/MobileIMSDKServer_META.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/beautyeye_lnf.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/MobileIMSDK4j_udp.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/EPC_widget.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
