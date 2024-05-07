@@ -21,6 +21,6 @@
 
 /** Load to NSUserDefaults
  */
--(id) rm_customObjectForKey:(NSString*)key;
+-(id) rm_customObjectForKey:(NSString*)key withClass:(Class)clazz;
 
 @end
