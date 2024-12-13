@@ -2,15 +2,55 @@
   "string": [
     {
       "name": "module_desc",
-      "value": "module description"
+      "value": "MobileIMSDK的鸿蒙端Demo工程"
     },
     {
       "name": "EntryAbility_desc",
-      "value": "description"
+      "value": "MobileIMSDK的鸿蒙端入口"
     },
     {
       "name": "EntryAbility_label",
-      "value": "label"
+      "value": "MobileIMSDK"
+    },
+    {
+      "name": "internet_reason",
+      "value": "需要获取您的网络权限，用于聊天数据的收发"
+    },
+    {
+      "name": "network_reason",
+      "value": "需要获取您的网络状态信息，用于即时获取网络连接和断线情况"
+    },
+    {
+      "name": "reason_write_media",
+      "value": "需要获取您的写媒体权限，用于保存媒体文件"
+    },
+    {
+      "name": "reason_read_media",
+      "value": "需要获取您的读媒体权限，用于发送媒体文件"
+    },
+    {
+      "name": "reason_read_image_video",
+      "value": "需要获取您的视频读取权限，用于发送短视频文件"
+    },
+    {
+      "name": "camera_auth_reason",
+      "value": "需要获取您的相机权限，用于拍照和音视频通话"
+    },
+    {
+      "name": "reason_microphone",
+      "value": "需要获取您的麦克风权限，用于发送语音消息"
+    },
+    {
+      "name": "reason_media_location",
+      "value": "需要获取您的位置权限，用于发送位置信息"
+    },
+    {
+      "name": "reason_floating_window",
+      "value": "需要获取浮动窗口权限，用于音视频通话"
+    },
+    {
+      "name": "background_task_reason",
+      "value": "需要获取您的后台任务权限，用于后台接收聊天消息"
     }
   ]
 }

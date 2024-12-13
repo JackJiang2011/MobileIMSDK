@@ -1,42 +1,70 @@
-import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import { window } from '@kit.ArkUI';
+/*
+ * Copyright (C) 2024  即时通讯网(52im.net) & Jack Jiang.
+ * The MobileIMSDK-鸿蒙Next客户端 Project. All rights reserved.
+ *
+ * 联系邮件：jack.jiang@52im.net
+ * 联系微信：hellojackjiang
+ * 联系QQ： 413980957
+ * 技术社区：http://www.52im.net
+ */
 
+import { AbilityConstant, common, UIAbility, Want } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import IMClientManager from '../IMClientManager';
+import { ClientCoreSDK } from "mobileimsdk";
+
+const TAG: string = '[EntryAbility] '
+
+/**
+ * 入口Ability实现类。
+ *
+ * @author Jack Jiang(http://www.52im.net/thread-2792-1-1.html)
+ */
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    ClientCoreSDK.Log.debug(TAG+ 'Ability onCreate');
+
+    // init MobileIMSDK first
+    // 提示：在不退出APP的情况下退出登陆后再重新登陆时，请确保调用本方法一次，不然会报code=203错误哦！
+    IMClientManager.getInstance().initMobileIMSDK(this.context.getApplicationContext(), this.context.eventHub);
   }
 
   onDestroy(): void {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
+    ClientCoreSDK.Log.debug(TAG+ 'Ability onDestroy');
+
+    // 释放IM核心占用的资源
+    IMClientManager.getInstance().releaseMobileIMSDK();
   }
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // Main window is created, set main page for this ability
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+    ClientCoreSDK.Log.debug(TAG+ 'Ability onWindowStageCreate');
 
-    windowStage.loadContent('pages/Index', (err) => {
+    AppStorage.setOrCreate<window.WindowStage>('windowStage', windowStage);
+    AppStorage.setOrCreate<window.Window>('window', windowStage.getMainWindowSync());// 获取应用主窗口
+    AppStorage.setOrCreate<common.UIAbilityContext>('uiAbilityContext', this.context);
+
+    windowStage.loadContent('pages/SplashPage', (err) => {
       if (err.code) {
-        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        ClientCoreSDK.Log.error(TAG+ 'Failed to load the content. Cause: %{public}s'+ (JSON.stringify(err) ?? ''));
         return;
       }
-      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content.');
+      ClientCoreSDK.Log.debug(TAG+ 'Succeeded in loading the content.');
     });
   }
 
   onWindowStageDestroy(): void {
     // Main window is destroyed, release UI related resources
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
+    ClientCoreSDK.Log.debug(TAG+ 'Ability onWindowStageDestroy');
   }
 
   onForeground(): void {
     // Ability has brought to foreground
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
+    ClientCoreSDK.Log.debug(TAG+ 'Ability onForeground');
   }
 
   onBackground(): void {
     // Ability has back to background
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
+    ClientCoreSDK.Log.debug(TAG+ 'Ability onBackground');
   }
 }

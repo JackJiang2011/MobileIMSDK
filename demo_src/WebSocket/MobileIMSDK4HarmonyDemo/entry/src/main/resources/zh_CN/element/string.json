@@ -2,15 +2,15 @@
   "string": [
     {
       "name": "module_desc",
-      "value": "模块描述"
+      "value": "A MobileIMSDK harmony demo project"
     },
     {
       "name": "EntryAbility_desc",
-      "value": "description"
+      "value": "Ability of MobileIMSDK"
     },
     {
       "name": "EntryAbility_label",
-      "value": "label"
+      "value": "MobileIMSDK"
     }
   ]
 }

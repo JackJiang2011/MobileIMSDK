@@ -17,11 +17,12 @@
         "name": "EntryAbility",
         "srcEntry": "./ets/entryability/EntryAbility.ets",
         "description": "$string:EntryAbility_desc",
-        "icon": "$media:layered_image",
+        "icon": "$media:startIcon",
         "label": "$string:EntryAbility_label",
-        "startWindowIcon": "$media:startIcon",
+        "startWindowIcon": "$media:ic_splash_graybg2",
         "startWindowBackground": "$color:start_window_background",
         "exported": true,
+        "orientation":"portrait",
         "skills": [
           {
             "entities": [
@@ -34,7 +35,7 @@
         ]
       }
     ],
-    "extensionAbilities": [
+    /*"extensionAbilities": [
       {
         "name": "EntryBackupAbility",
         "srcEntry": "./ets/entrybackupability/EntryBackupAbility.ets",
@@ -47,6 +48,82 @@
           }
         ],
       }
+    ]*/
+    "requestPermissions": [
+      {
+        // 用于长连接通信（隐示权限，无需开发者另外在代码中显示申请）
+        "name": "ohos.permission.INTERNET",
+        "reason": "$string:internet_reason",
+        "usedScene": {
+          "when": "always"
+        }
+      },
+      {
+        // 用于监听网络断线和联网状态（隐示权限，无需开发者另外在代码中显示申请）
+        "name": "ohos.permission.GET_NETWORK_INFO",
+        "reason": "$string:network_reason",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ],
+          "when": "inuse"
+        }
+      },
+//      {
+//        "name": "ohos.permission.WRITE_MEDIA",
+//        "reason": "$string:reason_write_media",
+//        "usedScene": {
+//          "when": "always"
+//        }
+//      },
+//      {
+//        "name": "ohos.permission.READ_MEDIA",
+//        "reason": "$string:reason_write_media",
+//        "usedScene": {
+//          "when": "always"
+//        }
+//      },
+//      {
+//        "name": "ohos.permission.CAMERA",
+//        "reason": "$string:camera_auth_reason",
+//        "usedScene": {
+//          "abilities": [
+//            "FormAbility"
+//          ],
+//          "when": "always"
+//        }
+//      },
+//      {
+//        "name": "ohos.permission.MICROPHONE",
+//        "reason": "$string:reason_microphone",
+//        "usedScene": {
+//          "when": "inuse"
+//        }
+//      },
+//      {
+//        "name": "ohos.permission.MEDIA_LOCATION",
+//        "reason": "$string:reason_media_location",
+//        "usedScene": {
+//          "when": "inuse"
+//        }
+//      },
+//      {
+//        "name": "ohos.permission.APPROXIMATELY_LOCATION",
+//        "reason": "$string:reason_media_location",
+//        "usedScene": {
+//          "when": "inuse"
+//        }
+//      },
+//      {
+//        "name": "ohos.permission.KEEP_BACKGROUND_RUNNING",
+//        "reason": "$string:background_task_reason",
+//        "usedScene": {
+//          "abilities": [
+//            "EntryAbility"
+//          ],
+//          "when": "always"
+//        },
+//      }
     ]
   }
 }

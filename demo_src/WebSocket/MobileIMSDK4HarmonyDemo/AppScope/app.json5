@@ -1,9 +1,9 @@
 {
   "app": {
-    "bundleName": "com.x52im.mbhmdemo",
+    "bundleName": "com.x52im.mobileimsdk.harmonydemo",
     "vendor": "example",
     "versionCode": 1000000,
-    "versionName": "1.0.0",
+    "versionName": "2.0.0",
     "icon": "$media:app_icon",
     "label": "$string:app_name"
   }

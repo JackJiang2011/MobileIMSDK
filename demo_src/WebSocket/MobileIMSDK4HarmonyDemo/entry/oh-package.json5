@@ -1,10 +1,13 @@
 {
   "name": "entry",
-  "version": "1.0.0",
-  "description": "Please describe the basic information.",
+  "version": "2.0.0",
+  "description": "MobileIMSDK-鸿蒙Next客户端Demo工程",
   "main": "",
   "author": "",
   "license": "",
-  "dependencies": {}
+  "dependencies": {
+    // 引用mobileimsdk库
+    "mobileimsdk": "file:./libs/mobileimsdk.har"
+  }
 }
 
