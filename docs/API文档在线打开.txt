@@ -25,6 +25,10 @@ http://www.52im.net/thread-4168-1-1.html
 6）Uniapp端：
 http://www.52im.net/thread-4226-1-1.html
 
+6）鸿蒙Next端：
+开发者手册：http://www.52im.net/thread-4767-1-1.html
+API文档：http://docs.52im.net/extend/docs/api/mobileimsdk/harmony/
+
 7）Server端：
 Server(Netty版)：http://docs.52im.net/extend/docs/api/mobileimsdk/server_tcp/
 

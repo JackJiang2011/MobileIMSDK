@@ -1,0 +1,3 @@
+MobileIMSDK-鸿蒙端Next端SDK工程目前没有开源版（Demo工程源码位于：https://gitee.com/jackjiang/MobileIMSDK/tree/master/demo_src/WebSocket），但您可通过捐助作者的方式获取精编注释版，非常抱歉给您带来不便。
+
+MobileIMSDK-鸿蒙端Next端的详细说明请见：http://www.52im.net/thread-4766-1-1.html （捐且方法见文章中的“三、支持作者”）。

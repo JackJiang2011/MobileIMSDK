@@ -1,0 +1,7 @@
+源码位于：
+
+1）码云Gitee：https://gitee.com/jackjiang/MobileIMSDK/tree/master/demo_src/WebSocket
+
+2）Github：https://github.com/JackJiang2011/MobileIMSDK/tree/master/demo_src/WebSocket
+
+* 请自行下载源码后使用DevEco-Studio编译运行即可，可参考开发者手册：http://www.52im.net/thread-4767-1-1.html
