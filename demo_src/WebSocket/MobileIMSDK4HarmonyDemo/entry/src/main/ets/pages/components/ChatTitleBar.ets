@@ -73,7 +73,7 @@ export struct CustomeTitleBar {
             .borderRadius(6)
             .margin({right: 5})
             .backgroundColor(this.connectStatus ? (this.keepAliveStatus ? '#f1f515': '#00de7a') : '#ff8c6f')// '#00de7a'
-            .border({width: 1, color: (this.connectStatus ? (this.keepAliveStatus ? '#d1d505': '#00de7a') : '#f26c4f'), radius: 6})
+            .border({width: 1, color: (this.connectStatus ? (this.keepAliveStatus ? '#d1d505': '#00c86e') : '#f26c4f'), radius: 6})
             .shadow({
               radius: 15, // 模糊半径
               color: this.keepAliveStatus ? "#59f1f515" : '#00ffffff', // 阴影颜色

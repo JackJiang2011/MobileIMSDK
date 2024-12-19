@@ -28,7 +28,7 @@ struct SafePage {
             .width(96)
             .aspectRatio(1)
             .margin({ top: 80 })
-            .border({width: 1, radius: 16, color: '#eceef1'})
+            .border({width: 1, radius: 22, color: '#eceef1'})
           Text('欢迎使用')
             .fontSize(14)
             .fontColor($r('sys.color.ohos_id_color_text_secondary'))

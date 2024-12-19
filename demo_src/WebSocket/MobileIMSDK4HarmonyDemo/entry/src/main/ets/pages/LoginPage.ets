@@ -200,7 +200,7 @@ struct LoginPage {
               .width(this.passwordFocused? 45 : 96)
               .aspectRatio(1)
               .margin({ top: 56 })
-              .border({width: 1, radius: 16, color: '#eceef1'})
+              .border({width: 1, radius: 22, color: '#eceef1'})
               .animation({ duration: 250, curve: Curve.EaseOut, iterations: 1, playMode: PlayMode.Normal })
             Row() {
               Text('MobileIMSDK')
