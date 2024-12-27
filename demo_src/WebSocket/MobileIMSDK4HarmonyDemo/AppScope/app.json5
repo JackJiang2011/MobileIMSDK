@@ -1,7 +1,7 @@
 {
   "app": {
     "bundleName": "com.x52im.mobileimsdk.harmonydemo",
-    "vendor": "example",
+    "vendor": "JackJiang/即时通讯网(52im.net)",
     "versionCode": 1000000,
     "versionName": "2.0.0",
     "icon": "$media:app_icon",

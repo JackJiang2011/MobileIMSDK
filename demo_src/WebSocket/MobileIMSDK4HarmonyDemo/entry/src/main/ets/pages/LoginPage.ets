@@ -196,7 +196,7 @@ struct LoginPage {
       GridRow({ columns: 4 }) {
         GridCol({ span: 4, offset: 0  }) {
           Column() {
-            Image($r('app.media.app_icon'))
+            Image($r('app.media.startIcon1'))
               .width(this.passwordFocused? 45 : 96)
               .aspectRatio(1)
               .margin({ top: 56 })
