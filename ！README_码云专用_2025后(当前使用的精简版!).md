@@ -221,7 +221,7 @@ MobileIMSDK一直在持续开发和升级中，[鸿蒙Next客户端](http://www.
 # 案例1：鸿蒙NEXT端IM产品RainbowTalk
 > <code>更多资料请见：</code>[详细介绍](http://www.52im.net/thread-4822-1-1.html)、[运行截图](http://www.52im.net/thread-4824-1-1.html)、[安装体验](http://www.52im.net/thread-4825-1-1.html)。
 
-![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/more_products/rainbowtalk_0.jpg)
+![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/more_products/rainbowtalk_0.jpg?v=250816)
 
 # 案例2：移动端IM产品RainbowChat
 > <code>更多资料请见：</code>[详细介绍](http://www.52im.net/thread-19-1-1.html)、[运行截图](http://www.52im.net/thread-20-1-1.html)、[安装体验](http://www.52im.net/thread-4739-1-1.html)（真机实拍视频：[Andriod端](https://v.youku.com/v_show/id_XNTg4NDE2MjE1Mg==.html)、[iOS端](https://v.youku.com/v_show/id_XNDcwMDA4MDQwMA==.html)）。
