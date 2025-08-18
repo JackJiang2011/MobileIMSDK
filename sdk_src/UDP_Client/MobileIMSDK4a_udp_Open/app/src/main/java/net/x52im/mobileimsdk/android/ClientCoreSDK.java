@@ -46,7 +46,7 @@ public class ClientCoreSDK {
 
     private boolean _init = false;
 
-    private boolean connectedToServer = true;
+    private boolean connectedToServer = false;
     private boolean loginHasInit = false;
     private PLoginInfo currentLoginInfo = null;
 

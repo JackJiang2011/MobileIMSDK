@@ -46,7 +46,7 @@ public class ClientCoreSDK {
     private static ClientCoreSDK instance = null;
     private boolean _init = false;
 
-    private boolean connectedToServer = true;
+    private boolean connectedToServer = false;
     private boolean loginHasInit = false;
     private PLoginInfo currentLoginInfo = null;
 
@@ -121,7 +121,7 @@ public class ClientCoreSDK {
 
         _init = false;
         this.setLoginHasInit(false);
-        this.setConnectedToServer(false);
+//        this.setConnectedToServer(false);
     }
 
     public void setCurrentLoginInfo(PLoginInfo currentLoginInfo) {

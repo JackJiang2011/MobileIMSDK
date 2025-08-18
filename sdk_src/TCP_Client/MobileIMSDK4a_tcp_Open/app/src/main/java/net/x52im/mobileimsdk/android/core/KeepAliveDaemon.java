@@ -126,7 +126,7 @@ public class KeepAliveDaemon {
             long now = System.currentTimeMillis();
             if(now - lastGetKeepAliveResponseFromServerTimstamp.longValue() >= NETWORK_CONNECTION_TIME_OUT) {
                 if(ClientCoreSDK.DEBUG)
-                    Log.w(TAG, "【IMCORE-TCP】心跳机制已判定网络断开，将进入断网通知和重连处理逻辑 ...");
+                    Log.w(TAG, "【IMCORE-TCP】心跳[超时检查]机制已判定网络断开，将进入断网通知和重连处理逻辑 ...");
 
                 notifyConnectionLost();
                 keepAliveWillStop = true;

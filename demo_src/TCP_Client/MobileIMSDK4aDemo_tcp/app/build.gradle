@@ -27,6 +27,13 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    // 以下配置解决Netty从4.1.50升级至4.1.107时gradle编译报的错"34 files found with path 'META-INF/INDEX.LIST' from inputs:"
+    packagingOptions {
+        exclude'META-INF/INDEX.LIST'
+        exclude'META-INF/io.netty.versions.properties'
+    }
+
     namespace 'net.x52im.mobileimsdk.android.demo'
 }
 
@@ -39,8 +46,8 @@ dependencies {
 
     // MobileIMSDK的依赖库
     implementation 'com.google.code.gson:gson:2.9.0'
-//    implementation files('libs/netty-all-4.1.50.Final.jar')
-    implementation group: 'io.netty', name: 'netty-all', version: '4.1.50.Final'
+//  implementation group: 'io.netty', name: 'netty-all', version: '4.1.50.Final'
+    implementation 'io.netty:netty-all:4.1.107.Final'
 
     // MobileIMSDK的SDK库
     implementation files('libs/MobileIMSDKServer_META.jar')

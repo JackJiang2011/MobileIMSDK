@@ -160,7 +160,7 @@ public class LoginActivity extends AppCompatActivity {
 		String serverPort = editServerPort.getText().toString();
 		if (!(serverIP.trim().length() <= 0) && !(serverPort.trim().length() <= 0)) {
 			// 无条件重置socket，防止首次登陆时用了错误的ip或域名，下次登陆时sendData中仍然使用老的ip
-			// 说明：本行代码建议仅用于Demo时，生产环境下是没有意义的，因为你的APP里不可能连IP都搞错了
+			// 说明：本行代码建议仅用于Demo时，生产环境下是没有意义的，因为你的APP里不可能还允许让用户自已填写IP
 			LocalSocketProvider.getInstance().closeLocalSocket();
 
 			ConfigEntity.serverIP = serverIP.trim();
@@ -197,8 +197,7 @@ public class LoginActivity extends AppCompatActivity {
 		// 异步提交登陆id和token
 		new LocalDataSender.SendLoginDataAsync(new PLoginInfo(loginName, loginToken)) {
 			/**
-			 * 登陆信息发送完成后将调用本方法（注意：此处仅是登陆信息发送完成
-			 * ，真正的登陆结果要在异步回调中处理哦）。
+			 * 登陆信息发送完成后将调用本方法（注意：此处仅是登陆信息发送完成，真正的登陆结果要在异步回调中处理哦）。
 			 *
 			 * @param code 数据发送返回码，0 表示数据成功发出，否则是错误码
 			 */
