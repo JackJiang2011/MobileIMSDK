@@ -209,7 +209,7 @@
 ![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/more_products/rainbowtalk_4.jpg)
 
 # 案例2：移动端IM产品RainbowChat
-> <code>更多资料请见：</code>[详细介绍](http://www.52im.net/thread-19-1-1.html)、[Android运行截图](http://www.52im.net/thread-20-1-1.html) 、[iOS运行截图](http://www.52im.net/thread-2730-1-1.html)、[安装体验](http://www.52im.net/thread-4739-1-1.html)（真机实拍视频：[Andriod端](https://v.youku.com/v_show/id_XNTg4NDE2MjE1Mg==.html)、[iOS端](https://v.youku.com/v_show/id_XNDcwMDA4MDQwMA==.html)）。
+> <code>更多资料请见：</code>[详细介绍](http://www.52im.net/thread-19-1-1.html)、[Android运行截图](http://www.52im.net/thread-20-1-1.html) 、[iOS运行截图](http://www.52im.net/thread-2730-1-1.html)、[安装体验](http://www.52im.net/thread-4739-1-1.html)（真机实拍视频：[Andriod端](https://www.bilibili.com/video/BV1sN411Y7a8/)、[iOS端](https://www.bilibili.com/video/BV1Rf4GzyEjh/)）。
 
 ![](https://gitee.com/jackjiang/MobileIMSDK/raw/master/preview/more_products/rainbowchat_2.jpg)
 
