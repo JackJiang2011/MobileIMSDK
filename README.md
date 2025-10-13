@@ -13,7 +13,7 @@
 
 <a href="http://www.52im.net/thread-52-1-1.html" target="_blank"><img src="https://trendshift.io/api/badge/repositories/3" alt="MobileIMSDK | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
 
-:heart: <b>最新动态：</b>RainbowChat iOS v10.2已发布（全面适配iOS26）。[鸿蒙Next端](https://gitee.com/jackjiang/MobileIMSDK/issues/IBCI00)IM产品[RainbowTalk](http://www.52im.net/thread-4822-1-1.html)已发布。:heart:
+:heart: <b>最新动态：</b> [RainbowChat iOS v10.2](https://gitee.com/jackjiang/MobileIMSDK/issues/ID1OJ6)已发布（全面适配iOS26）。[鸿蒙Next端](https://gitee.com/jackjiang/MobileIMSDK/issues/IBCI00)IM产品[RainbowTalk](http://www.52im.net/thread-4822-1-1.html)已发布。:heart:
 
 </div>
 
