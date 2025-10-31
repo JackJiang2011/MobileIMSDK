@@ -206,22 +206,22 @@
 # 十四、【案例1】鸿蒙NEXT端IM产品RainbowTalk
 > <code>更多资料请见：</code>[详细介绍](http://www.52im.net/thread-4822-1-1.html)、[运行截图](http://www.52im.net/thread-4824-1-1.html)、[安装体验](http://www.52im.net/thread-4825-1-1.html)。
 
-![](http://jackimgs.52im.net/images/mobileimsdk/preview/more_products/rainbowtalk_0.jpg)
+![](http://jackimgs.52im.net/images/mobileimsdk/preview/more_products/rainbowtalk_0.jpg?v=251031)
 
-![](http://jackimgs.52im.net/images/mobileimsdk/preview/more_products/rbt_v26all_in_one.jpg)
+![](http://jackimgs.52im.net/images/mobileimsdk/preview/more_products/rbt_v26all_in_one.jpg?v=251031)
 
 # 十五、【案例2】移动端IM产品RainbowChat
 > <code>关于RainbowChat产品的更多资料请见：</code>[详细介绍](http://www.52im.net/thread-19-1-1.html)、[Android运行截图](http://www.52im.net/thread-20-1-1.html) 、[iOS运行截图](http://www.52im.net/thread-2730-1-1.html)、[安装体验](http://www.52im.net/thread-4739-1-1.html)（真机实拍视频：[Andriod端](https://www.bilibili.com/video/BV1sN411Y7a8/)、[iOS端](https://www.bilibili.com/video/BV1Rf4GzyEjh/)）。
 
-![](http://jackimgs.52im.net/images/mobileimsdk/preview/more_products/v102_down_ios.jpg)
+![](http://jackimgs.52im.net/images/mobileimsdk/preview/more_products/v102_down_ios.jpg?v=251031)
 
 ![](http://jackimgs.52im.net/images/mobileimsdk/preview/more_products/v102_all_in_one.jpg)
 
-![](http://jackimgs.52im.net/images/mobileimsdk/preview/more_products/android_v117_all_in_one.jpg)
+![](http://jackimgs.52im.net/images/mobileimsdk/preview/more_products/android_v117_all_in_one.jpg?v=251031)
 
 # 十六、【案例3】网页端IM产品RainbowChat-Web
 > <code>更多截图和视频：</code>[详细介绍](http://www.52im.net/thread-2483-1-1.html)、[更多运行截图](http://www.52im.net/thread-2470-1-1.html)、[更多演示视频](http://www.52im.net/thread-2491-1-1.html)。
 
-![](http://jackimgs.52im.net/images/mobileimsdk/preview/more_products/rbpw_tb_main1.png)
+![](http://jackimgs.52im.net/images/mobileimsdk/preview/more_products/rbpw_tb_main1.png?v=251031)
 
 ![](http://jackimgs.52im.net/images/mobileimsdk/preview/more_products/rainbowchat_web/rbchat_web_main_1.jpg)
