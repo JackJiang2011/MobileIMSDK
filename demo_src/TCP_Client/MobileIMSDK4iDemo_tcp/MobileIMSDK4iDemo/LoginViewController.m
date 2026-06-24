@@ -145,7 +145,6 @@
     else
     {
         [self E_showToastInfo:@"提示" withContent:@"请确保服务端地址和端口号都不为空！" onParent:self.view];
-//      [self showIMInfo_red: @"请确保服务端地址和端口号都不为空！"];
         return;
     }
     
@@ -157,12 +156,6 @@
         return;
     }
     NSString *loginTokenStr = self.loginPsw.text;
-//  if ([loginTokenStr length] == 0)
-//  {
-//      [self E_showToastInfo:@"提示" withContent:@"请输入登密码！" onParent:self.view];
-//      return;
-//  }
-    
     //** 向服务端发送登陆信息
     [self doLoginImpl:loginUserIdStr withToken:loginTokenStr];
 }
