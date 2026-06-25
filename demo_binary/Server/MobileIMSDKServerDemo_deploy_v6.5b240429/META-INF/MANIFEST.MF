@@ -1,3 +1,0 @@
-Manifest-Version: 1.0
-Main-Class: net.x52im.mobileimsdk.server.demo.ServerLauncherImpl
-
