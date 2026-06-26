@@ -1,5 +1,5 @@
 基本说明：
-此目录下为MobileIMSDK已编译好的lib，开发者可直接在你的工程里引用之，MobileIMSDK的源码，请至目录/sdk_src/下查看。
+此目录下为MobileIMSDK已编译好的lib库，开发者可直接在你的工程里引用之，MobileIMSDK的源码，请至目录/sdk_src/下查看。
 
 
 1）/Server：
@@ -22,6 +22,8 @@
 
 7）/Client_TCP/ios：
 为TCP协议的iOS版客户端核心库编译后lib包；
+
+。。。。
 
 
 
