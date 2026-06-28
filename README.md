@@ -71,15 +71,15 @@
 
 |   | 平台 | 完成度  | Demo演示      | 开发指南 | 源码位置 | 参考应用案例 |
 |---|----|------|--------|------    |------|--------|
-| 1  |  **Android**   |   ✅   | [安装和使用](http://www.52im.net/thread-55-1-1.html) | [查看](http://www.52im.net/thread-61-1-1.html) | [源码目录](https://gitee.com/jackjiang/MobileIMSDK/tree/master/sdk_src/TCP_Client/MobileIMSDK4a_tcp_Open/) | [查看](http://www.52im.net/thread-20-1-1.html) 🔥 |
-| 2  |   **iOS**      |   ✅   | [安装和使用](http://www.52im.net/thread-54-1-1.html) | [查看](http://www.52im.net/thread-62-1-1.html) | [源码目录](https://gitee.com/jackjiang/MobileIMSDK/tree/master/sdk_src/TCP_Client/MobileIMSDK4i_tcp_Open/) | [查看](http://www.52im.net/thread-2730-1-1.html) 🔥 |
-| 3  |    **Java**    |   ✅   | [安装和使用](http://www.52im.net/thread-56-1-1.html) | [查看](http://www.52im.net/thread-59-1-1.html) | [源码目录](https://gitee.com/jackjiang/MobileIMSDK/tree/master/sdk_src/TCP_Client/MobileIMSDK4j_tcp_Open/) |        |
+| 1  |  **Android**   |   ✅   | [安装和使用](http://www.52im.net/thread-55-1-1.html) | [查看](http://www.52im.net/thread-61-1-1.html) | [源码目录](sdk_src/TCP_Client/MobileIMSDK4a_tcp_Open/) | [查看](http://www.52im.net/thread-20-1-1.html) 🔥 |
+| 2  |   **iOS**      |   ✅   | [安装和使用](http://www.52im.net/thread-54-1-1.html) | [查看](http://www.52im.net/thread-62-1-1.html) | [源码目录](sdk_src/TCP_Client/MobileIMSDK4i_tcp_Open/) | [查看](http://www.52im.net/thread-2730-1-1.html) 🔥 |
+| 3  |    **Java**    |   ✅   | [安装和使用](http://www.52im.net/thread-56-1-1.html) | [查看](http://www.52im.net/thread-59-1-1.html) | [源码目录](sdk_src/TCP_Client/MobileIMSDK4j_tcp_Open/) |        |
 | 4  |   **HTML5**    |   ✅   | [运行演示](http://www.52im.net/thread-3682-1-1.html#11)   | [查看 ](http://www.52im.net/thread-4239-1-1.html)| [精编注释版](http://www.52im.net/thread-3682-1-1.html) | [查看](http://www.52im.net/thread-2470-1-1.html) 🔥 |
 | 5  | **微信小程序** |   ✅   | [运行演示](http://www.52im.net/thread-4169-1-1.html#10)   | [查看](http://www.52im.net/thread-4168-1-1.html) | [精编注释版](http://www.52im.net/thread-4169-1-1.html) |        |
 | 6  |   **Uniapp**   |   ✅   | [运行演示](http://www.52im.net/thread-4225-1-1.html#10)   | [查看](http://www.52im.net/thread-4226-1-1.html) | [精编注释版](http://www.52im.net/thread-4225-1-1.html)|        |
 | 7  | **鸿蒙Next**  ⭐️|   ✅   | [HarmonyChat](https://gitee.com/jackjiang/harmonychat) 🔥   | [查看](http://www.52im.net/thread-4767-1-1.html) | [精编注释版](http://www.52im.net/thread-4766-1-1.html) | [查看](http://www.52im.net/thread-4824-1-1.html) 🔥 |
-| 8  |  **Flutter**   |   ☑️   |           |      | [社区版本](https://github.com/Wongxd/MobileIMSDK/tree/master/sdk_src/TCP_Client/MobileIMSDK4f_tcp_Open) |        |
-| 9  |  **Server**  ⭐️⭐️|   ✅   | [安装和使用](http://www.52im.net/thread-1272-1-1.html)  | [查看](http://www.52im.net/thread-63-1-1.html) | [源码目录](https://gitee.com/jackjiang/MobileIMSDK/tree/master/sdk_src/Server/MobileIMSDKServer_Open) |  |
+| 8  |  **Flutter**   |   ☑️   |           |      | [社区版本](sdk_src/TCP_Client/) |        |
+| 9  |  **Server**  ⭐️⭐️|   ✅   | [安装和使用](http://www.52im.net/thread-1272-1-1.html)  | [查看](http://www.52im.net/thread-63-1-1.html) | [源码目录](sdk_src/Server/MobileIMSDKServer_Open) |  |
 
 <b>整套MobileIMSDK框架的架构原理图：</b>
 
