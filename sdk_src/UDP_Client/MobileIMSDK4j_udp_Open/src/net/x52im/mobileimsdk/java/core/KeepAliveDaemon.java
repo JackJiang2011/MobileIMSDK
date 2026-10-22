@@ -61,19 +61,12 @@ public class KeepAliveDaemon {
 	}
 
 	private void init() {
-		keepAliveTimer = new Timer(KEEP_ALIVE_INTERVAL, new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				doKeepAlive();
-			}
-		});
-		
-		keepAliveTimeoutTimer = new Timer(NETWORK_CONNECTION_TIME_OUT_CHECK_INTERVAL, new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				if(ClientCoreSDK.DEBUG)
-					Log.i(TAG, "【IMCORE-UDP】心跳[超时检查]线程执行中...");
+		keepAliveTimer = new Timer(KEEP_ALIVE_INTERVAL, e -> doKeepAlive());
+		keepAliveTimeoutTimer = new Timer(NETWORK_CONNECTION_TIME_OUT_CHECK_INTERVAL, e -> {
+			if(ClientCoreSDK.DEBUG)
+				Log.i(TAG, "【IMCORE-UDP】心跳[超时检查]线程执行中...");
 
-				doTimeoutCheck();
-			}
+			doTimeoutCheck();
 		});
 	}
 
@@ -84,11 +77,9 @@ public class KeepAliveDaemon {
 			if (ClientCoreSDK.DEBUG)
 				Log.i(TAG, "【IMCORE-UDP】心跳线程执行中...");
 			int code = LocalDataSender.getInstance().sendKeepAlive();
-
 			boolean isInitialedForKeepAlive = isInitialedForKeepAlive();
 			if(isInitialedForKeepAlive)
 				lastGetKeepAliveResponseFromServerTimstamp.set(System.currentTimeMillis());
-
 
 			_excuting = false;
 			if (!keepAliveWillStop) {

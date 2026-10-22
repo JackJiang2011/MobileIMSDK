@@ -1,10 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="a9b718b0-57fb-40e4-9f61-17a3041b8c5c" name="Default Changelist" comment="" />
-    <ignored path="$PROJECT_DIR$/out/" />
-    <ignored path="$PROJECT_DIR$/bin/" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <list default="true" id="a9b718b0-57fb-40e4-9f61-17a3041b8c5c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../demo_src/UDP_Client/MobileIMSDK4aDemo_udp/.idea/AndroidProjectSystem.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../demo_src/UDP_Client/MobileIMSDK4aDemo_udp/.idea/deploymentTargetSelector.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../demo_src/UDP_Client/MobileIMSDK4aDemo_udp/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../demo_src/UDP_Client/MobileIMSDK4aDemo_udp/.idea/runConfigurations.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../demo_src/TCP_Client/MobileIMSDK4aDemo_tcp/.idea/deploymentTargetSelector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../demo_src/TCP_Client/MobileIMSDK4aDemo_tcp/.idea/deploymentTargetSelector.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../demo_src/TCP_Client/MobileIMSDK4aDemo_tcp/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../demo_src/TCP_Client/MobileIMSDK4aDemo_tcp/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../demo_src/TCP_Client/MobileIMSDK4aDemo_tcp/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../demo_src/TCP_Client/MobileIMSDK4aDemo_tcp/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../demo_src/TCP_Client/MobileIMSDK4aDemo_tcp/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../../demo_src/TCP_Client/MobileIMSDK4aDemo_tcp/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../demo_src/TCP_Client/MobileIMSDK4aDemo_tcp/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../../demo_src/TCP_Client/MobileIMSDK4aDemo_tcp/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../demo_src/TCP_Client/MobileIMSDK4iDemo_tcp/MobileIMSDK4iDemo.xcodeproj/project.xcworkspace/xcuserdata/jackjiang.xcuserdatad/UserInterfaceState.xcuserstate" beforeDir="false" afterPath="$PROJECT_DIR$/../../../demo_src/TCP_Client/MobileIMSDK4iDemo_tcp/MobileIMSDK4iDemo.xcodeproj/project.xcworkspace/xcuserdata/jackjiang.xcuserdatad/UserInterfaceState.xcuserstate" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../demo_src/TCP_Client/MobileIMSDK4iDemo_tcp/MobileIMSDK4iDemo/LoginViewController.m" beforeDir="false" afterPath="$PROJECT_DIR$/../../../demo_src/TCP_Client/MobileIMSDK4iDemo_tcp/MobileIMSDK4iDemo/LoginViewController.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../demo_src/UDP_Client/MobileIMSDK4aDemo_udp/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../demo_src/UDP_Client/MobileIMSDK4aDemo_udp/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../demo_src/UDP_Client/MobileIMSDK4aDemo_udp/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../demo_src/UDP_Client/MobileIMSDK4aDemo_udp/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../demo_src/UDP_Client/MobileIMSDK4aDemo_udp/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../demo_src/UDP_Client/MobileIMSDK4aDemo_udp/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../demo_src/UDP_Client/MobileIMSDK4aDemo_udp/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../demo_src/UDP_Client/MobileIMSDK4aDemo_udp/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../demo_src/UDP_Client/MobileIMSDK4aDemo_udp/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../../demo_src/UDP_Client/MobileIMSDK4aDemo_udp/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../demo_src/UDP_Client/MobileIMSDK4aDemo_udp/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../../demo_src/UDP_Client/MobileIMSDK4aDemo_udp/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../TCP_Client/MobileIMSDK4a_tcp_Open/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../TCP_Client/MobileIMSDK4a_tcp_Open/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../TCP_Client/MobileIMSDK4a_tcp_Open/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../TCP_Client/MobileIMSDK4a_tcp_Open/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../TCP_Client/MobileIMSDK4a_tcp_Open/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../TCP_Client/MobileIMSDK4a_tcp_Open/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../TCP_Client/MobileIMSDK4a_tcp_Open/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../TCP_Client/MobileIMSDK4a_tcp_Open/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../TCP_Client/MobileIMSDK4a_tcp_Open/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../TCP_Client/MobileIMSDK4a_tcp_Open/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../TCP_Client/MobileIMSDK4j_tcp_Open/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../TCP_Client/MobileIMSDK4j_tcp_Open/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../TCP_Client/MobileIMSDK4j_tcp_Open/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../TCP_Client/MobileIMSDK4j_tcp_Open/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../TCP_Client/MobileIMSDK4j_tcp_Open/src/net/x52im/mobileimsdk/java/core/KeepAliveDaemon.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../TCP_Client/MobileIMSDK4j_tcp_Open/src/net/x52im/mobileimsdk/java/core/KeepAliveDaemon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MobileIMSDK4a_udp_Open/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MobileIMSDK4a_udp_Open/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MobileIMSDK4a_udp_Open/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MobileIMSDK4a_udp_Open/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MobileIMSDK4a_udp_Open/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MobileIMSDK4a_udp_Open/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../MobileIMSDK4a_udp_Open/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MobileIMSDK4a_udp_Open/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../MobileIMSDK4a_udp_Open/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,6 +47,9 @@
   </component>
   <component name="FileEditorManager">
     <leaf />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -30,6 +64,7 @@
     <option name="width" value="2504" />
     <option name="height" value="1640" />
   </component>
+  <component name="ProjectId" id="35QCQKLh3Ee6a9mDKOh0RT7RRgC" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -50,48 +85,30 @@
       <pane id="Scope" />
     </panes>
   </component>
-  <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
-    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.119521916" />
-    <property name="project.structure.side.proportion" value="0.2" />
+  <component name="ProjectViewState">
+    <option name="flattenPackages" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="sortByType" value="true" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/Users/jackjiang/Documents/opensource/github/MobileIMSDK/sdk_src/UDP_Client/MobileIMSDK4j_udp_Open",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration" cleanupOnStartRun="true">
-    <configuration>C:\Users\jackjiang\AppData\Roaming\Subversion</configuration>
+    <configuration>$USER_HOME$/.subversion</configuration>
     <supportedVersion>125</supportedVersion>
-  </component>
-  <component name="SvnFileUrlMappingImpl">
-    <option name="myMappingRoots">
-      <list>
-        <SvnCopyRootSimple>
-          <option name="myVcsRoot" value="C:\e\idea_mobileimsdk2024\MobileIMSDK4j_udp_Open" />
-          <option name="myCopyRoot" value="C:\e\idea_mobileimsdk2024\MobileIMSDK4j_udp_Open" />
-        </SvnCopyRootSimple>
-      </list>
-    </option>
-    <option name="myMoreRealMappingRoots">
-      <list>
-        <SvnCopyRootSimple>
-          <option name="myVcsRoot" value="C:\e\idea_mobileimsdk2024\MobileIMSDK4j_udp_Open" />
-          <option name="myCopyRoot" value="C:\e\idea_mobileimsdk2024\MobileIMSDK4j_udp_Open" />
-        </SvnCopyRootSimple>
-      </list>
-    </option>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -102,6 +119,7 @@
       <updated>1713427805976</updated>
       <workItem from="1713427812304" duration="1097000" />
       <workItem from="1714399062187" duration="583000" />
+      <workItem from="1763032892264" duration="657000" />
     </task>
     <servers />
   </component>
@@ -143,7 +161,7 @@
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.idea/artifacts/MobileIMSDK4j_udp_jar.xml">
